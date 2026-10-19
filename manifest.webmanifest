@@ -1,10 +1,11 @@
 {
+  "id": "./",
   "name": "Inglês Prático",
   "short_name": "Inglês Prático",
   "description": "Inglês americano para vida pessoal, trabalho e escola, com áudio.",
   "lang": "pt-BR",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#16305C",
