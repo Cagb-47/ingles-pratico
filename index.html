@@ -164,6 +164,14 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
 #phoneChecks label{display:flex;gap:10px;align-items:center;background:var(--soft);border-radius:10px;padding:10px 12px}
 @media (max-width:380px){.songs{grid-template-columns:1fr}}
 .credit{margin-top:32px;padding-top:14px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font:600 .85rem var(--f-body)}
+.stairs{display:grid;gap:6px}
+.step{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center;border:0;border-radius:10px;padding:10px 12px;background:var(--sc);color:#fff;text-align:left;cursor:pointer;box-shadow:0 3px 0 rgba(0,0,0,.18);min-width:0;box-sizing:border-box}
+.step .sn{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#fff;color:var(--sc);font:800 1rem var(--f-display)}
+.step .st{min-width:0}.step b{display:block;font:800 1rem var(--f-display);letter-spacing:.02em}
+.step small{display:block;font-size:.8rem;opacity:.92;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.step .sp{font:700 .8rem var(--f-mono);background:rgba(255,255,255,.2);padding:2px 8px;border-radius:999px}
+.step.on{outline:3px solid var(--mustard);outline-offset:2px}
+.step[style*="#C9A100"] .sn{color:#5a4700}
 /* Histórias */
 .story{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px}
 .story+.story{margin-top:16px}
@@ -204,6 +212,7 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
     <div class="bar" aria-hidden="true"><i id="barfill"></i></div>
     <nav role="tablist" aria-label="Seções">
       <button role="tab" data-tab="aula" aria-selected="true">Aula</button>
+      <button role="tab" data-tab="niveis" aria-selected="false">Níveis</button>
       <button role="tab" data-tab="livro" aria-selected="false">Livro</button>
       <button role="tab" data-tab="rotina" aria-selected="false">Rotina</button>
       <button role="tab" data-tab="mapas" aria-selected="false">Mapas</button>
@@ -250,6 +259,15 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
       </ol>
     </div>
     <p class="tip">Cada celular guarda o próprio progresso, então o mesmo link serve para qualquer pessoa. Errou a pronúncia? Sem problema. Ouça de novo na velocidade "Bem devagar" e repita junto.</p>
+  </section>
+
+  <section id="niveis" data-panel hidden>
+    <h2>Do zero ao avançado</h2>
+    <p class="sub">Seis degraus, do A1 ao C2, a mesma escala usada em escolas e provas de inglês no mundo todo. Suba um degrau por vez: toque no nível, ouça as frases e marque o que já sabe.</p>
+    <div class="stairs" id="stairs"></div>
+    <div id="nvHead" style="margin-top:20px"></div>
+    <div id="nvLessons"></div>
+    <p class="tip">Os níveis A1 e A2 combinam com o Interchange Intro das aulas com a professora. Os próximos degraus preparam o que vem depois.</p>
   </section>
 
   <section id="livro" data-panel hidden>
@@ -374,7 +392,7 @@ tabs.forEach(t=>t.onclick=()=>show(t.dataset.tab));
 let uname=store.get('name','');
 const nameIn=document.getElementById('uname');nameIn.value=uname;
 function nm(t){const n=uname.trim()||'Alex';return t.replace(/\{NP\}/g,n.toUpperCase()).replace(/\{N\}/g,n)}
-nameIn.oninput=()=>{uname=nameIn.value;store.set('name',uname);renderLesson();renderStories()};
+nameIn.oninput=()=>{uname=nameIn.value;store.set('name',uname);renderLesson();renderStories();if(typeof renderNiveis==='function')renderNiveis()};
 /* ---------- Aulas ---------- */
 const L=[
 {t:'Pedir um café',s:'Você entra numa coffee shop em Orlando e vai até o balcão.',p:[
@@ -1505,6 +1523,60 @@ calm down|se acalmar|CÁM DÁUN`}
 const nl=document.getElementById('nativeList');
 nl.innerHTML=N.map(g=>`<div class="ngroup"><h3>${g.t}</h3><p>${g.d}</p><div class="wl-head"><span>Português</span><span>English</span><span>Pronúncia</span></div>${g.r.trim().split('\n').map(l=>{const w=l.split('|');const sp=w[0].includes('→')?w[0].split('→')[1].trim():w[0];return `<button class="wrow" data-en="${sp.replace(/"/g,'&quot;')}" aria-label="Ouvir ${sp.replace(/"/g,'')}"><span>${w[1]}</span><span>${w[0]}</span><span>${w[2]}</span></button>`}).join('')}</div>`).join('');
 nl.querySelectorAll('.wrow').forEach(r=>r.onclick=()=>{say(r.dataset.en);nl.querySelectorAll('.on').forEach(x=>x.classList.remove('on'));r.classList.add('on')});
+
+/* ---------- Níveis A1 a C2 ---------- */
+const NV=[
+{k:'A1',n:'Base',c:'#2E7D4F',d:'Cumprimentar, se apresentar, pedir e perguntar o básico.',chave:['Hello! = Olá!','Frases curtas, uma ideia por vez.'],l:[
+['Primeiro contato',[['Hello! My name is {N}.','Olá! Meu nome é {N}.','RRELÔU! MAI NÊIM IZ {NP}.'],['Where are you from?','De onde você é?','UÉR AR IU FRÂM?'],["I'm from Brazil.",'Sou do Brasil.','AIM FRÂM BRAZÍL.'],['Nice to meet you.','Prazer.','NÁIS TU MIT IU.'],['See you later!','Até mais!','SÍ IU LÊIRER!']]],
+['Números e preços',[['How much is this?','Quanto custa isto?','RRÁU MÂTCH IZ DIS?'],["It's ten dollars.",'São dez dólares.','ITS TÉN DÓLARZ.'],["What's your phone number?",'Qual é o seu telefone?','UÓTS IÓR FÔUN NÂMBER?'],['How old are you?','Quantos anos você tem?','RRÁU ÔULD AR IU?'],["I'm forty-seven.",'Tenho quarenta e sete anos.','AIM FÓRI-SÉVEN.']]],
+['Pedir o que precisa',[["I'd like a coffee, please.",'Eu queria um café, por favor.','AID LÁIK A CÓFI, PLIZ.'],['Can I have water?','Pode me dar água?','KÉN AI RRÉV UÓRER?'],['Where is the bathroom?','Onde fica o banheiro?','UÉR IZ DÂ BÉTHRUM?'],['Thank you very much!','Muito obrigado!','THÉNK IU VÉRI MÂTCH!'],["You're welcome.",'De nada.','IÓR UÉUCAM.']]],
+['Meu dia',[['I wake up at six.','Acordo às seis.','AI UÊIK ÂP ÉT SÍKS.'],['I work every day.','Trabalho todo dia.','AI UÂRK ÉVRI DÊI.'],['I like coffee.','Gosto de café.','AI LÁIK CÓFI.'],["I don't like rain.",'Não gosto de chuva.','AI DÔUNT LÁIK RÊIN.'],["I'm tired today.",'Estou cansado hoje.','AIM TÁIERD TUDÊI.']]]
+]},
+{k:'A2',n:'Construção',c:'#C9A100',d:'Contar o que aconteceu, fazer planos e se virar em lojas e ruas.',chave:['I went home. = Eu fui para casa.','Agora você conta o passado e o futuro.'],l:[
+['O que eu fiz',[['I went home early.','Fui para casa cedo.','AI UÉNT RRÔUM ÂRLI.'],['I had a great weekend.','Tive um ótimo fim de semana.','AI RRÉD A GRÊIT UÍKEND.'],['We watched a movie.','Assistimos a um filme.','UÍ UÓTCHT A MÚVI.'],['Did you sleep well?','Você dormiu bem?','DÍDJA SLÍP UÉL?'],["I didn't see him.",'Eu não vi ele.','AI DÍDNT SÍ RRIM.']]],
+['Planos',[["I'm going to travel next month.",'Vou viajar no mês que vem.','AIM GÓNA TRÉVOL NÉKST MÂNTH.'],["What are you doing tomorrow?",'O que você vai fazer amanhã?','UÓRA IU DÚIN TUMÁROU?'],["Let's meet at eight.",'Vamos nos encontrar às oito.','LÉTS MÍT ÉT ÊIT.'],["I'll call you later.",'Te ligo mais tarde.','AIL CÓL IU LÊIRER.'],["Maybe next time.",'Talvez na próxima.','MÊIBI NÉKST TÁIM.']]],
+['Compras',[['Do you have this in a larger size?','Tem este num tamanho maior?','DU IU RRÉV DIS IN A LÁRDJER SÁIZ?'],['Can I try it on?','Posso provar?','KÉN AI TRÁI IT ÓN?'],["It's too expensive.",'Está caro demais.','ITS TÚ IKSPÉNSIV.'],["I'll take it.",'Vou levar.','AIL TÊIK IT.'],['Can I pay in cash?','Posso pagar em dinheiro?','KÉN AI PÊI IN KÉCH?']]],
+['Na rua',[['How do I get to the station?','Como chego na estação?','RRÁU DU AI GUÉT TU DÂ STÊIXAN?'],['Go straight and turn left.','Siga reto e vire à esquerda.','GÔU STRÊIT ÉND TÂRN LÉFT.'],["It's next to the bank.",'Fica ao lado do banco.','ITS NÉKST TU DÂ BÉNK.'],['Is it far from here?','É longe daqui?','IZ IT FÁR FRÂM RRÍR?'],["It's a five-minute walk.",'São cinco minutos a pé.','ITS A FÁIV MÍNIT UÓK.']]]
+]},
+{k:'B1',n:'Independente',c:'#2C5DA8',d:'Falar de experiências, dar opinião e resolver problemas sozinho.',chave:['I have worked = Tenho trabalhado / Já trabalhei','Você conta o que já viveu e desde quando.'],l:[
+['Experiências',[["I've been to New York twice.",'Já fui a Nova York duas vezes.','AIV BÍN TU NÚ IÓRK TUÁIS.'],["Have you ever eaten sushi?",'Você já comeu sushi?','RRÉV IU ÉVER ÍTEN SÚXI?'],["I've worked here for ten years.",'Trabalho aqui há dez anos.','AIV UÂRKT RRÍR FOR TÉN ÍARZ.'],["I've never seen snow.",'Nunca vi neve.','AIV NÉVER SÍN SNÔU.'],["I haven't finished yet.",'Ainda não terminei.','AI RRÉVNT FÍNICHT IÉT.']]],
+['Dar opinião',[['In my opinion, it\'s a good idea.','Na minha opinião, é uma boa ideia.','IN MAI OPÍNIAN, ITS A GUD AIDÍA.'],["I think you're right.",'Acho que você tem razão.','AI THÍNK IÓR RÁIT.'],["I'm not sure about that.",'Não tenho certeza disso.','AIM NÓT XUR ABÁUT DÉT.'],["I agree with you.",'Concordo com você.','AI AGRÍ UÍF IU.'],["I see your point, but...",'Entendo seu ponto, mas...','AI SÍ IÓR PÓINT, BÂT...']]],
+['Resolver problemas',[["There's a problem with my room.",'Tem um problema no meu quarto.','DÉRZ A PRÓBLEM UÍF MAI RÚM.'],["The air conditioning isn't working.",'O ar-condicionado não está funcionando.','DÂ ÉR CONDÍXANIN ÍZNT UÂRKIN.'],["Could you send someone, please?",'Poderia mandar alguém, por favor?','CÚDJU SÉND SÂMUAN, PLIZ?'],["I'd like to speak to the manager.",'Gostaria de falar com o gerente.','AID LÁIK TU SPÍK TU DÂ MÉNEDJER.'],["Thanks for fixing it so fast.",'Obrigado por resolver tão rápido.','THÉNKS FOR FÍKSIN IT SÔU FÉST.']]],
+['No telefone',[["Hi, this is {N} calling.",'Oi, aqui é {N}.','RRÁI, DIS IZ {NP} CÓLIN.'],["Could you speak more slowly?",'Poderia falar mais devagar?','CÚDJU SPÍK MÓR SLÔULI?'],["Sorry, I didn't catch that.",'Desculpa, não entendi.','SÓRI, AI DÍDNT KÉTCH DÉT.'],["Can I leave a message?",'Posso deixar um recado?','KÉN AI LÍV A MÉSSIDJ?'],["I'll get back to you.",'Eu te retorno.','AIL GUÉT BÉK TU IU.']]]
+]},
+{k:'B2',n:'Natural',c:'#6B3FA0',d:'Falar com naturalidade, usar verbos de duas palavras e imaginar situações.',chave:['look for = procurar','Você fala como o americano fala de verdade.'],l:[
+['Verbos do dia a dia',[["I'm looking for my keys.",'Estou procurando minhas chaves.','AIM LÚKIN FOR MAI KÍZ.'],["Can you pick me up at six?",'Pode me buscar às seis?','KÉN IU PÍK MI ÂP ÉT SÍKS?'],["We ran out of milk.",'Acabou o leite.','UÍ RÉN ÁURA MILK.'],["I need to figure this out.",'Preciso resolver isso.','AI NÍD TU FÍGUIR DIS ÁUT.'],["Don't give up!",'Não desista!','DÔUNT GUÍV ÂP!']]],
+['Imaginar',[["If I were you, I'd take the job.",'Se eu fosse você, aceitaria o emprego.','IF AI UÂR IU, AID TÊIK DÂ DJÓB.'],["If I had more time, I'd travel more.",'Se eu tivesse mais tempo, viajaria mais.','IF AI RRÉD MÓR TÁIM, AID TRÉVOL MÓR.'],["What would you do?",'O que você faria?','UÓT UÚDJU DÚ?'],["I wish I could speak English better.",'Queria falar inglês melhor.','AI UÍCH AI CÚD SPÍK ÍNGLICH BÉRER.'],["It would be great!",'Seria ótimo!','IT UÚD BI GRÊIT!']]],
+['Contar uma história',[["So, this is what happened.",'Então, foi isso que aconteceu.','SÔU, DIS IZ UÓT RRÉPEND.'],["I was driving home when it started raining.",'Eu estava dirigindo para casa quando começou a chover.','AI UÓZ DRÁIVIN RRÔUM UÉN IT STÁRTID RÊININ.'],["All of a sudden, the lights went out.",'De repente, a luz acabou.','ÓL ÓV A SÂDEN, DÂ LÁITS UÉNT ÁUT.'],["It turned out to be nothing.",'No fim, não era nada.','IT TÂRND ÁUT TU BI NÂTHIN.'],["Long story short, we made it.",'Resumindo, deu certo.','LÓNG STÓRI XÓRT, UÍ MÊID IT.']]],
+['Reclamar com educação',[["I'm afraid there's been a mistake.",'Receio que houve um erro.','AIM AFRÊID DÉRZ BÍN A MISTÊIK.'],["I was charged twice.",'Fui cobrado duas vezes.','AI UÓZ TCHÁRDJD TUÁIS.'],["Would you mind checking again?",'Você se importaria de verificar de novo?','UÚDJU MÁIND TCHÉKIN AGUÉN?'],["I'd appreciate a refund.",'Gostaria de um reembolso.','AID APRÍXIEIT A RÍFÂND.'],["I understand, but this isn't fair.",'Entendo, mas isso não é justo.','AI ANDERSTÉND, BÂT DIS ÍZNT FÉR.']]]
+]},
+{k:'C1',n:'Avançado',c:'#C2352B',d:'Ligar ideias com fluidez, suavizar o que diz e defender um ponto de vista.',chave:['Actually = na verdade','Você soa fluente, com nuance e jogo de cintura.'],l:[
+['Ligar as ideias',[["Actually, I meant something else.",'Na verdade, eu quis dizer outra coisa.','ÉKTCHUALI, AI MÉNT SÂMTHIN ÉLS.'],["To be honest, I'm not convinced.",'Para ser sincero, não estou convencido.','TU BI ÓNEST, AIM NÓT CONVÍNST.'],["That being said, it's worth a try.",'Dito isso, vale a tentativa.','DÉT BÍIN SÉD, ITS UÂRTH A TRÁI.'],["On the other hand, it's expensive.",'Por outro lado, é caro.','ÓN DÍ ÂDER RRÉND, ITS IKSPÉNSIV.'],["As far as I know, it's closed.",'Até onde eu sei, está fechado.','ÉZ FÁR ÉZ AI NÔU, ITS KLÔUZD.']]],
+['Suavizar o que diz',[["I was wondering if you could help me.",'Eu queria saber se você poderia me ajudar.','AI UÓZ UÂNDERIN IF IU CÚD RRÉLP MI.'],["It might be better to wait.",'Talvez seja melhor esperar.','IT MÁIT BI BÉRER TU UÊIT.'],["I'm not entirely sure that's right.",'Não tenho total certeza de que está certo.','AIM NÓT ENTÁIERLI XUR DÉTS RÁIT.'],["With all due respect, I disagree.",'Com todo o respeito, discordo.','UÍF ÓL DÚ RISPÉKT, AI DISAGRÍ.'],["Would it be possible to reschedule?",'Seria possível remarcar?','UÚD IT BI PÓSIBOL TU RISKÉDJUL?']]],
+['Reuniões',[["Let's get down to business.",'Vamos direto ao assunto.','LÉTS GUÉT DÁUN TU BÍZNES.'],["Can we circle back to that later?",'Podemos voltar a isso depois?','KÉN UÍ SÂRKOL BÉK TU DÉT LÊIRER?'],["Just to make sure we're on the same page...",'Só para garantir que estamos alinhados...','DJÂST TU MÊIK XUR UÍR ÓN DÂ SÊIM PÊIDJ...'],["The bottom line is, we need more time.",'Resumindo, precisamos de mais tempo.','DÂ BÓROM LÁIN IZ, UÍ NÍD MÓR TÁIM.'],["Let's touch base next week.",'Vamos conversar de novo semana que vem.','LÉTS TÂTCH BÊIS NÉKST UÍK.']]],
+['Expressões do americano',[["It's a piece of cake.",'É moleza.','ITS A PÍS ÓV KÊIK.'],["I'm on the fence.",'Estou em cima do muro.','AIM ÓN DÂ FÉNS.'],["Let's call it a day.",'Vamos encerrar por hoje.','LÉTS CÓL IT A DÊI.'],["Break a leg!",'Boa sorte! (antes de apresentação)','BRÊIK A LÉG!'],["It's not my cup of tea.",'Não é a minha praia.','ITS NÓT MAI CÂP ÓV TÍ.']]]
+]},
+{k:'C2',n:'Domínio',c:'#16305C',d:'Falar com precisão, elegância e humor, como um nativo culto.',chave:['Had I known... = Se eu soubesse...','Você escolhe a palavra exata para cada situação.'],l:[
+['Formas elegantes',[["Had I known, I would have come earlier.",'Se eu soubesse, teria vindo mais cedo.','RRÉD AI NÔUN, AI UÚDAV CÂM ÂRLIER.'],["Never have I seen such a mess.",'Nunca vi tamanha bagunça.','NÉVER RRÉV AI SÍN SÂTCH A MÉS.'],["Should you need anything, let me know.",'Caso precise de algo, me avise.','XUD IU NÍD ÉNITHIN, LÉMI NÔU.'],["Not only is it cheap, but it's also good.",'Não só é barato, como também é bom.','NÓT ÔUNLI IZ IT TCHÍP, BÂT ITS ÓUSOU GUD.'],["Little did I know what was coming.",'Mal sabia eu o que estava por vir.','LÍROL DÍD AI NÔU UÓT UÓZ CÂMIN.']]],
+['Precisão',[["It's not so much the price as the quality.",'Não é tanto o preço, é a qualidade.','ITS NÓT SÔU MÂTCH DÂ PRÁIS ÉZ DÂ KUÓLIRI.'],["That's beside the point.",'Isso não vem ao caso.','DÉTS BISÁID DÂ PÓINT.'],["By and large, it went well.",'De modo geral, foi bem.','BÁI ÉND LÁRDJ, IT UÉNT UÉL.'],["It goes without saying.",'Nem precisa dizer.','IT GÔUZ UIDÁUT SÊIIN.'],["For what it's worth, I think you did great.",'Se serve de algo, acho que você foi ótimo.','FOR UÓT ITS UÂRTH, AI THÍNK IU DÍD GRÊIT.']]],
+['Debater com classe',[["I take your point, but I'd argue otherwise.",'Entendo seu ponto, mas eu argumentaria o contrário.','AI TÊIK IÓR PÓINT, BÂT AID ÁRGUIU ÂDERUAIZ.'],["Let me play devil's advocate.",'Deixa eu fazer o advogado do diabo.','LÉMI PLÊI DÉVOLZ ÉDVOKET.'],["That's a fair point, I'll give you that.",'É um ponto justo, isso eu admito.','DÉTS A FÉR PÓINT, AIL GUÍV IU DÉT.'],["We'll have to agree to disagree.",'Vamos ter que concordar em discordar.','UÍL RRÉV TU AGRÍ TU DISAGRÍ.'],["Point taken.",'Entendido.','PÓINT TÊIKEN.']]],
+['Humor e ironia',[["Well, that went well.",'Bom, isso foi ótimo. (irônico)','UÉL, DÉT UÉNT UÉL.'],["Tell me about it!",'Nem me fale!','TÉL MI ABÁURIT!'],["You can say that again.",'Pode crer, com certeza.','IU KÉN SÊI DÉT AGUÉN.'],["I'll believe it when I see it.",'Só acredito vendo.','AIL BILÍV IT UÉN AI SÍ IT.'],["Better late than never!",'Antes tarde do que nunca!','BÉRER LÊIT DÉN NÉVER!']]]
+]}
+];
+let nvDone=store.get('nvDone',{}),nvSel=store.get('nvSel',0);
+function renderNiveis(){
+  const st=document.getElementById('stairs');
+  st.innerHTML=NV.map((v,i)=>{const tot=v.l.length,dn=v.l.filter((_,j)=>nvDone[v.k+j]).length;return `<button class="step${i===nvSel?' on':''}" data-i="${i}" style="--sc:${v.c};margin-left:${i*7}%;width:calc(100% - ${i*7}%)"><span class="sn">${i+1}</span><span class="st"><b>${v.k} · ${v.n}</b><small>${v.chave[0]}</small></span><span class="sp">${dn}/${tot}</span></button>`}).reverse().join('');
+  st.querySelectorAll('.step').forEach(b=>b.onclick=()=>{nvSel=+b.dataset.i;store.set('nvSel',nvSel);renderNiveis()});
+  const v=NV[nvSel];
+  document.getElementById('nvHead').innerHTML=`<div class="eyebrow" style="color:${v.c}">Nível ${nvSel+1} de 6 · ${v.k}</div><h2>${v.n}</h2><p class="sub">${v.d} ${v.chave[1]}</p>`;
+  document.getElementById('nvLessons').innerHTML=v.l.map((ls,j)=>`<details class="unit${nvDone[v.k+j]?' ok':''}" ${j===0?'open':''}><summary><span class="num" style="background:${v.c}">${v.k}</span><span class="ut"><b>${ls[0]}</b><span>${ls[1].length} frases</span></span><span class="chev">›</span></summary><div class="ubody">${ls[1].map((p,pi)=>`<div class="phrase"><div class="en">${nm(p[0])}</div><button class="play" data-j="${j}" data-p="${pi}" aria-label="Ouvir">${PLAY}</button><div class="pt">${nm(p[1])}</div><div class="pr">${nm(p[2])}</div></div>`).join('')}<div class="uchecks"><label><input type="checkbox" id="nv${v.k}${j}" data-j="${j}" ${nvDone[v.k+j]?'checked':''}>Já sei falar estas frases</label></div><button class="btn ghost" data-all="${j}">Ouvir todas, com pausa</button></div></details>`).join('');
+  const box=document.getElementById('nvLessons');
+  box.querySelectorAll('.play').forEach(b=>b.onclick=()=>say(nm(v.l[+b.dataset.j][1][+b.dataset.p][0])));
+  box.querySelectorAll('[data-all]').forEach(b=>b.onclick=()=>sayQueue(v.l[+b.dataset.all][1].map(p=>nm(p[0]))));
+  box.querySelectorAll('input[type=checkbox]').forEach(c=>c.onchange=()=>{nvDone[v.k+c.dataset.j]=c.checked;store.set('nvDone',nvDone);if(c.checked)touchDay();renderNiveis()});
+}
+renderNiveis();
 
 /* ---------- Minhas aulas com a professora ---------- */
 const AULAS=[
