@@ -1,0 +1,1649 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#16305C">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/icon-192.png">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Inglês Prático">
+<meta name="description" content="Inglês americano para vida pessoal, trabalho e escola, do nível 1 ao 4, com áudio.">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Inglês Prático</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Patrick+Hand&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: caderno de estudo no celular. Cabeçalho azul-marinho fixo, abas grandes, cartões tipo caderno desenhado à mão para os mapas. */
+:root{
+  --bg:#F3F5F8; --paper:#FFFFFF; --ink:#152238; --muted:#5A6577; --line:#D9DEE6;
+  --navy:#16305C; --navy-ink:#FFFFFF; --mustard:#F2C230; --mustard-ink:#2A2100; --red:#C2352B;
+  --m1:#2E7D4F; --m2:#2C5DA8; --m3:#6B3FA0; --m4:#C2352B; --m5:#C9681C; --m6:#1F7A7A;
+  --soft:#EEF2F8;
+  --f-display:"Bricolage Grotesque",system-ui,sans-serif;
+  --f-body:"Source Sans 3",system-ui,-apple-system,sans-serif;
+  --f-hand:"Patrick Hand","Comic Sans MS",cursive;
+  --f-mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E1420; --paper:#172133; --ink:#E8EDF5; --muted:#9AA6B8; --line:#2A3650;
+  --navy:#0A1A36; --navy-ink:#FFFFFF; --mustard:#F2C230; --mustard-ink:#2A2100; --red:#F07368;
+  --m1:#5FC48A; --m2:#7AA7F0; --m3:#B48AE8; --m4:#F07368; --m5:#F0A15E; --m6:#5CC4C4;
+  --soft:#1D2940; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E1420; --paper:#172133; --ink:#E8EDF5; --muted:#9AA6B8; --line:#2A3650;
+  --navy:#0A1A36; --navy-ink:#FFFFFF; --mustard:#F2C230; --mustard-ink:#2A2100; --red:#F07368;
+  --m1:#5FC48A; --m2:#7AA7F0; --m3:#B48AE8; --m4:#F07368; --m5:#F0A15E; --m6:#5CC4C4;
+  --soft:#1D2940; color-scheme:dark}
+html,body{background:var(--bg)}
+body{color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--navy)}
+.wrap{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--navy);color:var(--navy-ink)}
+header .wrap{padding-block:14px 0}
+.brand{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+h1{font-family:var(--f-display);font-weight:800;font-size:1.55rem;margin:0;letter-spacing:-.01em}
+h1 span{background:var(--mustard);color:var(--mustard-ink);padding:0 .25em;border-radius:4px}
+.day{font-family:var(--f-mono);font-size:.8rem;opacity:.9;font-variant-numeric:tabular-nums}
+.ver{display:inline-block;margin-top:8px;font:700 .78rem var(--f-mono);background:rgba(255,255,255,.14);color:#fff;padding:3px 10px;border-radius:999px;font-variant-numeric:tabular-nums}
+.bar{height:6px;background:rgba(255,255,255,.18);border-radius:3px;margin:10px 0 0;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--mustard)}
+nav{display:flex;gap:4px;overflow-x:auto;margin-top:10px;scrollbar-width:none}
+nav button{flex:1 0 auto;background:none;border:0;color:var(--navy-ink);opacity:.7;font:600 .95rem var(--f-body);padding:10px 12px 12px;border-bottom:3px solid transparent;cursor:pointer}
+nav button[aria-selected="true"]{opacity:1;border-bottom-color:var(--mustard)}
+nav button:focus-visible,button:focus-visible{outline:3px solid var(--mustard);outline-offset:2px}
+main .wrap{padding-block:20px 48px}
+h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px;text-wrap:balance}
+.sub{color:var(--muted);margin:0 0 18px;font-size:.98rem}
+.eyebrow{font:600 .75rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.speed{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 16px;font-size:.92rem;color:var(--muted)}
+.speed button{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:6px 12px;font:600 .88rem var(--f-body);cursor:pointer}
+.speed button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+/* Aula */
+.lesson-pick{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:14px}
+.lesson-pick button{flex:0 0 auto;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:10px;padding:8px 12px;font:600 .9rem var(--f-body);cursor:pointer}
+.lesson-pick button[aria-current="true"]{background:var(--mustard);color:var(--mustard-ink);border-color:var(--mustard)}
+.lesson-pick button.done::after{content:" ✓"}
+.phrase{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 14px 14px 16px;display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center}
+.phrase+.phrase{margin-top:10px}
+.phrase .en{font-family:var(--f-display);font-weight:700;font-size:1.25rem;line-height:1.25;min-width:0}
+.phrase .pt{color:var(--muted);font-size:.98rem}
+.phrase .pr{font-family:var(--f-mono);font-weight:600;font-size:.9rem;color:var(--m2);letter-spacing:.02em}
+.phrase .play{grid-row:1/4;grid-column:2}
+.play{width:52px;height:52px;border-radius:50%;border:0;background:var(--navy);color:#fff;cursor:pointer;display:grid;place-items:center;flex:0 0 auto}
+.play svg{width:22px;height:22px;fill:currentColor}
+.play.sm{width:38px;height:38px}.play.sm svg{width:16px;height:16px}
+.steps{margin:20px 0 0;padding:16px;background:var(--soft);border-radius:12px}
+.steps h3{margin:0 0 8px;font:700 1rem var(--f-body)}
+.steps ol{margin:0;padding-left:1.2em}
+.steps li+li{margin-top:6px}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.btn{border:0;border-radius:10px;padding:12px 16px;font:700 1rem var(--f-body);cursor:pointer;background:var(--mustard);color:var(--mustard-ink)}
+.btn.ghost{background:var(--paper);color:var(--ink);border:1px solid var(--line)}
+.tip{margin-top:14px;font-size:.92rem;color:var(--muted)}
+/* Mapas */
+.maps{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.map{--c:var(--m1);background:var(--paper);border:2.5px solid var(--c);border-radius:16px 14px 18px 12px;padding:14px 14px 12px;font-family:var(--f-hand);box-shadow:3px 3px 0 color-mix(in srgb,var(--c) 22%,transparent);min-width:0}
+.map h3{display:flex;align-items:center;gap:8px;margin:0 0 4px;font:400 1.4rem/1.15 var(--f-hand);color:var(--c)}
+.map h3 b{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--c);color:var(--paper);font-size:1rem;flex:0 0 auto}
+.map .why{font-size:1.05rem;color:var(--muted);margin:0 0 8px;line-height:1.25}
+.map ul{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.map li{display:flex;align-items:center;gap:8px;font-size:1.2rem;line-height:1.25;padding:3px 0;border-bottom:1px dashed var(--line);min-width:0}
+.map li:last-child{border-bottom:0}
+.map li .t{flex:1;min-width:0}
+.map li .t small{display:block;font-size:.95rem;color:var(--muted)}
+.map li .ic{flex:0 0 auto;width:40px;height:30px}
+.map li .dot{width:16px;height:16px;border-radius:50%;flex:0 0 auto;border:1.5px solid var(--ink)}
+.map .say{border:0;background:none;color:var(--c);cursor:pointer;padding:6px;border-radius:50%}
+.map .say svg{width:20px;height:20px;fill:currentColor;display:block}
+/* Palavras */
+.wtools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.wtools button{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:7px 12px;font:600 .9rem var(--f-body);cursor:pointer}
+.wtools button[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:18px;min-height:250px;display:grid;place-items:center;text-align:center;padding:24px 16px;cursor:pointer;user-select:none}
+.card .big{font-family:var(--f-display);font-weight:800;font-size:2.4rem;line-height:1.1;word-break:break-word}
+.card .back{margin-top:12px}
+.card .back .pt{font-size:1.3rem;font-weight:600}
+.card .back .pr{font-family:var(--f-mono);color:var(--m2);font-weight:600;margin-top:4px}
+.card .hint{color:var(--muted);font-size:.9rem;margin-top:14px}
+.wcount{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:.82rem;color:var(--muted);margin:10px 2px;font-variant-numeric:tabular-nums}
+.wbtns{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center}
+.wbtns .btn{width:100%}
+.wbtns .rev{background:var(--paper);color:var(--ink);border:1px solid var(--line)}
+.wmode{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:12px}
+.wmode button{border:0;background:var(--paper);color:var(--ink);padding:11px;font:700 .98rem var(--f-body);cursor:pointer}
+.wmode button[aria-pressed="true"]{background:var(--navy);color:#fff}
+#wsearch{width:100%;box-sizing:border-box;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:10px;padding:11px 12px;font:600 1rem var(--f-body);margin-bottom:12px}
+.wl-head,.wrow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.wl-head span{font:800 .82rem var(--f-display);text-transform:uppercase;letter-spacing:.04em;padding:8px 8px;border-radius:8px 8px 0 0;text-align:left}
+.wl-head span:nth-child(1){background:var(--paper);color:var(--ink);border:1px solid var(--line);border-bottom:0}
+.wl-head span:nth-child(2){background:var(--mustard);color:var(--mustard-ink)}
+.wl-head span:nth-child(3){background:#2B7FD4;color:#fff}
+.wrow{border:0;background:none;padding:0;width:100%;cursor:pointer;text-align:left;font:inherit}
+.wrow span{font:700 1rem/1.2 var(--f-display);text-transform:uppercase;padding:7px 8px;min-width:0;overflow-wrap:anywhere}
+.wrow span:nth-child(1){background:var(--paper);color:var(--ink);border-left:1px solid var(--line);border-right:1px solid var(--line)}
+.wrow span:nth-child(2){background:var(--mustard);color:var(--mustard-ink)}
+.wrow span:nth-child(3){background:#2B7FD4;color:#fff}
+.wrow:active span,.wrow.on span{filter:brightness(.9)}
+.wcat{font:800 .8rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:14px 2px 6px}
+.ngroup{margin-top:22px}.ngroup:first-child{margin-top:0}.ngroup h3{font-family:var(--f-display);font-weight:800;font-size:1.12rem;margin:0 0 2px}.ngroup p{margin:0 0 10px;color:var(--muted);font-size:.95rem}
+.lvh{font-family:var(--f-display);font-weight:800;font-size:1.15rem;margin:26px 0 0;padding:8px 12px;background:var(--navy);color:#fff;border-radius:10px}.lvh:first-child{margin-top:4px}
+.wempty{padding:16px;color:var(--muted)}
+.sech{font-family:var(--f-display);font-weight:800;font-size:1.05rem;margin:18px 0 10px}.ag{margin:8px 0 0;font:700 .95rem var(--f-body);color:var(--m2)}
+.unitbar{font:600 .85rem var(--f-mono);color:var(--muted);margin:-6px 0 12px}
+.unit{background:var(--paper);border:1px solid var(--line);border-radius:12px;margin-bottom:10px;overflow:hidden}
+.unit>summary{list-style:none;display:grid;grid-template-columns:44px 1fr auto;gap:10px;align-items:center;padding:12px 14px;cursor:pointer}
+.unit>summary::-webkit-details-marker{display:none}
+.unit .num{display:grid;place-items:center;width:40px;height:40px;font-size:.9rem!important;border-radius:10px;background:var(--navy);color:#fff;font:800 1rem var(--f-display)}
+.unit.ok .num{background:var(--m1)}
+.unit .ut{min-width:0}.unit .ut b{display:block;font-size:1.02rem}.unit .ut span{color:var(--muted);font-size:.9rem}
+.unit .chev{color:var(--muted);font-size:1.2rem}
+.unit[open] .chev{transform:rotate(90deg)}
+.ubody{padding:0 14px 14px;display:grid;gap:10px}
+.ubody .phrase{margin:0}
+.uchecks{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:.95rem}
+.uchecks label{display:flex;align-items:center;gap:6px}
+.uchecks input,.songs input,#phoneChecks input,.steps3 input{width:22px;height:22px;accent-color:var(--m1)}
+.ulink{border:1px solid var(--line);background:var(--soft);color:var(--ink);border-radius:999px;padding:6px 12px;font:600 .88rem var(--f-body);cursor:pointer;justify-self:start}
+.rbox{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:16px}
+.rbox h3{font-family:var(--f-display);font-weight:800;font-size:1.12rem;margin:0 0 4px}
+.rbox p{margin:0 0 12px}
+.rrow{display:grid;gap:4px;margin-bottom:12px}
+.rrow label{font-weight:700;font-size:.92rem}
+.rrow input{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;padding:10px 12px;font:600 1rem var(--f-body);min-width:0}
+.songs{display:grid;grid-template-columns:1fr;gap:8px}
+.song{display:flex;align-items:center;gap:8px;background:var(--soft);border-radius:10px;padding:8px 10px;min-width:0}
+.song input[type=text]{flex:1;min-width:0;border:0;background:transparent;color:var(--ink);font:600 .95rem var(--f-body);padding:4px 0}
+.song .w{font:600 .75rem var(--f-mono);color:var(--muted);white-space:nowrap}
+.steps3{display:grid;gap:8px;margin-bottom:12px}
+.steps3 label{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;background:var(--soft);border-radius:10px;padding:10px 12px}
+.steps3 label>span{color:var(--ink)}.steps3 b{display:block}.steps3 b+span{color:var(--muted);font-size:.9rem;display:block}
+#phoneChecks{display:grid;gap:8px;margin-bottom:8px}
+#phoneChecks label{display:flex;gap:10px;align-items:center;background:var(--soft);border-radius:10px;padding:10px 12px}
+@media (max-width:380px){.songs{grid-template-columns:1fr}}
+.credit{margin-top:32px;padding-top:14px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font:600 .85rem var(--f-body)}
+/* Histórias */
+.story{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px}
+.story+.story{margin-top:16px}
+.story h3{font-family:var(--f-display);font-weight:800;font-size:1.2rem;margin:0 0 2px}
+.story .meta{color:var(--muted);font-size:.9rem;margin-bottom:10px}
+.line{display:grid;grid-template-columns:auto 1fr;gap:10px;padding:10px 0;border-top:1px solid var(--line);align-items:start}
+.line .txt{min-width:0}
+.line .en{font-weight:700;font-size:1.08rem}
+.line .pt{color:var(--muted);font-size:.95rem}
+.hidept .line .pt{visibility:hidden}
+/* Plano */
+.month{margin-top:22px}
+.month h3{font-family:var(--f-display);font-weight:800;font-size:1.1rem;margin:0 0 2px}
+.month p{margin:0 0 10px;color:var(--muted);font-size:.95rem}
+.weeks{display:grid;gap:8px}
+.week{display:grid;grid-template-columns:64px 1fr auto;gap:10px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.week .n{font-family:var(--f-mono);font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.week .t{min-width:0}
+.week .t b{display:block}
+.week .t span{color:var(--muted);font-size:.9rem}
+.week input{width:24px;height:24px;accent-color:var(--m1)}
+.week.now{border-color:var(--mustard);box-shadow:0 0 0 2px var(--mustard)}
+.note{margin-top:18px;padding:14px 16px;border-left:4px solid var(--mustard);background:var(--soft);border-radius:0 10px 10px 0;font-size:.95rem}
+.warn{display:none;margin:0 0 14px;padding:10px 12px;border-radius:10px;background:var(--soft);font-size:.92rem}
+@media (prefers-reduced-motion:no-preference){.card{transition:transform .15s}.card:active{transform:scale(.98)}}
+</style>
+
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="brand">
+      <h1>Inglês <span>Prático</span></h1>
+      <div class="day" id="day"></div>
+      <button id="installBtn" hidden style="border:0;border-radius:999px;background:var(--mustard);color:var(--mustard-ink);font:700 .9rem var(--f-body);padding:7px 14px;cursor:pointer">Instalar app</button>
+    </div>
+    <div class="ver" id="ver"></div>
+    <div class="bar" aria-hidden="true"><i id="barfill"></i></div>
+    <nav role="tablist" aria-label="Seções">
+      <button role="tab" data-tab="aula" aria-selected="true">Aula</button>
+      <button role="tab" data-tab="livro" aria-selected="false">Livro</button>
+      <button role="tab" data-tab="rotina" aria-selected="false">Rotina</button>
+      <button role="tab" data-tab="mapas" aria-selected="false">Mapas</button>
+      <button role="tab" data-tab="palavras" aria-selected="false">Palavras</button>
+      <button role="tab" data-tab="nativo" aria-selected="false">Nativo</button>
+      <button role="tab" data-tab="historias" aria-selected="false">Histórias</button>
+      <button role="tab" data-tab="plano" aria-selected="false">Trilha</button>
+    </nav>
+  </div>
+</header>
+
+<main><div class="wrap">
+  <p class="warn" id="warn">Seu navegador não liberou a voz em inglês. No Android, abra Configurações, Idiomas, Saída de texto em voz, e instale o inglês (Estados Unidos).</p>
+  <div class="speed"><label for="uname">Seu nome:</label><input id="uname" type="text" autocomplete="given-name" placeholder="Digite seu nome" style="flex:1;min-width:0;max-width:220px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:10px;padding:8px 10px;font:600 1rem var(--f-body)"></div>
+  <div class="speed" role="group" aria-label="Velocidade da voz">
+    Voz:
+    <button data-rate="0.6" aria-pressed="false">Bem devagar</button>
+    <button data-rate="0.8" aria-pressed="true">Calma</button>
+    <button data-rate="1" aria-pressed="false">Normal</button>
+  </div>
+
+  <section id="aula" data-panel>
+    <h2>Uma situação por vez</h2>
+    <p class="sub">Escolha onde vai usar: vida pessoal, trabalho ou escola. Cada aula mostra o nível, do 1 (mais simples) ao 4. Ouça, repita três vezes e avance quando quiser.</p>
+    <div class="wmode" id="ctxPick" role="group" aria-label="Contexto" style="grid-template-columns:1fr 1fr 1fr">
+      <button data-c="p">Vida pessoal</button><button data-c="w">Trabalho</button><button data-c="s">Escola</button>
+    </div>
+    <div class="lesson-pick" id="lessonPick"></div>
+    <div class="eyebrow" id="lessonNum"></div>
+    <h2 id="lessonTitle" style="margin-top:2px"></h2>
+    <p class="sub" id="lessonScene"></p>
+    <div id="phrases"></div>
+    <div class="cta">
+      <button class="btn" id="playAll">Ouvir todas, com pausa</button>
+      <button class="btn ghost" id="markDone">Marcar como feita</button>
+    </div>
+    <div class="steps">
+      <h3>Sugestão para uma sessão (use o tempo que quiser)</h3>
+      <ol>
+        <li><b>5 min:</b> revisão da aula anterior (toque na aba dela acima e ouça de novo).</li>
+        <li><b>10 min:</b> ouça cada frase, repita em voz alta, grave no WhatsApp e compare.</li>
+        <li><b>10 min:</b> abra o mapa e as palavras do dia; leia a história em voz alta.</li>
+        <li><b>5 min:</b> monte a cena sozinho, como se estivesse no balcão nos EUA.</li>
+      </ol>
+    </div>
+    <p class="tip">Cada celular guarda o próprio progresso, então o mesmo link serve para qualquer pessoa. Errou a pronúncia? Sem problema. Ouça de novo na velocidade "Bem devagar" e repita junto.</p>
+  </section>
+
+  <section id="livro" data-panel hidden>
+    <h2>Junto com o livro</h2>
+    <p class="sub">Segue o Interchange Intro (4ª edição), o livro das aulas com a professora. Primeiro vem o que foi visto em cada aula, para revisar com áudio. Depois vêm as 16 unidades do livro, com as páginas e frases extras para treinar o mesmo tema. Os textos, exercícios e áudios do livro continuam no próprio livro.</p>
+    <h3 class="sech">Minhas aulas com a professora</h3>
+    <div id="aulasProf"></div>
+    <h3 class="sech">Unidades do livro</h3>
+    <div class="unitbar"><span id="uProg"></span></div>
+    <div id="units"></div>
+  </section>
+
+  <section id="rotina" data-panel hidden>
+    <h2>Rotina da professora</h2>
+    <p class="sub">As dicas do caderno, transformadas em tarefas para marcar.</p>
+
+    <div class="rbox">
+      <h3>1. Música: um cantor por mês</h3>
+      <p>Escolha um cantor que canta em inglês. Duas músicas por semana, de manhã e à tarde, somando 8 músicas no mês. Ouça com a letra aberta no Spotify ou no YouTube.</p>
+      <div class="rrow"><label for="singer">Cantor do mês</label><input id="singer" type="text" placeholder="Ex.: o cantor que você escolheu"></div>
+      <div class="songs" id="songs"></div>
+      <p class="tip">Prefira cantores americanos, porque o foco é o inglês americano. A Adele, por exemplo, é inglesa, então o sotaque dela é diferente do americano.</p>
+    </div>
+
+    <div class="rbox">
+      <h3>2. Série e filme: foco no idioma</h3>
+      <p>Não assista para acompanhar a história. Escolha um trecho de 5 a 10 minutos e repita o mesmo trecho em três passos.</p>
+      <div class="steps3" id="steps3"></div>
+      <div class="rrow"><label for="clip">Trecho de hoje</label><input id="clip" type="text" placeholder="Ex.: Friends, temporada 1, episódio 1, 0:00 a 8:00"></div>
+      <div class="cta"><button class="btn ghost" id="resetClip">Começar trecho novo</button></div>
+    </div>
+
+    <div class="rbox">
+      <h3>3. Celular em inglês</h3>
+      <p>Mude o idioma do celular e do Waze para inglês. Assim você aprende sem perceber, várias vezes por dia.</p>
+      <div id="phoneChecks"></div>
+      <p class="tip">No Android, o caminho é Configurações, Sistema, Idiomas, English (United States). No Waze, toque em Configurações, Voz e idioma, e escolha English (US).</p>
+    </div>
+  </section>
+
+  <section id="mapas" data-panel hidden>
+    <h2>Mapas visuais</h2>
+    <p class="sub">Do mais simples (cores e números) ao mais avançado (contar o que já passou). Siga a numeração e toque no alto-falante para ouvir.</p>
+    <div class="maps" id="maps"></div>
+  </section>
+
+  <section id="palavras" data-panel hidden>
+    <h2>Palavras do dia a dia</h2>
+    <p class="sub" id="wsub">As palavras que mais aparecem nas conversas comuns nos EUA.</p>
+    <div class="wmode" role="group" aria-label="Modo">
+      <button id="mList" aria-pressed="true">Lista completa</button>
+      <button id="mCards" aria-pressed="false">Cartões</button>
+    </div>
+    <div class="wtools" id="wtools"></div>
+    <div id="listView">
+      <input id="wsearch" type="search" placeholder="Buscar em português ou inglês" aria-label="Buscar palavra">
+      <div class="wl-head"><span>Português</span><span>English</span><span>Pronúncia</span></div>
+      <div class="wl" id="wlist"></div>
+      <p class="tip">Toque em qualquer linha para ouvir. A pronúncia escrita é aproximada; o áudio é a referência.</p>
+    </div>
+    <div id="cardView" hidden>
+    <div class="card" id="card" role="button" tabindex="0" aria-label="Virar cartão"></div>
+    <div class="wcount"><span id="wpos"></span><span id="wknown"></span></div>
+    <div class="wbtns">
+      <button class="btn rev" id="wAgain">Rever depois</button>
+      <button class="play" id="wSay" aria-label="Ouvir palavra"></button>
+      <button class="btn" id="wKnow">Já sei</button>
+    </div>
+    </div>
+  </section>
+
+  <section id="nativo" data-panel hidden>
+    <h2>Fale como nativo</h2>
+    <p class="sub">Do nível 1 ao 4. Mais palavras não deixam você com cara de nativo. O que faz isso é juntar as palavras, ter respostas prontas e usar as expressões certas. Toque numa linha para ouvir.</p>
+    <div id="nativeList"></div>
+  </section>
+
+  <section id="historias" data-panel hidden>
+    <h2>Histórias lado a lado</h2>
+    <p class="sub">Histórias curtas com as frases das aulas. Leia o inglês em voz alta, depois esconda o português e teste se entende.</p>
+    <div class="cta" style="margin:0 0 14px"><button class="btn ghost" id="togglePt">Esconder português</button></div>
+    <div id="stories"></div>
+  </section>
+
+  <section id="plano" data-panel hidden>
+    <h2>Trilha livre</h2>
+    <p class="sub">Sem prazo e sem ordem obrigatória. Escolha o tema que fizer sentido hoje, repita quantas vezes quiser e marque quando se sentir seguro.</p>
+    <div id="plan"></div>
+    <div class="note"><b>Música, série e celular:</b> veja a aba Rotina, com as dicas da professora para marcar. Ouça a letra no Spotify ou no YouTube com legenda; aqui ficam só as frases das aulas.</div>
+  </section>
+  <footer class="credit">Desenvolvido por Carlos André</footer>
+</div></main>
+
+<script>
+const PLAY='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>';
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+
+/* ---------- Voz ---------- */
+let rate=store.get('rate',0.8),voice=null;
+function pickVoice(){const vs=speechSynthesis.getVoices();voice=vs.find(v=>v.lang==='en-US'&&/Google|Samantha|Aria|Jenny/i.test(v.name))||vs.find(v=>v.lang==='en-US')||vs.find(v=>v.lang&&v.lang.startsWith('en'))||null}
+if('speechSynthesis' in window){pickVoice();speechSynthesis.onvoiceschanged=pickVoice}else{document.getElementById('warn').style.display='block'}
+function say(t,r){if(!('speechSynthesis' in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='en-US';if(voice)u.voice=voice;u.rate=r||rate;speechSynthesis.speak(u)}
+function sayQueue(list){if(!('speechSynthesis' in window))return;speechSynthesis.cancel();list.forEach(t=>{const u=new SpeechSynthesisUtterance(t);u.lang='en-US';if(voice)u.voice=voice;u.rate=rate;speechSynthesis.speak(u);const p=new SpeechSynthesisUtterance('. . . . . . . .');p.lang='en-US';p.volume=0;p.rate=0.5;speechSynthesis.speak(p)})}
+document.querySelectorAll('.speed button').forEach(b=>{b.setAttribute('aria-pressed',String(+b.dataset.rate===rate));b.onclick=()=>{rate=+b.dataset.rate;store.set('rate',rate);document.querySelectorAll('.speed button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));say('This is my speed.')}});
+
+/* ---------- Progresso livre (sem prazo) ---------- */
+let studyDays=store.get('days',[]);
+function touchDay(){const d=new Date().toISOString().slice(0,10);if(!studyDays.includes(d)){studyDays.push(d);store.set('days',studyDays)}}
+function updateStats(){
+  const doneN=(store.get('done',[])).length,knownN=(store.get('known',[])).length,daysN=studyDays.length;
+  document.getElementById('day').textContent=daysN+(daysN===1?' dia':' dias')+' de estudo · '+doneN+' aulas · '+knownN+' palavras';
+  const total=L.length+Object.values(W).reduce((a,b)=>a+b.length,0);
+  document.getElementById('barfill').style.width=Math.min(100,(doneN+knownN)/total*100)+'%';
+}
+
+/* ---------- Abas ---------- */
+const tabs=document.querySelectorAll('nav button');
+function show(id){tabs.forEach(t=>t.setAttribute('aria-selected',String(t.dataset.tab===id)));document.querySelectorAll('[data-panel]').forEach(p=>p.hidden=p.id!==id);store.set('tab',id);window.scrollTo(0,0)}
+tabs.forEach(t=>t.onclick=()=>show(t.dataset.tab));
+
+/* ---------- Nome ---------- */
+let uname=store.get('name','');
+const nameIn=document.getElementById('uname');nameIn.value=uname;
+function nm(t){const n=uname.trim()||'Alex';return t.replace(/\{NP\}/g,n.toUpperCase()).replace(/\{N\}/g,n)}
+nameIn.oninput=()=>{uname=nameIn.value;store.set('name',uname);renderLesson();renderStories()};
+/* ---------- Aulas ---------- */
+const L=[
+{t:'Pedir um café',s:'Você entra numa coffee shop em Orlando e vai até o balcão.',p:[
+['Hi, how are you?','Oi, tudo bem?','RRÁI, RRÁU AR IÚ?'],
+['Can I get a coffee, please?','Posso pegar um café, por favor?','KÉN AI GUÉT A CÓFI, PLIZ?'],
+['To go, please.','Para viagem, por favor.','TU GÔU, PLIZ.'],
+['Thank you, have a good day!','Obrigado, tenha um bom dia!','TÊNK IU, RRÉV A GUD DÊI!']]},
+{t:'Pagar a conta',s:'O caixa diz o valor e espera você pagar.',p:[
+['How much is it?','Quanto custa?','RRÁU MÂTCH IZ IT?'],
+['Can I pay with card?','Posso pagar no cartão?','KÉN AI PÊI UÍF KARD?'],
+['Here you go.','Aqui está.','RÍR IU GÔU.'],
+['Keep the change.','Pode ficar com o troco.','KIP DÂ TCHÊINDJ.']]},
+{t:'Cumprimentar o vizinho',s:'De manhã, o vizinho está pegando o jornal na porta.',p:[
+['Good morning!','Bom dia!','GUD MÓRNIN!'],
+['Nice to meet you.','Prazer em conhecer.','NÁIS TU MIT IU.'],
+["I'm {N}, I live next door.",'Sou {N}, moro aqui do lado.','AIM {NP}, AI LIV NÉKST DÓR.'],
+['See you later!','Até mais!','SÍ IU LÊIRER!']]},
+{t:'Falar do clima',s:'No elevador, alguém comenta sobre o tempo.',p:[
+["It's hot today.",'Está quente hoje.','ITS RRÁT TUDÊI.'],
+["It's cold outside.",'Está frio lá fora.','ITS KÔULD ÁUTSAID.'],
+['Looks like rain.','Parece que vai chover.','LUKS LÁIK RÊIN.'],
+['What a beautiful day!','Que dia lindo!','UÓRA BIÚRIFUL DÊI!']]},
+{t:'No supermercado',s:'Você procura um produto e depois passa no caixa.',p:[
+['Where can I find the milk?','Onde encontro o leite?','UÉR KÉN AI FÁIND DÂ MILK?'],
+['Do you have bread?','Vocês têm pão?','DU IU RRÉV BRÉD?'],
+['Just this, thanks.','Só isso, obrigado.','DJÂST DIS, TÊNKS.'],
+['No bag, thanks.','Sem sacola, obrigado.','NÔU BÉG, TÊNKS.']]},
+{t:'No restaurante',s:'A recepcionista pergunta quantas pessoas.',p:[
+['A table for two, please.','Uma mesa para dois, por favor.','A TÊIBOL FOR TÚ, PLIZ.'],
+['Can I see the menu?','Posso ver o cardápio?','KÉN AI SÍ DÂ MÉNIU?'],
+["I'll have the burger.",'Vou querer o hambúrguer.','AIL RRÉV DÂ BÂRGUER.'],
+['Can I get the check?','Pode trazer a conta?','KÉN AI GUÉT DÂ TCHÉK?']]},
+{t:'Check-in no hotel',s:'Você chega na recepção com a mala.',p:[
+['I have a reservation.','Tenho uma reserva.','AI RRÉV A RÉZERVÊIXAN.'],
+['Under the name {N}.','No nome de {N}.','ÂNDER DÂ NÊIM {NP}.'],
+['What time is checkout?','Que horas é o checkout?','UÓT TÁIM IZ TCHÉKAUT?'],
+["What's the Wi-Fi password?",'Qual é a senha do Wi-Fi?','UÓTS DÂ UÁI-FÁI PÉSUÂRD?']]},
+{t:'Pedir informação',s:'Você está num shopping e precisa achar algo.',p:[
+['Excuse me.','Com licença.','IKSKIÚZ MI.'],
+["Where's the restroom?",'Onde fica o banheiro?','UÉRZ DÂ RÉSTRUM?'],
+['Is it far?','É longe?','IZ IT FÁR?'],
+['Can you say that again, slowly?','Pode repetir, devagar?','KÉN IU SÊI DÉT AGUÉN, SLÔULI?']]},
+{t:'Conversa rápida',s:'Alguém puxa assunto numa fila de churrasco no Texas.',p:[
+['What do you do?','Você trabalha com o quê?','UÓRA IU DU?'],
+["I work in sales.",'Eu trabalho com vendas. (troque pela sua área)','AI UÂRK IN SÊILZ.'],
+['Where are you from?','De onde você é?','UÉR AR IU FRÂM?'],
+["I'm from Brazil.",'Sou do Brasil.','AIM FRÂM BRAZÍL.']]},
+{t:'Na farmácia',s:'Você está com dor de cabeça e vai até o balcão.',p:[
+['I need something for a headache.','Preciso de algo para dor de cabeça.','AI NID SÂMTHIN FOR A RRÉDEIK.'],
+['Do I need a prescription?','Preciso de receita?','DU AI NID A PRISKRÍPXAN?'],
+['How often should I take it?','De quanto em quanto tempo eu tomo?','RRÁU ÓFEN XUD AI TÊIK IT?'],
+['Thanks for your help.','Obrigado pela ajuda.','TÊNKS FOR IÓR RRÉLP.']]}
+];
+
+L.forEach((l,i)=>{l.c='p';l.lv=[1,1,1,1,2,2,2,2,3,3][i]});
+L.push(
+{c:'p',lv:3,t:'Fazer um convite',s:'Você quer chamar um amigo para sair no fim de semana.',p:[
+['Are you free this weekend?','Você está livre no fim de semana?','AR IU FRÍ DIS UÍKEND?'],
+['Do you want to grab dinner?','Quer jantar alguma coisa?','DU IU UÓNA GRÉB DÍNER?'],
+["I'd love to!",'Eu adoraria!','AID LÂV TU!'],
+['Maybe another time.','Fica para outra vez.','MÊIBI ANÂDER TÁIM.']]},
+{c:'p',lv:4,t:'Contar como foi',s:'Na segunda, alguém pergunta do seu fim de semana.',p:[
+['How was your weekend?','Como foi seu fim de semana?','RRÁU UÓZ IÓR UÍKEND?'],
+['It was great, we went to the beach.','Foi ótimo, fomos à praia.','IT UÓZ GRÊIT, UÍ UÉNT TU DÂ BÍTCH.'],
+['I stayed home and relaxed.','Fiquei em casa e descansei.','AI STÊID RRÔUM ÉND RILÉKST.'],
+['What about you?','E você?','UÓT ABÁUT IU?']]},
+{c:'w',lv:1,t:'Primeiro dia no trabalho',s:'Você chega na empresa e conhece a equipe.',p:[
+["Hi, I'm {N}. I'm new here.",'Oi, sou {N}. Sou novo aqui.','RRÁI, AIM {NP}. AIM NÚ RRÍR.'],
+["What's your name?",'Qual é o seu nome?','UÓTS IÓR NÊIM?'],
+['What do you do here?','O que você faz aqui?','UÓRA IU DU RRÍR?'],
+['Nice to work with you.','Prazer trabalhar com você.','NÁIS TU UÂRK UÍF IU.']]},
+{c:'w',lv:1,t:'Pedir ajuda a um colega',s:'Você precisa de ajuda com uma tarefa simples.',p:[
+['Can you help me?','Você pode me ajudar?','KÉN IU RRÉLP MI?'],
+['I have a question.','Tenho uma pergunta.','AI RRÉV A KUÉSTCHAN.'],
+["Where's the printer?",'Onde fica a impressora?','UÉRZ DÂ PRÍNER?'],
+['Thanks, I appreciate it.','Obrigado, agradeço.','TÊNKS, AI APRÍXIEIT.']]},
+{c:'w',lv:2,t:'Na reunião',s:'A reunião já começou e você entra na sala.',p:[
+["Sorry I'm late.",'Desculpa o atraso.','SÓRI AIM LÊIT.'],
+['Can you share your screen?','Pode compartilhar sua tela?','KÉN IU XÉR IÓR SKRÍN?'],
+['I agree.','Concordo.','AI AGRÍ.'],
+["Let's move on.",'Vamos seguir.','LÉTS MÚV ÓN.']]},
+{c:'w',lv:2,t:'E-mail e telefone',s:'Um cliente liga e você precisa retornar depois.',p:[
+["I'll send you an email.",'Vou te mandar um e-mail.','AIL SÉND IU AN ÍMEIL.'],
+['Can I call you back?','Posso te ligar depois?','KÉN AI CÓL IU BÉK?'],
+['Let me check and get back to you.','Vou ver e te retorno.','LÉMI TCHÉK ÉND GUÉT BÉK TU IU.'],
+['Talk to you soon.','Falamos em breve.','TÓK TU IU SÚN.']]},
+{c:'w',lv:3,t:'Combinar prazos',s:'O chefe pergunta quando o relatório fica pronto.',p:[
+["When's the deadline?",'Qual é o prazo?','UÉNZ DÂ DÉDLAIN?'],
+["I'll have it ready by Friday.",'Deixo pronto até sexta.','AIL RRÉV IT RÉDI BAI FRÁIDEI.'],
+['Can we push it to next week?','Podemos passar para a semana que vem?','KÉN UÍ PÚCH IT TU NÉKST UÍK?'],
+['That works for me.','Para mim funciona.','DÉT UÂRKS FOR MI.']]},
+{c:'w',lv:3,t:'Dar sua opinião',s:'A equipe está decidindo algo e pede sua opinião.',p:[
+['I think we should wait.','Acho que devemos esperar.','AI THÍNK UÍ XUD UÊIT.'],
+["That's a good point.",'Bem lembrado.','DÉTS A GUD PÓINT.'],
+["I'm not sure about that.",'Não tenho certeza disso.','AIM NÓT XUR ABÁUT DÉT.'],
+['What do you think?','O que você acha?','UÓRA IU THÍNK?']]},
+{c:'w',lv:4,t:'Entrevista de emprego',s:'O entrevistador quer conhecer você.',p:[
+['Tell me about yourself.','Fale sobre você.','TÉL MI ABÁUT IORSÉLF.'],
+['I have ten years of experience.','Tenho dez anos de experiência.','AI RRÉV TÉN ÍARZ ÓV IKSPÍRIENS.'],
+['My strength is solving problems.','Meu ponto forte é resolver problemas.','MAI STRÉNGTH IZ SÓLVIN PRÓBLEMZ.'],
+['Thank you for your time.','Obrigado pelo seu tempo.','THÉNK IU FOR IÓR TÁIM.']]},
+{c:'w',lv:4,t:'Resolver um problema',s:'O sistema parou e você precisa avisar todo mundo.',p:[
+["There's a problem with the system.",'Tem um problema no sistema.','DÉRZ A PRÓBLEM UÍF DÂ SÍSTEM.'],
+["It's not working.",'Não está funcionando.','ITS NÓT UÂRKIN.'],
+['We need to fix it today.','Precisamos consertar hoje.','UÍ NÍD TU FÍKS IT TUDÊI.'],
+["I'll keep you posted.",'Vou te mantendo informado.','AIL KÍP IU PÔUSTID.']]},
+{c:'s',lv:1,t:'Primeiro dia de aula',s:'Você chega numa turma nova.',p:[
+["Hi, I'm new in class.",'Oi, sou novo na turma.','RRÁI, AIM NÚ IN KLÉS.'],
+['Where is room ten?','Onde fica a sala dez?','UÉR IZ RÚM TÉN?'],
+['Can I sit here?','Posso sentar aqui?','KÉN AI SÍT RRÍR?'],
+["What's your name?",'Qual é o seu nome?','UÓTS IÓR NÊIM?']]},
+{c:'s',lv:1,t:'Na sala de aula',s:'O professor explica algo e você não entendeu.',p:[
+["I don't understand.",'Não entendi.','AI DÔUNT ANDERSTÉND.'],
+['Can you repeat that, please?','Pode repetir, por favor?','KÉN IU RIPÍT DÉT, PLIZ?'],
+['How do you spell it?','Como se escreve?','RRÁU DU IU SPÉL IT?'],
+['What does it mean?','O que significa?','UÓT DÂZ IT MÍN?']]},
+{c:'s',lv:2,t:'Lição de casa',s:'No fim da aula, você confere o que precisa fazer.',p:[
+["What's the homework?",'Qual é a lição de casa?','UÓTS DÂ RRÔUMUÂRK?'],
+["When is it due?",'Para quando é?','UÉN IZ IT DÚ?'],
+['Can I borrow a pen?','Me empresta uma caneta?','KÉN AI BÓROU A PÉN?'],
+['I forgot my book.','Esqueci meu livro.','AI FORGÓT MAI BÚK.']]},
+{c:'s',lv:2,t:'Com os colegas',s:'Tem prova na semana que vem.',p:[
+['Do you want to study together?','Quer estudar junto?','DU IU UÓNA STÂDI TUGUÉDER?'],
+["Let's meet at the library.",'Vamos nos encontrar na biblioteca.','LÉTS MÍT ÉT DÂ LÁIBRERI.'],
+['Did you finish?','Você terminou?','DÍDJA FÍNICH?'],
+['Good luck on the test!','Boa sorte na prova!','GUD LÂK ÓN DÂ TÉST!']]},
+{c:'s',lv:3,t:'Falar com o professor',s:'Depois da aula, você vai até a mesa do professor.',p:[
+['Do you have a minute?','Tem um minuto?','DU IU RRÉV A MÍNIT?'],
+['I need some help with this.','Preciso de ajuda com isto.','AI NÍD SÂM RRÉLP UÍF DIS.'],
+['Can I turn it in tomorrow?','Posso entregar amanhã?','KÉN AI TÂRN IT IN TUMÁROU?'],
+['Thank you for explaining.','Obrigado por explicar.','THÉNK IU FOR IKSPLÊININ.']]},
+{c:'s',lv:4,t:'Reunião de pais',s:'Você conversa com a professora sobre seu filho.',p:[
+['How is my son doing?','Como meu filho está indo?','RRÁU IZ MAI SÂN DÚIN?'],
+['Does he need extra help?','Ele precisa de reforço?','DÂZ RRÍ NÍD ÉKSTRA RRÉLP?'],
+['What can we do at home?','O que podemos fazer em casa?','UÓT KÉN UÍ DU ÉT RRÔUM?'],
+['Please keep me updated.','Por favor, me mantenha informado.','PLIZ KÍP MI ÂPDEIRID.']]}
+);
+const CTX={p:'Vida pessoal',w:'Trabalho',s:'Escola'};
+let ctx=store.get('ctx','p');
+let done=store.get('done',[]),cur=store.get('cur',0);
+function renderLesson(){
+  const lp=document.getElementById('lessonPick');
+  if(L[cur].c!==ctx)ctx=L[cur].c;
+  document.querySelectorAll('#ctxPick button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.c===ctx)));
+  const idx=L.map((l,i)=>i).filter(i=>L[i].c===ctx).sort((a,b)=>L[a].lv-L[b].lv||a-b);
+  lp.innerHTML=idx.map(i=>`<button data-i="${i}" aria-current="${i===cur}" class="${done.includes(i)?'done':''}">${L[i].lv} · ${L[i].t}</button>`).join('');
+  lp.querySelectorAll('button').forEach(b=>b.onclick=()=>{cur=+b.dataset.i;store.set('cur',cur);renderLesson()});
+  const l=L[cur];
+  document.getElementById('lessonNum').textContent=CTX[l.c]+' · Nível '+l.lv;
+  document.getElementById('lessonTitle').textContent=l.t;
+  document.getElementById('lessonScene').textContent=l.s;
+  document.getElementById('phrases').innerHTML=l.p.map((p,i)=>`<div class="phrase"><div class="en">${nm(p[0])}</div><button class="play" data-i="${i}" aria-label="Ouvir: ${nm(p[0]).replace(/"/g,'')}">${PLAY}</button><div class="pt">${nm(p[1])}</div><div class="pr">${nm(p[2])}</div></div>`).join('');
+  document.querySelectorAll('#phrases .play').forEach(b=>b.onclick=()=>say(nm(l.p[+b.dataset.i][0])));
+  document.getElementById('markDone').textContent=done.includes(cur)?'Feita ✓':'Marcar como feita';
+}
+document.querySelectorAll('#ctxPick button').forEach(b=>b.onclick=()=>{ctx=b.dataset.c;store.set('ctx',ctx);cur=L.map((l,i)=>i).filter(i=>L[i].c===ctx).sort((a,b)=>L[a].lv-L[b].lv||a-b)[0];store.set('cur',cur);renderLesson()});
+document.getElementById('playAll').onclick=()=>sayQueue(L[cur].p.map(p=>nm(p[0])));
+document.getElementById('markDone').onclick=()=>{if(!done.includes(cur)){done.push(cur);touchDay()}else done=done.filter(x=>x!==cur);store.set('done',done);renderLesson();updateStats()};
+renderLesson();
+
+/* ---------- Mapas ---------- */
+function pos(k){const box='<rect x="13" y="9" width="16" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>';
+ const ball=(x,y)=>`<circle cx="${x}" cy="${y}" r="4.5" fill="var(--m4)"/>`;
+ const m={in:box+ball(21,18),on:box+ball(21,4),under:box+ball(21,29),next:box+ball(36,20),between:'<rect x="2" y="11" width="12" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><rect x="26" y="11" width="12" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>'+ball(20,19),behind:ball(27,13)+'<rect x="13" y="9" width="16" height="16" rx="2" fill="var(--paper)" stroke="currentColor" stroke-width="2"/>'};
+ return `<svg class="ic" viewBox="0 0 40 34" aria-hidden="true">${m[k]}</svg>`}
+const M=[
+{c:'--m4',t:'Cores',w:'Para roupas, carros e frutas.',col:true,i:[['red','vermelho','#D33B2F'],['blue','azul','#2C5DA8'],['green','verde','#2E7D4F'],['yellow','amarelo','#F2C230'],['black','preto','#111111'],['white','branco','#FFFFFF']]},
+{c:'--m1',t:'Números',w:'Preços, horários e endereços.',i:[['one, two, three','1, 2, 3'],['four, five, six','4, 5, 6'],['seven, eight, nine, ten','7, 8, 9, 10'],['twenty','20'],['fifty','50'],['a hundred','100']]},
+{c:'--m4',t:'Família',w:'Para falar de quem mora com você.',i:[['my wife','minha esposa'],['my son','meu filho'],['my daughter','minha filha'],['my mom and dad','minha mãe e meu pai'],['my brother','meu irmão'],['my sister','minha irmã']]},
+{c:'--m6',t:'Dias da semana',w:'Diga sempre com "on": on Monday.',i:[['Monday','segunda'],['Tuesday','terça'],['Wednesday','quarta'],['Thursday','quinta'],['Friday','sexta'],['Saturday, Sunday','sábado, domingo']]},
+{c:'--m2',t:'Perguntas',w:'As seis palavras que abrem quase toda pergunta.',i:[['What?','O quê? / Qual?'],['Where?','Onde?'],['When?','Quando?'],['Who?','Quem?'],['How?','Como?'],['Why?','Por quê?']]},
+{c:'--m3',t:'Onde está?',w:'A bolinha vermelha mostra o lugar.',pos:true,i:[['in','dentro','in'],['on','em cima','on'],['under','embaixo','under'],['next to','ao lado','next'],['between','entre','between'],['behind','atrás','behind']]},
+{c:'--m1',t:'Minha rotina',w:'Coisas que você faz todo dia.',i:[['I wake up at six.','Eu acordo às seis.'],['I drink coffee.','Eu tomo café.'],['I go to work.','Eu vou trabalhar.'],['I have lunch at noon.','Eu almoço ao meio-dia.'],['I go home at five.','Eu vou para casa às cinco.']]},
+{c:'--m2',t:'Jeito curto de falar',w:'Americano junta as palavras. Ouça a diferença.',i:[['I am → I\'m','eu sou / estou'],['You are → You\'re','você é / está'],['It is → It\'s','é / está'],['I will → I\'ll','eu vou'],['Do not → Don\'t','não']]},
+{c:'--m5',t:'A, An e The',w:'"An" antes de som de vogal. "The" para algo que os dois já sabem qual é.',i:[['a coffee','um café'],['a bagel','um bagel'],['an apple','uma maçã'],['an hour','uma hora'],['the bakery on Main Street','a padaria da rua Main']]},
+{c:'--m6',t:'Contando o que passou',w:'Was para uma pessoa ou coisa. Were para você, nós e eles.',i:[['I was tired.','Eu estava cansado.'],['It was great!','Foi ótimo!'],['You were right.','Você estava certo.'],['We were at home.','Nós estávamos em casa.'],['They were nice.','Eles foram legais.']]}
+];
+document.getElementById('maps').innerHTML=M.map((m,n)=>`<article class="map" style="--c:var(${m.c})"><h3><b>${n+1}</b>${m.t}</h3><p class="why">${m.w}</p><ul>${m.i.map(it=>{const en=it[0];const lead=m.pos?pos(it[2]):m.col?`<span class="dot" style="background:${it[2]}"></span>`:'';const spoken=en.includes('→')?en.split('→')[1].trim():en;return `<li>${lead}<span class="t">${en}<small>${it[1]}</small></span><button class="say" data-s="${spoken.replace(/"/g,'&quot;')}" aria-label="Ouvir ${spoken.replace(/"/g,'')}">${PLAY}</button></li>`}).join('')}</ul></article>`).join('');
+document.querySelectorAll('.map .say').forEach(b=>b.onclick=()=>say(b.dataset.s));
+
+/* ---------- Palavras ---------- */
+const RAW={
+'Básicas':`please|por favor|PLIZ
+yes|sim|IÉS
+no|não|NÔU
+maybe|talvez|MÊIBI
+hello|olá|RRELÔU
+hi|oi|RRÁI
+goodbye|adeus|GUDBÁI
+bye|tchau|BÁI
+thank you|obrigado|TÊNKIU
+thanks|valeu|TÊNKS
+you're welcome|de nada|IÓR UÉUCAM
+sorry|desculpa|SÓRI
+excuse me|com licença|IKSKIÚZ MI
+okay|tá bom|ÔUKÊI
+sure|claro|XUR
+of course|com certeza|ÓV CÓRS
+cool|legal|KUL
+great|ótimo|GRÊIT
+nice|bacana|NÁIS
+here|aqui|RRÍR
+there|lá|DÉR
+this|isto / este|DIS
+that|aquilo / esse|DÉT
+these|estes|DIZ
+those|aqueles|DÔUZ
+very|muito|VÉRI
+too|também / demais|TÚ
+also|também|ÓUSOU
+only|só|ÔUNLI
+just|apenas|DJÂST
+again|de novo|AGUÉN
+almost|quase|ÓUMOUST
+enough|suficiente|INÂF
+more|mais|MÓR
+less|menos|LÉS
+all|todos|ÓL
+some|alguns|SÂM
+any|algum / qualquer|ÉNI
+none|nenhum|NÂN
+every|cada / todo|ÉVRI
+something|alguma coisa|SÂMTHIN
+nothing|nada|NÂTHIN
+everything|tudo|ÉVRITHIN
+someone|alguém|SÂMUAN
+nobody|ninguém|NÔUBARI
+everybody|todo mundo|ÉVRIBARI`,
+'Perguntas e ligações':`what|o quê / qual|UÓT
+where|onde|UÉR
+when|quando|UÉN
+who|quem|RRÚ
+why|por quê|UÁI
+how|como|RRÁU
+how much|quanto|RRÁU MÂTCH
+how many|quantos|RRÁU MÉNI
+which|qual|UÍTCH
+and|e|ÉND
+or|ou|ÓR
+but|mas|BÂT
+because|porque|BICÓZ
+so|então|SÔU
+if|se|ÍF
+then|depois / então|DÉN
+with|com|UÍF
+without|sem|UIDÁUT
+for|para|FÓR
+from|de|FRÂM
+to|para|TÚ
+about|sobre|ABÁUT
+in|em / dentro|ÍN
+on|em cima|ÓN
+at|em / no|ÉT
+under|embaixo|ÂNDER
+next to|ao lado|NÉKST TU
+between|entre|BITUÍN
+behind|atrás|BIRRÁIND
+in front of|na frente de|IN FRÂNT ÓV
+near|perto|NÍR
+far|longe|FÁR
+up|para cima|ÂP
+down|para baixo|DÁUN
+inside|dentro|INSÁID
+outside|fora|ÁUTSAID`,
+'Pessoas e família':`I|eu|ÁI
+you|você|IÚ
+he|ele|RRÍ
+she|ela|XÍ
+it|isso (coisa)|ÍT
+we|nós|UÍ
+they|eles|DÊI
+me|me / mim|MÍ
+my|meu|MÁI
+your|seu|IÓR
+his|dele|RRÍZ
+her|dela|RRÂR
+our|nosso|ÁUAR
+their|deles|DÉR
+man|homem|MÉN
+woman|mulher|UÚMAN
+child|criança|TCHÁILD
+kids|crianças|KIDZ
+baby|bebê|BÊIBI
+boy|menino|BÓI
+girl|menina|GUÂRL
+friend|amigo|FRÉND
+neighbor|vizinho|NÊIBOR
+people|pessoas|PÍPOL
+family|família|FÉMILI
+mother|mãe|MÂDER
+mom|mãe (informal)|MÓM
+father|pai|FÁDER
+dad|pai (informal)|DÉD
+parents|pais|PÉRENTS
+son|filho|SÂN
+daughter|filha|DÓRER
+brother|irmão|BRÂDER
+sister|irmã|SÍSTER
+husband|marido|RRÂSBAND
+wife|esposa|UÁIF
+grandmother|avó|GRÉNMÂDER
+grandfather|avô|GRÉNFÁDER
+uncle|tio|ÂNKOL
+aunt|tia|ÉNT
+cousin|primo|CÂZIN
+boyfriend|namorado|BÓIFREND
+girlfriend|namorada|GUÂRLFREND
+boss|chefe|BÓS
+coworker|colega de trabalho|CÔUUÂRKER
+customer|cliente|CÂSTOMER
+doctor|médico|DÓKTOR
+teacher|professor|TÍTCHER
+waiter|garçom|UÊIRER
+driver|motorista|DRÁIVER`,
+'Corpo e saúde':`body|corpo|BÓRI
+head|cabeça|RRÉD
+face|rosto|FÊIS
+eye|olho|ÁI
+ear|orelha|ÍR
+nose|nariz|NÔUZ
+mouth|boca|MÁUTH
+tooth|dente|TÚTH
+hair|cabelo|RRÉR
+neck|pescoço|NÉK
+arm|braço|ÁRM
+hand|mão|RRÉND
+finger|dedo|FÍNGUER
+back|costas|BÉK
+stomach|estômago / barriga|STÂMAK
+leg|perna|LÉG
+knee|joelho|NÍ
+foot|pé|FÚT
+feet|pés|FÍT
+heart|coração|RRÁRT
+pain|dor|PÊIN
+headache|dor de cabeça|RRÉDEIK
+sick|doente|SÍK
+fever|febre|FÍVER
+cold (illness)|resfriado|KÔULD
+cough|tosse|CÓF
+medicine|remédio|MÉDISIN
+pill|comprimido|PÍL
+hospital|hospital|RRÓSPIRAL
+pharmacy|farmácia|FÁRMASI
+help|socorro / ajuda|RRÉLP
+emergency|emergência|IMÂRDJENSI`,
+'Comida e bebida':`food|comida|FÚD
+water|água|UÓRER
+coffee|café|CÓFI
+tea|chá|TÍ
+milk|leite|MILK
+juice|suco|DJÚS
+soda|refrigerante|SÔUDA
+beer|cerveja|BÍR
+wine|vinho|UÁIN
+ice|gelo|ÁIS
+bread|pão|BRÉD
+butter|manteiga|BÂRER
+cheese|queijo|TCHÍZ
+egg|ovo|ÉG
+eggs|ovos|ÉGZ
+meat|carne|MÍT
+beef|carne de boi|BÍF
+chicken|frango|TCHÍKEN
+pork|carne de porco|PÓRK
+fish|peixe|FÍCH
+rice|arroz|RÁIS
+beans|feijão|BÍNZ
+pasta|macarrão|PÁSTA
+salad|salada|SÉLAD
+soup|sopa|SÚP
+sandwich|sanduíche|SÉNUITCH
+burger|hambúrguer|BÂRGUER
+fries|batata frita|FRÁIZ
+pizza|pizza|PÍTSA
+potato|batata|POTÊIROU
+tomato|tomate|TOMÊIROU
+onion|cebola|ÂNIAN
+fruit|fruta|FRÚT
+apple|maçã|ÉPOL
+banana|banana|BANÉNA
+orange|laranja|ÓRINDJ
+lemon|limão|LÉMAN
+strawberry|morango|STRÓBÉRI
+sugar|açúcar|XÚGAR
+salt|sal|SÓLT
+pepper|pimenta|PÉPER
+sauce|molho|SÓS
+cake|bolo|KÊIK
+cookie|biscoito|CÚKI
+ice cream|sorvete|ÁIS CRÍM
+breakfast|café da manhã|BRÉKFAST
+lunch|almoço|LÂNTCH
+dinner|jantar|DÍNER
+snack|lanche|SNÉK
+hungry|com fome|RRÂNGRI
+thirsty|com sede|THÂRSTI
+delicious|delicioso|DILÍXAS
+menu|cardápio|MÉNIU
+check|conta|TCHÉK
+tip|gorjeta|TÍP
+to go|para viagem|TU GÔU
+for here|para comer aqui|FOR RRÍR
+refill|completar de novo|RÍFIL
+napkin|guardanapo|NÉPKIN
+fork|garfo|FÓRK
+knife|faca|NÁIF
+spoon|colher|SPÚN
+cup|xícara / copo|CÂP
+glass|copo de vidro|GLÉS
+plate|prato|PLÊIT
+bottle|garrafa|BÁROL`,
+'Casa':`house|casa|RRÁUS
+home|lar / casa|RRÔUM
+apartment|apartamento|APÁRTMENT
+room|quarto / cômodo|RÚM
+bedroom|quarto|BÉDRUM
+bathroom|banheiro|BÉTHRUM
+kitchen|cozinha|KÍTCHEN
+living room|sala|LÍVIN RÚM
+door|porta|DÓR
+window|janela|UÍNDOU
+wall|parede|UÓL
+floor|chão / andar|FLÓR
+stairs|escada|STÉRZ
+roof|telhado|RÚF
+yard|quintal|IÁRD
+garage|garagem|GARÁDJ
+bed|cama|BÉD
+table|mesa|TÊIBOL
+chair|cadeira|TCHÉR
+couch|sofá|CÁUTCH
+lamp|abajur|LÉMP
+light|luz|LÁIT
+key|chave|KÍ
+shower|chuveiro|XÁUER
+towel|toalha|TÁUEL
+soap|sabonete|SÔUP
+toilet|vaso sanitário|TÓILET
+mirror|espelho|MÍRER
+fridge|geladeira|FRÍDJ
+stove|fogão|STÔUV
+sink|pia|SÍNK
+trash|lixo|TRÉCH
+phone|celular / telefone|FÔUN
+computer|computador|COMPIÚRER
+TV|televisão|TÍ VÍ
+clock|relógio|KLÓK
+box|caixa|BÓKS
+bag|sacola / bolsa|BÉG
+picture|foto / quadro|PÍKTCHER
+book|livro|BÚK`,
+'Cidade e lugares':`city|cidade|SÍRI
+town|cidadezinha|TÁUN
+street|rua|STRÍT
+road|estrada|RÔUD
+avenue|avenida|ÉVENIU
+corner|esquina|CÓRNER
+block|quarteirão|BLÓK
+downtown|centro|DÁUNTÁUN
+neighborhood|bairro|NÊIBORRUD
+store|loja|STÓR
+shop|loja|XÓP
+supermarket|supermercado|SÚPERMARKET
+grocery store|mercado|GRÔUSERI STÓR
+mall|shopping|MÓL
+bakery|padaria|BÊIKERI
+coffee shop|cafeteria|CÓFI XÓP
+restaurant|restaurante|RÉSTORANT
+bar|bar|BÁR
+bank|banco|BÉNK
+school|escola|SKÚL
+church|igreja|TCHÂRTCH
+park|parque|PÁRK
+beach|praia|BÍTCH
+gym|academia|DJÍM
+office|escritório|ÓFIS
+building|prédio|BÍLDIN
+hotel|hotel|RRÔUTÉL
+airport|aeroporto|ÉRPORT
+station|estação|STÊIXAN
+gas station|posto de gasolina|GÉS STÊIXAN
+parking lot|estacionamento|PÁRKIN LÓT
+restroom|banheiro (público)|RÉSTRUM
+entrance|entrada|ÉNTRANS
+exit|saída|ÉKZIT
+left|esquerda|LÉFT
+right|direita|RÁIT
+straight|reto|STRÊIT
+map|mapa|MÉP
+address|endereço|ÉDRES
+police|polícia|POLÍS`,
+'Transporte e viagem':`car|carro|CÁR
+bus|ônibus|BÂS
+train|trem|TRÊIN
+subway|metrô|SÂBUEI
+plane|avião|PLÊIN
+taxi|táxi|TÉKSI
+bike|bicicleta|BÁIK
+truck|caminhão|TRÂK
+ticket|passagem / ingresso|TÍKET
+trip|viagem|TRÍP
+travel|viajar|TRÉVOL
+flight|voo|FLÁIT
+gate|portão|GUÊIT
+seat|assento|SÍT
+luggage|bagagem|LÂGUEDJ
+suitcase|mala|SÚTKEIS
+passport|passaporte|PÉSPORT
+reservation|reserva|RÉZERVÊIXAN
+check-in|check-in|TCHÉK ÍN
+checkout|checkout|TCHÉKAUT
+arrival|chegada|ARRÁIVOL
+departure|partida|DIPÁRTCHER
+late|atrasado|LÊIT
+early|cedo|ÂRLI
+on time|no horário|ÓN TÁIM
+traffic|trânsito|TRÉFIK
+gas|gasolina|GUÉS
+tourist|turista|TÚRIST
+vacation|férias|VEIKÊIXAN
+souvenir|lembrancinha|SÚVENIR`,
+'Trabalho e dinheiro':`work|trabalho|UÂRK
+job|emprego|DJÓB
+company|empresa|CÂMPANI
+meeting|reunião|MÍRIN
+email|e-mail|ÍMEIL
+call|ligação|CÓL
+team|equipe|TÍM
+project|projeto|PRÓDJEKT
+problem|problema|PRÓBLEM
+question|pergunta|KUÉSTCHAN
+answer|resposta|ÉNSER
+idea|ideia|AIDÍA
+plan|plano|PLÉN
+report|relatório|RIPÓRT
+deadline|prazo|DÉDLAIN
+schedule|agenda|SKÉDJUL
+break|intervalo|BRÊIK
+money|dinheiro|MÂNI
+cash|dinheiro vivo|KÉCH
+card|cartão|KÁRD
+credit card|cartão de crédito|KRÉDIT KÁRD
+price|preço|PRÁIS
+cost|custo|CÓST
+cheap|barato|TCHÍP
+expensive|caro|IKSPÉNSIV
+free|grátis / livre|FRÍ
+sale|liquidação|SÊIL
+change|troco / mudança|TCHÊINDJ
+receipt|recibo|RISÍT
+bill|conta (a pagar)|BÍL
+tax|imposto|TÉKS
+dollar|dólar|DÓLAR
+cents|centavos|SÉNTS
+salary|salário|SÉLARI
+rent|aluguel|RÉNT`,
+'Tempo e calendário':`time|tempo / hora|TÁIM
+today|hoje|TUDÊI
+tomorrow|amanhã|TUMÁROU
+yesterday|ontem|IÉSTERDÊI
+now|agora|NÁU
+later|mais tarde|LÊIRER
+soon|logo|SÚN
+before|antes|BIFÓR
+after|depois|ÉFTER
+always|sempre|ÓLUEIZ
+never|nunca|NÉVER
+sometimes|às vezes|SÂMTAIMZ
+usually|geralmente|IÚJUALI
+often|frequentemente|ÓFEN
+already|já|OLRÉDI
+still|ainda|STÍL
+yet|ainda (não)|IÉT
+morning|manhã|MÓRNIN
+afternoon|tarde|ÉFTERNÚN
+evening|noitinha|ÍVNIN
+night|noite|NÁIT
+tonight|hoje à noite|TUNÁIT
+noon|meio-dia|NÚN
+midnight|meia-noite|MÍDNAIT
+second|segundo|SÉKOND
+minute|minuto|MÍNIT
+hour|hora|ÁUAR
+day|dia|DÊI
+week|semana|UÍK
+weekend|fim de semana|UÍKEND
+month|mês|MÂNTH
+year|ano|ÍAR
+Monday|segunda|MÂNDEI
+Tuesday|terça|TÚZDEI
+Wednesday|quarta|UÉNZDEI
+Thursday|quinta|THÂRZDEI
+Friday|sexta|FRÁIDEI
+Saturday|sábado|SÉRERDEI
+Sunday|domingo|SÂNDEI
+January|janeiro|DJÉNIUÉRI
+February|fevereiro|FÉBRUÉRI
+March|março|MÁRTCH
+April|abril|ÊIPRIL
+May|maio|MÊI
+June|junho|DJÚN
+July|julho|DJULÁI
+August|agosto|ÓGAST
+September|setembro|SEPTÉMBER
+October|outubro|OKTÔUBER
+November|novembro|NOUVÉMBER
+December|dezembro|DISÉMBER
+birthday|aniversário|BÂRTHDEI
+holiday|feriado|RRÓLIDEI`,
+'Clima e natureza':`weather|clima / tempo|UÉDER
+hot|quente|RRÁT
+warm|morno / quentinho|UÓRM
+cold|frio|KÔULD
+cool|fresco|KÚL
+sun|sol|SÂN
+sunny|ensolarado|SÂNI
+rain|chuva|RÊIN
+rainy|chuvoso|RÊINI
+snow|neve|SNÔU
+wind|vento|UÍND
+windy|com vento|UÍNDI
+cloud|nuvem|KLÁUD
+cloudy|nublado|KLÁUDI
+storm|tempestade|STÓRM
+umbrella|guarda-chuva|AMBRÉLA
+sky|céu|SKÁI
+tree|árvore|TRÍ
+flower|flor|FLÁUER
+grass|grama|GRÉS
+river|rio|RÍVER
+sea|mar|SÍ
+mountain|montanha|MÁUNTEN
+dog|cachorro|DÓG
+cat|gato|KÉT
+bird|pássaro|BÂRD`,
+'Números':`zero|zero|ZÍROU
+one|um|UÂN
+two|dois|TÚ
+three|três|THRÍ
+four|quatro|FÓR
+five|cinco|FÁIV
+six|seis|SÍKS
+seven|sete|SÉVEN
+eight|oito|ÊIT
+nine|nove|NÁIN
+ten|dez|TÉN
+eleven|onze|ILÉVEN
+twelve|doze|TUÉLV
+thirteen|treze|THÂRTÍN
+fourteen|catorze|FORTÍN
+fifteen|quinze|FIFTÍN
+sixteen|dezesseis|SIKSTÍN
+seventeen|dezessete|SEVENTÍN
+eighteen|dezoito|EITÍN
+nineteen|dezenove|NAINTÍN
+twenty|vinte|TUÉNI
+thirty|trinta|THÂRRI
+forty|quarenta|FÓRRI
+fifty|cinquenta|FÍFTI
+sixty|sessenta|SÍKSTI
+seventy|setenta|SÉVENI
+eighty|oitenta|ÊIRI
+ninety|noventa|NÁINRI
+hundred|cem|RRÂNDRED
+thousand|mil|THÁUZAND
+million|milhão|MÍLIAN
+first|primeiro|FÂRST
+second|segundo|SÉKOND
+third|terceiro|THÂRD
+last|último|LÉST
+half|metade|RRÉF
+double|dobro|DÂBOL`,
+'Cores e roupas':`color|cor|CÂLOR
+red|vermelho|RÉD
+blue|azul|BLÚ
+green|verde|GRÍN
+yellow|amarelo|IÉLOU
+black|preto|BLÉK
+white|branco|UÁIT
+gray|cinza|GRÊI
+brown|marrom|BRÁUN
+pink|rosa|PÍNK
+purple|roxo|PÂRPOL
+orange|laranja (cor)|ÓRINDJ
+clothes|roupas|KLÔUZ
+shirt|camisa|XÂRT
+T-shirt|camiseta|TÍ XÂRT
+pants|calça|PÉNTS
+jeans|calça jeans|DJÍNZ
+shorts|bermuda|XÓRTS
+dress|vestido|DRÉS
+skirt|saia|SKÂRT
+jacket|jaqueta|DJÉKET
+coat|casaco|KÔUT
+shoes|sapatos|XÚZ
+sneakers|tênis|SNÍKERS
+socks|meias|SÓKS
+hat|chapéu / boné|RRÉT
+glasses|óculos|GLÉSIZ
+watch|relógio de pulso|UÓTCH
+size|tamanho|SÁIZ
+small|pequeno|SMÓL
+medium|médio|MÍDIAM
+large|grande|LÁRDJ`,
+'Ações':`be|ser / estar|BÍ
+have|ter|RRÉV
+do|fazer|DÚ
+make|fazer / criar|MÊIK
+go|ir|GÔU
+come|vir|CÂM
+get|pegar / conseguir|GUÉT
+give|dar|GUÍV
+take|levar / pegar|TÊIK
+bring|trazer|BRÍN
+put|colocar|PÚT
+want|querer|UÓNT
+need|precisar|NÍD
+like|gostar|LÁIK
+love|amar / adorar|LÂV
+hate|odiar|RRÊIT
+know|saber / conhecer|NÔU
+think|pensar / achar|THÍNK
+understand|entender|ANDERSTÉND
+remember|lembrar|RIMÉMBER
+forget|esquecer|FORGUÉT
+learn|aprender|LÂRN
+teach|ensinar|TÍTCH
+study|estudar|STÂDI
+see|ver|SÍ
+look|olhar|LÚK
+watch|assistir|UÓTCH
+hear|ouvir|RRÍR
+listen|escutar|LÍSEN
+say|dizer|SÊI
+tell|contar / falar para|TÉL
+speak|falar (idioma)|SPÍK
+talk|conversar|TÓK
+ask|perguntar / pedir|ÉSK
+answer|responder|ÉNSER
+call|ligar / chamar|CÓL
+read|ler|RÍD
+write|escrever|RÁIT
+eat|comer|ÍT
+drink|beber|DRÍNK
+cook|cozinhar|CÚK
+sleep|dormir|SLÍP
+wake up|acordar|UÊIK ÂP
+work|trabalhar|UÂRK
+play|jogar / brincar / tocar|PLÊI
+walk|andar / caminhar|UÓK
+run|correr|RÂN
+drive|dirigir|DRÁIV
+ride|andar de (bike, ônibus)|RÁID
+sit|sentar|SÍT
+stand|ficar de pé|STÉND
+stop|parar|STÓP
+start|começar|STÁRT
+finish|terminar|FÍNICH
+open|abrir|ÔUPEN
+close|fechar|KLÔUZ
+turn on|ligar (aparelho)|TÂRN ÓN
+turn off|desligar|TÂRN ÓF
+buy|comprar|BÁI
+sell|vender|SÉL
+pay|pagar|PÊI
+spend|gastar|SPÉND
+find|encontrar|FÁIND
+lose|perder|LÚZ
+look for|procurar|LÚK FÓR
+help|ajudar|RRÉLP
+try|tentar / provar|TRÁI
+use|usar|IÚZ
+wait|esperar|UÊIT
+stay|ficar|STÊI
+leave|sair / deixar|LÍV
+arrive|chegar|ARRÁIV
+live|morar / viver|LÍV
+meet|conhecer / encontrar|MÍT
+visit|visitar|VÍZIT
+show|mostrar|XÔU
+send|enviar|SÉND
+change|mudar / trocar|TCHÊINDJ
+wear|vestir / usar (roupa)|UÉR
+wash|lavar|UÓCH
+clean|limpar|KLÍN
+feel|sentir|FÍL
+hope|esperar (ter esperança)|RRÔUP
+believe|acreditar|BILÍV
+move|mover / mudar de casa|MÚV
+carry|carregar|KÉRI
+fix|consertar|FÍKS
+break|quebrar|BRÊIK
+choose|escolher|TCHÚZ
+win|ganhar|UÍN
+smile|sorrir|SMÁIL
+laugh|rir|LÉF
+cry|chorar|KRÁI
+dance|dançar|DÉNS
+sing|cantar|SÍN
+swim|nadar|SUÍM
+fly|voar|FLÁI
+rest|descansar|RÉST
+relax|relaxar|RILÉKS
+check|conferir|TCHÉK
+order|pedir (comida)|ÓRDER
+share|dividir / compartilhar|XÉR`,
+'Descrever':`good|bom|GÚD
+bad|ruim|BÉD
+big|grande|BÍG
+small|pequeno|SMÓL
+little|pequeno / pouco|LÍROL
+long|comprido / longo|LÓNG
+short|curto / baixo|XÓRT
+tall|alto|TÓL
+fast|rápido|FÉST
+slow|lento|SLÔU
+new|novo|NÚ
+old|velho|ÔULD
+young|jovem|IÂNG
+easy|fácil|ÍZI
+hard|difícil / duro|RRÁRD
+difficult|difícil|DÍFIKALT
+right|certo|RÁIT
+wrong|errado|RÓNG
+true|verdadeiro|TRÚ
+same|mesmo / igual|SÊIM
+different|diferente|DÍFRENT
+beautiful|lindo|BIÚRIFUL
+pretty|bonito|PRÍRI
+ugly|feio|ÂGLI
+clean|limpo|KLÍN
+dirty|sujo|DÂRI
+full|cheio|FÚL
+empty|vazio|ÉMPTI
+open|aberto|ÔUPEN
+closed|fechado|KLÔUZD
+busy|ocupado|BÍZI
+ready|pronto|RÉDI
+important|importante|IMPÓRTANT
+possible|possível|PÓSIBOL
+safe|seguro|SÊIF
+dangerous|perigoso|DÊINDJERAS
+strong|forte|STRÓNG
+weak|fraco|UÍK
+heavy|pesado|RRÉVI
+light|leve|LÁIT
+rich|rico|RÍTCH
+poor|pobre|PÚR
+loud|alto (som)|LÁUD
+quiet|quieto / silencioso|KUÁIET
+dark|escuro|DÁRK
+bright|claro / brilhante|BRÁIT
+high|alto (lugar)|RRÁI
+low|baixo|LÔU
+nice|legal / gentil|NÁIS
+kind|gentil|KÁIND
+funny|engraçado|FÂNI
+smart|inteligente|SMÁRT
+crazy|louco|KRÊIZI
+awesome|incrível|ÓSAM
+amazing|maravilhoso|AMÊIZIN
+terrible|terrível|TÉRIBOL
+perfect|perfeito|PÂRFEKT
+fine|bem|FÁIN
+real|real|RÍOL
+favorite|favorito|FÊIVORIT
+own|próprio|ÔUN
+other|outro|ÂDER
+next|próximo|NÉKST
+wet|molhado|UÉT
+dry|seco|DRÁI
+sweet|doce|SUÍT
+spicy|apimentado|SPÁISI`,
+'Escola e estudo':`school|escola|SKÚL
+class|aula / turma|KLÉS
+classroom|sala de aula|KLÉSRUM
+teacher|professor|TÍTCHER
+student|aluno|STÚDENT
+classmate|colega de classe|KLÉSMEIT
+lesson|lição|LÉSAN
+homework|lição de casa|RRÔUMUÂRK
+test|prova|TÉST
+exam|exame|IGZÉM
+grade|nota / série|GRÊID
+pass|passar (na prova)|PÉS
+fail|reprovar|FÊIL
+book|livro|BÚK
+notebook|caderno|NÔUTBUK
+pen|caneta|PÉN
+pencil|lápis|PÉNSIL
+eraser|borracha|IRÊISER
+paper|papel|PÊIPER
+backpack|mochila|BÉKPÉK
+library|biblioteca|LÁIBRERI
+desk|carteira / mesa|DÉSK
+board|quadro|BÓRD
+subject|matéria|SÂBDJEKT
+math|matemática|MÉTH
+history|história|RRÍSTORI
+science|ciências|SÁIENS
+English|inglês|ÍNGLICH
+word|palavra|UÂRD
+sentence|frase|SÉNTENS
+question|pergunta|KUÉSTCHAN
+example|exemplo|IGZÉMPOL
+mistake|erro|MISTÊIK
+spell|soletrar|SPÉL
+mean|significar|MÍN
+practice|praticar|PRÉKTIS
+repeat|repetir|RIPÍT
+explain|explicar|IKSPLÊIN
+due|para entregar (prazo)|DÚ
+college|faculdade|CÓLIDJ`,
+'Escritório e tecnologia':`office|escritório|ÓFIS
+desk|mesa de trabalho|DÉSK
+manager|gerente|MÉNEDJER
+employee|funcionário|IMPLÓII
+client|cliente|KLÁIENT
+supplier|fornecedor|SAPLÁIER
+contract|contrato|CÓNTRÉKT
+budget|orçamento|BÂDJET
+invoice|nota fiscal / fatura|ÍNVOIS
+goal|meta|GÔUL
+task|tarefa|TÉSK
+update|atualização|ÂPDEIT
+feedback|retorno / opinião|FÍDBÉK
+presentation|apresentação|PREZENTÊIXAN
+spreadsheet|planilha|SPRÉDXIT
+file|arquivo|FÁIL
+folder|pasta|FÔULDER
+printer|impressora|PRÍNER
+screen|tela|SKRÍN
+keyboard|teclado|KÍBORD
+password|senha|PÉSUÂRD
+link|link|LÍNK
+attachment|anexo|ATÉTCHMENT
+app|aplicativo|ÉP
+download|baixar|DÁUNLOUD
+upload|enviar (arquivo)|ÂPLOUD
+log in|entrar (no sistema)|LÓG ÍN
+shift|turno|XÍFT
+overtime|hora extra|ÔUVERTAIM
+day off|folga|DÊI ÓF
+safety|segurança|SÊIFTI
+training|treinamento|TRÊININ
+skill|habilidade|SKÍL
+experience|experiência|IKSPÍRIENS
+interview|entrevista|ÍNTERVIU
+hire|contratar|RRÁIER
+quit|pedir demissão|KUÍT
+retire|aposentar|RITÁIER
+agree|concordar|AGRÍ
+schedule|agendar|SKÉDJUL`,
+'Sentimentos':`happy|feliz|RRÉPI
+sad|triste|SÉD
+tired|cansado|TÁIERD
+angry|bravo|ÉNGRI
+scared|com medo|SKÉRD
+worried|preocupado|UÂRID
+excited|animado|IKSÁIRID
+bored|entediado|BÓRD
+nervous|nervoso|NÂRVAS
+calm|calmo|CÁM
+proud|orgulhoso|PRÁUD
+surprised|surpreso|SURPRÁIZD
+lonely|sozinho (solitário)|LÔUNLI
+sorry|arrependido|SÓRI
+glad|contente|GLÉD
+sleepy|com sono|SLÍPI`
+};
+const LEVELS=[['Nível 1 · Primeiras palavras',['Básicas','Números','Pessoas e família','Comida e bebida','Cores e roupas']],['Nível 2 · Dia a dia',['Tempo e calendário','Casa','Cidade e lugares','Clima e natureza','Sentimentos']],['Nível 3 · Se virando sozinho',['Ações','Descrever','Perguntas e ligações','Transporte e viagem','Escola e estudo']],['Nível 4 · Mais avançado',['Trabalho e dinheiro','Escritório e tecnologia','Corpo e saúde']]];
+const CATLV={};LEVELS.forEach(([n,cs],i)=>cs.forEach(c=>CATLV[c]=i+1));
+const ORDERED={};LEVELS.forEach(([n,cs])=>cs.forEach(c=>ORDERED[c]=RAW[c]));
+const W=Object.fromEntries(Object.entries(ORDERED).map(([k,v])=>[k,v.trim().split('\n').map(l=>l.split('|').map(x=>x.trim()))]));
+let wcat=store.get('wcat','Todas'),wi=0,flipped=false,known=store.get('known',[]);
+const wt=document.getElementById('wtools');
+let wmode=store.get('wmode','list');
+const ALLC='Todas';
+if(!W[wcat]&&wcat!==ALLC)wcat=ALLC;
+wt.innerHTML=[ALLC,...Object.keys(W)].map(k=>`<button data-k="${k}">${k===ALLC?k:CATLV[k]+' · '+k}</button>`).join('');
+wt.querySelectorAll('button').forEach(b=>b.onclick=()=>{wcat=b.dataset.k;store.set('wcat',wcat);wi=0;flipped=false;renderWord();renderList()});
+function catWords(){return wcat===ALLC?Object.values(W).flat():W[wcat]}
+function renderList(){
+  const q=(document.getElementById('wsearch').value||'').trim().toLowerCase();
+  const cats=wcat===ALLC?Object.keys(W):[wcat];let html='',n=0,lastLv='';
+  cats.forEach(c=>{const rows=W[c].filter(w=>!q||w[0].toLowerCase().includes(q)||w[1].toLowerCase().includes(q));if(!rows.length)return;
+    if(cats.length>1){const lv=LEVELS[CATLV[c]-1];if(lastLv!==lv[0]){html+=`<h3 class="lvh">${lv[0]}</h3>`;lastLv=lv[0]}html+=`<div class="wcat">${c} · ${rows.length}</div>`}
+    html+=rows.map(w=>{n++;return `<button class="wrow" data-en="${w[0].replace(/"/g,'&quot;')}" aria-label="Ouvir ${w[0].replace(/"/g,'')}"><span>${w[1]}</span><span>${w[0]}</span><span>${w[2]}</span></button>`}).join('')});
+  const el=document.getElementById('wlist');el.innerHTML=n?html:'<div class="wempty">Nenhuma palavra encontrada.</div>';
+  el.querySelectorAll('.wrow').forEach(r=>r.onclick=()=>{say(r.dataset.en.replace(/\s*\(.*\)/,''));el.querySelectorAll('.on').forEach(x=>x.classList.remove('on'));r.classList.add('on')});
+  const tot=Object.values(W).reduce((a,b)=>a+b.length,0);
+  document.getElementById('wsub').textContent=tot+' palavras mais usadas nos EUA, do nível 1 (primeiras palavras) ao nível 4 (mais avançado).';
+}
+document.getElementById('wsearch').oninput=renderList;
+function setMode(m){wmode=m;store.set('wmode',m);document.getElementById('listView').hidden=m!=='list';document.getElementById('cardView').hidden=m==='list';document.getElementById('mList').setAttribute('aria-pressed',String(m==='list'));document.getElementById('mCards').setAttribute('aria-pressed',String(m!=='list'))}
+document.getElementById('mList').onclick=()=>setMode('list');
+document.getElementById('mCards').onclick=()=>setMode('cards');
+setMode(wmode);
+function deck(){const all=catWords();const unk=all.filter(w=>!known.includes(w[0]));return unk.length?unk:all}
+function renderWord(){
+  wt.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.k===wcat)));
+  const d=deck();wi=wi%d.length;const w=d[wi];
+  document.getElementById('card').innerHTML=`<div><div class="big">${w[0]}</div>${flipped?`<div class="back"><div class="pt">${w[1]}</div><div class="pr">${w[2]}</div></div>`:'<div class="hint">Toque para ver a tradução</div>'}</div>`;
+  const kc=catWords().filter(x=>known.includes(x[0])).length;
+  document.getElementById('wpos').textContent=(wi+1)+' / '+d.length;
+  document.getElementById('wknown').textContent=kc+' de '+catWords().length+' que você já sabe';
+}
+const card=document.getElementById('card');
+card.onclick=()=>{flipped=!flipped;renderWord();if(flipped)say(deck()[wi][0].replace(/\s*\(.*\)/,''))};
+card.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();card.onclick()}};
+document.getElementById('wSay').innerHTML=PLAY;
+document.getElementById('wSay').onclick=()=>say(deck()[wi][0]);
+document.getElementById('wAgain').onclick=()=>{wi++;flipped=false;renderWord()};
+document.getElementById('wKnow').onclick=()=>{const w=deck()[wi][0];if(!known.includes(w)){known.push(w);store.set('known',known);touchDay()}flipped=false;renderWord();updateStats()};
+renderWord();renderList();
+
+/* ---------- Nativo ---------- */
+const N=[
+{t:'Nível 1 · Respostas rápidas',d:'O nativo responde com frases curtas e prontas. Decore como um bloco só.',r:`I'm good.|Tô bem. / Não, obrigado.|AIM GUD
+Sounds good.|Combinado.|SÁUNDZ GUD
+No worries.|Sem problema.|NÔU UÂRIZ
+No problem.|Imagina.|NÔU PRÓBLEM
+Sure thing.|Pode deixar.|XUR THÍN
+You bet.|Pode crer.|IÚ BÉT
+For sure.|Com certeza.|FOR XUR
+Totally.|Totalmente.|TÔURALI
+Gotcha.|Entendi.|GÓTCHA
+Got it.|Entendi.|GÓRIT
+My bad.|Foi mal.|MÁI BÉD
+Fair enough.|Justo.|FÉR INÂF
+Same here.|Eu também.|SÊIM RRÍR
+Me neither.|Eu também não.|MÍ NÍDER
+Never mind.|Deixa pra lá.|NÉVER MÁIND
+No way!|Não acredito!|NÔU UÊI
+Really?|Sério?|RÍLI
+Oh, nice!|Ah, que legal!|ÔU NÁIS
+That's awesome!|Que demais!|DÉTS ÓSAM
+Bless you.|Saúde (espirro).|BLÉS IU`},
+{t:'Nível 2 · Expressões que você vai ouvir sempre',d:'Frases inteiras que aparecem em qualquer conversa americana.',r:`I'm on my way.|Tô a caminho.|AIM ÓN MAI UÊI
+Hold on.|Espera aí.|RRÔULD ÓN
+Hang on a sec.|Peraí um segundo.|RRÉNG ÓN A SÉK
+Take care.|Se cuida.|TÊIK KÉR
+Have a good one.|Tenha um bom dia.|RRÉV A GUD UÂN
+See you around.|A gente se vê.|SÍ IU ARRÁUND
+Let me know.|Me avisa.|LÉMI NÔU
+It's up to you.|Você que sabe.|ITS ÂP TU IU
+It depends.|Depende.|IT DIPÉNDZ
+I'm not sure.|Não tenho certeza.|AIM NÓT XUR
+I have no idea.|Não faço ideia.|AI RRÉV NÔU AIDÍA
+That makes sense.|Faz sentido.|DÉT MÊIKS SÉNS
+Don't worry about it.|Não esquenta.|DÔUNT UÂRI ABÁURIT
+Long time no see!|Quanto tempo!|LÓNG TÁIM NÔU SÍ
+Take your time.|Sem pressa.|TÊIK IÓR TÁIM
+Here we go.|Lá vamos nós.|RRÍR UÍ GÔU
+What do you mean?|Como assim?|UÓRA IU MÍN
+Can you say that again?|Pode repetir?|KÉN IU SÊI DÉT AGUÉN
+Good to see you.|Bom te ver.|GUD TU SÍ IU
+Excuse me, sorry.|Com licença, desculpa.|IKSKIÚZ MI, SÓRI`},
+{t:'Nível 2 · O som americano',d:'Três detalhes que mudam tudo: o T entre vogais vira um R leve, o R é sempre pronunciado, e o "can\'t" tem o A aberto.',r:`water|água|UÓRER
+better|melhor|BÉRER
+little|pequeno|LÍROL
+city|cidade|SÍRI
+party|festa|PÁRRI
+car|carro|CÁRR
+here|aqui|RRÍRR
+I can go.|Eu posso ir.|AI KÂN GÔU
+I can't go.|Eu não posso ir.|AI KÉNT GÔU
+Thank you.|Obrigado (TH com a língua nos dentes).|THÉNK IU`},
+{t:'Nível 3 · Gírias leves do dia a dia',d:'Informais, mas educadas. Funcionam com vizinho, garçom e colega.',r:`What's up?|E aí?|UÓTS ÂP
+How's it going?|Como vai?|RRÁUZ IT GÔUIN
+Hey, buddy.|E aí, amigão.|RRÊI, BÂDI
+dude|cara|DÚD
+guys|pessoal|GÁIZ
+y'all|vocês todos (Sul dos EUA)|IÓL
+bucks|dólares|BÂKS
+grab a bite|comer alguma coisa|GRÉB A BÁIT
+grab a coffee|tomar um café|GRÉB A CÓFI
+hang out|sair / ficar junto|RRÉNG ÁUT
+chill|tranquilo / relaxar|TCHÍL
+I'm down.|Tô dentro.|AIM DÁUN
+I'm beat.|Tô morto de cansado.|AIM BÍT
+I'm starving.|Tô morrendo de fome.|AIM STÁRVIN
+It's a deal.|Fechado.|ITS A DÍL
+It's on me.|Essa é por minha conta.|ITS ÓN MI
+legit|de verdade / confiável|LEDJÍT
+sketchy|suspeito|SKÉTCHI
+pumped|empolgado|PÂMPT
+ride|carona|RÁID`},
+{t:'Nível 3 · Como o americano junta as palavras',d:'Na conversa, ninguém fala as palavras separadas. Você precisa reconhecer esse som para entender.',r:`going to → gonna|vou / vai|GÓNA
+want to → wanna|quero|UÓNA
+got to → gotta|tenho que|GÓRA
+have to → hafta|preciso|RRÉFTA
+kind of → kinda|meio que|KÁINDA
+sort of → sorta|mais ou menos|SÓRDA
+let me → lemme|deixa eu|LÉMI
+give me → gimme|me dá|GUÍMI
+don't know → dunno|sei lá|DANÔU
+what are you → whatcha|o que você|UÓTCHA
+did you → didja|você...?|DÍDJA
+would you → wouldja|você poderia|UÚDJA
+could have → coulda|poderia ter|CÚDA
+should have → shoulda|devia ter|XÚDA
+out of → outta|fora de|ÁURA
+a lot of → a lotta|muito|A LÓRA
+Did you eat? → Jeet?|Você comeu?|DJÍT?`},
+{t:'Nível 4 · Verbos de duas palavras',d:'O americano usa muito mais esses do que as palavras "difíceis". "Find out" no lugar de "discover".',r:`pick up|buscar / pegar|PÍK ÂP
+drop off|deixar (alguém em lugar)|DRÓP ÓF
+find out|descobrir|FÁIND ÁUT
+figure out|entender / resolver|FÍGUIR ÁUT
+show up|aparecer|XÔU ÂP
+check out|dar uma olhada / sair do hotel|TCHÉK ÁUT
+look forward to|estar ansioso por|LÚK FÓRUARD TU
+run out of|ficar sem|RÂN ÁURA
+give up|desistir|GUÍV ÂP
+work out|malhar / dar certo|UÂRK ÁUT
+come back|voltar|CÂM BÉK
+get up|levantar|GUÉT ÂP
+get in|entrar (carro)|GUÉT ÍN
+get out|sair|GUÉT ÁUT
+turn around|virar / dar meia-volta|TÂRN ARRÁUND
+fill out|preencher (formulário)|FÍL ÁUT
+hang up|desligar (telefone)|RRÉNG ÂP
+call back|retornar a ligação|CÓL BÉK
+slow down|ir mais devagar|SLÔU DÁUN
+calm down|se acalmar|CÁM DÁUN`}
+];
+const nl=document.getElementById('nativeList');
+nl.innerHTML=N.map(g=>`<div class="ngroup"><h3>${g.t}</h3><p>${g.d}</p><div class="wl-head"><span>Português</span><span>English</span><span>Pronúncia</span></div>${g.r.trim().split('\n').map(l=>{const w=l.split('|');const sp=w[0].includes('→')?w[0].split('→')[1].trim():w[0];return `<button class="wrow" data-en="${sp.replace(/"/g,'&quot;')}" aria-label="Ouvir ${sp.replace(/"/g,'')}"><span>${w[1]}</span><span>${w[0]}</span><span>${w[2]}</span></button>`}).join('')}</div>`).join('');
+nl.querySelectorAll('.wrow').forEach(r=>r.onclick=()=>{say(r.dataset.en);nl.querySelectorAll('.on').forEach(x=>x.classList.remove('on'));r.classList.add('on')});
+
+/* ---------- Minhas aulas com a professora ---------- */
+const AULAS=[
+{n:1,d:'08/10/2026',u:'Unidade 1',pg:'págs. 2 a 4',r:'Primeira aula: se apresentar, nome completo, sobrenome e apelido, "nice to meet you", I know / I don\'t know, palavras que o brasileiro usa errado (shopping, outdoor, home office), títulos Mr. / Mrs. / Miss / Ms., estado civil, despedidas e pronomes.',g:[
+['Se apresentar',[['My name is Patricia.','Meu nome é Patricia.','MAI NÊIM IZ PATRÍCIA.'],['I live in São Paulo.','Moro em São Paulo.','AI LIV IN SÃO PAULO.'],["What's your name?",'Qual é o seu nome?','UÓTS IÓR NÊIM?'],["What's your full name?",'Qual é o seu nome completo?','UÓTS IÓR FÚL NÊIM?'],['My last name is Souza.','Meu sobrenome é Souza.','MAI LÉST NÊIM IZ SÚZA.'],["What's your nickname?",'Qual é o seu apelido?','UÓTS IÓR NÍKNEIM?'],['My nickname is Paty.','Meu apelido é Paty.','MAI NÍKNEIM IZ PÉRI.'],["I don't have a nickname.",'Não tenho apelido.','AI DÔUNT RRÉV A NÍKNEIM.']]],
+['Prazer em conhecer',[["It's nice to meet you.",'Prazer em conhecer você.','ITS NÁIS TU MIT IU.'],["It's good to meet you. / It's great to meet you.",'Bom te conhecer. / Ótimo te conhecer.','ITS GUD TU MIT IU. / ITS GRÊIT TU MIT IU.'],["It's fantastic to meet you!",'É fantástico te conhecer!','ITS FENTÉSTIK TU MIT IU!'],["It's nice to meet you, too.",'O prazer é meu.','ITS NÁIS TU MIT IU, TÚ.'],["It's nice to meet your family.",'Prazer em conhecer sua família.','ITS NÁIS TU MIT IÓR FÉMILI.'],['I meet your father and your mother.','Conheço seu pai e sua mãe.','AI MIT IÓR FÁDER ÉND IÓR MÂDER.']]],
+['Saber e não saber (I know / I don\'t know)',[['I know English.','Eu sei inglês.','AI NÔU ÍNGLICH.'],["I don't know.",'Não sei.','AI DÔUNT NÔU.'],["I don't know London.",'Não conheço Londres.','AI DÔUNT NÔU LÂNDAN.'],['I know how to use a computer.','Sei usar um computador.','AI NÔU RRÁU TU IÚZ A COMPIÚRER.'],["Sorry, I don't know.",'Desculpa, não sei.','SÓRI, AI DÔUNT NÔU.']]],
+['Como o americano fala de verdade',[['I go to the mall.','Eu vou ao shopping. ("shopping" sozinho não é o lugar)','AI GÔU TU DÂ MÓL.'],['I go shopping.','Vou fazer compras.','AI GÔU XÓPIN.'],['billboard','outdoor (a placa grande de propaganda)','BÍLBORD'],['I work from home.','Trabalho de casa (home office).','AI UÂRK FRÂM RRÔUM.'],['bedroom · kitchen · living room','quarto · cozinha · sala','BÉDRUM · KÍTCHEN · LÍVIN RÚM']]],
+['Do que você gosta',[["What's your soccer team?",'Qual é o seu time de futebol?','UÓTS IÓR SÓKER TÍM?'],["What's your favorite pizza?",'Qual é a sua pizza favorita?','UÓTS IÓR FÊIVORIT PÍTSA?'],['My favorite pizza is four cheese.','Minha pizza favorita é quatro queijos.','MAI FÊIVORIT PÍTSA IZ FÓR TCHÍZ.'],['Pepperoni, with extra cheese.','Pepperoni, com queijo extra.','PÉPERÔUNI, UÍF ÉKSTRA TCHÍZ.'],['Do you like soccer?','Você gosta de futebol?','DU IU LÁIK SÓKER?'],["I have a motorcycle. I don't have a car.",'Tenho moto. Não tenho carro.','AI RRÉV A MÔURERSAIKOL. AI DÔUNT RRÉV A CÁR.']]],
+['Títulos e estado civil (Student\'s Book, pág. 4)',[["Mr. Garcia",'senhor Garcia (homem)','MÍSTER GARCÍA'],['Mrs. Garcia','senhora Garcia (mulher casada)','MÍSIZ GARCÍA'],['Miss Lopez','senhorita Lopez (mulher solteira)','MÍS LÔUPEZ'],['Ms. Kim','senhora Kim (solteira ou casada)','MÍZ KÍM'],["I'm single. / I'm married. / I'm divorced.",'Sou solteiro. / casado. / divorciado.','AIM SÍNGOL. / AIM MÉRID. / AIM DIVÓRST.'],["I'm single, but I have a girlfriend.",'Sou solteiro, mas tenho namorada.','AIM SÍNGOL, BÂT AI RRÉV A GUÂRLFREND.'],['girlfriend · boyfriend · wife · husband','namorada · namorado · esposa · marido','GUÂRLFREND · BÓIFREND · UÁIF · RRÂSBAND']]],
+['Cumprimentar e se despedir',[['Good evening!','Boa noite! (ao chegar)','GUD ÍVNIN!'],['Good night!','Boa noite! (ao sair ou dormir)','GUD NÁIT!'],['Goodbye! / Bye-bye!','Tchau!','GUDBÁI! / BÁI BÁI!'],['See you soon!','Até logo!','SÍ IU SÚN!'],['See you tomorrow!','Até amanhã!','SÍ IU TUMÁROU!'],['See you later!','Até mais tarde!','SÍ IU LÊIRER!']]],
+['Pronomes: quem faz (I, you, he, she, it, we, they)',[['I · you · he · she · it','eu · você · ele · ela · ele/ela (coisa ou animal)','ÁI · IÚ · RRÍ · XÍ · ÍT'],['we · you · they','nós · vocês · eles/elas','UÍ · IÚ · DÊI'],['Carlos is a good student. He is a good student.','Carlos é um bom aluno. Ele é um bom aluno.','KÁRLOS IZ A GUD STÚDENT. RRÍ IZ A GUD STÚDENT.'],['The books are new. They are new.','Os livros são novos. Eles são novos.','DÂ BÚKS AR NÚ. DÊI AR NÚ.'],['The apple is delicious. It is delicious.','A maçã é deliciosa. Ela é deliciosa.','DÂ ÉPOL IZ DILÍXAS. IT IZ DILÍXAS.']]],
+['Nomes populares e países (Student\'s Book, pág. 2)',[['Carlos is a popular name in Brazil.','Carlos é um nome popular no Brasil.','KÁRLOS IZ A PÓPIULAR NÊIM IN BRAZÍL.'],['Ernani is not a popular name.','Ernani não é um nome popular.','ERNÂNI IZ NÓT A PÓPIULAR NÊIM.'],['in Colombia · in Argentina · in Japan','na Colômbia · na Argentina · no Japão','IN COLÂMBIA · IN ARDJENTÍNA · IN DJAPÉN'],['in the US · in the UK · in the Philippines','nos EUA · no Reino Unido · nas Filipinas','IN DÂ IÚ ÉS · IN DÂ IÚ KÊI · IN DÂ FÍLIPINZ']]]
+]},
+{n:2,d:'15/10/2026',u:'Unidade 1',pg:'págs. 2 a 4',r:'Revisão da lição de casa, pronomes, verbo "to be", "Saying hello", sentimentos e palavras de posse (my, your, his, her...).',g:[
+['Apresentar e conhecer alguém',[["My last name is Smith.",'Meu sobrenome é Smith.','MAI LÉST NÊIM IZ SMÍTH.'],["I don't have a nickname.",'Não tenho apelido.','AI DÔUNT RRÉV A NÍKNEIM.'],['David is a popular name in the USA.','David é um nome popular nos EUA.','DÊIVID IZ A PÓPIULAR NÊIM IN DÂ IÚ ÉS ÊI.'],['Nice to meet you.','Prazer em conhecer.','NÁIS TU MIT IU.'],['Good to meet you.','Bom te conhecer.','GUD TU MIT IU.'],['Nice to meet you, too.','Prazer, igualmente.','NÁIS TU MIT IU, TÚ.']]],
+['Quem é quem (I, you, he, she, it, we, they)',[['I am · you are · he is · she is','eu sou · você é · ele é · ela é','AI ÉM · IU ÁR · RRÍ ÍZ · XÍ ÍZ'],['it is · we are · they are','isso é · nós somos · eles são','IT ÍZ · UÍ ÁR · DÊI ÁR'],['The house is big.','A casa é grande.','DÂ RRÁUS IZ BÍG.'],['The houses are big.','As casas são grandes.','DÂ RRÁUZIZ AR BÍG.'],['Antonio is tired.','O Antonio está cansado.','ANTÔNIOU IZ TÁIERD.'],['Renato and Victor are sleepy.','Renato e Victor estão com sono.','RENÁTOU ÉND VÍKTOR AR SLÍPI.']]],
+['Cumprimentar e dizer como está',[['Hi, Miss Santos!','Oi, senhorita Santos!','RRÁI, MÍS SÂNTOS!'],['Hello, Mr. Garcia!','Olá, senhor Garcia!','RRELÔU, MÍSTER GARCÍA!'],['How are you?','Como você está?','RRÁU AR IU?'],['How is your day?','Como está seu dia?','RRÁU IZ IÓR DÊI?'],["How's it going?",'Como vão as coisas?','RRÁUZ IT GÔUIN?'],["I'm fine. / I'm great. / I'm OK.",'Estou bem. / Ótimo. / Tudo certo.','AIM FÁIN. / AIM GRÊIT. / AIM ÔUKÊI.'],["I'm good, but tired.",'Estou bem, mas cansado.','AIM GUD, BÂT TÁIERD.'],["I'm not so good. And you?",'Não estou muito bem. E você?','AIM NÓT SÔU GUD. ÉND IÚ?'],["I'm hungry. / I'm thirsty. / I'm sleepy.",'Estou com fome. / com sede. / com sono.','AIM RRÂNGRI. / AIM THÂRSTI. / AIM SLÍPI.'],["I'm single. / I'm married.",'Sou solteiro. / Sou casado.','AIM SÍNGOL. / AIM MÉRID.']]],
+['De quem é (my, your, his, her, its, our, their)',[["I buy for my family.",'Eu compro para minha família.','AI BÁI FOR MAI FÉMILI.'],['You buy for your family.','Você compra para sua família.','IU BÁI FOR IÓR FÉMILI.'],["I have a sister. Her name is Mariana.",'Tenho uma irmã. O nome dela é Mariana.','AI RRÉV A SÍSTER. RRÂR NÊIM IZ MARIÂNA.'],["I have a brother. His name is Leandro.",'Tenho um irmão. O nome dele é Leandro.','AI RRÉV A BRÂDER. RRÍZ NÊIM IZ LEÂNDROU.'],['Their names are Leandro and Mariana.','Os nomes deles são Leandro e Mariana.','DÉR NÊIMZ AR LEÂNDROU ÉND MARIÂNA.'],["We live here. It's our house.",'Moramos aqui. É a nossa casa.','UÍ LIV RRÍR. ITS ÁUAR RRÁUS.'],['The car lost one of its wheels.','O carro perdeu uma das rodas dele.','DÂ CÁR LÓST UÂN ÓV ITS UÍLZ.']]],
+['Quem é ele? Quem é ela?',[["What's his name?",'Qual é o nome dele?','UÓTS RRÍZ NÊIM?'],["What's her name?",'Qual é o nome dela?','UÓTS RRÂR NÊIM?'],["Who is he? / Who is she?",'Quem é ele? / Quem é ela?','RRÚ IZ RRÍ? / RRÚ IZ XÍ?'],["His name is... / Her name is...",'O nome dele é... / O nome dela é...','RRÍZ NÊIM IZ... / RRÂR NÊIM IZ...']]]
+]}
+];
+function renderAulas(){
+  const box=document.getElementById('aulasProf');
+  box.innerHTML=AULAS.map((a,ai)=>`<details class="unit" ${ai===AULAS.length-1?'open':''}><summary><span class="num">A${a.n}</span><span class="ut"><b>Aula ${a.n} · ${a.d}</b><span>${a.u}, ${a.pg}</span></span><span class="chev">›</span></summary><div class="ubody"><p class="sub" style="margin:0">${a.r}</p>${a.g.map((g,gi)=>`<h4 class="ag">${g[0]}</h4>${g[1].map((p,pi)=>`<div class="phrase"><div class="en">${p[0]}</div><button class="play" data-a="${ai}" data-g="${gi}" data-p="${pi}" aria-label="Ouvir">${PLAY}</button><div class="pt">${p[1]}</div><div class="pr">${p[2]}</div></div>`).join('')}`).join('')}<button class="btn ghost" data-all="${ai}">Ouvir a aula toda, com pausas</button></div></details>`).join('')+'<p class="tip">As aulas novas entram aqui, em ordem, sempre que a gravação for enviada.</p>';
+  box.querySelectorAll('.play').forEach(b=>b.onclick=()=>{const t=AULAS[+b.dataset.a].g[+b.dataset.g][1][+b.dataset.p][0];say(t.replace(/ · /g,'. ').replace(/\s*\/\s*/g,'. '))});
+  box.querySelectorAll('[data-all]').forEach(b=>b.onclick=()=>sayQueue(AULAS[+b.dataset.all].g.flatMap(g=>g[1].map(p=>p[0].replace(/ · /g,'. ').replace(/\s*\/\s*/g,'. ')))));
+}
+renderAulas();
+{const last=AULAS[AULAS.length-1];document.getElementById('ver').textContent='Versão '+last.n+' · até a aula '+last.n+' ('+last.d.slice(0,5)+')';}
+
+/* ---------- Livro (Interchange Intro) ---------- */
+const U=[
+[1,'Apresentações','Cumprimentos, nomes, números de 0 a 10, telefone e e-mail · págs. 2 a 7',[["Hi, I'm {N}.",'Oi, eu sou {N}.','RRÁI, AIM {NP}.'],["What's your phone number?",'Qual é o seu telefone?','UÓTS IÓR FÔUN NÂMBER?'],["What's your email address?",'Qual é o seu e-mail?','UÓTS IÓR ÍMEIL ÉDRES?'],['See you tomorrow!','Até amanhã!','SÍ IU TUMÁROU!']],'Básicas'],
+[2,'O que é isto?','Objetos pessoais, da sala de aula e onde estão · págs. 8 a 13',[["What's this?",'O que é isto?','UÓTS DIS?'],["It's an umbrella.",'É um guarda-chuva.','ITS AN AMBRÉLA.'],['Where are my keys?','Onde estão minhas chaves?','UÉR AR MAI KÍZ?'],["They're under the table.",'Estão embaixo da mesa.','DÉR ÂNDER DÂ TÊIBOL.']],'Escola e estudo'],
+[3,'De onde você é?','Cidades, países, personalidade, aparência, números de 11 a 103 e idade · págs. 16 a 21',[['Where are you from?','De onde você é?','UÉR AR IU FRÂM?'],["I'm from Brazil. I'm Brazilian.",'Sou do Brasil. Sou brasileiro.','AIM FRÂM BRAZÍL. AIM BRAZÍLIAN.'],['How old are you?','Quantos anos você tem?','RRÁU ÔULD AR IU?'],["He's tall and very friendly.",'Ele é alto e muito simpático.','RRÍZ TÓL ÉND VÉRI FRÉNDLI.']],'Números'],
+[4,'Roupas, cores e clima','De quem é, cores, tempo e estações · págs. 22 a 27',[['Whose jacket is this?','De quem é esta jaqueta?','RRÚZ DJÉKET IZ DIS?'],["It's mine.",'É minha.','ITS MÁIN.'],["What's the weather like?",'Como está o tempo?','UÓTS DÂ UÉDER LÁIK?'],["It's raining, so I'm wearing a coat.",'Está chovendo, então estou de casaco.','ITS RÊININ, SÔU AIM UÉRIN A KÔUT.']],'Cores e roupas'],
+[5,'Que horas são','Horas, períodos do dia e o que está fazendo agora · págs. 30 a 35',[['What time is it?','Que horas são?','UÓT TÁIM IZ IT?'],["It's seven o'clock in the morning.",'São sete da manhã.','ITS SÉVEN OCLÓK IN DÂ MÓRNIN.'],['What are you doing?','O que você está fazendo?','UÓRA IU DÚIN?'],["I'm having lunch.",'Estou almoçando.','AIM RRÉVIN LÂNTCH.']],'Tempo e calendário'],
+[6,'Rotina, família e transporte','Como vai ao trabalho, família, rotina e dias da semana · págs. 36 a 41',[['How do you get to work?','Como você vai ao trabalho?','RRÁU DU IU GUÉT TU UÂRK?'],['I drive. My wife takes the bus.','Eu vou de carro. Minha esposa pega o ônibus.','AI DRÁIV. MAI UÁIF TÊIKS DÂ BÂS.'],['I get up early on weekdays.','Acordo cedo durante a semana.','AI GUÉT ÂP ÂRLI ÓN UÍKDEIZ.'],['On Sundays, I sleep late.','Aos domingos, durmo até tarde.','ÓN SÂNDEIZ, AI SLÍP LÊIT.']],'Pessoas e família'],
+[7,'Casa e apartamento','Cômodos e móveis · págs. 44 a 49',[['Does it have a view?','Tem vista?','DÂZ IT RRÉV A VIÚ?'],['There are three bedrooms.','Tem três quartos.','DÉR AR THRÍ BÉDRUMZ.'],["There's no garage.",'Não tem garagem.','DÉRZ NÔU GARÁDJ.'],["There aren't any chairs.",'Não tem nenhuma cadeira.','DÉR ÁRNT ÉNI TCHÉRZ.']],'Casa'],
+[8,'Trabalho','Profissões e local de trabalho · págs. 50 a 55',[['What do you do?','O que você faz? (profissão)','UÓRA IU DÚ?'],["I'm an engineer.",'Sou engenheiro.','AIM AN ÊNDJINIR.'],['Where does she work?','Onde ela trabalha?','UÉR DÂZ XÍ UÂRK?'],["It's a difficult job, but it's interesting.",'É um trabalho difícil, mas é interessante.','ITS A DÍFIKALT DJÓB, BÂT ITS ÍNTRESTIN.']],'Escritório e tecnologia'],
+[9,'Comida','Alimentos, café da manhã, refeições e frequência · págs. 58 a 63',[['Do we need any eggs?','Precisamos de ovos?','DU UÍ NÍD ÉNI ÉGZ?'],["We need some bread.",'Precisamos de pão.','UÍ NÍD SÂM BRÉD.'],['I usually have coffee for breakfast.','Costumo tomar café no café da manhã.','AI IÚJUALI RRÉV CÓFI FOR BRÉKFAST.'],['I hardly ever eat fast food.','Quase nunca como fast food.','AI RRÁRDLI ÉVER ÍT FÉST FÚD.']],'Comida e bebida'],
+[10,'Esportes e habilidades','Esportes, talentos e o que sabe fazer · págs. 64 a 69',[['What sports do you play?','Que esportes você pratica?','UÓT SPÓRTS DU IU PLÊI?'],['I play soccer on weekends.','Jogo futebol nos fins de semana.','AI PLÊI SÓKER ÓN UÍKENDZ.'],['Can you swim?','Você sabe nadar?','KÉN IU SUÍM?'],["Yes, I can. / No, I can't.",'Sim, sei. / Não, não sei.','IÉS, AI KÉN. / NÔU, AI KÉNT.']],'Ações'],
+[11,'Planos e datas','Meses, datas, aniversários e feriados · págs. 72 a 77',[["When's your birthday?",'Quando é seu aniversário?','UÉNZ IÓR BÂRTHDEI?'],["It's on May tenth.",'É dia dez de maio.','ITS ÓN MÊI TÉNTH.'],['What are you going to do tonight?','O que você vai fazer hoje à noite?','UÓRA IU GÓNA DU TUNÁIT?'],["I'm going to visit my family.",'Vou visitar minha família.','AIM GÓNA VÍZIT MAI FÉMILI.']],'Tempo e calendário'],
+[12,'Saúde','Partes do corpo, problemas de saúde e remédios · págs. 78 a 83',[["What's the matter?",'O que você tem?','UÓTS DÂ MÉRER?'],['I have a backache.','Estou com dor nas costas.','AI RRÉV A BÉKEIK.'],['I feel terrible.','Estou me sentindo péssimo.','AI FÍL TÉRIBOL.'],["Take some aspirin and don't work too hard.",'Tome uma aspirina e não trabalhe demais.','TÊIK SÂM ÉSPRIN ÉND DÔUNT UÂRK TÚ RRÁRD.']],'Corpo e saúde'],
+[13,'Lojas e direções','Lojas, o que comprar e pontos turísticos · págs. 86 a 91',[['Where can I buy a phone?','Onde posso comprar um celular?','UÉR KÉN AI BÁI A FÔUN?'],["It's on the corner of Main and First.",'Fica na esquina da Main com a First.','ITS ÓN DÂ CÓRNER ÓV MÊIN ÉND FÂRST.'],['Walk up Park Street and turn right.','Suba a Park Street e vire à direita.','UÓK ÂP PÁRK STRÍT ÉND TÂRN RÁIT.'],["You can't miss it.",'Não tem erro.','IU KÉNT MÍS IT.']],'Cidade e lugares'],
+[14,'Fim de semana e férias','Tarefas, diversão e viagens · págs. 92 a 97',[['Did you have fun?','Você se divertiu?','DÍDJA RRÉV FÂN?'],['What did you do last weekend?','O que você fez no fim de semana passado?','UÓT DÍDJA DU LÉST UÍKEND?'],['I cleaned the house and watched TV.','Limpei a casa e vi TV.','AI KLÍND DÂ RRÁUS ÉND UÓTCHT TÍ VÍ.'],['We went to the beach on vacation.','Fomos à praia nas férias.','UÍ UÉNT TU DÂ BÍTCH ÓN VEIKÊIXAN.']],'Ações'],
+[15,'Sua história','Onde nasceu, anos e tempo de escola · págs. 100 a 105',[['Where did you grow up?','Onde você cresceu?','UÉR DÍDJA GRÔU ÂP?'],['I was born in 1979.','Nasci em 1979.','AI UÓZ BÓRN IN NÁINTÍN SÉVENI-NÁIN.'],['What was your favorite subject?','Qual era sua matéria favorita?','UÓT UÓZ IÓR FÊIVORIT SÂBDJEKT?'],['My teachers were great.','Meus professores eram ótimos.','MAI TÍTCHERS UÂR GRÊIT.']],'Escola e estudo'],
+[16,'Convites e telefone','Onde as pessoas estão, ligações e convites · págs. 106 a 111',[["She's at work. Can she call you later?",'Ela está no trabalho. Ela pode te ligar depois?','XÍZ ÉT UÂRK. KÉN XÍ CÓL IU LÊIRER?'],['Do you want to see a movie?','Quer ver um filme?','DU IU UÓNA SÍ A MÚVI?'],["I'd love to!",'Eu adoraria!','AID LÂV TU!'],["Sorry, I can't. I have to work.",'Desculpa, não posso. Tenho que trabalhar.','SÓRI, AI KÉNT. AI RRÉF TU UÂRK.']],'Perguntas e ligações']
+];
+
+let ud=store.get('units',{});
+function renderUnits(){
+  const box=document.getElementById('units');
+  box.innerHTML=U.map(([n,t,f,ph,cat])=>{const st=ud[n]||{};const ok=st.sb&&st.wb;return `<details class="unit${ok?' ok':''}" data-n="${n}"><summary><span class="num">${n}</span><span class="ut"><b>Unidade ${n} · ${t}</b><span>${f}</span></span><span class="chev">›</span></summary><div class="ubody">${ph.map((p,i)=>`<div class="phrase"><div class="en">${nm(p[0])}</div><button class="play" data-u="${n}" data-i="${i}" aria-label="Ouvir">${PLAY}</button><div class="pt">${nm(p[1])}</div><div class="pr">${nm(p[2])}</div></div>`).join('')}<div class="uchecks"><label><input type="checkbox" id="u${n}sb" data-k="sb" ${st.sb?'checked':''}>Fiz no Student's Book</label><label><input type="checkbox" id="u${n}wb" data-k="wb" ${st.wb?'checked':''}>Fiz no Workbook</label><label><input type="checkbox" id="u${n}ap" data-k="ap" ${st.ap?'checked':''}>Treinei as frases aqui</label></div><button class="ulink" data-cat="${cat}">Ver palavras de ${cat} →</button></div></details>`}).join('');
+  box.querySelectorAll('.play').forEach(b=>b.onclick=()=>say(nm(U[+b.dataset.u-1][3][+b.dataset.i][0])));
+  box.querySelectorAll('.uchecks input').forEach(c=>c.onchange=()=>{const n=+c.closest('.unit').dataset.n;ud[n]=ud[n]||{};ud[n][c.dataset.k]=c.checked;store.set('units',ud);if(c.checked)touchDay();const st=ud[n];c.closest('.unit').classList.toggle('ok',!!(st.sb&&st.wb));uProg()});
+  box.querySelectorAll('.ulink').forEach(b=>b.onclick=()=>{wcat=b.dataset.cat;store.set('wcat',wcat);setMode('list');renderWord();renderList();show('palavras')});
+  uProg();
+}
+function uProg(){const d=U.filter(u=>(ud[u[0]]||{}).sb&&(ud[u[0]]||{}).wb).length;document.getElementById('uProg').textContent=d+' de 16 unidades concluídas no livro e no workbook'}
+renderUnits();
+
+/* ---------- Rotina da professora ---------- */
+const singerIn=document.getElementById('singer');singerIn.value=store.get('singer','');singerIn.oninput=()=>store.set('singer',singerIn.value);
+let songs=store.get('songs',Array.from({length:8},()=>({n:'',d:false})));
+function renderSongs(){document.getElementById('songs').innerHTML=songs.map((sg,i)=>`<div class="song"><input type="checkbox" id="sd${i}" data-i="${i}" ${sg.d?'checked':''} aria-label="Música ${i+1} feita"><input type="text" id="sn${i}" data-i="${i}" value="${(sg.n||'').replace(/"/g,'&quot;')}" placeholder="Música ${i+1}"><span class="w">semana ${Math.floor(i/2)+1}</span></div>`).join('');
+  document.querySelectorAll('#songs input[type=checkbox]').forEach(c=>c.onchange=()=>{songs[+c.dataset.i].d=c.checked;store.set('songs',songs);if(c.checked)touchDay()});
+  document.querySelectorAll('#songs input[type=text]').forEach(t=>t.oninput=()=>{songs[+t.dataset.i].n=t.value;store.set('songs',songs)});}
+renderSongs();
+const ST=[['Inglês com legenda em português','Entenda o que está acontecendo.'],['Inglês com legenda em inglês','Ligue o som às palavras escritas.'],['Inglês sem legenda','Teste se você entende só ouvindo.']];
+let clip=store.get('clip',{t:'',s:[false,false,false]});
+const clipIn=document.getElementById('clip');clipIn.value=clip.t;clipIn.oninput=()=>{clip.t=clipIn.value;store.set('clip',clip)};
+function renderSteps(){document.getElementById('steps3').innerHTML=ST.map((x,i)=>`<label><input type="checkbox" id="st${i}" data-i="${i}" ${clip.s[i]?'checked':''}><span><b>Passo ${i+1}: ${x[0]}</b><span>${x[1]}</span></span></label>`).join('');
+  document.querySelectorAll('#steps3 input').forEach(c=>c.onchange=()=>{clip.s[+c.dataset.i]=c.checked;store.set('clip',clip);if(c.checked)touchDay()});}
+renderSteps();
+document.getElementById('resetClip').onclick=()=>{clip={t:'',s:[false,false,false]};clipIn.value='';store.set('clip',clip);renderSteps()};
+let ph=store.get('phone',{c:false,w:false});
+document.getElementById('phoneChecks').innerHTML=[['c','Celular em inglês'],['w','Waze em inglês']].map(([k,t])=>`<label><input type="checkbox" id="ph${k}" data-k="${k}" ${ph[k]?'checked':''}>${t}</label>`).join('');
+document.querySelectorAll('#phoneChecks input').forEach(c=>c.onchange=()=>{ph[c.dataset.k]=c.checked;store.set('phone',ph)});
+
+/* ---------- Histórias ---------- */
+const S=[
+{t:'Morning Coffee',m:'Com as frases das aulas 1 e 2',l:[
+['{N} walks into a small coffee shop.','{N} entra numa pequena cafeteria.'],
+['"Hi, how are you?" says the barista.','"Oi, tudo bem?", diz a atendente.'],
+['"Good, thanks. Can I get a coffee, please?"','"Bem, obrigado. Posso pegar um café, por favor?"'],
+['"Sure. For here or to go?"','"Claro. Para tomar aqui ou para viagem?"'],
+['"To go, please. How much is it?"','"Para viagem, por favor. Quanto é?"'],
+['"Three dollars." {N} pays with a card.','"Três dólares." {N} paga no cartão.'],
+['"Thank you, have a good day!"','"Obrigado, tenha um bom dia!"']]},
+{t:'The New Neighbor',m:'Com as frases das aulas 3 e 4',l:[
+['It is a sunny Saturday morning.','É uma manhã ensolarada de sábado.'],
+['{N} sees a man next to a car.','{N} vê um homem ao lado de um carro.'],
+['"Good morning! I\'m {N}, I live next door."','"Bom dia! Sou {N}, moro aqui do lado."'],
+['"Hi, {N}! I\'m Mike. Nice to meet you."','"Oi, {N}! Sou o Mike. Prazer."'],
+['"What a beautiful day!"','"Que dia lindo!"'],
+['"Yeah, but it\'s hot today."','"É, mas está quente hoje."'],
+['"See you later, Mike!"','"Até mais, Mike!"']]},
+{t:'Dinner in Texas',m:'Com as frases das aulas 6 e 9',l:[
+['{N} and a friend go to a barbecue place.','{N} e um amigo vão a uma churrascaria.'],
+['"A table for two, please."','"Uma mesa para dois, por favor."'],
+['The waiter is very friendly.','O garçom é muito simpático.'],
+['"Where are you from?" he asks.','"De onde vocês são?", ele pergunta.'],
+['"We\'re from Brazil."','"Somos do Brasil."'],
+['"I\'ll have the brisket, please."','"Vou querer o brisket, por favor."'],
+['After dinner: "Can I get the check?"','Depois do jantar: "Pode trazer a conta?"']]}
+];
+function renderStories(){document.getElementById('stories').innerHTML=S.map((s,si)=>`<article class="story"><h3>${s.t}</h3><div class="meta">${s.m}</div>${s.l.map((l,li)=>`<div class="line"><button class="play sm" data-s="${si}" data-l="${li}" aria-label="Ouvir frase">${PLAY}</button><div class="txt"><div class="en">${nm(l[0])}</div><div class="pt">${nm(l[1])}</div></div></div>`).join('')}<div class="cta"><button class="btn ghost" data-all="${si}">Ouvir a história toda</button></div></article>`).join('');
+document.querySelectorAll('#stories .play').forEach(b=>b.onclick=()=>say(nm(S[+b.dataset.s].l[+b.dataset.l][0])));
+document.querySelectorAll('#stories [data-all]').forEach(b=>b.onclick=()=>sayQueue(S[+b.dataset.all].l.map(x=>nm(x[0]))));}
+renderStories();
+const sw=document.getElementById('stories');
+document.getElementById('togglePt').onclick=e=>{sw.classList.toggle('hidept');e.target.textContent=sw.classList.contains('hidept')?'Mostrar português':'Esconder português'};
+
+/* ---------- Plano ---------- */
+const P=[
+{t:'Sobreviver no dia a dia',d:'Pedir, pagar, cumprimentar. Frases curtas que você usa no primeiro dia nos EUA.',w:[['Café e padaria','pedir, pagar, para viagem'],['Vizinhos e clima','bom dia, prazer, quente, frio'],['Mercado e loja','onde fica, quanto custa, sacola'],['Restaurante','mesa, cardápio, conta, gorjeta']]},
+{t:'Viajar e se virar',d:'Hotel, aeroporto, direções e transporte.',w:[['Hotel','reserva, checkout, toalha, Wi-Fi'],['Aeroporto','check-in, portão, bagagem, imigração'],['Direções','esquerda, direita, perto, longe'],['Uber e carro','endereço, posto, estacionamento']]},
+{t:'Conversar de verdade',d:'Falar de você, da família, do trabalho e do fim de semana.',w:[['Sobre mim','idade, cidade, trabalho'],['Família','filhos, esposa, pais'],['Fim de semana','o que fiz, o que vou fazer'],['Gostos','comida, música, futebol']]},
+{t:'Resolver problemas',d:'Saúde, banco, telefone e reclamações educadas.',w:[['Farmácia e médico','dor, receita, remédio'],['Banco e pagamentos','cartão, saque, taxa'],['Telefone','marcar horário, repetir, soletrar'],['Reclamar com educação','erro na conta, troca, devolução']]},
+{t:'No trabalho',d:'Do primeiro dia na empresa até entrevista de emprego.',w:[['Apresentar-se e pedir ajuda','novo aqui, pergunta, obrigado'],['Reuniões, e-mail e telefone','atraso, tela, retorno'],['Prazos e opiniões','deadline, concordo, acho que'],['Entrevista e problemas','experiência, sistema, aviso']]},
+{t:'Na escola',d:'Para quem estuda nos EUA ou tem filhos na escola de lá.',w:[['Primeiro dia e sala de aula','sala, repetir, soletrar'],['Lição e colegas','prazo, biblioteca, prova'],['Professor e reunião de pais','ajuda, entregar, reforço']]},
+{t:'Fluência no ouvido',d:'Entender americano falando rápido, gírias leves e conversas longas.',w:[['Gírias do dia a dia','gonna, wanna, gotta, no worries'],['Small talk no trabalho','reunião, prazo, café com colega'],['Séries sem legenda','trechos de 5 a 10 minutos'],['Conversa livre','15 minutos só em inglês'],['Revisão final','todas as situações do curso']]}
+];
+let wd=store.get('weeks',[]);let wn=0;
+document.getElementById('plan').innerHTML=P.map(m=>`<div class="month"><h3>${m.t}</h3><p>${m.d}</p><div class="weeks">${m.w.map(w=>{wn++;return `<label class="week"><span class="n">Tema ${wn}</span><span class="t"><b>${w[0]}</b><span>${w[1]}</span></span><input type="checkbox" id="wk${wn}" data-w="${wn}" ${wd.includes(wn)?'checked':''}></label>`}).join('')}</div></div>`).join('');
+document.querySelectorAll('#plan input').forEach(c=>c.onchange=()=>{const n=+c.dataset.w;wd=c.checked?[...wd,n]:wd.filter(x=>x!==n);store.set('weeks',wd);if(c.checked)touchDay();updateStats()});
+
+updateStats();
+show(store.get('tab','aula'));
+</script>
+
+<script>
+if('serviceWorker' in navigator){addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}))}
+let deferredInstall=null;const ib=document.getElementById('installBtn');
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstall=e;ib.hidden=false});
+ib.onclick=async()=>{if(!deferredInstall)return;deferredInstall.prompt();await deferredInstall.userChoice;deferredInstall=null;ib.hidden=true};
+addEventListener('appinstalled',()=>{ib.hidden=true});
+</script>
+</body>
+</html>
