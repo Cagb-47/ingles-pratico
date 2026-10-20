@@ -193,6 +193,8 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
 .week .t{min-width:0}
 .week .t b{display:block}
 .week .t span{color:var(--muted);font-size:.9rem}
+.tgo{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.tgb{border:0;border-radius:999px;background:var(--navy);color:#fff;font:700 .85rem var(--f-body);padding:7px 12px;cursor:pointer;text-align:left}
+.wkc{display:grid;place-items:center;padding:6px;cursor:pointer}
 .week input{width:24px;height:24px;accent-color:var(--m1)}
 .week.now{border-color:var(--mustard);box-shadow:0 0 0 2px var(--mustard)}
 .note{margin-top:18px;padding:14px 16px;border-left:4px solid var(--mustard);background:var(--soft);border-radius:0 10px 10px 0;font-size:.95rem}
@@ -356,7 +358,7 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
 
   <section id="plano" data-panel hidden>
     <h2>Trilha livre</h2>
-    <p class="sub">Sem prazo e sem ordem obrigatória. Escolha o tema que fizer sentido hoje, repita quantas vezes quiser e marque quando se sentir seguro.</p>
+    <p class="sub">Sem prazo e sem ordem obrigatória. Toque no botão azul do tema para abrir a aula, repita quantas vezes quiser e marque o quadrinho quando se sentir seguro.</p>
     <div id="plan"></div>
     <div class="note"><b>Música, série e celular:</b> veja a aba Rotina, com as dicas da professora para marcar. Ouça a letra no Spotify ou no YouTube com legenda; aqui ficam só as frases das aulas.</div>
   </section>
@@ -1731,8 +1733,26 @@ const P=[
 {t:'Na escola',d:'Para quem estuda nos EUA ou tem filhos na escola de lá.',w:[['Primeiro dia e sala de aula','sala, repetir, soletrar'],['Lição e colegas','prazo, biblioteca, prova'],['Professor e reunião de pais','ajuda, entregar, reforço']]},
 {t:'Fluência no ouvido',d:'Entender americano falando rápido, gírias leves e conversas longas.',w:[['Gírias do dia a dia','gonna, wanna, gotta, no worries'],['Small talk no trabalho','reunião, prazo, café com colega'],['Séries sem legenda','trechos de 5 a 10 minutos'],['Conversa livre','15 minutos só em inglês'],['Revisão final','todas as situações do curso']]}
 ];
+const TG=[
+[['a',0],['a',1]],[['a',2],['a',3]],[['a',4],['n','A2',2]],[['a',5]],
+[['a',6],['n','B1',2]],[['p','Transporte e viagem']],[['a',7],['n','A2',3]],[['p','Transporte e viagem'],['n','A2',3]],
+[['a',8],['n','A1',0]],[['p','Pessoas e família'],['t','livro']],[['a',11],['n','A2',0]],[['a',10],['n','A1',3]],
+[['a',9],['p','Corpo e saúde']],[['p','Trabalho e dinheiro'],['a',1]],[['a',15],['n','B1',3]],[['n','B2',3]],
+[['a',12],['a',13]],[['a',14],['a',15]],[['a',16],['a',17]],[['a',18],['a',19]],
+[['a',20],['a',21]],[['a',22],['a',23]],[['a',24],['a',25]],
+[['t','nativo']],[['n','C1',2],['a',14]],[['t','rotina']],[['n','B1',1],['n','C1',0]],[['t','niveis']]
+];
+const TABN={livro:'Aulas da professora',nativo:'Fale como nativo',rotina:'Rotina: série e música',niveis:'Todos os níveis'};
+function tgLabel(x){if(x[0]==='a')return 'Aula: '+L[x[1]].t;if(x[0]==='n'){const v=NV.find(v=>v.k===x[1]);return v.k+': '+v.l[x[2]][0]}if(x[0]==='p')return 'Palavras: '+x[1];return TABN[x[1]]}
+function openTg(x){
+  if(x[0]==='a'){cur=x[1];store.set('cur',cur);renderLesson();show('aula');}
+  else if(x[0]==='n'){nvSel=NV.findIndex(v=>v.k===x[1]);store.set('nvSel',nvSel);renderNiveis();show('niveis');const ds=document.querySelectorAll('#nvLessons details');ds.forEach((d,k)=>d.open=k===x[2]);ds[x[2]]&&ds[x[2]].scrollIntoView({block:'start'});}
+  else if(x[0]==='p'){wcat=x[1];store.set('wcat',wcat);setMode('list');renderWord();renderList();show('palavras');}
+  else show(x[1]);
+}
 let wd=store.get('weeks',[]);let wn=0;
-document.getElementById('plan').innerHTML=P.map(m=>`<div class="month"><h3>${m.t}</h3><p>${m.d}</p><div class="weeks">${m.w.map(w=>{wn++;return `<label class="week"><span class="n">Tema ${wn}</span><span class="t"><b>${w[0]}</b><span>${w[1]}</span></span><input type="checkbox" id="wk${wn}" data-w="${wn}" ${wd.includes(wn)?'checked':''}></label>`}).join('')}</div></div>`).join('');
+document.getElementById('plan').innerHTML=P.map(m=>`<div class="month"><h3>${m.t}</h3><p>${m.d}</p><div class="weeks">${m.w.map(w=>{wn++;const t=TG[wn-1]||[];return `<div class="week"><span class="n">Tema ${wn}</span><span class="t"><b>${w[0]}</b><span>${w[1]}</span><span class="tgo">${t.map((x,k)=>`<button class="tgb" data-w="${wn-1}" data-k="${k}">${tgLabel(x)} →</button>`).join('')}</span></span><label class="wkc"><input type="checkbox" id="wk${wn}" data-w="${wn}" ${wd.includes(wn)?'checked':''} aria-label="Marcar tema ${wn} como feito"></label></div>`}).join('')}</div></div>`).join('');
+document.querySelectorAll('#plan .tgb').forEach(b=>b.onclick=()=>openTg(TG[+b.dataset.w][+b.dataset.k]));
 document.querySelectorAll('#plan input').forEach(c=>c.onchange=()=>{const n=+c.dataset.w;wd=c.checked?[...wd,n]:wd.filter(x=>x!==n);store.set('weeks',wd);if(c.checked)touchDay();updateStats()});
 
 updateStats();
