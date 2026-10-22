@@ -347,12 +347,13 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
 
   <section id="mapas" data-panel hidden>
     <h2>Mapas mentais</h2>
-    <p class="sub">Do iniciante (A1) ao avançado (C2). Os mapas completos têm 5 partes: conceito, regra, exemplos com tradução, erro comum de brasileiros e dica visual. Os mapas rápidos são para revisar em um minuto.</p>
+    <p class="sub">Do iniciante (A1) ao avançado (C2), com situações do dia a dia e gramática. Os mapas completos têm 5 partes: conceito, regra, exemplos com tradução, erro comum de brasileiros e dica visual. Os mapas rápidos são para revisar em um minuto.</p>
     <div class="wmode" role="group" aria-label="Tipo de mapa">
       <button id="mmFull" aria-pressed="true">Mapas completos</button>
       <button id="mmQuick" aria-pressed="false">Mapas rápidos</button>
     </div>
     <div class="wtools" id="mapFilter"></div>
+    <div class="wtools" id="mmType"></div>
     <div id="mmaps"></div>
     <div class="maps" id="maps" hidden></div>
   </section>
@@ -2113,7 +2114,729 @@ zone out|viajar (se distrair)|ZÔUN ÁUT|Sorry, I zoned out.|Desculpa, me distra
 
 
 /* ---------- Mapas completos ---------- */
-const MMT=`@A1|H no inglês|Quando o H sopra e quando some
+const MMT=`@A1|Se apresentar|Hi, I'm Carlos|sit
+C: Se apresentar é a primeira conversa em qualquer lugar: no trabalho, na escola ou com o vizinho.
+C: Nos EUA, a apresentação é curta: nome, de onde é e um sorriso.
+P: Oi + nome + prazer.
+R: Dizer o nome|Hi, I'm + nome. / My name is + nome.
+R: Perguntar o nome|What's your name?
+R: De onde é|I'm from + país.
+R: Fechar|Nice to meet you.
+E: Hi, I'm Carlos.|Oi, eu sou o Carlos.
+E: What's your name?|Qual é o seu nome?
+E: I'm from Brazil.|Sou do Brasil.
+E: Nice to meet you.|Prazer em te conhecer.
+X: My name's is Carlos.|My name is Carlos.|Não junte "name's" com "is": é um ou outro.
+D: Aperte a mão, olhe nos olhos e sorria. Isso vale tanto quanto as palavras.
+N: Cumprimentar no dia a dia
+
+@A1|Cumprimentar no dia a dia|Good morning, how are you?|sit
+C: O americano cumprimenta todo mundo: porteiro, caixa, vizinho. A resposta é sempre curta e positiva.
+P: "How are you?" é um oi, não uma pergunta de verdade.
+R: Manhã|Good morning!
+R: Tarde|Good afternoon!
+R: Informal|Hi! / Hey!
+R: Resposta|I'm good, thanks. And you?
+E: Good morning!|Bom dia!
+E: How are you?|Como vai?
+E: I'm good, thanks. And you?|Tudo bem, obrigado. E você?
+E: Have a nice day!|Tenha um bom dia!
+X: Contar todos os problemas|I'm good, thanks.|O "How are you?" do dia a dia pede resposta curta.
+D: Responda sempre devolvendo a pergunta: "And you?".
+N: Pedir um café
+
+@A1|Pedir um café|Can I get a coffee?|sit
+C: Na cafeteria, o americano pede direto, com "Can I get" ou "I'd like".
+C: O atendente costuma perguntar o tamanho e o seu nome para escrever no copo.
+P: Can I get + o que quer + please.
+R: Pedir|Can I get a coffee, please?
+R: Tamanho|small, medium, large
+R: Para levar|To go, please.
+R: Para tomar aqui|For here.
+E: Can I get a small coffee, please?|Pode me ver um café pequeno, por favor?
+E: With milk, please.|Com leite, por favor.
+E: To go, please.|Para viagem, por favor.
+E: My name is Carlos.|Meu nome é Carlos. (para o copo)
+X: I want a coffee.|Can I get a coffee, please?|"I want" soa rude. Use "Can I get" ou "I'd like".
+D: Cafeteria nos EUA tem pressa: tenha o pedido pronto antes de chegar ao caixa.
+N: Pagar no caixa
+
+@A1|Pagar no caixa|How much is it?|sit
+C: No caixa, as perguntas são sempre as mesmas: quanto é, como vai pagar e se quer o recibo.
+P: Quanto é? Cartão ou dinheiro? Recibo?
+R: Preço|How much is it?
+R: Cartão|Can I pay by card?
+R: Dinheiro|Cash, please.
+R: Recibo|Can I have the receipt?
+E: How much is it?|Quanto é?
+E: Can I pay by card?|Posso pagar no cartão?
+E: Here you go.|Aqui está.
+E: Keep the change.|Pode ficar com o troco.
+X: How much costs?|How much is it?|A pergunta mais simples é "How much is it?".
+D: Preços nos EUA quase nunca incluem o imposto. Ele aparece só no caixa.
+N: No supermercado
+
+@A1|No supermercado|Where can I find the milk?|sit
+C: No supermercado, você precisa achar produtos, perguntar preços e passar no caixa.
+P: Onde fica + produto?
+R: Procurar|Where can I find + produto?
+R: Corredor|It's in aisle five.
+R: Sacola|Paper or plastic?
+R: Recusar|No bag, thanks.
+E: Where can I find the milk?|Onde encontro o leite?
+E: It's in aisle three.|Fica no corredor três.
+E: Do you have bread?|Vocês têm pão?
+E: No bag, thanks.|Sem sacola, obrigado.
+X: Where is the milk? (no corredor errado)|Excuse me, where can I find the milk?|Comece com "Excuse me" para chamar o funcionário.
+D: Aisle se pronuncia "áil", com o S mudo.
+N: No restaurante
+
+@A1|No restaurante|A table for two, please|sit
+C: No restaurante americano, você espera na entrada, o host leva até a mesa e o garçom traz a conta quando você pede.
+P: Mesa, cardápio, pedido, conta.
+R: Chegar|A table for two, please.
+R: Pedir|I'll have the + prato.
+R: Água|Can I get some water?
+R: Conta|Can I get the check?
+E: A table for two, please.|Uma mesa para dois, por favor.
+E: Can I see the menu?|Posso ver o cardápio?
+E: I'll have the chicken.|Vou querer o frango.
+E: Can I get the check, please?|Pode trazer a conta, por favor?
+X: Sentar em qualquer mesa|Wait to be seated.|Espere na entrada até o host levar você à mesa.
+D: Nos EUA, a gorjeta é de 15% a 20% e não vem na conta.
+N: Fast food e drive-thru
+
+@A1|Fast food e drive-thru|For here or to go?|sit
+C: No fast food e no drive-thru, tudo é rápido: combo, tamanho, bebida e para comer aqui ou levar.
+P: Número do combo + tamanho + bebida.
+R: Pedir combo|I'll have the number two.
+R: Tamanho|Make it a large.
+R: Bebida|A Coke, please.
+R: Local|For here / To go
+E: Can I get the number one?|Pode me ver o número um?
+E: Large, please.|Grande, por favor.
+E: No ice, please.|Sem gelo, por favor.
+E: That's all, thanks.|É só isso, obrigado.
+X: One number two|The number two|O americano diz "the number two".
+D: No drive-thru, fale devagar e perto do microfone.
+N: Pedir informação na rua
+
+@A1|Pedir informação na rua|Excuse me, where is...?|sit
+C: Para pedir direção, comece com "Excuse me" e use frases curtas.
+P: Com licença + onde fica + lugar?
+R: Começar|Excuse me...
+R: Perguntar|Where is the + lugar?
+R: Distância|Is it far?
+R: Não entendi|Can you show me on the map?
+E: Excuse me, where is the subway?|Com licença, onde fica o metrô?
+E: Is it far from here?|É longe daqui?
+E: Turn left at the light.|Vire à esquerda no semáforo.
+E: Thank you so much!|Muito obrigado!
+X: Where stay the bank?|Where is the bank?|Para "onde fica", use "where is".
+D: Tenha o endereço escrito no celular: é só mostrar.
+N: Esquerda, direita, reto
+
+@A1|Esquerda, direita, reto|Turn left, go straight|sit
+C: Entender a resposta é tão importante quanto perguntar. São poucas palavras que se repetem.
+P: Left, right, straight, corner, block.
+R: Virar|Turn left / Turn right
+R: Seguir|Go straight
+R: Lugares|on the corner, next to, across from
+R: Distância|two blocks
+E: Go straight for two blocks.|Siga reto por dois quarteirões.
+E: Turn right on Main Street.|Vire à direita na Main Street.
+E: It's on the corner.|Fica na esquina.
+E: It's across from the bank.|Fica em frente ao banco.
+X: Turn to the left side|Turn left|Mais simples e natural: "turn left".
+D: Nos EUA, distância se mede em "blocks" (quarteirões), não em metros.
+N: Pegar um Uber ou táxi
+
+@A1|Pegar um Uber ou táxi|Can you take me to...?|sit
+C: No Uber, a conversa é curta: confirmar o nome, o destino e agradecer.
+P: Confirma o nome, diz o lugar, agradece.
+R: Confirmar|Are you here for Carlos?
+R: Destino|Can you take me to + lugar?
+R: Parar|You can drop me off here.
+R: Agradecer|Thanks, have a good one!
+E: Hi, are you my Uber?|Oi, você é o meu Uber?
+E: Can you take me to the airport?|Pode me levar ao aeroporto?
+E: You can drop me off here.|Pode me deixar aqui.
+E: Thanks, have a good one!|Obrigado, tenha um bom dia!
+X: Can you leave me here?|You can drop me off here.|Para "deixar alguém", use "drop off".
+D: Confira a placa (license plate) antes de entrar no carro.
+N: No hotel
+
+@A1|No hotel|I have a reservation|sit
+C: No check-in, você diz que tem reserva, mostra o documento e pergunta o que precisa.
+P: Reserva, nome, documento, horários.
+R: Chegar|I have a reservation.
+R: Nome|Under the name + nome.
+R: Café|What time is breakfast?
+R: Saída|What time is checkout?
+E: Hi, I have a reservation.|Oi, tenho uma reserva.
+E: Under the name Carlos Silva.|No nome de Carlos Silva.
+E: What's the Wi-Fi password?|Qual é a senha do Wi-Fi?
+E: Can I have extra towels?|Posso ter toalhas extras?
+X: I have a reserve.|I have a reservation.|Reserva de hotel é "reservation".
+D: Peça sempre "a late checkout" se precisar sair mais tarde.
+N: Falar do tempo
+
+@A1|Falar do tempo|It's hot today|sit
+C: Falar do tempo é o assunto mais comum para puxar conversa com qualquer pessoa.
+P: It's + como está o tempo.
+R: Calor|It's hot.
+R: Frio|It's cold.
+R: Chuva|It's raining.
+R: Pergunta|What's the weather like?
+E: It's really hot today.|Está muito quente hoje.
+E: It's freezing!|Está um gelo!
+E: Looks like rain.|Parece que vai chover.
+E: Beautiful day, huh?|Dia lindo, né?
+X: Is hot.|It's hot.|O inglês não começa frase sem sujeito: use "It's".
+D: Nos EUA, a temperatura é em Fahrenheit: 90°F é calor, 32°F é congelante.
+N: Dizer as horas
+
+@A1|Dizer as horas|What time is it?|sit
+C: Para combinar horários e pegar transporte, você precisa entender e dizer as horas.
+P: It's + hora.
+R: Hora cheia|It's three o'clock.
+R: Meia hora|It's three thirty.
+R: Manhã ou noite|a.m. (manhã) / p.m. (tarde e noite)
+R: Combinar|at + hora
+E: What time is it?|Que horas são?
+E: It's ten thirty.|São dez e meia.
+E: The store opens at nine a.m.|A loja abre às nove da manhã.
+E: See you at seven.|Te vejo às sete.
+X: It's 19 hours.|It's 7 p.m.|Nos EUA, quase ninguém usa 24 horas.
+D: 12 p.m. é meio-dia e 12 a.m. é meia-noite.
+N: Telefone e e-mail
+
+@A1|Telefone e e-mail|What's your number?|sit
+C: Trocar contato é comum no trabalho e com novos amigos. Números e letras são ditos um a um.
+P: Número dígito por dígito. E-mail com "at" e "dot".
+R: Telefone|What's your phone number?
+R: Zero|zero ou "oh"
+R: Arroba|at
+R: Ponto|dot
+E: What's your phone number?|Qual é o seu telefone?
+E: It's 555 0123.|É 555 0123.
+E: What's your email?|Qual é o seu e-mail?
+E: carlos at gmail dot com|carlos arroba gmail ponto com
+X: arroba|at|O símbolo @ se fala "at".
+D: Treine soletrar seu nome com o alfabeto em inglês.
+N: Falar da família
+
+@A1|Falar da família|I have two kids|sit
+C: Família é assunto comum para criar intimidade nas conversas.
+P: I have + quantos + quem.
+R: Ter|I have a wife and two kids.
+R: Estado civil|I'm married. / I'm single.
+R: Nomes|Her name is... / His name is...
+R: Idade|She's ten.
+E: I'm married.|Sou casado.
+E: I have a daughter.|Tenho uma filha.
+E: My wife's name is Ana.|O nome da minha esposa é Ana.
+E: Do you have kids?|Você tem filhos?
+X: I have one daughter of 10 years.|I have a ten-year-old daughter.|Idade de alguém: "a ten-year-old" ou "she's ten".
+D: Leve uma foto da família no celular. Mostrar ajuda a conversa a fluir.
+N: Minha rotina
+
+@A1|Minha rotina|I wake up at six|sit
+C: Contar a rotina é falar do presente: o que você faz todo dia.
+P: I + verbo + hora.
+R: Acordar|I wake up at...
+R: Trabalhar|I go to work at...
+R: Almoçar|I have lunch at noon.
+R: Dormir|I go to bed at...
+E: I wake up at six.|Acordo às seis.
+E: I have coffee and go to work.|Tomo café e vou trabalhar.
+E: I have lunch at noon.|Almoço ao meio-dia.
+E: I go to bed at eleven.|Vou dormir às onze.
+X: She wake up at six.|She wakes up at six.|Com he, she e it, o verbo ganha S.
+D: Narre sua rotina em inglês enquanto faz as coisas: "Now I'm brushing my teeth".
+N: Na farmácia
+
+@A1|Na farmácia|I need something for a headache|sit
+C: Na farmácia americana, muitos remédios ficam na prateleira, e o farmacêutico tira dúvidas.
+P: I need something for + problema.
+R: Pedir|I need something for + problema.
+R: Problemas|a headache, a cold, a fever
+R: Receita|Do I need a prescription?
+R: Dose|How often should I take it?
+E: I need something for a headache.|Preciso de algo para dor de cabeça.
+E: I have a cold.|Estou resfriado.
+E: Do I need a prescription?|Preciso de receita?
+E: How often should I take it?|De quanto em quanto tempo eu tomo?
+X: I'm with headache.|I have a headache.|Dor e doença usam "have".
+D: Farmácia nos EUA também é "drugstore". Lá se vende de tudo.
+N: Comprar roupas
+
+@A1|Comprar roupas|Can I try it on?|sit
+C: Na loja de roupas, você pergunta tamanho, prova e decide.
+P: Tamanho, provador, preço, levo.
+R: Tamanho|Do you have this in medium?
+R: Provar|Can I try it on?
+R: Provador|Where's the fitting room?
+R: Decidir|I'll take it.
+E: Do you have this in a large?|Tem este no tamanho G?
+E: Can I try it on?|Posso provar?
+E: It's too small.|Está pequeno demais.
+E: I'll take it.|Vou levar.
+X: Can I prove it?|Can I try it on?|"Provar roupa" é "try on".
+D: Tamanhos americanos são diferentes: confira a tabela da loja.
+N: Agradecer e se desculpar
+
+@A1|Agradecer e se desculpar|Thank you, sorry, excuse me|sit
+C: "Please", "thank you" e "sorry" são usados o tempo todo nos EUA, até em situações pequenas.
+P: Educação é usada em dobro.
+R: Agradecer|Thank you. / Thanks a lot.
+R: Responder|You're welcome. / No problem.
+R: Desculpar|I'm sorry.
+R: Passar|Excuse me.
+E: Thank you so much!|Muito obrigado!
+E: You're welcome.|De nada.
+E: Sorry, my mistake.|Desculpa, foi erro meu.
+E: Excuse me, can I get by?|Com licença, posso passar?
+X: Sorry (para passar)|Excuse me|Antes de incomodar, use "excuse me". Depois do erro, "sorry".
+D: Esbarrou em alguém? "Sorry!" na hora, sempre.
+N: Pedir para repetir
+
+@A1|Pedir para repetir|Sorry, can you say that again?|sit
+C: Não entender é normal. O importante é saber pedir para repetir sem travar a conversa.
+P: Desculpa + repetir + devagar.
+R: Repetir|Can you say that again?
+R: Devagar|Can you speak more slowly?
+R: Escrever|Can you write it down?
+R: Confirmar|Do you mean...?
+E: Sorry, I didn't catch that.|Desculpa, não entendi.
+E: Can you say that again?|Pode repetir?
+E: Can you speak more slowly, please?|Pode falar mais devagar, por favor?
+E: Can you write it down?|Pode escrever?
+X: What? (seco)|Sorry?|"What?" sozinho pode soar rude. "Sorry?" é educado.
+D: Avise logo no começo: "I'm still learning English". As pessoas falam mais devagar.
+N: Cumprimentar o vizinho
+
+@A1|Cumprimentar o vizinho|Hi, I'm your new neighbor|sit
+C: Nos EUA, é comum se apresentar aos vizinhos e trocar conversas rápidas na rua.
+P: Oi + sou o vizinho + de onde.
+R: Apresentar|Hi, I'm your new neighbor.
+R: Onde mora|I live next door.
+R: Elogiar|Nice garden!
+R: Despedir|See you around!
+E: Hi, I'm Carlos, your new neighbor.|Oi, sou o Carlos, seu novo vizinho.
+E: I live next door.|Moro aqui do lado.
+E: Nice to meet you!|Prazer!
+E: See you around!|A gente se vê!
+X: I live in the side.|I live next door.|"Ao lado" é "next door".
+D: Um aceno e um "Hi!" já criam uma boa relação com o vizinho.
+N: Convidar alguém
+
+@A1|Convidar alguém|Do you want to grab a coffee?|sit
+C: Para convidar, o americano usa frases leves com "want to" ou "Let's".
+P: Quer + atividade? / Vamos + atividade!
+R: Convidar|Do you want to + atividade?
+R: Sugerir|Let's + atividade.
+R: Aceitar|Sure! / I'd love to!
+R: Recusar|Sorry, I can't. Maybe next time.
+E: Do you want to grab a coffee?|Quer tomar um café?
+E: Let's have lunch together.|Vamos almoçar juntos.
+E: I'd love to!|Eu adoraria!
+E: Sorry, I can't today.|Desculpa, hoje não posso.
+X: You want to go? (sem do)|Do you want to go?|A pergunta precisa do "do".
+D: "Grab a coffee" e "grab lunch" soam leves e naturais.
+N: Dias e datas
+
+@A1|Dias e datas|My birthday is in May|sit
+C: Para marcar compromissos, você precisa dos meses, dos dias e da forma americana de escrever datas.
+P: Nos EUA, a data é mês, dia, ano: 10/22/2026.
+R: Mês|in May
+R: Dia|on May 10th
+R: Escrita|month/day/year
+R: Pergunta|When is your birthday?
+E: My birthday is in May.|Meu aniversário é em maio.
+E: The meeting is on October 22nd.|A reunião é dia 22 de outubro.
+E: What's the date today?|Que dia é hoje?
+E: See you next week.|Te vejo semana que vem.
+X: 10/05 = 10 de maio|10/05 = October 5th|Nos EUA, o mês vem primeiro.
+D: Sempre confira a data escrita: 03/04 é 4 de março nos EUA.
+N: Primeiro dia no trabalho
+
+@A1|Primeiro dia no trabalho|I'm the new guy|sit
+C: No primeiro dia, você se apresenta, pergunta onde ficam as coisas e conhece a equipe.
+P: Sou novo + o que faço + onde fica?
+R: Apresentar|Hi, I'm Carlos. I'm new here.
+R: Função|I'm the new safety engineer.
+R: Perguntar|Where's the break room?
+R: Ajuda|Who should I talk to about...?
+E: Hi, I'm Carlos. I'm new here.|Oi, sou o Carlos. Sou novo aqui.
+E: I'm the new safety engineer.|Sou o novo engenheiro de segurança.
+E: Where's the restroom?|Onde fica o banheiro?
+E: Nice to work with you.|Prazer em trabalhar com você.
+X: I'm newbie.|I'm new here.|"Newbie" é gíria. No trabalho, use "I'm new here".
+D: Escreva o nome de cada colega novo no caderno, com uma dica para lembrar.
+N: Combinar um horário
+
+@A2|Combinar um horário|Does Monday work for you?|sit
+C: Para marcar consulta, reunião ou encontro, o americano pergunta se o horário "funciona" para a pessoa.
+P: Funciona para você?
+R: Sugerir|How about Monday at ten?
+R: Perguntar|Does Monday work for you?
+R: Aceitar|That works for me.
+R: Remarcar|Can we reschedule?
+E: Are you free on Friday?|Você está livre na sexta?
+E: Does three o'clock work for you?|Três horas funciona para você?
+E: That works for me.|Para mim funciona.
+E: Can we reschedule for next week?|Podemos remarcar para a semana que vem?
+X: Is good for you?|Does it work for you?|"Work for you" é o jeito natural de perguntar.
+D: Sempre confirme o fuso horário em reuniões online: "Eastern time?".
+N: Marcar consulta médica
+
+@A2|Marcar consulta médica|I'd like to make an appointment|sit
+C: Nos EUA, quase tudo precisa de hora marcada: médico, dentista, cabeleireiro.
+P: Appointment = consulta / horário marcado.
+R: Marcar|I'd like to make an appointment.
+R: Motivo|It's for a checkup.
+R: Seguro|Do you take my insurance?
+R: Disponível|What's the earliest available?
+E: I'd like to make an appointment.|Gostaria de marcar uma consulta.
+E: What's the earliest you have?|Qual é o horário mais cedo que vocês têm?
+E: Do you take my insurance?|Vocês aceitam meu seguro?
+E: I need to cancel my appointment.|Preciso cancelar minha consulta.
+X: I want to mark a consultation.|I'd like to make an appointment.|"Marcar consulta" é "make an appointment".
+D: Chegue 15 minutos antes: sempre tem formulário para preencher.
+N: No consultório
+
+@A2|No consultório|What seems to be the problem?|sit
+C: No médico, você explica o que sente, há quanto tempo e se toma algum remédio.
+P: O que dói + desde quando + alergias.
+R: Sintoma|I have a pain in my back.
+R: Tempo|It started three days ago.
+R: Alergia|I'm allergic to...
+R: Remédio|I take this medicine.
+E: I don't feel well.|Não estou me sentindo bem.
+E: My back hurts.|Minhas costas doem.
+E: It started yesterday.|Começou ontem.
+E: I'm allergic to penicillin.|Sou alérgico a penicilina.
+X: I'm with fever.|I have a fever.|Febre e dor usam "have".
+D: Aponte onde dói enquanto fala: "It hurts here".
+N: No banco
+
+@A2|No banco|I'd like to open an account|sit
+C: No banco, você abre conta, saca dinheiro ou resolve problemas com o cartão.
+P: Conta, saque, depósito, cartão.
+R: Conta|I'd like to open an account.
+R: Sacar|I'd like to withdraw money.
+R: Depositar|I'd like to make a deposit.
+R: Cartão|My card isn't working.
+E: I'd like to open a checking account.|Gostaria de abrir uma conta corrente.
+E: I'd like to withdraw two hundred dollars.|Gostaria de sacar duzentos dólares.
+E: My card was blocked.|Meu cartão foi bloqueado.
+E: Where's the nearest ATM?|Onde fica o caixa eletrônico mais próximo?
+X: I want to take out money of the account.|I'd like to withdraw money.|Sacar é "withdraw".
+D: ATM se fala letra por letra: "êi ti ém".
+N: No aeroporto
+
+@A2|No aeroporto|Window or aisle?|sit
+C: No aeroporto, você faz check-in, despacha a mala, passa pela segurança e procura o portão.
+P: Check-in, mala, portão, embarque.
+R: Check-in|I'd like to check in.
+R: Mala|I have one bag to check.
+R: Assento|Window or aisle?
+R: Portão|Which gate is it?
+E: I'd like to check in for my flight.|Gostaria de fazer o check-in.
+E: I have one bag to check.|Tenho uma mala para despachar.
+E: Can I have an aisle seat?|Posso ter um assento no corredor?
+E: What time does boarding start?|Que horas começa o embarque?
+X: I lost the flight.|I missed my flight.|Perder o voo é "miss".
+D: Aisle (corredor) se fala "áil". Window é a janela.
+N: Imigração
+
+@A2|Imigração|What's the purpose of your visit?|sit
+C: Na imigração, o oficial faz perguntas curtas. Responda de forma simples e direta.
+P: Responda só o que foi perguntado.
+R: Motivo|Tourism. / Business.
+R: Tempo|Two weeks.
+R: Hospedagem|At a hotel in Orlando.
+R: Volta|I have a return ticket.
+E: I'm here on vacation.|Estou de férias.
+E: I'm staying for two weeks.|Vou ficar duas semanas.
+E: I'm staying at the Hilton.|Vou ficar no Hilton.
+E: Here's my return ticket.|Aqui está minha passagem de volta.
+X: Contar a viagem toda|Respostas curtas|O oficial quer respostas curtas e claras.
+D: Deixe o endereço do hotel e a passagem de volta abertos no celular.
+N: Alugar um carro
+
+@A2|Alugar um carro|I have a reservation for a car|sit
+C: Para alugar carro, você mostra a reserva, a carteira de motorista e decide sobre o seguro.
+P: Reserva, carteira, seguro, gasolina.
+R: Retirar|I have a reservation.
+R: Seguro|Is insurance included?
+R: Tanque|Do I return it full?
+R: Problema|The car has a scratch.
+E: I'd like to pick up my rental car.|Gostaria de retirar o carro alugado.
+E: Is insurance included?|O seguro está incluso?
+E: Do I need to return it with a full tank?|Preciso devolver com o tanque cheio?
+E: There's a scratch on the door.|Tem um arranhão na porta.
+X: I want to rent a car for me drive.|I'd like to rent a car.|Mais simples é melhor.
+D: Fotografe o carro todo antes de sair do estacionamento.
+N: No posto de gasolina
+
+@A2|No posto de gasolina|Pump number four|sit
+C: Nos EUA, quase sempre você mesmo abastece e paga no caixa ou na bomba.
+P: Bomba + valor + pagar.
+R: Bomba|Pump number four, please.
+R: Valor|Forty dollars on pump four.
+R: Encher|Fill it up.
+R: Pagar antes|Do I pay first?
+E: Forty dollars on pump four, please.|Quarenta dólares na bomba quatro, por favor.
+E: Do I pay first?|Pago antes?
+E: Where's the restroom?|Onde fica o banheiro?
+E: Can I get a receipt?|Pode me dar o recibo?
+X: Gasoline|gas|O americano diz "gas", não "gasoline".
+D: Gás de cozinha é "propane". No posto, "gas" é gasolina.
+N: Delivery e pedidos online
+
+@A2|Delivery e pedidos online|My order is missing|sit
+C: Nos aplicativos e por telefone, você pede, confirma o endereço e reclama se faltar algo.
+P: Pedido, endereço, tempo, problema.
+R: Pedir|I'd like to order...
+R: Endereço|The address is...
+R: Tempo|How long will it take?
+R: Problema|Something is missing from my order.
+E: I'd like to order a large pizza.|Quero pedir uma pizza grande.
+E: How long will it take?|Quanto tempo vai demorar?
+E: My order is missing a drink.|Está faltando uma bebida no meu pedido.
+E: Please leave it at the door.|Por favor, deixe na porta.
+X: My order didn't come complete.|Something is missing from my order.|Forma mais natural de reclamar.
+D: Gorjeta para o entregador é comum: de 10% a 20%.
+N: Devolver ou trocar algo
+
+@A2|Devolver ou trocar algo|I'd like to return this|sit
+C: Nos EUA, devolver produtos é fácil, desde que você tenha o recibo e esteja no prazo.
+P: Devolver, trocar, reembolso.
+R: Devolver|I'd like to return this.
+R: Trocar|Can I exchange it?
+R: Motivo|It doesn't fit. / It's broken.
+R: Dinheiro|Can I get a refund?
+E: I'd like to return this, please.|Gostaria de devolver isto, por favor.
+E: It doesn't fit.|Não serviu.
+E: Can I exchange it for a smaller size?|Posso trocar por um tamanho menor?
+E: Can I get a refund?|Posso receber o reembolso?
+X: I want to give back this.|I'd like to return this.|Devolver produto é "return".
+D: Guarde o recibo e a embalagem: sem eles, a devolução fica difícil.
+N: Reclamar com educação
+
+@A2|Reclamar com educação|There's a problem with...|sit
+C: O americano reclama com calma e educação, mas com firmeza.
+P: Explique o problema e peça a solução.
+R: Começar|Excuse me, there's a problem.
+R: Explicar|My food is cold.
+R: Pedir|Could you fix it, please?
+R: Gerente|Can I speak to the manager?
+E: Excuse me, there's a problem with my room.|Com licença, tem um problema no meu quarto.
+E: The AC isn't working.|O ar-condicionado não está funcionando.
+E: I was charged twice.|Fui cobrado duas vezes.
+E: Could you fix it, please?|Poderia resolver, por favor?
+X: Falar alto e irritado|Calma e firmeza|Nos EUA, a calma traz resultado mais rápido.
+D: Comece com "Excuse me" e termine com "Thank you", mesmo reclamando.
+N: Pedir ajuda no trabalho
+
+@A2|Pedir ajuda no trabalho|Do you have a minute?|sit
+C: No trabalho, peça ajuda de forma educada e mostre que respeita o tempo do colega.
+P: Tem um minuto + pedido + obrigado.
+R: Abrir|Do you have a minute?
+R: Pedir|Could you help me with this?
+R: Explicar|I'm not sure how to...
+R: Agradecer|Thanks, I appreciate it.
+E: Do you have a minute?|Você tem um minuto?
+E: Could you help me with this report?|Poderia me ajudar com este relatório?
+E: I'm not sure how to do this.|Não sei bem como fazer isto.
+E: Thanks, I really appreciate it.|Obrigado, agradeço muito.
+X: Help me here.|Could you help me with this?|Ordem direta soa rude com colegas.
+D: Mostre o que já tentou antes de pedir: isso gera respeito.
+N: Reunião rápida
+
+@A2|Reunião rápida|Let's get started|sit
+C: As reuniões americanas são objetivas: começam na hora, têm pauta e terminam com os próximos passos.
+P: Começar, dar opinião, resumir.
+R: Começar|Let's get started.
+R: Opinar|I think we should...
+R: Perguntar|Any questions?
+R: Fechar|Let's wrap it up.
+E: Let's get started.|Vamos começar.
+E: I agree with that.|Concordo com isso.
+E: Can you share your screen?|Pode compartilhar sua tela?
+E: Let's wrap it up.|Vamos encerrar.
+X: Chegar atrasado sem avisar|Sorry I'm late.|Pontualidade é muito valorizada.
+D: Anote os "next steps" no fim: é o que mais importa.
+N: Falar ao telefone
+
+@A2|Falar ao telefone|Can I speak to...?|sit
+C: Ao telefone, você não vê a pessoa. Por isso, frases prontas ajudam muito.
+P: Quem é, com quem quer falar, recado.
+R: Atender|Hello, this is Carlos.
+R: Pedir alguém|Can I speak to Ana, please?
+R: Recado|Can I leave a message?
+R: Retornar|I'll call you back.
+E: Hi, this is Carlos from Toro.|Oi, aqui é o Carlos, da Toro.
+E: Can I speak to Mr. Smith?|Posso falar com o Sr. Smith?
+E: Could you spell that?|Pode soletrar?
+E: I'll call you back.|Eu te ligo de volta.
+X: Here speaks Carlos.|This is Carlos.|Ao telefone, diga "This is" e o seu nome.
+D: Fale devagar e repita os números para confirmar.
+N: Bate-papo do fim de semana
+
+@A2|Bate-papo do fim de semana|How was your weekend?|sit
+C: Na segunda, todo mundo pergunta do fim de semana. Uma resposta curta e uma pergunta de volta mantêm a conversa.
+P: Como foi + o que fez + e você?
+R: Perguntar|How was your weekend?
+R: Bom|It was great!
+R: Contar|I went to the beach.
+R: Devolver|What about you?
+E: How was your weekend?|Como foi o fim de semana?
+E: It was great, thanks!|Foi ótimo, obrigado!
+E: I stayed home and relaxed.|Fiquei em casa descansando.
+E: What did you do?|O que você fez?
+X: I go to the beach. (ontem)|I went to the beach.|Passado: use went, did, had.
+D: Prepare três frases sobre o seu fim de semana no domingo à noite.
+N: Na academia
+
+@A2|Na academia|Can I work in?|sit
+C: Na academia, você pergunta se o aparelho está livre, pede ajuda e combina revezamento.
+P: Está usando? Posso revezar?
+R: Livre|Are you using this?
+R: Revezar|Can I work in with you?
+R: Ajuda|How does this machine work?
+R: Agradecer|Thanks, all yours.
+E: Are you using this?|Você está usando isto?
+E: Can I work in with you?|Posso revezar com você?
+E: How many sets do you have left?|Quantas séries faltam?
+E: It's all yours.|Pode usar.
+X: You are using?|Are you using this?|Na pergunta, o "are" vem antes.
+D: Limpe o aparelho depois de usar: é regra em quase toda academia americana.
+N: No cabeleireiro e barbeiro
+
+@A2|No cabeleireiro e barbeiro|Just a trim, please|sit
+C: Para cortar o cabelo, explique o tamanho e o estilo com palavras simples.
+P: Curto, aparar, lados, em cima.
+R: Aparar|Just a trim, please.
+R: Lados|Short on the sides.
+R: Em cima|Keep it long on top.
+R: Máquina|Number two on the sides.
+E: Just a trim, please.|Só aparar, por favor.
+E: Short on the sides, please.|Curto nas laterais, por favor.
+E: Not too short.|Não muito curto.
+E: That looks great, thanks!|Ficou ótimo, obrigado!
+X: Cut my hair a little.|Just a trim, please.|"Trim" é aparar.
+D: Leve uma foto do corte no celular. Uma imagem resolve tudo.
+N: Escola dos filhos
+
+@A2|Escola dos filhos|How is my daughter doing?|sit
+C: Na escola americana, os pais conversam com o professor sobre notas, comportamento e lição de casa.
+P: Como vai + o que melhorar + como ajudar.
+R: Perguntar|How is my daughter doing?
+R: Notas|What about her grades?
+R: Ajudar|How can I help at home?
+R: Faltar|She'll be absent tomorrow.
+E: How is my daughter doing in class?|Como minha filha está indo na aula?
+E: Is she doing her homework?|Ela está fazendo a lição?
+E: How can I help at home?|Como posso ajudar em casa?
+E: She's sick today.|Ela está doente hoje.
+X: How is my daughter going?|How is my daughter doing?|"Going" aqui não funciona. Use "doing".
+D: Escolas americanas usam muito e-mail e aplicativo: confira sempre.
+N: Fazer amizade
+
+@A2|Fazer amizade|We should hang out sometime|sit
+C: Para transformar um conhecido em amigo, o americano sugere sair e troca contato.
+P: A gente devia sair + me passa seu número.
+R: Sugerir|We should hang out sometime.
+R: Contato|Can I get your number?
+R: Redes|Are you on Instagram?
+R: Confirmar|Let me know when you're free.
+E: We should hang out sometime.|A gente devia sair qualquer dia.
+E: Can I get your number?|Me passa seu número?
+E: Let me know when you're free.|Me avisa quando estiver livre.
+E: It was fun!|Foi divertido!
+X: We combine to go out.|Let's make plans.|"Combinar" é "make plans".
+D: Depois do primeiro encontro, mande uma mensagem curta: "Great to see you!".
+N: Se despedir e manter contato
+
+@A2|Se despedir e manter contato|Let's keep in touch|sit
+C: Na despedida, o americano é caloroso e promete manter contato.
+P: Foi bom + vamos manter contato + se cuida.
+R: Agradecer|It was great to see you.
+R: Contato|Let's keep in touch.
+R: Desejar|Take care!
+R: Viagem|Have a safe trip!
+E: It was great to see you.|Foi ótimo te ver.
+E: Let's keep in touch.|Vamos manter contato.
+E: Take care!|Se cuida!
+E: Have a safe trip home!|Faça uma boa viagem de volta!
+X: Good trip!|Have a safe trip!|"Have a safe trip" é a forma natural.
+D: Encerre conversas com "Take care!": é caloroso e serve para tudo.
+N: Alugar um apartamento
+
+@A2|Alugar um apartamento|Is it still available?|sit
+C: Para alugar, você pergunta se o imóvel está livre, o valor, o que está incluso e marca uma visita.
+P: Disponível, aluguel, contas, visita.
+R: Disponível|Is it still available?
+R: Valor|How much is the rent?
+R: Contas|Are utilities included?
+R: Visitar|Can I see it this week?
+E: Is the apartment still available?|O apartamento ainda está disponível?
+E: How much is the rent?|Quanto é o aluguel?
+E: Are utilities included?|As contas estão inclusas?
+E: Can I schedule a visit?|Posso marcar uma visita?
+X: How much is the rental?|How much is the rent?|Aluguel mensal é "rent".
+D: Utilities são água, luz e gás. Pergunte sempre se estão no valor.
+N: Enviar um pacote
+
+@A2|Enviar um pacote|I'd like to send this to Brazil|sit
+C: No correio (post office), você diz o destino, escolhe a velocidade e declara o conteúdo.
+P: Destino, rapidez, conteúdo, preço.
+R: Enviar|I'd like to send this to Brazil.
+R: Rapidez|How long will it take?
+R: Opção|What's the cheapest way?
+R: Rastreio|Can I track it?
+E: I'd like to send this package to Brazil.|Gostaria de enviar este pacote para o Brasil.
+E: What's the cheapest way to send it?|Qual é o jeito mais barato de enviar?
+E: How long will it take?|Quanto tempo vai levar?
+E: Can I track it?|Posso rastrear?
+X: I want to post this box for Brazil.|I'd like to send this to Brazil.|Destino usa "to".
+D: Correio nos EUA é "USPS". Pacote é "package".
+N: No cinema
+
+@A2|No cinema|Two tickets for the seven o'clock show|sit
+C: No cinema, você escolhe o filme, o horário, os lugares e a pipoca.
+P: Filme, horário, ingressos, lugares.
+R: Ingressos|Two tickets for + filme.
+R: Horário|the seven o'clock show
+R: Lugares|Can we sit together?
+R: Pipoca|A large popcorn, please.
+E: Two tickets for the seven o'clock show, please.|Dois ingressos para a sessão das sete, por favor.
+E: Is it subtitled?|Tem legenda?
+E: Can we sit in the back?|Podemos sentar no fundo?
+E: A large popcorn and two sodas.|Uma pipoca grande e dois refrigerantes.
+X: Two entrances for the movie.|Two tickets for the movie.|Ingresso é "ticket".
+D: Nos EUA, os filmes quase nunca têm legenda: ótimo treino de ouvido!
+N: Carro quebrado
+
+@A2|Carro quebrado|My car broke down|sit
+C: Se o carro quebrar, você precisa chamar ajuda, explicar o problema e entender o mecânico.
+P: Quebrou, onde estou, o que aconteceu.
+R: Avisar|My car broke down.
+R: Pneu|I have a flat tire.
+R: Bateria|The battery is dead.
+R: Guincho|I need a tow truck.
+E: My car broke down on the highway.|Meu carro quebrou na rodovia.
+E: I have a flat tire.|Estou com um pneu furado.
+E: The car won't start.|O carro não liga.
+E: How much will it cost to fix?|Quanto vai custar para consertar?
+X: My car broke.|My car broke down.|Carro quebrado é "broke down".
+D: Ligue o pisca-alerta (hazard lights) e fique em lugar seguro.
+N: Se apresentar
+
+@A1|H no inglês|Quando o H sopra e quando some
 C: Na maioria das palavras, o H tem um som de sopro leve, como um "rr" bem suave de "rato".
 C: Em algumas palavras que vieram do francês e do latim, o H não tem som nenhum.
 P: O H é um sopro. Às vezes ele sai, às vezes some.
@@ -2832,12 +3555,18 @@ D: Escolha um marcador por semana e use em todas as conversas.
 N: Revisão geral
 `;
 const MMC={C:'Conceito central',R:'Estrutura / regra',E:'Exemplos com tradução',X:'Erro comum de brasileiros',D:'Dica visual e conexão'};
-const MMS=MMT.split('\n@').map(b=>b.replace(/^@/,'').trim()).filter(Boolean).map(b=>{const ls=b.split('\n');const h=ls[0].split('|');const o={lv:h[0],t:h[1],sub:h[2],C:[],P:'',R:[],E:[],X:[],D:'',N:''};ls.slice(1).forEach(l=>{const m=l.match(/^([CPREXDN]): (.*)$/);if(!m)return;const k=m[1],v=m[2];if(k==='C')o.C.push(v);else if(k==='P')o.P=v;else if(k==='D')o.D=v;else if(k==='N')o.N=v;else o[k].push(v.split('|'))});return o});
+const MMS=MMT.split('\n@').map(b=>b.replace(/^@/,'').trim()).filter(Boolean).map(b=>{const ls=b.split('\n');const h=ls[0].split('|');const o={lv:h[0],t:h[1],sub:h[2],k:h[3]==='sit'?'sit':'gram',C:[],P:'',R:[],E:[],X:[],D:'',N:''};ls.slice(1).forEach(l=>{const m=l.match(/^([CPREXDN]): (.*)$/);if(!m)return;const k=m[1],v=m[2];if(k==='C')o.C.push(v);else if(k==='P')o.P=v;else if(k==='D')o.D=v;else if(k==='N')o.N=v;else o[k].push(v.split('|'))});return o});
+MMS.sort((a,b)=>['A1','A2','B1','B2','C1','C2'].indexOf(a.lv)-['A1','A2','B1','B2','C1','C2'].indexOf(b.lv)||(a.k===b.k?0:a.k==='sit'?-1:1));
 const LVC={A1:'#2E7D4F',A2:'#B08A00',B1:'#2C5DA8',B2:'#6B3FA0',C1:'#C2352B',C2:'#16305C'};
 let mmMode=store.get('mmMode','full');
+let mmType=store.get('mmType','all');
+const MMTY=[['all','Todos os temas'],['sit','Situações do dia a dia'],['gram','Gramática e pronúncia']];
+document.getElementById('mmType').innerHTML=MMTY.map(([k,t])=>`<button data-k="${k}">${t} (${k==='all'?MMS.length:MMS.filter(m=>m.k===k).length})</button>`).join('');
+document.querySelectorAll('#mmType button').forEach(b=>b.onclick=()=>{mmType=b.dataset.k;store.set('mmType',mmType);renderMM()});
 function renderMM(){
+  document.querySelectorAll('#mmType button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.k===mmType)));
   const box=document.getElementById('mmaps');
-  box.innerHTML=MMS.map((m,i)=>(mapLv!=='Todos'&&m.lv!==mapLv)?'':`<details class="mm" id="mm${i}"><summary><span class="mlvb" style="background:${LVC[m.lv]}">${m.lv}</span><span class="mt"><b>${m.t}</b><span>${m.sub}</span></span><span class="chev">›</span></summary><div class="mmb">
+  box.innerHTML=MMS.map((m,i)=>((mapLv!=='Todos'&&m.lv!==mapLv)||(mmType!=='all'&&m.k!==mmType))?'':`<details class="mm" id="mm${i}"><summary><span class="mlvb" style="background:${LVC[m.lv]}">${m.lv}</span><span class="mt"><b>${m.t}</b><span>${m.k==='sit'?'Situação · ':''}${m.sub}</span></span><span class="chev">›</span></summary><div class="mmb">
 <div class="blk" style="--bc:var(--m2)"><h4><i>1</i>${MMC.C}</h4><ul>${m.C.map(c=>`<li>${c}</li>`).join('')}</ul>${m.P?`<div class="pense"><b>Pense assim:</b> ${m.P}</div>`:''}</div>
 <div class="blk" style="--bc:var(--m1)"><h4><i>2</i>${MMC.R}</h4>${m.R.map(r=>`<div class="rrw"><b>${r[0]}</b><span>${r[1]||''}</span></div>`).join('')}</div>
 <div class="blk" style="--bc:var(--m3)"><h4><i>3</i>${MMC.E}</h4>${m.E.map((e,j)=>`<div class="exr"><button class="play sm" data-m="${i}" data-j="${j}" aria-label="Ouvir">${PLAY}</button><span class="t"><b>${e[0]}</b><span>${e[1]}</span></span></div>`).join('')}</div>
@@ -2845,9 +3574,9 @@ function renderMM(){
 <div class="blk" style="--bc:var(--m5)"><h4><i>5</i>${MMC.D}</h4><div>${m.D}</div>${m.N&&MMS.some(x=>x.t===m.N)?`<button class="nxt" data-next="${m.N}">Próximo tema: ${m.N} →</button>`:''}</div>
 </div></details>`).join('');
   box.querySelectorAll('.play').forEach(b=>b.onclick=()=>say(MMS[+b.dataset.m].E[+b.dataset.j][0]));
-  box.querySelectorAll('.nxt').forEach(b=>b.onclick=()=>{const k=MMS.findIndex(x=>x.t===b.dataset.next);if(k<0)return;if(mapLv!=='Todos'&&MMS[k].lv!==mapLv){mapLv='Todos';store.set('mapLv',mapLv);renderMaps()}const d=document.getElementById('mm'+k);d.open=true;d.scrollIntoView({block:'start'})});
+  box.querySelectorAll('.nxt').forEach(b=>b.onclick=()=>{const k=MMS.findIndex(x=>x.t===b.dataset.next);if(k<0)return;if((mapLv!=='Todos'&&MMS[k].lv!==mapLv)||(mmType!=='all'&&MMS[k].k!==mmType)){mapLv='Todos';mmType='all';store.set('mapLv',mapLv);store.set('mmType',mmType);renderMaps()}const d=document.getElementById('mm'+k);d.open=true;d.scrollIntoView({block:'start'})});
 }
-function setMM(m){mmMode=m;store.set('mmMode',m);document.getElementById('mmaps').hidden=m!=='full';document.getElementById('maps').hidden=m==='full';document.getElementById('mmFull').setAttribute('aria-pressed',String(m==='full'));document.getElementById('mmQuick').setAttribute('aria-pressed',String(m!=='full'))}
+function setMM(m){mmMode=m;store.set('mmMode',m);document.getElementById('mmaps').hidden=m!=='full';document.getElementById('mmType').hidden=m!=='full';document.getElementById('maps').hidden=m==='full';document.getElementById('mmFull').setAttribute('aria-pressed',String(m==='full'));document.getElementById('mmQuick').setAttribute('aria-pressed',String(m!=='full'))}
 document.getElementById('mmFull').onclick=()=>setMM('full');document.getElementById('mmQuick').onclick=()=>setMM('quick');
 {const _rm=renderMaps;renderMaps=function(){_rm();renderMM()}}
 document.getElementById('mmFull').textContent='Mapas completos ('+MMS.length+')';document.getElementById('mmQuick').textContent='Mapas rápidos ('+M.length+')';
