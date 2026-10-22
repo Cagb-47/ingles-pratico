@@ -10,7 +10,23 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Inglês Prático">
 <meta name="description" content="Inglês americano para vida pessoal, trabalho e escola, do nível 1 ao 4, com áudio.">
-<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+.trbtns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:4px 0 10px}
+.trmic{border:0;border-radius:16px;padding:16px 10px;background:var(--navy);color:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;font:600 .85rem var(--f-body);text-align:center}
+.trmic .ic{font-size:2rem;line-height:1}.trmic b{font:800 1rem var(--f-body)}
+.trmic.alt{background:var(--mustard);color:var(--mustard-ink)}
+.trmic.on{background:#C2352B;color:#fff;animation:trp 1s infinite}
+@keyframes trp{50%{transform:scale(.96);opacity:.85}}
+.trstatus{min-height:1.4em;font-weight:600;margin:4px 0 10px;color:var(--ink)}
+.trtype textarea{width:100%;box-sizing:border-box;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:10px;padding:11px 12px;font:600 1rem var(--f-body);resize:vertical}
+.trrow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0 14px}.trrow .btn{width:100%;padding-left:6px;padding-right:6px;font-size:.88rem}
+.trcard{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px;margin:0 0 12px}
+.trcard .trfrom{font-size:.9rem;opacity:.75}.trcard .trto{font:800 1.35rem var(--f-body);margin:6px 0}.trcard .trpr{font:700 .9rem var(--f-mono);color:#2C5DA8;margin-bottom:6px}
+.trcard .trlbl{font:800 .7rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;opacity:.6}
+.trcard .cta{margin:8px 0 0;display:flex;gap:8px;flex-wrap:wrap}
+.trh{display:flex;gap:10px;align-items:center;border-bottom:1px solid var(--line);padding:9px 0;cursor:pointer;background:none;border-left:0;border-right:0;border-top:0;width:100%;text-align:left;color:var(--ink);font:inherit}
+.trh b{display:block}.trh span{font-size:.85rem;opacity:.7}
+</style>
 <title>Inglês Prático</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -245,6 +261,7 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
     <div class="bar" aria-hidden="true"><i id="barfill"></i></div>
     <nav role="tablist" aria-label="Seções">
       <button role="tab" data-tab="aula" aria-selected="true">Aula</button>
+      <button role="tab" data-tab="tradutor" aria-selected="false">Tradutor</button>
       <button role="tab" data-tab="niveis" aria-selected="false">Níveis</button>
       <button role="tab" data-tab="livro" aria-selected="false">Livro</button>
       <button role="tab" data-tab="rotina" aria-selected="false">Rotina</button>
@@ -295,6 +312,25 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
       </ol>
     </div>
     <p class="tip">Cada celular guarda o próprio progresso, então o mesmo link serve para qualquer pessoa. Errou a pronúncia? Sem problema. Ouça de novo na velocidade "Bem devagar" e repita junto.</p>
+  </section>
+
+  <section id="tradutor" data-panel hidden>
+    <h2>Tradutor de voz</h2>
+    <p class="sub">Fale uma frase e o app traduz e fala na hora. Funciona nos dois sentidos: português para inglês e inglês para português. Precisa de internet.</p>
+    <div class="trbtns">
+      <button class="trmic" id="micPt" data-dir="pt"><span class="ic">🎤</span><b>Falar em português</b><span>ouvir em inglês</span></button>
+      <button class="trmic alt" id="micTg" data-dir="tg"><span class="ic">🎤</span><b>Falar em inglês</b><span>ouvir em português</span></button>
+    </div>
+    <div class="trstatus" id="trStatus" aria-live="polite">Toque num botão e fale perto do celular.</div>
+    <div id="trOut"></div>
+    <div class="trtype">
+      <label for="trText" class="trlbl" style="font-weight:700">Ou escreva a frase (o microfone do teclado também funciona):</label>
+      <textarea id="trText" rows="2" placeholder="Ex.: Onde fica o banheiro?"></textarea>
+      <div class="trrow"><button class="btn ghost" id="trGoPt">Português → Inglês</button><button class="btn ghost" id="trGoTg">Inglês → Português</button></div>
+    </div>
+    <h3 id="trHistT" hidden>Últimas traduções</h3>
+    <div id="trHist"></div>
+    <p class="note">Se o microfone não funcionar, permita o uso do microfone para o site (toque no cadeado ao lado do endereço) e use o Chrome no Android ou o Safari no iPhone. As frases que já estão no app aparecem com a pronúncia; as outras são traduzidas pela internet (serviço gratuito MyMemory).</p>
   </section>
 
   <section id="niveis" data-panel hidden>
@@ -3644,6 +3680,80 @@ let wd=store.get('weeks',[]);let wn=0;
 document.getElementById('plan').innerHTML=P.map(m=>`<div class="month"><h3>${m.t}</h3><p>${m.d}</p><div class="weeks">${m.w.map(w=>{wn++;const t=TG[wn-1]||[];return `<div class="week"><span class="n">Tema ${wn}</span><span class="t"><b>${w[0]}</b><span>${w[1]}</span><span class="tgo">${t.map((x,k)=>`<button class="tgb" data-w="${wn-1}" data-k="${k}">${tgLabel(x)} →</button>`).join('')}</span></span><label class="wkc"><input type="checkbox" id="wk${wn}" data-w="${wn}" ${wd.includes(wn)?'checked':''} aria-label="Marcar tema ${wn} como feito"></label></div>`}).join('')}</div></div>`).join('');
 document.querySelectorAll('#plan .tgb').forEach(b=>b.onclick=()=>openTg(TG[+b.dataset.w][+b.dataset.k]));
 document.querySelectorAll('#plan input').forEach(c=>c.onchange=()=>{const n=+c.dataset.w;wd=c.checked?[...wd,n]:wd.filter(x=>x!==n);store.set('weeks',wd);if(c.checked)touchDay();updateStats()});
+
+/* ---------- Tradutor de voz ---------- */
+{
+const TL='en-US',TLN='inglês';
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const norm=t=>String(t).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[¿¡?!.,;:"“”()…]/g,'').replace(/\s+/g,' ').trim();
+// dicionário local com as frases do próprio app (já tem pronúncia)
+const DPT={},DTG={};
+const addP=(tg,pt,pr)=>{if(!tg||!pt||/\{N/.test(tg+pt))return;pt.split(/\s*\/\s*/).forEach(k=>{k=norm(k.replace(/\(.*?\)/g,''));if(k&&!DPT[k])DPT[k]=[tg,pr||'']});tg.split(/\s*\/\s*/).forEach(k=>{k=norm(k);if(k&&!DTG[k])DTG[k]=pt})};
+const addLines=r=>String(r||'').trim().split('\n').forEach(l=>{const x=l.split('|');if(x.length>=2)addP(x[0].trim(),x[1].trim(),(x[2]||'').trim())});
+try{L.forEach(l=>(l.p||[]).forEach(p=>addP(p[0],p[1],p[2])))}catch(e){}
+try{N.forEach(g=>addLines(g.r))}catch(e){}
+try{SOS.forEach(g=>addLines(g.r))}catch(e){}
+try{Object.values(RAW).forEach(addLines)}catch(e){}
+function sayPt(t){if(!('speechSynthesis' in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='pt-BR';const vs=speechSynthesis.getVoices();const v=vs.find(v=>/pt[-_]BR/i.test(v.lang))||vs.find(v=>/^pt/i.test(v.lang));if(v)u.voice=v;u.rate=Math.max(rate,0.9);speechSynthesis.speak(u)}
+const st=document.getElementById('trStatus'),out=document.getElementById('trOut'),ta=document.getElementById('trText');
+let hist=store.get('trHist',[]),rec=null;
+function speakRes(r,slow){if(r.dir==='pt')say(r.to,slow?0.55:undefined);else sayPt(r.to)}
+function card(r){
+  out.innerHTML=`<div class="trcard"><div class="trlbl">${r.dir==='pt'?'Você disse (português)':'Você disse ('+TLN+')'}</div><div class="trfrom">${esc(r.from)}</div><div class="trlbl" style="margin-top:8px">${r.dir==='pt'?'Em '+TLN:'Em português'}</div><div class="trto">${esc(r.to)}</div>${r.pr?`<div class="trpr">${esc(r.pr)}</div>`:''}<div class="cta"><button class="btn" id="trAgain">🔊 Ouvir de novo</button>${r.dir==='pt'?'<button class="btn ghost" id="trSlow">🐢 Bem devagar</button>':''}</div></div>`;
+  document.getElementById('trAgain').onclick=()=>speakRes(r);
+  const sl=document.getElementById('trSlow');if(sl)sl.onclick=()=>speakRes(r,true);
+}
+function renderHist(){
+  document.getElementById('trHistT').hidden=!hist.length;
+  const h=document.getElementById('trHist');
+  h.innerHTML=hist.map((r,i)=>`<button class="trh" data-i="${i}">🔊<div><b>${esc(r.to)}</b><span>${esc(r.from)}</span></div></button>`).join('');
+  h.querySelectorAll('.trh').forEach(b=>b.onclick=()=>{const r=hist[+b.dataset.i];card(r);speakRes(r)});
+}
+function done(r){
+  st.textContent=r.local?'Frase que já está no app, com a pronúncia.':'Tradução pronta.';
+  card(r);speakRes(r);
+  hist=[r,...hist.filter(x=>!(x.from===r.from&&x.dir===r.dir))].slice(0,15);store.set('trHist',hist);renderHist();touchDay();
+}
+async function translate(text,dir){
+  text=text.trim();if(!text)return;
+  const k=norm(text);
+  if(dir==='pt'&&DPT[k])return done({dir,from:text,to:DPT[k][0],pr:DPT[k][1],local:1});
+  if(dir==='tg'&&DTG[k])return done({dir,from:text,to:DTG[k],local:1});
+  if(!navigator.onLine){st.textContent='Sem internet. A tradução de frases novas precisa de internet.';return}
+  st.textContent='Traduzindo…';
+  const pair=dir==='pt'?'pt-BR|'+TL:TL+'|pt-BR';
+  const ctl=new AbortController();const tm=setTimeout(()=>ctl.abort(),12000);
+  try{
+    const res=await fetch('https://api.mymemory.translated.net/get?q='+encodeURIComponent(text.slice(0,450))+'&langpair='+encodeURIComponent(pair),{signal:ctl.signal});
+    const j=await res.json();clearTimeout(tm);
+    let t=j&&j.responseData&&j.responseData.translatedText;
+    if(!t||+j.responseStatus!==200||/MYMEMORY WARNING|QUERY LENGTH LIMIT|INVALID/i.test(t)){st.textContent=/WARNING/i.test(t||'')||+j.responseStatus===429?'O limite grátis de traduções de hoje acabou. Amanhã volta a funcionar; as frases do app continuam funcionando.':'Não consegui traduzir agora. Tente de novo.';return}
+    const d=document.createElement('textarea');d.innerHTML=t;t=d.value;
+    done({dir,from:text,to:t});
+  }catch(e){clearTimeout(tm);st.textContent='Não consegui traduzir agora. Confira a internet e tente de novo.'}
+}
+function listen(btn){
+  const dir=btn.dataset.dir;
+  if(rec){try{rec.stop()}catch(e){}return}
+  if(!SR){st.textContent='Este navegador não reconhece voz. Use o Chrome (Android) ou o Safari (iPhone), ou toque na caixa abaixo e use o microfone do teclado.';ta.focus();return}
+  if('speechSynthesis' in window)speechSynthesis.cancel();
+  const r=new SR();rec=r;r.lang=dir==='pt'?'pt-BR':TL;r.interimResults=true;r.continuous=false;r.maxAlternatives=1;
+  let fin='',err='';
+  btn.classList.add('on');st.textContent=dir==='pt'?'Pode falar em português…':'Pode falar em '+TLN+'…';
+  r.onresult=e=>{let t='';for(const x of e.results)t+=x[0].transcript;fin=t;st.textContent='“'+t+'”'};
+  r.onerror=e=>{err=e.error};
+  r.onend=()=>{btn.classList.remove('on');rec=null;
+    if(fin.trim()){ta.value=fin.trim();translate(fin,dir)}
+    else st.textContent=(err==='not-allowed'||err==='service-not-allowed')?'O microfone está bloqueado. Toque no cadeado ao lado do endereço do site e permita o microfone.':err==='network'?'Sem internet para reconhecer a voz.':'Não ouvi nada. Toque no botão e fale perto do celular.'};
+  try{r.start()}catch(e){btn.classList.remove('on');rec=null;st.textContent='Não consegui ligar o microfone. Tente de novo.'}
+}
+document.getElementById('micPt').onclick=e=>listen(e.currentTarget);
+document.getElementById('micTg').onclick=e=>listen(e.currentTarget);
+document.getElementById('trGoPt').onclick=()=>translate(ta.value,'pt');
+document.getElementById('trGoTg').onclick=()=>translate(ta.value,'tg');
+renderHist();
+}
 
 updateStats();
 show(store.get('tab','aula'));
