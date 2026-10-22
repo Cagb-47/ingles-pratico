@@ -444,7 +444,7 @@ let studyDays=store.get('days',[]);
 function touchDay(){const d=new Date().toISOString().slice(0,10);if(!studyDays.includes(d)){studyDays.push(d);store.set('days',studyDays)}}
 function updateStats(){
   const doneN=(store.get('done',[])).length,knownN=(store.get('known',[])).length,daysN=studyDays.length;
-  document.getElementById('day').textContent=daysN+(daysN===1?' dia':' dias')+' de estudo · '+doneN+' aulas · '+knownN+' palavras';
+  document.getElementById('day').textContent=daysN+(daysN===1?' dia':' dias')+' de estudo · '+doneN+(doneN===1?' aula':' aulas')+' · '+knownN+(knownN===1?' palavra':' palavras');
   const total=L.length+Object.values(W).reduce((a,b)=>a+b.length,0);
   document.getElementById('barfill').style.width=Math.min(100,(doneN+knownN)/total*100)+'%';
 }
