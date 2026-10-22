@@ -173,6 +173,36 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
 .step .sp{font:700 .8rem var(--f-mono);background:rgba(255,255,255,.2);padding:2px 8px;border-radius:999px}
 .step.on{outline:3px solid var(--mustard);outline-offset:2px}
 .step[style*="#C9A100"] .sn{color:#5a4700}
+.mm{background:var(--paper);border:1px solid var(--line);border-radius:16px;margin-bottom:12px;overflow:hidden}
+.mm>summary{list-style:none;display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:12px 14px;cursor:pointer}
+.mm>summary::-webkit-details-marker{display:none}
+.mm .mlvb{font:800 .8rem var(--f-mono);color:#fff;padding:4px 8px;border-radius:8px}
+.mm .mt{min-width:0}.mm .mt b{display:block;font:800 1.1rem var(--f-display)}.mm .mt span{color:var(--muted);font-size:.9rem}
+.mm[open] .chev{transform:rotate(90deg)}
+.mmb{padding:0 12px 14px;display:grid;gap:10px}
+.blk{border:2px solid var(--bc);border-radius:12px;padding:10px 12px;background:color-mix(in srgb,var(--bc) 6%,var(--paper))}
+.blk h4{display:flex;align-items:center;gap:8px;margin:0 0 6px;font:800 .98rem var(--f-display);color:var(--bc)}
+.blk h4 i{font-style:normal;display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--bc);color:#fff;font-size:.85rem}
+.blk ul{margin:0;padding-left:1.1em}.blk li+li{margin-top:4px}
+.pense{margin-top:8px;border:1.5px dashed var(--bc);border-radius:10px;padding:6px 10px;font-size:.95rem}
+.rrw{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.3fr);gap:8px;padding:6px 0;border-top:1px dashed var(--line);font-size:.95rem}
+.rrw b{min-width:0}.rrw span{min-width:0;font-family:var(--f-mono);font-size:.88rem;font-weight:600}
+.exr{display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:center;padding:6px 0;border-top:1px dashed var(--line)}
+.exr .t{min-width:0}.exr .t b{display:block}.exr .t span{color:var(--muted);font-size:.92rem}
+.err{display:grid;gap:4px;padding:6px 0;border-top:1px dashed var(--line);font-size:.95rem}
+.err .no{color:var(--red);font-weight:700}.err .ok{color:var(--m1);font-weight:700}
+.nxt{margin-top:8px;border:0;border-radius:999px;background:var(--navy);color:#fff;font:700 .85rem var(--f-body);padding:7px 12px;cursor:pointer}
+.mus{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px;display:grid;gap:6px}
+.mus .mh{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}.mus .mh b{font:800 1.08rem var(--f-display)}.mus .mh span{color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:var(--soft);color:var(--ink);border-radius:999px;padding:5px 10px;font:600 .88rem var(--f-body);cursor:pointer}
+.yt{color:var(--navy);font-weight:700}
+.pvr{display:grid;grid-template-columns:1fr;gap:2px;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:8px}
+.pvr button{border:0;background:none;padding:0;text-align:left;cursor:pointer;color:inherit;font:inherit}
+.pvr .v{font:800 1.08rem var(--f-display)}.pvr .m{color:var(--muted);font-size:.95rem}.pvr .pr{font:600 .85rem var(--f-mono);color:var(--m2)}
+.pvr .e{margin-top:4px;font-size:.95rem}.pvr .e span{display:block;color:var(--muted);font-size:.9rem}
+.sosbar{background:var(--red);color:#fff;border-radius:12px;padding:12px 14px;font:700 1.05rem var(--f-body);margin-bottom:14px;text-align:center}
+.sosbar b{font-size:1.4rem}
 /* Histórias */
 .story{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px}
 .story+.story{margin-top:16px}
@@ -220,8 +250,11 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
       <button role="tab" data-tab="rotina" aria-selected="false">Rotina</button>
       <button role="tab" data-tab="mapas" aria-selected="false">Mapas</button>
       <button role="tab" data-tab="palavras" aria-selected="false">Palavras</button>
-      <button role="tab" data-tab="nativo" aria-selected="false">Nativo</button>
-      <button role="tab" data-tab="historias" aria-selected="false">Histórias</button>
+      <button role="tab" data-tab="phrasal" aria-selected="false">Phrasal Verbs</button>
+      <button role="tab" data-tab="nativo" aria-selected="false">Frases</button>
+      <button role="tab" data-tab="musicas" aria-selected="false">Músicas</button>
+      <button role="tab" data-tab="historias" aria-selected="false">Leitura</button>
+      <button role="tab" data-tab="sos" aria-selected="false">SOS</button>
       <button role="tab" data-tab="plano" aria-selected="false">Trilha</button>
     </nav>
   </div>
@@ -289,6 +322,7 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
 
     <div class="rbox">
       <h3>1. Música: um cantor por mês</h3>
+      <div class="cta" style="margin:0 0 12px"><button class="btn ghost" id="goMus">Ver as 33 músicas por nível →</button></div>
       <p>Escolha um cantor que canta em inglês. Duas músicas por semana, de manhã e à tarde, somando 8 músicas no mês. Ouça com a letra aberta no Spotify ou no YouTube.</p>
       <div class="rrow"><label for="singer">Cantor do mês</label><input id="singer" type="text" placeholder="Ex.: o cantor que você escolheu"></div>
       <div class="songs" id="songs"></div>
@@ -312,10 +346,15 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
   </section>
 
   <section id="mapas" data-panel hidden>
-    <h2>Mapas visuais</h2>
-    <p class="sub">Do iniciante (A1) ao avançado (C2), na mesma escada da aba Níveis. Filtre pelo seu nível, siga a numeração e toque no alto-falante para ouvir.</p>
+    <h2>Mapas mentais</h2>
+    <p class="sub">Do iniciante (A1) ao avançado (C2). Os mapas completos têm 5 partes: conceito, regra, exemplos com tradução, erro comum de brasileiros e dica visual. Os mapas rápidos são para revisar em um minuto.</p>
+    <div class="wmode" role="group" aria-label="Tipo de mapa">
+      <button id="mmFull" aria-pressed="true">Mapas completos</button>
+      <button id="mmQuick" aria-pressed="false">Mapas rápidos</button>
+    </div>
     <div class="wtools" id="mapFilter"></div>
-    <div class="maps" id="maps"></div>
+    <div id="mmaps"></div>
+    <div class="maps" id="maps" hidden></div>
   </section>
 
   <section id="palavras" data-panel hidden>
@@ -344,16 +383,38 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
   </section>
 
   <section id="nativo" data-panel hidden>
-    <h2>Fale como nativo</h2>
+    <h2>Frases e fala nativa</h2>
     <p class="sub">Do nível 1 ao 4. Mais palavras não deixam você com cara de nativo. O que faz isso é juntar as palavras, ter respostas prontas e usar as expressões certas. Toque numa linha para ouvir.</p>
     <div id="nativeList"></div>
   </section>
 
   <section id="historias" data-panel hidden>
-    <h2>Histórias lado a lado</h2>
-    <p class="sub">Histórias curtas com as frases das aulas. Leia o inglês em voz alta, depois esconda o português e teste se entende.</p>
+    <h2>Leitura bilíngue</h2>
+    <p class="sub">Histórias das aulas, conversas em situações reais e clássicos da literatura adaptados para o nível básico, sempre com o inglês e o português lado a lado. Toque no alto-falante para ouvir cada frase.</p>
     <div class="cta" style="margin:0 0 14px"><button class="btn ghost" id="togglePt">Esconder português</button></div>
     <div id="stories"></div>
+  </section>
+
+  <section id="musicas" data-panel hidden>
+    <h2>Inglês com músicas</h2>
+    <p class="sub">33 músicas separadas por nível. Antes de ouvir, leia o tema e treine as palavras. Depois, ouça com a letra aberta no YouTube ou no Spotify e marque quando terminar.</p>
+    <p class="note" style="margin-top:0">As letras não estão no app porque têm direitos autorais. O botão abre a música no YouTube.</p>
+    <div class="wtools" id="musFilter"></div>
+    <div id="musList"></div>
+  </section>
+
+  <section id="phrasal" data-panel hidden>
+    <h2>Phrasal verbs</h2>
+    <p class="sub" id="pvSub">Os verbos de duas palavras que o americano usa o tempo todo. Toque no verbo ou no exemplo para ouvir.</p>
+    <input id="pvSearch" type="search" placeholder="Buscar: get, look, desistir..." aria-label="Buscar phrasal verb" style="width:100%;box-sizing:border-box;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:10px;padding:11px 12px;font:600 1rem var(--f-body);margin-bottom:12px">
+    <div id="pvList"></div>
+  </section>
+
+  <section id="sos" data-panel hidden>
+    <h2>SOS Inglês</h2>
+    <p class="sub">Seu guia de emergências. Toque numa linha para ouvir a frase.</p>
+    <div class="sosbar">Emergência nos EUA: ligue <b>911</b></div>
+    <div id="sosList"></div>
   </section>
 
   <section id="plano" data-panel hidden>
@@ -1551,6 +1612,67 @@ call back|retornar a ligação|CÓL BÉK
 slow down|ir mais devagar|SLÔU DÁUN
 calm down|se acalmar|CÁM DÁUN`}
 ];
+const FRG=[
+{t:'Frases essenciais · Concordar e discordar',d:'Para participar de qualquer conversa ou reunião.',r:`I totally agree.|Concordo totalmente.|AI TÔURALI AGRÍ
+That's true.|É verdade.|DÉTS TRÚ
+Exactly!|Exatamente!|IGZÉKTLI
+You're right.|Você tem razão.|IÓR RÁIT
+I'm not so sure.|Não tenho tanta certeza.|AIM NÓT SÔU XUR
+I see what you mean, but...|Entendo o que você quer dizer, mas...|AI SÍ UÓT IU MÍN, BÂT
+I don't think so.|Acho que não.|AI DÔUNT THÍNK SÔU
+I disagree.|Discordo.|AI DISAGRÍ
+Fair enough.|Justo.|FÉR INÂF
+That sounds great!|Isso parece ótimo!|DÉT SÁUNDZ GRÊIT`},
+{t:'Frases essenciais · Pedir e oferecer',d:'Pedidos educados e ofertas do dia a dia.',r:`Can you help me?|Você pode me ajudar?|KÉN IU RRÉLP MI
+Could you do me a favor?|Poderia me fazer um favor?|CÚDJU DU MI A FÊIVOR
+Would you mind waiting?|Se importa de esperar?|UÚDJU MÁIND UÊITIN
+Do you need a hand?|Precisa de uma mão?|DU IU NÍD A RRÉND
+Let me help you.|Deixa eu te ajudar.|LÉMI RRÉLP IU
+Would you like some coffee?|Quer um café?|UÚDJU LÁIK SÂM CÓFI
+Can I get you anything?|Posso te trazer algo?|KÉN AI GUÉT IU ÉNITHIN
+Help yourself.|Sirva-se.|RRÉLP IORSÉLF
+Here you go.|Aqui está.|RRÍR IU GÔU
+After you.|Primeiro você.|ÉFTER IU`},
+{t:'Frases essenciais · Agradecer e desculpar',d:'Educação faz toda a diferença nos EUA.',r:`Thanks a lot.|Muito obrigado.|THÉNKS A LÓT
+I really appreciate it.|Agradeço muito.|AI RÍLI APRÍXIEIT IT
+That's very kind of you.|É muito gentil da sua parte.|DÉTS VÉRI KÁIND ÓV IU
+No problem.|Sem problema.|NÔU PRÓBLEM
+Don't mention it.|Não há de quê.|DÔUNT MÉNXAN IT
+I'm so sorry.|Sinto muito.|AIM SÔU SÓRI
+My bad.|Foi mal.|MÁI BÉD
+It won't happen again.|Não vai acontecer de novo.|IT UÔUNT RRÉPEN AGUÉN
+No worries.|Sem problema.|NÔU UÂRIZ
+Excuse me.|Com licença.|IKSKIÚZ MI`},
+{t:'Frases essenciais · Quando não entende',d:'As frases mais úteis para quem está aprendendo.',r:`Sorry, I didn't catch that.|Desculpa, não entendi.|SÓRI, AI DÍDNT KÉTCH DÉT
+Could you say that again?|Pode repetir?|CÚDJU SÊI DÉT AGUÉN
+Could you speak more slowly?|Pode falar mais devagar?|CÚDJU SPÍK MÓR SLÔULI
+What does that mean?|O que isso significa?|UÓT DÂZ DÉT MÍN
+How do you say this in English?|Como se diz isso em inglês?|RRÁU DU IU SÊI DIS IN ÍNGLICH
+How do you spell it?|Como se escreve?|RRÁU DU IU SPÉL IT
+Do you mean...?|Você quer dizer...?|DU IU MÍN
+I'm still learning English.|Ainda estou aprendendo inglês.|AIM STÍL LÂRNIN ÍNGLICH`},
+{t:'Frases essenciais · Sentimentos e reações',d:'Para reagir de forma natural.',r:`That's amazing!|Que incrível!|DÉTS AMÊIZIN
+I'm so happy for you.|Estou muito feliz por você.|AIM SÔU RRÉPI FOR IU
+That's too bad.|Que pena.|DÉTS TÚ BÉD
+I'm sorry to hear that.|Sinto muito em saber disso.|AIM SÓRI TU RRÍR DÉT
+Good for you!|Que bom para você!|GUD FOR IU
+I can't believe it!|Não acredito!|AI KÉNT BILÍV IT
+That's funny.|Que engraçado.|DÉTS FÂNI
+I'm worried about it.|Estou preocupado com isso.|AIM UÂRID ABÁURIT
+What a relief!|Que alívio!|UÓRA RILÍF
+Congratulations!|Parabéns!|KONGRÉTCHULEIXANZ`},
+{t:'Frases essenciais · Começar e terminar conversas',d:'Abrir e fechar a conversa com naturalidade.',r:`How have you been?|Como você tem passado?|RRÁU RRÉV IU BÍN
+What have you been up to?|O que você tem feito?|UÓT RRÉV IU BÍN ÂP TU
+Long time no see!|Quanto tempo!|LÓNG TÁIM NÔU SÍ
+By the way...|A propósito...|BÁI DÂ UÊI
+Anyway...|Enfim...|ÉNIUEI
+I've got to go.|Tenho que ir.|AIV GÓRA GÔU
+It was nice talking to you.|Foi bom conversar com você.|IT UÓZ NÁIS TÓKIN TU IU
+Let's keep in touch.|Vamos manter contato.|LÉTS KÍP IN TÂTCH
+Take care!|Se cuida!|TÊIK KÉR
+Have a good one!|Tenha um bom dia!|RRÉV A GUD UÂN`}
+];
+N.push(...FRG);
 const nl=document.getElementById('nativeList');
 nl.innerHTML=N.map(g=>`<div class="ngroup"><h3>${g.t}</h3><p>${g.d}</p><div class="wl-head"><span>Português</span><span>English</span><span>Pronúncia</span></div>${g.r.trim().split('\n').map(l=>{const w=l.split('|');const sp=w[0].includes('→')?w[0].split('→')[1].trim():w[0];return `<button class="wrow" data-en="${sp.replace(/"/g,'&quot;')}" aria-label="Ouvir ${sp.replace(/"/g,'')}"><span>${w[1]}</span><span>${w[0]}</span><span>${w[2]}</span></button>`}).join('')}</div>`).join('');
 nl.querySelectorAll('.wrow').forEach(r=>r.onclick=()=>{say(r.dataset.en);nl.querySelectorAll('.on').forEach(x=>x.classList.remove('on'));r.classList.add('on')});
@@ -1716,12 +1838,1051 @@ const S=[
 ['"I\'ll have the brisket, please."','"Vou querer o brisket, por favor."'],
 ['After dinner: "Can I get the check?"','Depois do jantar: "Pode trazer a conta?"']]}
 ];
+const LEIT=[
+{t:'Imigração em 5 atos',m:'Conversa · aeroporto nos EUA',l:[
+['Officer: Good afternoon. Passport, please.','Oficial: Boa tarde. Passaporte, por favor.'],
+['{N}: Here you go.','{N}: Aqui está.'],
+['Officer: What is the purpose of your visit?','Oficial: Qual é o motivo da sua visita?'],
+['{N}: Tourism. I\'m here on vacation.','{N}: Turismo. Estou de férias.'],
+['Officer: How long are you staying?','Oficial: Quanto tempo vai ficar?'],
+['{N}: Two weeks.','{N}: Duas semanas.'],
+['Officer: Where are you staying?','Oficial: Onde vai ficar hospedado?'],
+['{N}: At a hotel in Orlando.','{N}: Num hotel em Orlando.'],
+['Officer: Thank you. Enjoy your stay!','Oficial: Obrigado. Aproveite a estadia!']]},
+{t:'Consulta médica',m:'Conversa · clínica nos EUA',l:[
+['Doctor: What seems to be the problem?','Médico: Qual parece ser o problema?'],
+['{N}: I have a bad headache and a fever.','{N}: Estou com muita dor de cabeça e febre.'],
+['Doctor: How long have you felt like this?','Médico: Há quanto tempo está assim?'],
+['{N}: Since yesterday morning.','{N}: Desde ontem de manhã.'],
+['Doctor: Are you allergic to any medicine?','Médico: Tem alergia a algum remédio?'],
+['{N}: No, I\'m not.','{N}: Não, não tenho.'],
+['Doctor: Take this twice a day and get some rest.','Médico: Tome isto duas vezes ao dia e descanse.']]},
+{t:'Alice no País das Maravilhas',m:'Clássico adaptado · Lewis Carroll, 1865 (domínio público)',l:[
+['Alice is sitting by the river with her sister.','Alice está sentada perto do rio com a irmã.'],
+['She is bored. Suddenly, a white rabbit runs by.','Ela está entediada. De repente, um coelho branco passa correndo.'],
+['The rabbit looks at his watch. "I\'m late!"','O coelho olha o relógio. "Estou atrasado!"'],
+['Alice follows him into a big hole.','Alice o segue para dentro de um buraco grande.'],
+['She falls and falls, very slowly.','Ela cai e cai, bem devagar.'],
+['At the bottom, she finds a tiny door.','No fundo, ela encontra uma portinha.'],
+['"What a strange place!" she says.','"Que lugar estranho!", ela diz.']]},
+{t:'Um Conto de Natal',m:'Clássico adaptado · Charles Dickens, 1843 (domínio público)',l:[
+['Scrooge is a rich old man. He loves money.','Scrooge é um velho rico. Ele ama dinheiro.'],
+['He doesn\'t like Christmas or people.','Ele não gosta do Natal nem das pessoas.'],
+['One night, three ghosts visit him.','Uma noite, três fantasmas o visitam.'],
+['They show him his past, his present and his future.','Eles mostram o passado, o presente e o futuro dele.'],
+['Scrooge sees that he is alone and sad.','Scrooge vê que está sozinho e triste.'],
+['In the morning, he decides to change.','De manhã, ele decide mudar.'],
+['"Merry Christmas, everyone!" he says with a smile.','"Feliz Natal a todos!", ele diz sorrindo.']]},
+{t:'As Aventuras de Tom Sawyer',m:'Clássico adaptado · Mark Twain, 1876 (domínio público)',l:[
+['Tom lives with his Aunt Polly by the Mississippi River.','Tom mora com a tia Polly perto do rio Mississippi.'],
+['One Saturday, he has to paint a long fence.','Num sábado, ele precisa pintar uma cerca comprida.'],
+['Tom doesn\'t want to work. He has an idea.','Tom não quer trabalhar. Ele tem uma ideia.'],
+['"Painting is so much fun!" he tells his friends.','"Pintar é muito divertido!", ele diz aos amigos.'],
+['His friends want to try. They even pay him!','Os amigos querem tentar. Até pagam a ele!'],
+['By the afternoon, the fence is white and Tom is rich.','À tarde, a cerca está branca e Tom está rico.']]},
+{t:'O Jardim Secreto',m:'Clássico adaptado · Frances Hodgson Burnett, 1911 (domínio público)',l:[
+['Mary moves to a big, old house in England.','Mary se muda para uma casa grande e antiga na Inglaterra.'],
+['She is lonely and unhappy.','Ela está sozinha e infeliz.'],
+['One day, a bird shows her an old key.','Um dia, um pássaro mostra a ela uma chave antiga.'],
+['The key opens a door to a secret garden.','A chave abre uma porta para um jardim secreto.'],
+['Mary works in the garden every day.','Mary trabalha no jardim todos os dias.'],
+['The flowers grow, and Mary becomes happy.','As flores crescem, e Mary fica feliz.']]},
+{t:'Orgulho e Preconceito',m:'Clássico adaptado · Jane Austen, 1813 (domínio público)',l:[
+['Elizabeth Bennet is smart and independent.','Elizabeth Bennet é inteligente e independente.'],
+['At a dance, she meets Mr. Darcy.','Num baile, ela conhece o Sr. Darcy.'],
+['He seems proud and rude. She doesn\'t like him.','Ele parece orgulhoso e grosso. Ela não gosta dele.'],
+['Later, she learns the truth about him.','Depois, ela descobre a verdade sobre ele.'],
+['He is kind and generous, not proud.','Ele é gentil e generoso, não orgulhoso.'],
+['Elizabeth changes her mind, and they fall in love.','Elizabeth muda de ideia, e eles se apaixonam.']]},
+{t:'O Chamado da Floresta',m:'Clássico adaptado · Jack London, 1903 (domínio público)',l:[
+['Buck is a big dog. He lives on a farm in California.','Buck é um cachorro grande. Ele mora numa fazenda na Califórnia.'],
+['One night, a man steals him and sells him.','Uma noite, um homem o rouba e o vende.'],
+['Buck goes to Alaska. It\'s very cold there.','Buck vai para o Alasca. Lá é muito frio.'],
+['He learns to pull a sled in the snow.','Ele aprende a puxar um trenó na neve.'],
+['He becomes strong and brave.','Ele fica forte e corajoso.'],
+['In the end, he hears the call of the wild and runs free.','No fim, ele ouve o chamado da floresta e corre livre.']]},
+{t:'Peter Pan',m:'Clássico adaptado · J. M. Barrie, 1911 (domínio público)',l:[
+['Peter Pan is a boy who never grows up.','Peter Pan é um menino que nunca cresce.'],
+['One night, he flies into Wendy\'s window.','Uma noite, ele entra voando pela janela da Wendy.'],
+['"Come with me to Neverland!" he says.','"Venha comigo para a Terra do Nunca!", ele diz.'],
+['Wendy and her brothers learn to fly.','Wendy e os irmãos aprendem a voar.'],
+['In Neverland, they meet pirates and Captain Hook.','Na Terra do Nunca, eles conhecem piratas e o Capitão Gancho.'],
+['After many adventures, they go back home.','Depois de muitas aventuras, eles voltam para casa.']]}
+];
+S.push(...LEIT);
 function renderStories(){document.getElementById('stories').innerHTML=S.map((s,si)=>`<article class="story"><h3>${s.t}</h3><div class="meta">${s.m}</div>${s.l.map((l,li)=>`<div class="line"><button class="play sm" data-s="${si}" data-l="${li}" aria-label="Ouvir frase">${PLAY}</button><div class="txt"><div class="en">${nm(l[0])}</div><div class="pt">${nm(l[1])}</div></div></div>`).join('')}<div class="cta"><button class="btn ghost" data-all="${si}">Ouvir a história toda</button></div></article>`).join('');
 document.querySelectorAll('#stories .play').forEach(b=>b.onclick=()=>say(nm(S[+b.dataset.s].l[+b.dataset.l][0])));
 document.querySelectorAll('#stories [data-all]').forEach(b=>b.onclick=()=>sayQueue(S[+b.dataset.all].l.map(x=>nm(x[0]))));}
 renderStories();
 const sw=document.getElementById('stories');
 document.getElementById('togglePt').onclick=e=>{sw.classList.toggle('hidept');e.target.textContent=sw.classList.contains('hidept')?'Mostrar português':'Esconder português'};
+
+const MUS=`A1|Count on Me|Bruno Mars|EUA|amizade e apoio|friend, count, need, always
+A1|I'm Yours|Jason Mraz|EUA|amor leve e despreocupado|yours, free, wait, love
+A1|Stand by Me|Ben E. King|EUA|ficar ao lado de quem ama|stand, night, dark, afraid
+A1|What a Wonderful World|Louis Armstrong|EUA|beleza das coisas simples|trees, sky, friends, world
+A1|You Are My Sunshine|Johnny Cash|EUA|carinho e saudade|sunshine, happy, know, away
+A1|Hello|Lionel Richie|EUA|paixão e coragem de falar|hello, looking, mind, love
+A1|Perfect|Ed Sheeran|Reino Unido|amor e casamento|perfect, dance, darling, found
+A1|Someone You Loved|Lewis Capaldi|Reino Unido|perda e saudade|someone, loved, used to, hold
+A1|Girls Like You|Maroon 5|EUA|relacionamento|girls, need, spend, night
+A1|Let It Be|The Beatles|Reino Unido|aceitar e ter calma|let it be, trouble, answer, words
+A1|Imagine|John Lennon|Reino Unido|paz e esperança|imagine, people, world, peace
+A2|Let Her Go|Passenger|Reino Unido|só dar valor quando perde|let go, miss, low, fade
+A2|Hello|Adele|Reino Unido|reencontro e arrependimento|hello, sorry, call, time
+A2|Demons|Imagine Dragons|EUA|lados escuros e proteção|demons, hide, close, eyes
+A2|Just the Way You Are|Bruno Mars|EUA|elogio e admiração|amazing, eyes, smile, change
+A2|Shallow|Lady Gaga e Bradley Cooper|EUA|mudança e coragem|shallow, deep, dive, ground
+A2|Counting Stars|OneRepublic|EUA|sonhos e dinheiro|counting, stars, dollars, sleep
+A2|Thinking Out Loud|Ed Sheeran|Reino Unido|amor que dura|thinking, loud, love, old
+A2|Shake It Off|Taylor Swift|EUA|ignorar críticas|shake, off, play, hate
+A2|A Thousand Years|Christina Perri|EUA|amor e espera|thousand, years, afraid, heart
+A2|Love Story|Taylor Swift|EUA|romance com obstáculos|story, prince, yes, wait
+A2|Photograph|Ed Sheeran|Reino Unido|memórias|photograph, keep, home, wait
+B1|Losing My Religion|R.E.M.|EUA|dúvida e exposição|losing, corner, said, choose
+B1|Everybody Hurts|R.E.M.|EUA|consolo nos dias difíceis|hurt, hold on, alone, cry
+B1|Drive|The Cars|EUA|preocupação com alguém|drive, home, tonight, fall
+B1|Emotion in Motion|Ric Ocasek|EUA|emoção e romance|emotion, motion, feel, near
+B1|In the Air Tonight|Phil Collins|Reino Unido|tensão e mágoa|feel, coming, air, tonight
+B2|Another Day in Paradise|Phil Collins|Reino Unido|desigualdade social|paradise, street, help, think twice
+B2|Hotel California|Eagles|EUA|ilusão e armadilha|hotel, welcome, leave, check out
+B2|Viva La Vida|Coldplay|Reino Unido|poder e queda|rule, world, sweep, kingdom
+B2|Fix You|Coldplay|Reino Unido|apoio na tristeza|fix, try, lose, guide
+B2|The Scientist|Coldplay|Reino Unido|arrependimento|sorry, start, apart, easy
+B2|Rolling in the Deep|Adele|Reino Unido|traição e força|rolling, deep, heart, scars`;
+const SOS=[
+{t:'Emergência médica',d:'Para pronto-socorro, ambulância e farmácia. Nos EUA, o número de emergência é 911.',r:`Call 911!|Liga para o 911!|CÓL NÁIN UÂN UÂN
+I need a doctor.|Preciso de um médico.|AI NÍD A DÓKTOR
+I need an ambulance.|Preciso de uma ambulância.|AI NÍD AN ÉMBIULANS
+Where is the nearest hospital?|Onde fica o hospital mais próximo?|UÉR IZ DÂ NÍREST RRÓSPIRAL
+I don't feel well.|Não estou me sentindo bem.|AI DÔUNT FÍL UÉL
+I have chest pain.|Estou com dor no peito.|AI RRÉV TCHÉST PÊIN
+I can't breathe.|Não consigo respirar.|AI KÉNT BRÍD
+I'm allergic to penicillin.|Sou alérgico a penicilina.|AIM ALÂRDJIK TU PENISÍLIN
+I'm diabetic.|Sou diabético.|AIM DAIABÉRIK
+I take this medicine.|Tomo este remédio.|AI TÊIK DIS MÉDISIN
+He fainted.|Ele desmaiou.|RRÍ FÊINTID
+She's bleeding.|Ela está sangrando.|XÍZ BLÍDIN
+It hurts here.|Dói aqui.|IT RRÂRTS RRÍR
+I have health insurance.|Tenho seguro saúde.|AI RRÉV RRÉLTH INXÚRANS`},
+{t:'Pedir ajuda',d:'Frases curtas para chamar atenção e pedir socorro.',r:`Help!|Socorro!|RRÉLP
+Please help me!|Por favor, me ajude!|PLIZ RRÉLP MI
+It's an emergency.|É uma emergência.|ITS AN IMÂRDJENSI
+Call the police!|Chame a polícia!|CÓL DÂ POLÍS
+Fire!|Fogo!|FÁIER
+Watch out!|Cuidado!|UÓTCH ÁUT
+Stop!|Pare!|STÓP
+Is anyone hurt?|Alguém se machucou?|IZ ÉNIUAN RRÂRT
+Stay calm.|Mantenha a calma.|STÊI KÁLM
+Do you speak Portuguese?|Você fala português?|DU IU SPÍK PÓRTCHUGUIZ
+I don't speak English well.|Não falo inglês bem.|AI DÔUNT SPÍK ÍNGLICH UÉL`},
+{t:'Roubo e perdas',d:'Para falar com a polícia, o hotel ou o consulado.',r:`My wallet was stolen.|Roubaram minha carteira.|MAI UÓLET UÓZ STÔULEN
+I lost my passport.|Perdi meu passaporte.|AI LÓST MAI PÉSPORT
+I lost my phone.|Perdi meu celular.|AI LÓST MAI FÔUN
+Someone took my bag.|Alguém levou minha bolsa.|SÂMUAN TÚK MAI BÉG
+I need a police report.|Preciso de um boletim de ocorrência.|AI NÍD A POLÍS RIPÓRT
+Where is the Brazilian consulate?|Onde fica o consulado brasileiro?|UÉR IZ DÂ BRAZÍLIAN KÓNSULET
+I need to block my card.|Preciso bloquear meu cartão.|AI NÍD TU BLÓK MAI KÁRD`},
+{t:'Perdido ou sem rumo',d:'Para se achar na rua, no aeroporto ou no transporte.',r:`I'm lost.|Estou perdido.|AIM LÓST
+Can you show me on the map?|Pode me mostrar no mapa?|KÉN IU XÔU MI ÓN DÂ MÉP
+I missed my flight.|Perdi meu voo.|AI MÍST MAI FLÁIT
+My luggage didn't arrive.|Minha bagagem não chegou.|MAI LÂGUEDJ DÍDNT ARRÁIV
+Where can I charge my phone?|Onde posso carregar meu celular?|UÉR KÉN AI TCHÁRDJ MAI FÔUN
+How do I get to this address?|Como chego neste endereço?|RRÁU DU AI GUÉT TU DIS ÉDRES`},
+{t:'Vocabulário urgente',d:'Palavras para reconhecer em placas e avisos.',r:`emergency exit|saída de emergência|IMÂRDJENSI ÉKZIT
+first aid|primeiros socorros|FÂRST ÊID
+pharmacy / drugstore|farmácia|FÁRMASI / DRÂGSTOR
+danger|perigo|DÊINDJER
+caution|atenção|KÓXAN
+wet floor|piso molhado|UÉT FLÓR
+do not enter|não entre|DU NÓT ÉNTER
+out of order|fora de serviço|ÁURA ÓRDER
+injury|lesão / ferimento|ÍNDJURI
+accident|acidente|ÉKSIDENT`}
+];
+const PV=`get up|levantar (da cama)|GUÉT ÂP|I get up at six.|Levanto às seis.
+wake up|acordar|UÊIK ÂP|I woke up late.|Acordei tarde.
+go out|sair (para passear)|GÔU ÁUT|Let's go out tonight.|Vamos sair hoje à noite.
+come back|voltar|KÂM BÉK|Come back soon!|Volte logo!
+come in|entrar|KÂM ÍN|Come in, please.|Entre, por favor.
+sit down|sentar|SÍT DÁUN|Please sit down.|Sente-se, por favor.
+stand up|levantar (ficar de pé)|STÉND ÂP|Stand up, please.|Levante-se, por favor.
+turn on|ligar (aparelho)|TÂRN ÓN|Turn on the light.|Acenda a luz.
+turn off|desligar|TÂRN ÓF|Turn off your phone.|Desligue o celular.
+turn up|aumentar (volume)|TÂRN ÂP|Turn up the music.|Aumente a música.
+turn down|abaixar / recusar|TÂRN DÁUN|He turned down the offer.|Ele recusou a oferta.
+put on|vestir|PÚT ÓN|Put on your coat.|Vista o casaco.
+take off|tirar (roupa) / decolar|TÊIK ÓF|The plane took off.|O avião decolou.
+pick up|buscar / pegar|PÍK ÂP|I'll pick you up at eight.|Te busco às oito.
+drop off|deixar alguém|DRÓP ÓF|Drop me off here.|Me deixa aqui.
+look for|procurar|LÚK FÓR|I'm looking for my keys.|Estou procurando minhas chaves.
+look after|cuidar de|LÚK ÉFTER|She looks after her mom.|Ela cuida da mãe.
+look up|pesquisar|LÚK ÂP|Look it up online.|Pesquisa na internet.
+look forward to|estar ansioso por|LÚK FÓRUARD TU|I look forward to it.|Estou ansioso por isso.
+find out|descobrir|FÁIND ÁUT|I found out the truth.|Descobri a verdade.
+figure out|entender / resolver|FÍGUIR ÁUT|I need time to figure it out.|Preciso de tempo para resolver.
+give up|desistir|GUÍV ÂP|Don't give up!|Não desista!
+give back|devolver|GUÍV BÉK|Give it back to me.|Me devolve.
+get over|superar|GUÉT ÔUVER|She got over it quickly.|Ela superou rápido.
+get along|se dar bem|GUÉT ALÓNG|We get along well.|A gente se dá bem.
+get in|entrar (carro)|GUÉT ÍN|Get in the car.|Entra no carro.
+get out|sair|GUÉT ÁUT|Get out of the car.|Saia do carro.
+get on|embarcar (ônibus, avião)|GUÉT ÓN|We got on the bus.|Embarcamos no ônibus.
+get off|descer (de transporte)|GUÉT ÓF|Get off at the next stop.|Desça na próxima parada.
+get back|voltar|GUÉT BÉK|I'll get back to you.|Eu te retorno.
+catch up|colocar em dia / alcançar|KÉTCH ÂP|Let's catch up soon.|Vamos colocar a conversa em dia.
+come across|encontrar por acaso|KÂM AKRÓS|I came across an old photo.|Encontrei uma foto antiga por acaso.
+run into|esbarrar em alguém|RÂN ÍNTU|I ran into Mike.|Esbarrei com o Mike.
+run out of|ficar sem|RÂN ÁURA|We ran out of coffee.|Acabou o café.
+break down|quebrar / desabar|BRÊIK DÁUN|My car broke down.|Meu carro quebrou.
+break up|terminar (namoro)|BRÊIK ÂP|They broke up.|Eles terminaram.
+speak up|falar mais alto|SPÍK ÂP|Can you speak up?|Pode falar mais alto?
+calm down|se acalmar|KÁLM DÁUN|Calm down, please.|Se acalme, por favor.
+slow down|ir mais devagar|SLÔU DÁUN|Slow down!|Vai mais devagar!
+hurry up|se apressar|RRÂRI ÂP|Hurry up, we're late!|Anda logo, estamos atrasados!
+hold on|esperar um pouco|RRÔULD ÓN|Hold on a second.|Espera um segundo.
+hang up|desligar (telefone)|RRÉNG ÂP|Don't hang up!|Não desliga!
+call back|retornar a ligação|CÓL BÉK|I'll call you back.|Te ligo de volta.
+fill out|preencher (formulário)|FÍL ÁUT|Fill out this form.|Preencha este formulário.
+check in|fazer check-in|TCHÉK ÍN|We checked in at noon.|Fizemos check-in ao meio-dia.
+check out|sair do hotel / dar uma olhada|TCHÉK ÁUT|Check out this video.|Olha esse vídeo.
+show up|aparecer|XÔU ÂP|He didn't show up.|Ele não apareceu.
+set up|montar / configurar|SÉT ÂP|I set up the meeting.|Marquei a reunião.
+work out|malhar / dar certo|UÂRK ÁUT|It worked out fine.|Deu tudo certo.
+put off|adiar|PÚT ÓF|Don't put it off.|Não adie isso.
+call off|cancelar|CÓL ÓF|They called off the game.|Cancelaram o jogo.
+carry on|continuar|KÉRI ÓN|Carry on, please.|Continue, por favor.
+go on|continuar / acontecer|GÔU ÓN|What's going on?|O que está acontecendo?
+keep up|acompanhar|KÍP ÂP|Keep up the good work!|Continue assim!
+look into|investigar|LÚK ÍNTU|I'll look into it.|Vou verificar isso.
+point out|apontar / mostrar|PÓINT ÁUT|He pointed out the problem.|Ele apontou o problema.
+bring up|mencionar (um assunto)|BRÍNG ÂP|Don't bring that up.|Não toque nesse assunto.
+come up with|ter uma ideia|KÂM ÂP UÍF|She came up with a plan.|Ela teve um plano.
+put up with|aguentar / tolerar|PÚT ÂP UÍF|I can't put up with it.|Não aguento isso.
+cut down on|reduzir|KÂT DÁUN ÓN|Cut down on sugar.|Reduza o açúcar.
+get rid of|se livrar de|GUÉT RÍD ÓV|Get rid of that box.|Se livre dessa caixa.
+take care of|cuidar de|TÊIK KÉR ÓV|I'll take care of it.|Eu cuido disso.
+deal with|lidar com|DÍL UÍF|I'll deal with it.|Eu lido com isso.
+sort out|resolver / organizar|SÓRT ÁUT|Let's sort it out.|Vamos resolver isso.
+end up|acabar (no fim)|ÉND ÂP|We ended up staying home.|Acabamos ficando em casa.
+grow up|crescer|GRÔU ÂP|I grew up in Brazil.|Cresci no Brasil.
+move in|se mudar para|MÚV ÍN|We moved in last year.|Nos mudamos ano passado.
+move out|se mudar de|MÚV ÁUT|She moved out.|Ela se mudou.
+throw away|jogar fora|THRÔU AUÊI|Throw it away.|Joga fora.
+put away|guardar|PÚT AUÊI|Put your toys away.|Guarde seus brinquedos.
+clean up|arrumar / limpar|KLÍN ÂP|Clean up your room.|Arrume seu quarto.
+fall asleep|pegar no sono|FÓL ASLÍP|I fell asleep on the couch.|Peguei no sono no sofá.
+eat out|comer fora|ÍT ÁUT|Let's eat out tonight.|Vamos comer fora hoje.
+hang out|sair / ficar junto|RRÉNG ÁUT|We hang out on weekends.|Saímos juntos nos fins de semana.
+show off|se exibir|XÔU ÓF|Stop showing off!|Para de se exibir!
+make up|inventar / fazer as pazes|MÊIK ÂP|They made up.|Eles fizeram as pazes.
+let down|decepcionar|LÉT DÁUN|Don't let me down.|Não me decepcione.
+count on|contar com|KÁUNT ÓN|You can count on me.|Pode contar comigo.
+rely on|depender de / confiar|RILÁI ÓN|I rely on my team.|Confio na minha equipe.
+look out|tomar cuidado|LÚK ÁUT|Look out!|Cuidado!
+watch out|tomar cuidado|UÓTCH ÁUT|Watch out for cars.|Cuidado com os carros.
+take after|puxar a alguém|TÊIK ÉFTER|She takes after her mom.|Ela puxou a mãe.
+take over|assumir|TÊIK ÔUVER|He took over the company.|Ele assumiu a empresa.
+fall apart|desmoronar|FÓL APÁRT|Everything fell apart.|Tudo desmoronou.
+go through|passar por|GÔU THRÚ|We went through a lot.|Passamos por muita coisa.
+write down|anotar|RÁIT DÁUN|Write it down.|Anota isso.
+log in|entrar (no sistema)|LÓG ÍN|Log in with your password.|Entre com sua senha.
+sign up|se inscrever|SÁIN ÂP|I signed up for the course.|Me inscrevi no curso.
+try on|provar (roupa)|TRÁI ÓN|Can I try it on?|Posso provar?
+pay back|pagar de volta|PÊI BÉK|I'll pay you back.|Te pago depois.
+look down on|menosprezar|LÚK DÁUN ÓN|Don't look down on people.|Não menospreze as pessoas.
+back up|apoiar / fazer cópia|BÉK ÂP|Back up your files.|Faça cópia dos arquivos.
+blow up|explodir|BLÔU ÂP|The tire blew up.|O pneu estourou.
+cheer up|animar|TCHÍR ÂP|Cheer up!|Anime-se!
+drop by|passar rapidinho|DRÓP BÁI|Drop by anytime.|Passa aqui quando quiser.
+fit in|se encaixar|FÍT ÍN|I want to fit in.|Quero me enturmar.
+give in|ceder|GUÍV ÍN|He finally gave in.|Ele finalmente cedeu.
+go over|revisar|GÔU ÔUVER|Let's go over the report.|Vamos revisar o relatório.
+hand in|entregar (trabalho)|RRÉND ÍN|Hand in your homework.|Entregue a lição.
+kick off|começar|KÍK ÓF|The meeting kicks off at nine.|A reunião começa às nove.
+lay off|demitir|LÊI ÓF|They laid off 50 workers.|Demitiram 50 funcionários.
+pass out|desmaiar|PÉS ÁUT|He passed out.|Ele desmaiou.
+pull over|encostar o carro|PÚL ÔUVER|Pull over here.|Encosta aqui.
+run over|atropelar|RÂN ÔUVER|Be careful not to run over anyone.|Cuidado para não atropelar ninguém.
+stand out|se destacar|STÉND ÁUT|Her work stands out.|O trabalho dela se destaca.
+take up|começar um hobby|TÊIK ÂP|I took up running.|Comecei a correr.
+think over|pensar bem|THÍNK ÔUVER|Let me think it over.|Deixa eu pensar melhor.
+wear out|desgastar / cansar|UÉR ÁUT|I'm worn out.|Estou exausto.
+zone out|viajar (se distrair)|ZÔUN ÁUT|Sorry, I zoned out.|Desculpa, me distraí.`;
+
+
+
+/* ---------- Mapas completos ---------- */
+const MMT=`@A1|H no inglês|Quando o H sopra e quando some
+C: Na maioria das palavras, o H tem um som de sopro leve, como um "rr" bem suave de "rato".
+C: Em algumas palavras que vieram do francês e do latim, o H não tem som nenhum.
+P: O H é um sopro. Às vezes ele sai, às vezes some.
+R: H com sopro|house, hello, happy, home, help
+R: H mudo|hour, honest, honor, heir
+E: house|casa
+E: hello|olá
+E: happy|feliz
+E: hour|hora (H mudo, soa "áuar")
+E: honest|honesto (H mudo, soa "ónest")
+X: áus|house|O brasileiro costuma apagar o H. Solte um sopro leve no começo: "rráus".
+D: Imagine embaçar um espelho com a boca. Esse ar é o som do H.
+N: Sons do TH
+
+@A1|Sons do TH|O som que não existe em português
+C: O TH tem dois sons, e os dois são feitos com a ponta da língua entre os dentes.
+C: Um sai só com ar, sem vibrar a garganta. O outro vibra.
+P: Língua entre os dentes, como quem vai mostrar a língua de leve.
+R: TH sem vibrar|think, thanks, three, Thursday, birthday
+R: TH vibrando|the, this, that, mother, brother
+E: Thank you.|Obrigado.
+E: I think so.|Acho que sim.
+E: three|três
+E: This is my brother.|Este é meu irmão.
+X: tank you / fank you|thank you|Não troque o TH por T ou F. Coloque a língua entre os dentes e solte o ar.
+D: Ponha o dedo na frente da boca. Ao falar "think", a língua deve encostar nele.
+N: Sons da letra U
+
+@A1|Sons da letra U|Sun, music, put e variações
+C: A letra U muda de som conforme a palavra. Não é sempre o "u" do português.
+P: O U tem três caminhos: "â" curto, "iú" e "u" fechado.
+R: â curto|sun, cup, bus, but, fun
+R: iú|music, student, use, cute
+R: u fechado|put, full, sugar, push
+E: The sun is hot.|O sol está quente.
+E: I like music.|Eu gosto de música.
+E: Put it here.|Coloque isso aqui.
+E: This cup is blue.|Esta xícara é azul.
+X: músic|music|O U de music soa "iú": "miúzik".
+X: sun com U fechado|sun|O U de sun soa como um "â" aberto, parecido com "sân".
+D: Agrupe as palavras pelo som, não pela letra: sun, cup e bus vivem juntas.
+N: Dias da semana
+
+@A1|Dias da semana|Monday a Sunday
+C: Os dias da semana organizam a rotina, os compromissos e os planos.
+C: Em inglês, os dias são sempre escritos com letra maiúscula.
+P: Cada dia é uma etiqueta para o tempo na semana.
+R: Dias úteis (weekdays)|Monday, Tuesday, Wednesday, Thursday, Friday
+R: Fim de semana (weekend)|Saturday, Sunday
+R: Para falar de um dia|on + dia: on Monday
+E: I study on Monday.|Eu estudo na segunda.
+E: We have class on Wednesday.|Temos aula na quarta.
+E: Saturday is my day off.|Sábado é minha folga.
+E: See you on Sunday!|Te vejo no domingo!
+X: I study Monday.|I study on Monday.|Com os dias da semana, usamos "on" antes do dia.
+X: monday|Monday|Os dias começam com letra maiúscula.
+D: Repita os sete dias em ordem, várias vezes, até a sequência ficar automática.
+N: Pedir ajuda
+
+@A1|Pedir ajuda|Could you help me?
+C: Saber pedir ajuda com clareza e educação é útil em viagens, lojas, na rua e no trabalho.
+P: Pedir ajuda bem é falar claro e com gentileza.
+R: Simples|Can you help me?
+R: Mais educado|Could you help me, please?
+R: Com o que precisa|Can you help me with + coisa?
+R: Mostrar|Could you show me + coisa?
+E: Can you help me?|Você pode me ajudar?
+E: Could you help me, please?|Você poderia me ajudar, por favor?
+E: I need help with my bag.|Preciso de ajuda com minha mala.
+E: Can you show me the way?|Pode me mostrar o caminho?
+X: You can help me?|Can you help me?|Na pergunta, o "can" vem antes da pessoa.
+D: Pessoa + pergunta + gentileza: "could" e "please" deixam o pedido mais educado.
+N: Verbo to be
+
+@A1|Verbo to be|Ser e estar numa palavra só
+C: Em inglês, "ser" e "estar" são o mesmo verbo: to be.
+C: Ele muda de forma conforme a pessoa: am, is, are.
+P: I am, you are, he is. A pessoa escolhe a forma.
+R: I|am (I'm)
+R: he, she, it|is (he's, she's, it's)
+R: you, we, they|are (you're, we're, they're)
+R: Negativa|is not (isn't), are not (aren't)
+E: I'm Brazilian.|Sou brasileiro.
+E: She's tired.|Ela está cansada.
+E: We're at home.|Estamos em casa.
+E: Are you OK?|Você está bem?
+X: I have 47 years.|I'm 47.|Idade em inglês usa o verbo to be, não "have".
+X: She is tired? (sem inverter)|Is she tired?|Na pergunta, o verbo vem antes da pessoa.
+D: Pense em um sinal de igual: I = am, she = is, they = are.
+N: Plural das palavras
+
+@A1|Plural das palavras|Um carro, dois carros
+C: Na maioria das palavras, basta colocar S no final.
+C: Algumas mudam a escrita ou a palavra inteira.
+P: Mais de um: quase sempre é só pôr S.
+R: Normal: + s|car → cars, book → books
+R: Termina em s, sh, ch, x: + es|bus → buses, watch → watches
+R: Consoante + y: troca por ies|city → cities, baby → babies
+R: Irregulares|man → men, child → children, foot → feet
+E: two cars|dois carros
+E: three cities|três cidades
+E: my children|meus filhos
+E: I have two feet.|Eu tenho dois pés.
+X: childs|children|Child é irregular: o plural é children.
+X: peoples|people|People já é plural: "pessoas".
+D: Faça uma lista só dos irregulares e leia todo dia.
+N: This, that, these, those
+
+@A1|This, that, these, those|Perto e longe, um e vários
+C: Essas palavras apontam coisas, perto ou longe de você.
+P: TH-is perto, TH-at longe. Plural: these e those.
+R: Perto, um|this (este, esta)
+R: Perto, vários|these (estes, estas)
+R: Longe, um|that (aquele, aquela)
+R: Longe, vários|those (aqueles, aquelas)
+E: This is my phone.|Este é meu celular.
+E: These are my keys.|Estas são minhas chaves.
+E: That car is old.|Aquele carro é velho.
+E: Those people are nice.|Aquelas pessoas são legais.
+X: This are my keys.|These are my keys.|Para vários, use these.
+D: Aponte para algo na mão (this) e para algo longe (that) enquanto fala.
+N: There is e there are
+
+@A1|There is e there are|Para dizer o que tem
+C: Para dizer que algo existe em um lugar, o inglês usa "there is" e "there are".
+P: There is = tem um. There are = tem vários.
+R: Um|There is (There's) a bank.
+R: Vários|There are two banks.
+R: Pergunta|Is there a bank near here?
+R: Negativa|There isn't / There aren't
+E: There is a pharmacy on the corner.|Tem uma farmácia na esquina.
+E: There are three bedrooms.|Tem três quartos.
+E: Is there Wi-Fi here?|Tem Wi-Fi aqui?
+E: There aren't any chairs.|Não tem nenhuma cadeira.
+X: Have a bank here?|Is there a bank here?|Para "tem" no sentido de existir, não use "have".
+D: Imagine um mapa: there is aponta o que existe em cada lugar.
+N: Much e many
+
+@A2|Much e many|Quantidade que se conta e que não se conta
+C: "Much" é usado com coisas que não se contam. "Many" é usado com coisas contáveis no plural.
+C: Os dois significam "muito" ou "muitos".
+P: Much = muita quantidade, que não se conta em unidades. Many = muitos itens, que se contam.
+R: much + incontável|much water, much money, much time
+R: many + contável no plural|many books, many friends
+R: Uso comum|Aparecem mais em perguntas e negativas.
+E: How much money do you have?|Quanto dinheiro você tem?
+E: How many students are there?|Quantos alunos tem?
+E: I don't have much time.|Não tenho muito tempo.
+E: There are many cars.|Tem muitos carros.
+X: much apples|many apples|Apples se conta, então use many.
+X: many money|much money|Money não se conta em unidades, então use much.
+D: Água, dinheiro e tempo: much. Livros, carros e pessoas: many.
+N: A lot of e lots of
+
+@A2|A lot of e lots of|Quantidade grande, sem complicação
+C: "A lot of" e "lots of" significam muito, muitos, muita, muitas.
+C: Servem para coisas contáveis e incontáveis. "Lots of" é um pouco mais informal.
+P: A lot of = bastante. Serve para tudo.
+R: a lot of + plural|a lot of friends
+R: a lot of + incontável|a lot of water
+R: lots of + qualquer um|lots of books, lots of time
+E: a lot of time|muito tempo
+E: lots of friends|muitos amigos
+E: We have a lot of work.|Temos muito trabalho.
+E: She drinks lots of water.|Ela bebe muita água.
+X: a lot books|a lot of books|Não esqueça o "of".
+D: Em frases afirmativas do dia a dia, prefira "a lot of": soa mais natural que "much".
+N: Too e enough
+
+@A2|Too e enough|Demais e o suficiente
+C: "Too" indica excesso, algo além do necessário. "Enough" indica a medida certa.
+P: Pouco, enough (o bastante), too (passou do ponto).
+R: too + adjetivo|too hot, too expensive
+R: too much + incontável|too much noise
+R: too many + plural|too many cars
+R: adjetivo + enough|big enough, old enough
+R: enough + coisa|enough money, enough time
+E: It's too hot.|Está quente demais.
+E: There's too much noise.|Tem barulho demais.
+E: Is it big enough?|É grande o suficiente?
+E: I don't have enough time.|Não tenho tempo suficiente.
+X: hot too|too hot|No sentido de "demais", too vem antes do adjetivo.
+X: enough big|big enough|Com adjetivo, enough vem depois.
+D: Pense num ponteiro: enough fica no meio, too passa do ponto.
+N: Passado com -ed
+
+@A2|Passado com -ed|Três sons para o mesmo final
+C: Os verbos regulares fazem o passado com -ed. Mas o -ed tem três sons diferentes.
+P: O -ed quase nunca soa "éd". Na maioria das vezes, só vira um T ou D.
+R: Som de T|worked, watched, liked, stopped
+R: Som de D|played, called, lived, cleaned
+R: Som de ID (só depois de T ou D)|wanted, needed, visited
+E: I worked yesterday.|Trabalhei ontem.
+E: She called me.|Ela me ligou.
+E: We watched a movie.|Assistimos a um filme.
+E: I needed help.|Precisei de ajuda.
+X: uórked (com "ed")|worked ("uârkt")|Não pronuncie o "ed" inteiro. Termine com T.
+D: Só fale "id" quando o verbo termina em T ou D: want-ed, need-ed.
+N: Some e any
+
+@A2|Some e any|Algum, nenhum e qualquer
+C: "Some" aparece em frases afirmativas e em ofertas. "Any" aparece em perguntas e negativas.
+P: Some = um pouco, alguns. Any = algum? / nenhum.
+R: Afirmativa|I have some money.
+R: Pergunta|Do you have any questions?
+R: Negativa|I don't have any money.
+R: Oferecer|Would you like some coffee?
+E: I need some help.|Preciso de uma ajuda.
+E: Do you have any brothers?|Você tem irmãos?
+E: There isn't any milk.|Não tem leite.
+E: Would you like some water?|Quer um pouco de água?
+X: I don't have some money.|I don't have any money.|Na negativa, use any.
+D: Ofereceu algo? Use some, mesmo sendo pergunta.
+N: In, on, at no tempo
+
+@A2|In, on, at no tempo|Ano, dia e hora
+C: As três palavras dizem "quando", mas cada uma serve para um tamanho de tempo.
+P: Do maior para o menor: IN (mês, ano), ON (dia), AT (hora).
+R: in|in October, in 2026, in the morning
+R: on|on Monday, on May 10th, on my birthday
+R: at|at 8 o'clock, at noon, at night
+E: I was born in 1979.|Nasci em 1979.
+E: See you on Friday.|Te vejo na sexta.
+E: The meeting is at three.|A reunião é às três.
+E: I work in the morning.|Trabalho de manhã.
+X: in Monday|on Monday|Dia da semana usa on.
+X: in night|at night|À noite é "at night".
+D: Imagine uma pirâmide de cabeça para baixo: in no topo largo, at na ponta fina.
+N: Will e going to
+
+@A2|Will e going to|Dois jeitos de falar do futuro
+C: "Going to" é para planos já decididos. "Will" é para decisões na hora, promessas e previsões.
+P: Já planejei: going to. Decidi agora: will.
+R: Plano|I'm going to travel next month.
+R: Decisão na hora|I'll help you.
+R: Promessa|I'll call you tomorrow.
+R: Previsão com evidência|Look at the sky! It's going to rain.
+E: I'm going to buy a car.|Vou comprar um carro.
+E: I'll have the chicken.|Vou querer o frango.
+E: I'll call you later.|Te ligo mais tarde.
+E: It's going to rain.|Vai chover.
+X: I will to go.|I will go.|Depois de will, o verbo vem sem "to".
+D: Telefone tocou? "I'll get it!" Você decidiu na hora.
+N: O T americano
+
+@A2|O T americano|Por que water soa "uórer"
+C: No inglês americano, o T entre duas vogais vira um R leve, como em "caro".
+C: Por isso water soa "uórer" e better soa "bérer".
+P: T entre vogais: toque leve da língua, como o R de "cara".
+R: T entre vogais vira R leve|water, better, city, party, little
+R: T no começo é forte|time, today, two
+R: T depois de N pode sumir|twenty ("tuéni"), internet ("ínernet")
+E: water|água
+E: a little bit|um pouquinho
+E: What a beautiful city!|Que cidade linda!
+E: Get it?|Entendeu?
+X: uóter (T bem marcado)|water ("uórer")|Com T forte você é entendido, mas soa estrangeiro.
+D: Fale "Get it?" rápido, como "Guérit?". Esse é o T americano.
+N: Should
+
+@B1|Should|Para dar conselho
+C: "Should" é usado para dar conselhos, recomendações e opiniões sobre o que é uma boa ideia fazer.
+C: É mais suave do que uma obrigação forte.
+P: Should = conselho, não obrigação.
+R: Afirmativa|pessoa + should + verbo
+R: Pergunta|Should + pessoa + verbo?
+R: Negativa|pessoa + shouldn't + verbo
+E: You should study.|Você deveria estudar.
+E: She should rest.|Ela deveria descansar.
+E: We should leave now.|Deveríamos sair agora.
+E: Should I call him?|Eu deveria ligar para ele?
+X: You should to study.|You should study.|Depois de should, o verbo vem sem "to".
+D: Should = conselho, sugestão, recomendação. O próximo passo é "must", que é mais forte.
+N: Must e have to
+
+@B1|Must e have to|Obrigação de verdade
+C: "Have to" é a obrigação do dia a dia, por regra ou necessidade. "Must" soa mais forte e aparece em regras e avisos.
+C: Na negativa, o sentido muda muito.
+P: Have to = preciso. Don't have to = não preciso. Mustn't = é proibido.
+R: Obrigação|I have to work tomorrow.
+R: Regra forte|You must wear a helmet.
+R: Não é necessário|You don't have to pay.
+R: Proibido|You mustn't smoke here.
+E: I have to go.|Tenho que ir.
+E: She has to wake up early.|Ela tem que acordar cedo.
+E: You don't have to come.|Você não precisa vir.
+E: You mustn't park here.|É proibido estacionar aqui.
+X: You don't have to smoke here.|You mustn't smoke here.|"Don't have to" é "não precisa", não "não pode".
+D: Na segurança do trabalho: "You must wear PPE" é regra; "You mustn't enter" é proibição.
+N: Já fiz, nunca fiz
+
+@B1|Já fiz, nunca fiz|O passado sem data
+C: Para falar de experiências da vida, sem dizer quando, o inglês usa "have" + verbo no particípio.
+P: Já aconteceu, mas a data não importa.
+R: Experiência|I have been to New York.
+R: Pergunta|Have you ever...?
+R: Nunca|I have never...
+R: Acabou de|I have just arrived.
+E: Have you ever been to the US?|Você já foi aos EUA?
+E: I've been there twice.|Já fui duas vezes.
+E: I've never tried sushi.|Nunca experimentei sushi.
+E: She's just left.|Ela acabou de sair.
+X: I have been there yesterday.|I was there yesterday.|Com data (yesterday, last week), use o passado simples.
+D: Tem data? Passado simples. Sem data, só a experiência? Have + particípio.
+N: For e since
+
+@B1|For e since|Há quanto tempo
+C: "For" mostra quanto tempo dura. "Since" mostra quando começou.
+P: For = durante. Since = desde.
+R: for + período|for ten years, for two hours
+R: since + ponto de início|since 2016, since Monday
+R: Pergunta|How long have you...?
+E: I've lived here for ten years.|Moro aqui há dez anos.
+E: I've lived here since 2016.|Moro aqui desde 2016.
+E: How long have you worked there?|Há quanto tempo você trabalha lá?
+E: We've been friends since school.|Somos amigos desde a escola.
+X: I live here for ten years.|I've lived here for ten years.|Algo que começou no passado e continua usa have + particípio.
+D: For é a régua (quanto tempo). Since é o ponto de partida.
+N: Used to
+
+@B1|Used to|O que eu fazia antes
+C: "Used to" fala de hábitos e situações do passado que não acontecem mais.
+P: Used to = costumava.
+R: Afirmativa|I used to smoke.
+R: Negativa|I didn't use to like coffee.
+R: Pergunta|Did you use to...?
+E: I used to play soccer.|Eu jogava futebol.
+E: She used to live in Rio.|Ela morava no Rio.
+E: I didn't use to like coffee.|Eu não gostava de café.
+E: Did you use to work there?|Você trabalhava lá?
+X: I use to play.|I used to play.|No passado, é "used", com D.
+D: Pense numa foto antiga: "I used to have long hair."
+N: Comparar
+
+@B1|Comparar|Maior, melhor, o melhor
+C: Para comparar, palavras curtas ganham -er e -est. Palavras longas usam more e most.
+P: Curta: bigger. Longa: more expensive.
+R: Curta|big → bigger → the biggest
+R: Longa|expensive → more expensive → the most expensive
+R: Irregular|good → better → the best / bad → worse → the worst
+R: Igualdade|as big as
+E: São Paulo is bigger than Rio.|São Paulo é maior que o Rio.
+E: This one is more expensive.|Este é mais caro.
+E: It's the best pizza in town.|É a melhor pizza da cidade.
+E: He's as tall as me.|Ele é tão alto quanto eu.
+X: more big|bigger|Palavra curta não usa more.
+X: more better|better|Better já é comparativo.
+D: Conte as sílabas: uma sílaba, -er. Três ou mais, more.
+N: Make e do
+
+@B1|Make e do|Dois "fazer"
+C: Os dois significam "fazer". "Make" é criar ou produzir algo. "Do" é realizar tarefas e atividades.
+P: Make = cria algo novo. Do = executa uma tarefa.
+R: make|make a cake, make a decision, make money, make a mistake
+R: do|do homework, do the dishes, do exercise, do a favor
+E: I made dinner.|Fiz o jantar.
+E: Can you do me a favor?|Pode me fazer um favor?
+E: I made a mistake.|Cometi um erro.
+E: I do exercise every day.|Faço exercício todo dia.
+X: do a mistake|make a mistake|Erro é "make".
+D: Faça duas listas na geladeira: o que você "make" e o que você "do".
+N: Can, could, be able to
+
+@B1|Can, could, be able to|Poder e conseguir
+C: "Can" é a capacidade ou permissão no presente. "Could" é o passado ou um pedido mais educado. "Be able to" serve para os outros tempos.
+P: Can = consigo. Could = conseguia / poderia.
+R: Presente|I can swim.
+R: Passado|I could swim when I was five.
+R: Pedido educado|Could you help me?
+R: Futuro|I'll be able to help tomorrow.
+E: I can speak a little English.|Falo um pouco de inglês.
+E: I couldn't sleep last night.|Não consegui dormir ontem.
+E: Could you repeat, please?|Poderia repetir, por favor?
+E: Will you be able to come?|Você vai conseguir vir?
+X: I will can go.|I'll be able to go.|Não junte will e can.
+D: Pedido para estranhos? Sempre "could": soa mais educado.
+N: Phrasal verbs que se separam
+
+@B2|Phrasal verbs que se separam|Turn it off, não turn off it
+C: Muitos verbos de duas palavras aceitam a coisa no meio. Quando a coisa é "it", "them" ou "him", ela é obrigatória no meio.
+P: Pronome sempre no meio: turn it off.
+R: Com nome: dois jeitos|turn off the TV / turn the TV off
+R: Com pronome: só no meio|turn it off, pick them up
+R: Não se separam|look after, get on, run into
+E: Turn off the lights.|Apague as luzes.
+E: Turn them off.|Apague-as.
+E: Can you pick me up?|Pode me buscar?
+E: I ran into an old friend.|Encontrei um velho amigo por acaso.
+X: Turn off it.|Turn it off.|Pronome vai no meio do phrasal verb.
+D: Imagine o pronome como um recheio de sanduíche: entre as duas partes.
+N: Imaginar com If
+
+@B2|Imaginar com If|Se eu fosse você
+C: Para falar de situações imaginárias no presente, o inglês usa o passado depois de "if" e "would" na outra parte.
+P: If + passado, would + verbo.
+R: Real (pode acontecer)|If it rains, I'll stay home.
+R: Imaginário|If I had money, I would travel.
+R: Conselho|If I were you, I would...
+E: If I were you, I'd take the job.|Se eu fosse você, aceitaria o emprego.
+E: If I had more time, I'd study more.|Se eu tivesse mais tempo, estudaria mais.
+E: What would you do?|O que você faria?
+E: If it rains, we'll stay home.|Se chover, ficamos em casa.
+X: If I would have money...|If I had money...|Não use would na parte do if.
+D: "If I were you" é a forma clássica de dar conselho. Use "were" para todas as pessoas.
+N: Wish
+
+@B2|Wish|Queria que fosse diferente
+C: "Wish" expressa desejo de algo diferente da realidade, no presente ou no passado.
+P: Wish olha para trás no tempo: presente vira passado.
+R: Presente|I wish I spoke English.
+R: Passado|I wish I had studied.
+R: Reclamação|I wish you would stop.
+E: I wish I had more time.|Queria ter mais tempo.
+E: I wish I lived near the beach.|Queria morar perto da praia.
+E: I wish I had known.|Queria ter sabido.
+E: I wish it would stop raining.|Queria que parasse de chover.
+X: I wish I speak English.|I wish I spoke English.|Depois de wish, o verbo recua um tempo.
+D: Wish é o "quem dera" do inglês.
+N: Voz passiva
+
+@B2|Voz passiva|Quando a ação importa mais que quem fez
+C: Na voz passiva, o foco é no que aconteceu, não em quem fez.
+P: to be + particípio.
+R: Presente|English is spoken here.
+R: Passado|The house was built in 1990.
+R: Com quem fez|The report was written by Ana.
+E: My car was stolen.|Meu carro foi roubado.
+E: The meeting was canceled.|A reunião foi cancelada.
+E: Breakfast is served at seven.|O café é servido às sete.
+E: The accident was reported.|O acidente foi comunicado.
+X: My car was stole.|My car was stolen.|Use o particípio (stolen), não o passado (stole).
+D: Relatórios de segurança usam muito a passiva: "The area was inspected."
+N: Os mil sentidos de GET
+
+@B2|Os mil sentidos de GET|O verbo coringa do americano
+C: "Get" muda de sentido conforme o que vem depois. O americano usa o tempo todo.
+P: Get = mudar de estado ou obter algo.
+R: Conseguir / receber|get a job, get a message
+R: Chegar|get home, get to work
+R: Ficar (mudança)|get tired, get better, get married
+R: Entender|I get it.
+E: I got a new job.|Consegui um emprego novo.
+E: What time do you get home?|Que horas você chega em casa?
+E: It's getting cold.|Está ficando frio.
+E: I don't get it.|Não entendi.
+X: I stayed tired.|I got tired.|"Ficar" no sentido de mudar de estado é "get".
+D: Sempre que pensar em "ficar", "chegar" ou "conseguir", teste o get.
+N: Contar o que alguém disse
+
+@B2|Contar o que alguém disse|He said that...
+C: Para repetir o que alguém falou, o verbo costuma recuar um tempo.
+P: Ele disse "I am tired" → He said he was tired.
+R: Presente → passado|"I'm tired." → She said she was tired.
+R: Will → would|"I'll call." → He said he would call.
+R: Pergunta|She asked if I was OK.
+R: Pedido|He told me to wait.
+E: She said she was busy.|Ela disse que estava ocupada.
+E: He told me to call him.|Ele me disse para ligar para ele.
+E: They asked where I lived.|Perguntaram onde eu morava.
+E: He said he would come.|Ele disse que viria.
+X: He said me...|He told me... / He said to me...|Com pessoa depois, use told.
+D: Said = disse. Told + pessoa = disse para alguém.
+N: Stop doing e stop to do
+
+@B2|Stop doing e stop to do|O verbo muda o sentido
+C: Alguns verbos mudam de sentido conforme o que vem depois: o verbo com -ing ou com "to".
+P: Stop smoking = parar de fumar. Stop to smoke = parar para fumar.
+R: stop + -ing|parar de fazer
+R: stop + to|parar para fazer
+R: remember + -ing|lembrar de algo que fez
+R: remember + to|lembrar de fazer algo
+E: I stopped smoking.|Parei de fumar.
+E: We stopped to eat.|Paramos para comer.
+E: Remember to call me.|Lembre de me ligar.
+E: I remember meeting her.|Lembro de ter conhecido ela.
+X: I enjoy to read.|I enjoy reading.|Enjoy sempre pede -ing.
+D: Verbos de gosto (enjoy, like, love) quase sempre aceitam -ing.
+N: Should have
+
+@B2|Should have|O conselho que chegou tarde
+C: "Should have" + particípio fala de algo que teria sido melhor fazer, mas não foi feito.
+P: Should have = deveria ter.
+R: Arrependimento|I should have studied.
+R: Crítica|You shouldn't have said that.
+R: Could have|It could have been worse.
+E: I should have called you.|Eu deveria ter te ligado.
+E: You shouldn't have worried.|Você não deveria ter se preocupado.
+E: It could have been worse.|Poderia ter sido pior.
+E: We should have left earlier.|Deveríamos ter saído mais cedo.
+X: I should studied.|I should have studied.|Precisa do have + particípio.
+D: Na fala, "should have" vira "shoulda": "I shoulda known".
+N: Conectores de contraste
+
+@C1|Conectores de contraste|However, although, despite
+C: Para mostrar contraste com elegância, o inglês tem várias opções, e cada uma tem sua posição na frase.
+P: Although liga duas frases. Despite vem antes de uma coisa. However começa a frase.
+R: although + frase|Although it was late, we stayed.
+R: despite + coisa / -ing|Despite the rain, we went.
+R: however (início)|It's cheap. However, it's slow.
+R: even though (mais forte)|Even though I was tired, I went.
+E: Although I was tired, I finished.|Embora estivesse cansado, terminei.
+E: Despite the traffic, we arrived on time.|Apesar do trânsito, chegamos na hora.
+E: It's a good plan. However, it's expensive.|É um bom plano. Porém, é caro.
+E: Even though it rained, we played.|Mesmo chovendo, jogamos.
+X: Despite of the rain|Despite the rain|Despite não leva "of".
+D: In spite of = despite. Escolha um e use até ficar automático.
+N: Suavizar o que você diz
+
+@C1|Suavizar o que você diz|O inglês diplomático
+C: O falante avançado suaviza opiniões e pedidos para não soar direto demais.
+P: Quanto mais distância, mais educado: would, might, seems.
+R: Opinião|It seems that... / I'd say...
+R: Possibilidade|It might be better to...
+R: Pedido|I was wondering if you could...
+R: Discordar|I see your point, but...
+E: It seems there's a problem.|Parece que há um problema.
+E: I was wondering if you could help me.|Eu queria saber se você poderia me ajudar.
+E: It might be a good idea to wait.|Talvez seja uma boa ideia esperar.
+E: I'm not entirely sure that's right.|Não tenho total certeza de que está certo.
+X: You are wrong.|I'm not sure I agree.|Em reuniões, a forma direta pode soar agressiva.
+D: Use o passado para ser educado: "I wanted to ask..." soa mais gentil que "I want".
+N: Frases com ênfase
+
+@C1|Frases com ênfase|What I need is...
+C: Para destacar uma parte da frase, o inglês reorganiza a ordem das palavras.
+P: Coloque o mais importante no fim, depois de "is".
+R: What... is|What I need is a break.
+R: It was... who|It was Ana who called.
+R: The thing is|The thing is, we're late.
+R: Do / did de ênfase|I do like it!
+E: What I need is more time.|O que eu preciso é de mais tempo.
+E: It was my boss who decided.|Foi meu chefe que decidiu.
+E: The thing is, I'm tired.|A questão é que estou cansado.
+E: I did call you!|Eu liguei sim!
+X: I liked it very! (para ênfase)|I did like it!|O "did" dá a ênfase de "sim, gostei".
+D: Fale a palavra de ênfase mais alto e mais devagar.
+N: Palavras que andam juntas
+
+@C1|Palavras que andam juntas|Make a decision, take a break
+C: Algumas palavras sempre andam com outras. Trocar soa errado, mesmo com o sentido certo.
+P: Aprenda em pares, não palavra solta.
+R: make|make a decision, make an effort, make sense
+R: take|take a break, take a risk, take notes
+R: have|have a meeting, have fun, have a look
+R: pay|pay attention, pay a visit
+E: Let's take a break.|Vamos fazer uma pausa.
+E: That makes sense.|Faz sentido.
+E: Please pay attention.|Por favor, preste atenção.
+E: We need to make a decision.|Precisamos tomar uma decisão.
+X: take a decision|make a decision|No inglês americano, decisão é "make".
+D: Anote no caderno sempre o par inteiro: "make a decision", nunca só "decision".
+N: Verbos com preposição fixa
+
+@C1|Verbos com preposição fixa|Depend on, not depend of
+C: Muitos verbos pedem uma preposição própria, diferente do português.
+P: Decore o verbo junto com a preposição.
+R: depend on|depender de
+R: think about / of|pensar em
+R: arrive in / at|chegar em
+R: listen to|escutar
+R: be interested in|ter interesse em
+E: It depends on the weather.|Depende do tempo.
+E: I'm thinking about you.|Estou pensando em você.
+E: We arrived at the airport.|Chegamos ao aeroporto.
+E: Listen to me.|Me escute.
+X: depends of|depends on|O português usa "de", o inglês usa "on".
+D: Faça frases suas com cada par e repita em voz alta.
+N: Expressões idiomáticas
+
+@C1|Expressões idiomáticas|O sentido não está nas palavras
+C: Idioms são frases cujo sentido não se entende traduzindo palavra por palavra.
+P: Aprenda como um bloco, com a situação em que se usa.
+R: Fácil|a piece of cake
+R: Indeciso|on the fence
+R: Caro|cost an arm and a leg
+R: Encerrar|call it a day
+R: Boa sorte|break a leg
+E: The test was a piece of cake.|A prova foi moleza.
+E: I'm still on the fence.|Ainda estou em dúvida.
+E: That car cost an arm and a leg.|Aquele carro custou os olhos da cara.
+E: Let's call it a day.|Vamos encerrar por hoje.
+X: Traduzir literalmente|Entender pela situação|"Break a leg" deseja boa sorte, não quebrar a perna.
+D: Associe cada expressão a uma imagem engraçada para lembrar.
+N: Mistura de tempos com If
+
+@C1|Mistura de tempos com If|Passado que afeta o presente
+C: Às vezes uma decisão do passado muda o presente. O inglês mistura os tempos na mesma frase.
+P: If + had + particípio, would + verbo agora.
+R: Passado → presente|If I had studied, I would be fluent now.
+R: Presente → passado|If I were rich, I would have bought it.
+E: If I had taken the job, I'd live in Miami now.|Se eu tivesse aceitado o emprego, moraria em Miami agora.
+E: If I had slept more, I wouldn't be tired.|Se eu tivesse dormido mais, não estaria cansado.
+E: If I spoke English, I would have applied.|Se eu falasse inglês, teria me candidatado.
+X: If I would have studied...|If I had studied...|Na parte do if, não use would.
+D: Desenhe uma linha do tempo: a causa fica atrás, o resultado fica no agora.
+N: Formas elegantes
+
+@C2|Formas elegantes|Had I known...
+C: Em textos e falas formais, o if some e o verbo vai para o começo.
+P: Had I known = If I had known.
+R: Had + pessoa|Had I known, I would have come.
+R: Should + pessoa|Should you need help, call me.
+R: Were + pessoa|Were I in your place, I'd accept.
+E: Had I known, I would have helped.|Se eu soubesse, teria ajudado.
+E: Should you have any questions, let me know.|Caso tenha dúvidas, me avise.
+E: Were it not for you, I'd have given up.|Não fosse você, eu teria desistido.
+X: Had I knew|Had I known|Depois de had, use o particípio.
+D: Use em e-mails formais: "Should you need anything..." soa muito profissional.
+N: Inversão com negativas
+
+@C2|Inversão com negativas|Never have I seen...
+C: Para dar ênfase, palavras negativas vão para o começo e a ordem vira de pergunta.
+P: Palavra negativa primeiro, depois o verbo auxiliar.
+R: Never|Never have I seen...
+R: Not only|Not only is it cheap, but it's also good.
+R: Rarely|Rarely do we see this.
+R: Little|Little did I know...
+E: Never have I seen such a mess.|Nunca vi tamanha bagunça.
+E: Not only did he come, but he also helped.|Ele não só veio, como também ajudou.
+E: Rarely do I eat out.|Raramente como fora.
+E: Little did I know what was coming.|Mal sabia eu o que vinha pela frente.
+X: Never I have seen|Never have I seen|Depois da palavra negativa, inverta.
+D: É um recurso de discurso e escrita. Na conversa casual, use com moderação.
+N: So do I, neither do I
+
+@C2|So do I, neither do I|Concordar sem repetir tudo
+C: O nativo evita repetir a frase inteira. Ele responde só com o auxiliar.
+P: Concordou com afirmativa: so. Com negativa: neither.
+R: Afirmativa|I love coffee. → So do I.
+R: Negativa|I don't smoke. → Neither do I.
+R: Com to be|I'm tired. → So am I.
+R: Informal|Me too. / Me neither.
+E: I like it. – So do I.|Eu gosto. – Eu também.
+E: I can't swim. – Neither can I.|Não sei nadar. – Eu também não.
+E: I'm hungry. – So am I.|Estou com fome. – Eu também.
+E: I didn't go. – Neither did I.|Eu não fui. – Eu também não.
+X: Me too (para negativa)|Me neither|Para concordar com algo negativo, use "me neither".
+D: O auxiliar repete o tempo da frase original: did com passado, can com can.
+N: Formal e informal
+
+@C2|Formal e informal|A mesma ideia, dois registros
+C: O falante fluente escolhe as palavras conforme a situação: chefe, cliente ou amigo.
+P: Formal = palavras longas e completas. Informal = curtas e phrasal verbs.
+R: Pedir|Could you... / Can you...
+R: Receber|receive / get
+R: Descobrir|find out / discover
+R: Começar|start / commence
+R: Ajudar|assist / help
+E: I would appreciate your assistance.|Eu agradeceria sua ajuda. (formal)
+E: Can you give me a hand?|Me dá uma mão? (informal)
+E: Please find attached the report.|Segue em anexo o relatório. (formal)
+E: I'll send it over.|Te mando. (informal)
+X: "Hey dude" para um cliente|"Hello, Mr. Smith"|O registro errado causa má impressão, mesmo com inglês correto.
+D: E-mail para cliente: formal. Mensagem para colega: informal.
+N: A sílaba forte muda tudo
+
+@C2|A sílaba forte muda tudo|REcord e reCORD
+C: Em várias palavras, mudar a sílaba forte muda o sentido ou a classe da palavra.
+P: Substantivo: forte no começo. Verbo: forte no fim.
+R: REcord / reCORD|um registro / gravar
+R: PREsent / preSENT|um presente / apresentar
+R: OBject / obJECT|um objeto / objetar
+R: CONtract / conTRACT|contrato / contrair
+E: I have a present for you.|Tenho um presente para você.
+E: I will present the project.|Vou apresentar o projeto.
+E: We signed the contract.|Assinamos o contrato.
+E: Can you record the meeting?|Pode gravar a reunião?
+X: preSENT (presente)|PREsent|Errar a sílaba forte confunde o ouvinte.
+D: Bata palma na sílaba forte enquanto fala a palavra.
+N: Nuance de sinônimos
+
+@C2|Nuance de sinônimos|Cheap ou affordable?
+C: Palavras com sentido parecido passam impressões diferentes. Escolher bem mostra domínio.
+P: Mesma ideia, emoção diferente.
+R: thin · slim · skinny|neutro · elogio · crítica
+R: cheap · affordable|pode ser ruim · com preço bom
+R: stubborn · determined|teimoso · determinado
+R: curious · nosy|curioso · intrometido
+E: The hotel is affordable.|O hotel tem um preço bom.
+E: She's very determined.|Ela é muito determinada.
+E: Don't be nosy!|Não seja intrometido!
+E: It looks cheap.|Parece barato (de má qualidade).
+X: "Your house is cheap" (elogio)|"Your house was affordable"|Cheap pode soar como "de baixa qualidade".
+D: Monte pares de palavras positivas e negativas, como numa balança.
+N: Ironia e understatement
+
+@C2|Ironia e understatement|Dizer menos para dizer mais
+C: O falante nativo usa ironia e diz menos do que pensa para dar humor ou suavizar.
+P: O tom de voz carrega o sentido real.
+R: Ironia|Oh, great. Just what I needed.
+R: Understatement|It's not the best idea. (= é péssima)
+R: Concordar forte|Tell me about it!
+R: Duvidar|I'll believe it when I see it.
+E: Well, that went well.|Bom, isso foi ótimo. (irônico)
+E: It's a bit chilly. (com neve)|Está um pouco frio. (irônico)
+E: Tell me about it!|Nem me fale!
+E: I'll believe it when I see it.|Só acredito vendo.
+X: Entender ao pé da letra|Observar o tom e a situação|"That went well" depois de um desastre é ironia.
+D: Assista a comédias americanas e repare no tom das falas irônicas.
+N: Marcadores de discurso
+
+@C2|Marcadores de discurso|Mind you, that said, as it happens
+C: São palavras curtas que organizam a conversa e soam muito naturais.
+P: Pequenas palavras, grande fluência.
+R: Mind you|Mas olha... (uma ressalva)
+R: That said|Dito isso
+R: As it happens|Por acaso
+R: Come to think of it|Pensando bem
+R: All in all|No geral
+E: It's expensive. Mind you, it's worth it.|É caro. Mas olha, vale a pena.
+E: That said, I'll try.|Dito isso, vou tentar.
+E: As it happens, I know him.|Por acaso, eu conheço ele.
+E: Come to think of it, you're right.|Pensando bem, você tem razão.
+X: Usar "actually" como "atualmente"|actually = na verdade|Atualmente é "currently" ou "nowadays".
+D: Escolha um marcador por semana e use em todas as conversas.
+N: Revisão geral
+`;
+const MMC={C:'Conceito central',R:'Estrutura / regra',E:'Exemplos com tradução',X:'Erro comum de brasileiros',D:'Dica visual e conexão'};
+const MMS=MMT.split('\n@').map(b=>b.replace(/^@/,'').trim()).filter(Boolean).map(b=>{const ls=b.split('\n');const h=ls[0].split('|');const o={lv:h[0],t:h[1],sub:h[2],C:[],P:'',R:[],E:[],X:[],D:'',N:''};ls.slice(1).forEach(l=>{const m=l.match(/^([CPREXDN]): (.*)$/);if(!m)return;const k=m[1],v=m[2];if(k==='C')o.C.push(v);else if(k==='P')o.P=v;else if(k==='D')o.D=v;else if(k==='N')o.N=v;else o[k].push(v.split('|'))});return o});
+const LVC={A1:'#2E7D4F',A2:'#B08A00',B1:'#2C5DA8',B2:'#6B3FA0',C1:'#C2352B',C2:'#16305C'};
+let mmMode=store.get('mmMode','full');
+function renderMM(){
+  const box=document.getElementById('mmaps');
+  box.innerHTML=MMS.map((m,i)=>(mapLv!=='Todos'&&m.lv!==mapLv)?'':`<details class="mm" id="mm${i}"><summary><span class="mlvb" style="background:${LVC[m.lv]}">${m.lv}</span><span class="mt"><b>${m.t}</b><span>${m.sub}</span></span><span class="chev">›</span></summary><div class="mmb">
+<div class="blk" style="--bc:var(--m2)"><h4><i>1</i>${MMC.C}</h4><ul>${m.C.map(c=>`<li>${c}</li>`).join('')}</ul>${m.P?`<div class="pense"><b>Pense assim:</b> ${m.P}</div>`:''}</div>
+<div class="blk" style="--bc:var(--m1)"><h4><i>2</i>${MMC.R}</h4>${m.R.map(r=>`<div class="rrw"><b>${r[0]}</b><span>${r[1]||''}</span></div>`).join('')}</div>
+<div class="blk" style="--bc:var(--m3)"><h4><i>3</i>${MMC.E}</h4>${m.E.map((e,j)=>`<div class="exr"><button class="play sm" data-m="${i}" data-j="${j}" aria-label="Ouvir">${PLAY}</button><span class="t"><b>${e[0]}</b><span>${e[1]}</span></span></div>`).join('')}</div>
+<div class="blk" style="--bc:var(--m4)"><h4><i>4</i>${MMC.X}</h4>${m.X.map(x=>`<div class="err"><span class="no">✗ ${x[0]}</span><span class="ok">✓ ${x[1]}</span><span>${x[2]}</span></div>`).join('')}</div>
+<div class="blk" style="--bc:var(--m5)"><h4><i>5</i>${MMC.D}</h4><div>${m.D}</div>${m.N&&MMS.some(x=>x.t===m.N)?`<button class="nxt" data-next="${m.N}">Próximo tema: ${m.N} →</button>`:''}</div>
+</div></details>`).join('');
+  box.querySelectorAll('.play').forEach(b=>b.onclick=()=>say(MMS[+b.dataset.m].E[+b.dataset.j][0]));
+  box.querySelectorAll('.nxt').forEach(b=>b.onclick=()=>{const k=MMS.findIndex(x=>x.t===b.dataset.next);if(k<0)return;if(mapLv!=='Todos'&&MMS[k].lv!==mapLv){mapLv='Todos';store.set('mapLv',mapLv);renderMaps()}const d=document.getElementById('mm'+k);d.open=true;d.scrollIntoView({block:'start'})});
+}
+function setMM(m){mmMode=m;store.set('mmMode',m);document.getElementById('mmaps').hidden=m!=='full';document.getElementById('maps').hidden=m==='full';document.getElementById('mmFull').setAttribute('aria-pressed',String(m==='full'));document.getElementById('mmQuick').setAttribute('aria-pressed',String(m!=='full'))}
+document.getElementById('mmFull').onclick=()=>setMM('full');document.getElementById('mmQuick').onclick=()=>setMM('quick');
+{const _rm=renderMaps;renderMaps=function(){_rm();renderMM()}}
+document.getElementById('mmFull').textContent='Mapas completos ('+MMS.length+')';document.getElementById('mmQuick').textContent='Mapas rápidos ('+M.length+')';
+renderMaps();setMM(mmMode);
+
+/* ---------- Músicas ---------- */
+const MU=MUS.trim().split('\n').map(l=>l.split('|'));
+let musLv=store.get('musLv','Todos'),musDone=store.get('musDone',[]);
+document.getElementById('musFilter').innerHTML=['Todos','A1','A2','B1','B2'].map(l=>`<button data-l="${l}">${l==='Todos'?'Todas':l}</button>`).join('');
+function renderMus(){
+  document.querySelectorAll('#musFilter button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.l===musLv)));
+  document.getElementById('musList').innerHTML=MU.map((m,i)=>(musLv!=='Todos'&&m[0]!==musLv)?'':`<div class="mus"><div class="mh"><span class="mlvb" style="background:${LVC[m[0]]};color:#fff;font:800 .8rem var(--f-mono);padding:3px 7px;border-radius:7px">${m[0]}</span><b>${m[1]}</b><span>${m[2]} · ${m[3]}</span></div><div><b>Tema:</b> ${m[4]}</div><div class="chips">${m[5].split(',').map(w=>`<button class="chip" data-w="${w.trim()}">${w.trim()} 🔊</button>`).join('')}</div><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><a class="yt" href="https://www.youtube.com/results?search_query=${encodeURIComponent(m[1]+' '+m[2]+' lyrics')}" target="_blank" rel="noopener">Ouvir no YouTube →</a><label style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="mu${i}" data-i="${i}" ${musDone.includes(i)?'checked':''} style="width:22px;height:22px;accent-color:var(--m1)">Ouvi e treinei</label></div></div>`).join('');
+  document.querySelectorAll('#musList .chip').forEach(b=>b.onclick=()=>say(b.dataset.w));
+  document.querySelectorAll('#musList input').forEach(c=>c.onchange=()=>{const n=+c.dataset.i;musDone=c.checked?[...musDone,n]:musDone.filter(x=>x!==n);store.set('musDone',musDone);if(c.checked)touchDay()});
+}
+document.querySelectorAll('#musFilter button').forEach(b=>b.onclick=()=>{musLv=b.dataset.l;store.set('musLv',musLv);renderMus()});
+renderMus();
+document.getElementById('goMus').onclick=()=>show('musicas');
+
+/* ---------- Phrasal verbs ---------- */
+const PVL=PV.trim().split('\n').map(l=>l.split('|'));
+function renderPV(){
+  const q=(document.getElementById('pvSearch').value||'').trim().toLowerCase();
+  const rows=PVL.filter(v=>!q||v[0].includes(q)||v[1].toLowerCase().includes(q)||v[3].toLowerCase().includes(q));
+  document.getElementById('pvList').innerHTML=rows.length?rows.map(v=>`<div class="pvr"><button data-s="${v[0]}"><span class="v">${v[0]} 🔊</span></button><span class="m">${v[1]}</span><span class="pr">${v[2]}</span><button class="e" data-s="${v[3].replace(/"/g,'&quot;')}">${v[3]} 🔊<span>${v[4]}</span></button></div>`).join(''):'<div class="wempty">Nenhum phrasal verb encontrado.</div>';
+  document.querySelectorAll('#pvList button').forEach(b=>b.onclick=()=>say(b.dataset.s));
+}
+document.getElementById('pvSearch').oninput=renderPV;
+document.getElementById('pvSub').textContent=PVL.length+' phrasal verbs que o americano usa o tempo todo, com exemplo e tradução. Toque no verbo ou no exemplo para ouvir.';
+renderPV();
+
+/* ---------- SOS ---------- */
+{const sl=document.getElementById('sosList');
+sl.innerHTML=SOS.map(g=>`<div class="ngroup"><h3>${g.t}</h3><p>${g.d}</p><div class="wl-head"><span>Português</span><span>English</span><span>Pronúncia</span></div>${g.r.trim().split('\n').map(l=>{const w=l.split('|');return `<button class="wrow" data-en="${w[0].replace(/"/g,'&quot;')}" aria-label="Ouvir ${w[0].replace(/"/g,'')}"><span>${w[1]}</span><span>${w[0]}</span><span>${w[2]}</span></button>`}).join('')}</div>`).join('');
+sl.querySelectorAll('.wrow').forEach(r=>r.onclick=()=>{say(r.dataset.en.replace(' / ',', '));sl.querySelectorAll('.on').forEach(x=>x.classList.remove('on'));r.classList.add('on')});}
 
 /* ---------- Plano ---------- */
 const P=[
