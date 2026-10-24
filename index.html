@@ -26,6 +26,17 @@
 .trcard .cta{margin:8px 0 0;display:flex;gap:8px;flex-wrap:wrap}
 .trh{display:flex;gap:10px;align-items:center;border-bottom:1px solid var(--line);padding:9px 0;cursor:pointer;background:none;border-left:0;border-right:0;border-top:0;width:100%;text-align:left;color:var(--ink);font:inherit}
 .trh b{display:block}.trh span{font-size:.85rem;opacity:.7}
+
+.mm>summary{grid-template-columns:auto auto 1fr auto!important}
+.mm .mico{font-size:1.7rem;line-height:1;width:2.2rem;text-align:center}
+.mmill{position:relative;border:2px dashed var(--lc);border-radius:16px;padding:14px 10px 10px;margin-bottom:12px;text-align:center;background:color-mix(in srgb,var(--lc) 7%,transparent)}
+.mmill .mmc{display:inline-flex;flex-direction:column;align-items:center;gap:2px;background:var(--paper);border:3px solid var(--lc);border-radius:50%;width:118px;height:118px;justify-content:center;box-shadow:0 3px 0 var(--lc)}
+.mmill .mmc span{font-size:2.6rem;line-height:1}.mmill .mmc b{font:800 .72rem var(--f-body);padding:0 8px;line-height:1.15}
+.mmill .mmbr{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:10px;position:relative}
+.mmill .mmbr::before{content:"";position:absolute;left:50%;top:-10px;height:10px;border-left:2px solid var(--lc)}
+.mmill .mmbr span{border:2px solid var(--lc);border-radius:999px;padding:4px 10px;font:700 .8rem var(--f-body);background:var(--paper)}
+.lvf{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}.lvf button{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:7px 12px;font:700 .85rem var(--f-body);cursor:pointer}.lvf button[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.story .slv{display:inline-block;color:#fff;font:800 .72rem var(--f-mono);padding:2px 7px;border-radius:6px;margin-right:6px;vertical-align:middle}
 </style>
 <title>Inglês Prático</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -383,7 +394,7 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
 
   <section id="mapas" data-panel hidden>
     <h2>Mapas mentais</h2>
-    <p class="sub">Do iniciante (A1) ao avançado (C2), com situações do dia a dia e gramática. Os mapas completos têm 5 partes: conceito, regra, exemplos com tradução, erro comum de brasileiros e dica visual. Os mapas rápidos são para revisar em um minuto.</p>
+    <p class="sub">254 mapas do iniciante (A1) ao avançado (C2), com situações do dia a dia e gramática. Os 223 mapas completos são ilustrados e têm 5 partes: conceito, regra, exemplos com tradução, erro comum de brasileiros e dica visual. Os mapas rápidos são para revisar em um minuto.</p>
     <div class="wmode" role="group" aria-label="Tipo de mapa">
       <button id="mmFull" aria-pressed="true">Mapas completos</button>
       <button id="mmQuick" aria-pressed="false">Mapas rápidos</button>
@@ -427,7 +438,8 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
 
   <section id="historias" data-panel hidden>
     <h2>Leitura bilíngue</h2>
-    <p class="sub">Histórias das aulas, conversas em situações reais e clássicos da literatura adaptados para o nível básico, sempre com o inglês e o português lado a lado. Toque no alto-falante para ouvir cada frase.</p>
+    <p class="sub">54 leituras com áudio: histórias das aulas, conversas reais nos EUA, fábulas e clássicos da literatura adaptados, sempre com o inglês e o português lado a lado. Filtre pelo seu nível. Toque no alto-falante para ouvir cada frase.</p>
+    <div class="lvf" id="stLv" role="group" aria-label="Nível da leitura"></div>
     <div class="cta" style="margin:0 0 14px"><button class="btn ghost" id="togglePt">Esconder português</button></div>
     <div id="stories"></div>
   </section>
@@ -1947,9 +1959,15 @@ const LEIT=[
 ['After many adventures, they go back home.','Depois de muitas aventuras, eles voltam para casa.']]}
 ];
 S.push(...LEIT);
-function renderStories(){document.getElementById('stories').innerHTML=S.map((s,si)=>`<article class="story"><h3>${s.t}</h3><div class="meta">${s.m}</div>${s.l.map((l,li)=>`<div class="line"><button class="play sm" data-s="${si}" data-l="${li}" aria-label="Ouvir frase">${PLAY}</button><div class="txt"><div class="en">${nm(l[0])}</div><div class="pt">${nm(l[1])}</div></div></div>`).join('')}<div class="cta"><button class="btn ghost" data-all="${si}">Ouvir a história toda</button></div></article>`).join('');
+const LEIT2=[{"t": "Check-in no hotel", "m": "Conversa · hotel em Orlando", "lv": "A1", "l": [["Clerk: Hi, welcome! Checking in?", "Recepcionista: Oi, bem-vindo! Vai fazer check-in?"], ["{N}: Yes. I have a reservation under {N}.", "{N}: Sim. Tenho uma reserva no nome {N}."], ["Clerk: Got it. Can I see your ID and a credit card?", "Recepcionista: Certo. Posso ver seu documento e um cartão de crédito?"], ["{N}: Sure, here you go.", "{N}: Claro, aqui está."], ["Clerk: You're in room 512. Breakfast is from 7 to 10.", "Recepcionista: Você está no quarto 512. O café da manhã é das 7 às 10."], ["{N}: What's the Wi-Fi password?", "{N}: Qual é a senha do Wi-Fi?"], ["Clerk: It's on your key card. Enjoy your stay!", "Recepcionista: Está no cartão da chave. Aproveite a estadia!"]]}, {"t": "No restaurante", "m": "Conversa · restaurante em Nova York", "lv": "A1", "l": [["Server: Hi, I'm Jake. I'll be taking care of you tonight.", "Garçom: Oi, sou o Jake. Vou atender vocês hoje."], ["Server: Can I get you something to drink?", "Garçom: Posso trazer algo para beber?"], ["{N}: Just water, please.", "{N}: Só água, por favor."], ["Server: Are you ready to order?", "Garçom: Já podem pedir?"], ["{N}: Yes. I'll have the steak, medium, please.", "{N}: Sim. Vou querer o bife ao ponto, por favor."], ["Server: Great choice. Fries or salad?", "Garçom: Ótima escolha. Batata frita ou salada?"], ["{N}: Salad, please. And could we get the check later?", "{N}: Salada, por favor. E poderia trazer a conta depois?"], ["Server: Of course. I'll be right back.", "Garçom: Claro. Já volto."]]}, {"t": "Corrida de Uber", "m": "Conversa · aeroporto de Miami", "lv": "A1", "l": [["Driver: Hi! Are you {N}?", "Motorista: Oi! Você é {N}?"], ["{N}: Yes, that's me.", "{N}: Sim, sou eu."], ["Driver: Let me help you with your bags.", "Motorista: Deixa eu te ajudar com as malas."], ["Driver: Is this your first time in Miami?", "Motorista: É sua primeira vez em Miami?"], ["{N}: Yes! It's beautiful here.", "{N}: Sim! É lindo aqui."], ["Driver: The traffic is heavy today. About thirty minutes.", "Motorista: O trânsito está pesado hoje. Uns trinta minutos."], ["{N}: No problem. Could you turn on the AC?", "{N}: Sem problema. Pode ligar o ar?"], ["Driver: Sure thing!", "Motorista: Claro!"]]}, {"t": "No supermercado", "m": "Conversa · supermercado no Texas", "lv": "A1", "l": [["{N}: Excuse me, where can I find the milk?", "{N}: Com licença, onde fica o leite?"], ["Employee: Aisle seven, at the back.", "Funcionário: Corredor sete, no fundo."], ["Cashier: Did you find everything okay?", "Caixa: Achou tudo direitinho?"], ["{N}: Yes, thanks.", "{N}: Sim, obrigado."], ["Cashier: Paper or plastic?", "Caixa: Sacola de papel ou de plástico?"], ["{N}: Paper, please.", "{N}: Papel, por favor."], ["Cashier: Your total is forty-two fifty.", "Caixa: Deu quarenta e dois e cinquenta."], ["{N}: Can I pay with my phone?", "{N}: Posso pagar com o celular?"], ["Cashier: Sure, just tap here.", "Caixa: Claro, é só aproximar aqui."]]}, {"t": "Na farmácia", "m": "Conversa · farmácia na Califórnia", "lv": "A2", "l": [["Pharmacist: Hi, how can I help you?", "Farmacêutico: Oi, como posso ajudar?"], ["{N}: I have a bad cold. What do you recommend?", "{N}: Estou com um resfriado forte. O que você recomenda?"], ["Pharmacist: Do you have a fever?", "Farmacêutico: Está com febre?"], ["{N}: No, just a sore throat and a stuffy nose.", "{N}: Não, só dor de garganta e nariz entupido."], ["Pharmacist: Try this. Take one pill every six hours.", "Farmacêutico: Experimente este. Tome um comprimido a cada seis horas."], ["{N}: Does it make you drowsy?", "{N}: Dá sono?"], ["Pharmacist: A little. Don't drive after you take it.", "Farmacêutico: Um pouco. Não dirija depois de tomar."], ["{N}: Got it. Thank you so much.", "{N}: Entendi. Muito obrigado."]]}, {"t": "Entrevista de emprego", "m": "Conversa · escritório em Chicago", "lv": "A2", "l": [["Interviewer: Thanks for coming in. Tell me about yourself.", "Entrevistadora: Obrigada por vir. Fale um pouco sobre você."], ["{N}: I'm a safety engineer with twenty years of experience.", "{N}: Sou engenheiro de segurança com vinte anos de experiência."], ["Interviewer: What's your biggest strength?", "Entrevistadora: Qual é o seu ponto forte?"], ["{N}: I'm organized, and I'm good at training people.", "{N}: Sou organizado e sou bom em treinar pessoas."], ["Interviewer: Why do you want to work here?", "Entrevistadora: Por que você quer trabalhar aqui?"], ["{N}: I admire your safety culture, and I want to grow.", "{N}: Admiro a cultura de segurança de vocês e quero crescer."], ["Interviewer: Do you have any questions for us?", "Entrevistadora: Tem alguma pergunta para nós?"], ["{N}: Yes. What does a typical day look like?", "{N}: Sim. Como é um dia normal de trabalho?"]]}, {"t": "Abrindo conta no banco", "m": "Conversa · agência bancária em Boston", "lv": "A2", "l": [["Banker: Good morning! What can I do for you today?", "Bancária: Bom dia! Em que posso ajudar?"], ["{N}: I'd like to open a checking account.", "{N}: Quero abrir uma conta corrente."], ["Banker: Sure. Do you have a photo ID and proof of address?", "Bancária: Claro. Tem documento com foto e comprovante de endereço?"], ["{N}: Here's my passport and my lease.", "{N}: Aqui está meu passaporte e meu contrato de aluguel."], ["Banker: Perfect. Is there anything else you need?", "Bancária: Perfeito. Precisa de mais alguma coisa?"], ["{N}: Is there a monthly fee?", "{N}: Tem tarifa mensal?"], ["Banker: Not if you keep at least five hundred dollars in the account.", "Bancária: Não, se mantiver pelo menos quinhentos dólares na conta."]]}, {"t": "Alugando um carro", "m": "Conversa · locadora em Las Vegas", "lv": "A2", "l": [["Agent: Hi there! Do you have a reservation?", "Atendente: Oi! Você tem reserva?"], ["{N}: Yes, a compact car for five days.", "{N}: Sim, um carro compacto por cinco dias."], ["Agent: Would you like to add full insurance?", "Atendente: Quer incluir o seguro completo?"], ["{N}: What does it cover?", "{N}: O que ele cobre?"], ["Agent: Everything, including the tires and the windshield.", "Atendente: Tudo, inclusive pneus e para-brisa."], ["{N}: Okay, I'll take it. Do I return it with a full tank?", "{N}: Tudo bem, vou querer. Devolvo com o tanque cheio?"], ["Agent: Yes, please. Here are your keys. Drive safe!", "Atendente: Sim, por favor. Aqui estão as chaves. Dirija com cuidado!"]]}, {"t": "Café com a vizinha", "m": "Conversa · bairro em Atlanta", "lv": "A2", "l": [["Linda: Hey, neighbor! Would you like to come over for coffee?", "Linda: Oi, vizinho! Quer vir tomar um café?"], ["{N}: I'd love to! Thanks.", "{N}: Adoraria! Obrigado."], ["Linda: How long have you been living here?", "Linda: Há quanto tempo você mora aqui?"], ["{N}: About three months. We moved from Brazil.", "{N}: Uns três meses. Viemos do Brasil."], ["Linda: Welcome! How do you like it so far?", "Linda: Bem-vindo! E está gostando?"], ["{N}: We love it. People are very friendly.", "{N}: Estamos adorando. As pessoas são muito simpáticas."], ["Linda: If you ever need anything, just knock on my door.", "Linda: Se precisar de qualquer coisa, é só bater na minha porta."]]}, {"t": "Marcando consulta", "m": "Conversa · telefone com a clínica", "lv": "A2", "l": [["Receptionist: Good afternoon, Dr. Brown's office.", "Recepcionista: Boa tarde, consultório do Dr. Brown."], ["{N}: Hi, I'd like to make an appointment.", "{N}: Oi, gostaria de marcar uma consulta."], ["Receptionist: Are you a new patient?", "Recepcionista: É paciente novo?"], ["{N}: Yes, I am.", "{N}: Sim, sou."], ["Receptionist: We have an opening on Tuesday at 10:30.", "Recepcionista: Temos um horário na terça às 10h30."], ["{N}: That works for me.", "{N}: Para mim está ótimo."], ["Receptionist: Please arrive fifteen minutes early and bring your insurance card.", "Recepcionista: Chegue quinze minutos antes e traga a carteirinha do seguro."]]}, {"t": "Thanksgiving em família", "m": "Conversa · casa de amigos em Ohio", "lv": "B1", "l": [["Mike: Come on in! Happy Thanksgiving!", "Mike: Entrem! Feliz Dia de Ação de Graças!"], ["{N}: Happy Thanksgiving! We brought a pumpkin pie.", "{N}: Feliz Ação de Graças! Trouxemos uma torta de abóbora."], ["Mike: You didn't have to! Make yourselves at home.", "Mike: Não precisava! Fiquem à vontade."], ["Mike: Before we eat, let's say what we're thankful for.", "Mike: Antes de comer, vamos dizer pelo que somos gratos."], ["{N}: I'm thankful for my family and for new friends like you.", "{N}: Sou grato pela minha família e por novos amigos como vocês."], ["Mike: That's so sweet. Now let's dig in!", "Mike: Que lindo. Agora vamos comer!"], ["{N}: This turkey is amazing. Could you pass the gravy?", "{N}: Este peru está incrível. Pode me passar o molho?"]]}, {"t": "Primeiro dia no trabalho", "m": "Conversa · fábrica em Michigan", "lv": "B1", "l": [["Manager: Welcome aboard! Let me show you around.", "Gerente: Bem-vindo à equipe! Deixa eu te mostrar o lugar."], ["{N}: Thanks! I'm excited to be here.", "{N}: Obrigado! Estou animado de estar aqui."], ["Manager: This is the main floor. Hard hats are required past this line.", "Gerente: Este é o chão de fábrica. Capacete é obrigatório depois desta linha."], ["{N}: Got it. Where can I find the safety data sheets?", "{N}: Entendi. Onde ficam as fichas de segurança?"], ["Manager: In the binder by the door, and online too.", "Gerente: Na pasta perto da porta, e online também."], ["{N}: Who should I go to if I have questions?", "{N}: Com quem falo se tiver dúvidas?"], ["Manager: Me or Sarah. Don't hesitate to ask.", "Gerente: Comigo ou com a Sarah. Não hesite em perguntar."]]}, {"t": "A Lebre e a Tartaruga", "m": "Fábula adaptada · Esopo (domínio público)", "lv": "A1", "l": [["A hare laughs at a slow tortoise.", "Uma lebre ri de uma tartaruga lenta."], ["\"Let's have a race,\" says the tortoise.", "\"Vamos apostar uma corrida\", diz a tartaruga."], ["The hare runs very fast and stops to sleep.", "A lebre corre muito rápido e para para dormir."], ["The tortoise walks slowly, but she never stops.", "A tartaruga anda devagar, mas nunca para."], ["The hare wakes up. The tortoise is at the finish line!", "A lebre acorda. A tartaruga está na linha de chegada!"], ["Slow and steady wins the race.", "Devagar e sempre se vence a corrida."]]}, {"t": "O Leão e o Rato", "m": "Fábula adaptada · Esopo (domínio público)", "lv": "A1", "l": [["A big lion catches a little mouse.", "Um leão grande pega um ratinho."], ["\"Please let me go,\" says the mouse. \"One day I can help you.\"", "\"Por favor, me solte\", diz o rato. \"Um dia posso te ajudar.\""], ["The lion laughs and lets him go.", "O leão ri e o solta."], ["One day, the lion is trapped in a net.", "Um dia, o leão fica preso numa rede."], ["The mouse comes and bites the net.", "O rato chega e rói a rede."], ["The lion is free. Little friends can be great friends.", "O leão está livre. Amigos pequenos podem ser grandes amigos."]]}, {"t": "O Menino que Gritava Lobo", "m": "Fábula adaptada · Esopo (domínio público)", "lv": "A1", "l": [["A boy watches sheep near a village.", "Um menino cuida de ovelhas perto de uma vila."], ["He is bored, so he shouts, \"Wolf! Wolf!\"", "Ele está entediado, então grita: \"Lobo! Lobo!\""], ["The people run to help, but there is no wolf.", "As pessoas correm para ajudar, mas não há lobo."], ["He does it again, and they get angry.", "Ele faz de novo, e eles ficam bravos."], ["Then a real wolf comes. \"Wolf!\" he shouts.", "Então um lobo de verdade aparece. \"Lobo!\", ele grita."], ["Nobody comes. Nobody believes a liar.", "Ninguém vem. Ninguém acredita num mentiroso."]]}, {"t": "A Cigarra e a Formiga", "m": "Fábula adaptada · Esopo (domínio público)", "lv": "A1", "l": [["In the summer, the grasshopper sings and plays.", "No verão, a cigarra canta e brinca."], ["The ant works hard and stores food.", "A formiga trabalha duro e guarda comida."], ["\"Why do you work so much?\" asks the grasshopper.", "\"Por que você trabalha tanto?\", pergunta a cigarra."], ["\"Winter is coming,\" says the ant.", "\"O inverno está chegando\", diz a formiga."], ["In the winter, the grasshopper is cold and hungry.", "No inverno, a cigarra está com frio e com fome."], ["Work today, and you'll be ready for tomorrow.", "Trabalhe hoje e estará pronto para amanhã."]]}, {"t": "A Raposa e as Uvas", "m": "Fábula adaptada · Esopo (domínio público)", "lv": "A1", "l": [["A hungry fox sees some grapes on a vine.", "Uma raposa com fome vê umas uvas numa parreira."], ["The grapes are high up.", "As uvas estão lá no alto."], ["She jumps and jumps, but she can't reach them.", "Ela pula e pula, mas não consegue alcançar."], ["Finally, she gives up and walks away.", "No fim, ela desiste e vai embora."], ["\"Those grapes are sour anyway,\" she says.", "\"Aquelas uvas estão azedas mesmo\", ela diz."], ["It's easy to hate what we can't have.", "É fácil desprezar o que não podemos ter."]]}, {"t": "Cachinhos Dourados", "m": "Conto popular adaptado (domínio público)", "lv": "A1", "l": [["A girl named Goldilocks walks into a little house.", "Uma menina chamada Cachinhos Dourados entra numa casinha."], ["She sees three bowls of porridge.", "Ela vê três tigelas de mingau."], ["The first is too hot. The second is too cold.", "O primeiro está quente demais. O segundo, frio demais."], ["The third is just right, and she eats it all.", "O terceiro está perfeito, e ela come tudo."], ["She sleeps in the little bed.", "Ela dorme na caminha."], ["Three bears come home and find her. She runs away!", "Três ursos voltam para casa e a encontram. Ela sai correndo!"]]}, {"t": "Os Três Porquinhos", "m": "Conto popular adaptado (domínio público)", "lv": "A1", "l": [["Three little pigs build three houses.", "Três porquinhos constroem três casas."], ["The first house is made of straw.", "A primeira casa é de palha."], ["The second house is made of sticks.", "A segunda casa é de gravetos."], ["The third house is made of bricks.", "A terceira casa é de tijolos."], ["A wolf blows down the straw and stick houses.", "Um lobo derruba com um sopro as casas de palha e de gravetos."], ["But he can't blow down the brick house. Hard work pays off.", "Mas não consegue derrubar a casa de tijolos. O trabalho duro compensa."]]}, {"t": "João e o Pé de Feijão", "m": "Conto popular adaptado (domínio público)", "lv": "A2", "l": [["Jack and his mother are very poor.", "João e a mãe são muito pobres."], ["Jack trades their cow for some magic beans.", "João troca a vaca por uns feijões mágicos."], ["His mother is angry and throws the beans out the window.", "A mãe fica brava e joga os feijões pela janela."], ["The next morning, a giant beanstalk grows to the sky.", "Na manhã seguinte, um pé de feijão gigante cresce até o céu."], ["Jack climbs it and finds a giant's castle.", "João sobe e encontra o castelo de um gigante."], ["He takes a hen that lays golden eggs and runs home.", "Ele pega uma galinha que bota ovos de ouro e corre para casa."]]}, {"t": "O Patinho Feio", "m": "Conto adaptado · Hans Christian Andersen, 1843 (domínio público)", "lv": "A1", "l": [["A mother duck has some little ducklings.", "Uma mamãe pata tem alguns patinhos."], ["One duckling is big, gray and different.", "Um patinho é grande, cinza e diferente."], ["The other animals laugh at him.", "Os outros animais riem dele."], ["He is sad and lonely all winter.", "Ele fica triste e sozinho o inverno todo."], ["In the spring, he sees his reflection in the water.", "Na primavera, ele vê seu reflexo na água."], ["He is a beautiful swan!", "Ele é um lindo cisne!"]]}, {"t": "A Ilha do Tesouro", "m": "Clássico adaptado · Robert Louis Stevenson, 1883 (domínio público)", "lv": "A2", "l": [["Jim works at his family's inn by the sea.", "Jim trabalha na pousada da família, à beira-mar."], ["An old sailor leaves a map behind.", "Um velho marinheiro deixa um mapa para trás."], ["It's a treasure map!", "É um mapa do tesouro!"], ["Jim sails to the island with a crew.", "Jim navega até a ilha com uma tripulação."], ["The cook, Long John Silver, is a pirate.", "O cozinheiro, Long John Silver, é um pirata."], ["After many dangers, Jim and his friends find the gold.", "Depois de muitos perigos, Jim e os amigos encontram o ouro."]]}, {"t": "Robinson Crusoé", "m": "Clássico adaptado · Daniel Defoe, 1719 (domínio público)", "lv": "A2", "l": [["Robinson's ship sinks in a storm.", "O navio de Robinson afunda numa tempestade."], ["He is the only survivor, alone on an island.", "Ele é o único sobrevivente, sozinho numa ilha."], ["He builds a house and grows his own food.", "Ele constrói uma casa e planta a própria comida."], ["He lives there for many years.", "Ele vive lá por muitos anos."], ["One day, he saves a man and calls him Friday.", "Um dia, ele salva um homem e o chama de Sexta-Feira."], ["Finally, a ship arrives and takes them home.", "Por fim, um navio chega e os leva para casa."]]}, {"t": "Sherlock Holmes", "m": "Clássico adaptado · Arthur Conan Doyle, 1891 (domínio público)", "lv": "B1", "l": [["A man with red hair visits Sherlock Holmes.", "Um homem de cabelo ruivo visita Sherlock Holmes."], ["He has a strange job: copying a book every day.", "Ele tem um trabalho estranho: copiar um livro todos os dias."], ["One day, the job suddenly ends.", "Um dia, o trabalho termina de repente."], ["Holmes looks at the man's shop and the bank next door.", "Holmes observa a loja do homem e o banco ao lado."], ["\"Someone is digging a tunnel to the bank,\" he says.", "\"Alguém está cavando um túnel até o banco\", ele diz."], ["That night, Holmes and Watson catch the thieves.", "Naquela noite, Holmes e Watson pegam os ladrões."], ["\"It's elementary,\" says Holmes.", "\"É elementar\", diz Holmes."]]}, {"t": "Frankenstein", "m": "Clássico adaptado · Mary Shelley, 1818 (domínio público)", "lv": "B1", "l": [["Victor Frankenstein is a young scientist.", "Victor Frankenstein é um jovem cientista."], ["He wants to create life.", "Ele quer criar vida."], ["One night, his creature opens its eyes.", "Uma noite, sua criatura abre os olhos."], ["Victor is horrified and runs away.", "Victor fica horrorizado e foge."], ["The creature is alone and wants a friend.", "A criatura está sozinha e quer um amigo."], ["People are afraid of it, and it becomes angry.", "As pessoas têm medo dela, e ela fica furiosa."], ["Who is the real monster: the creature or its creator?", "Quem é o verdadeiro monstro: a criatura ou o criador?"]]}, {"t": "Drácula", "m": "Clássico adaptado · Bram Stoker, 1897 (domínio público)", "lv": "B1", "l": [["Jonathan, a young lawyer, travels to a castle in Transylvania.", "Jonathan, um jovem advogado, viaja para um castelo na Transilvânia."], ["Count Dracula wants to buy a house in London.", "O Conde Drácula quer comprar uma casa em Londres."], ["Jonathan notices strange things: the Count has no reflection.", "Jonathan percebe coisas estranhas: o Conde não tem reflexo."], ["Dracula is a vampire!", "Drácula é um vampiro!"], ["The Count goes to London and attacks Lucy.", "O Conde vai para Londres e ataca Lucy."], ["Professor Van Helsing and his friends hunt him down.", "O professor Van Helsing e os amigos o caçam."]]}, {"t": "O Livro da Selva", "m": "Clássico adaptado · Rudyard Kipling, 1894 (domínio público)", "lv": "A2", "l": [["A baby boy is lost in the jungle in India.", "Um bebê se perde na selva da Índia."], ["A family of wolves takes care of him.", "Uma família de lobos cuida dele."], ["They call him Mowgli.", "Eles o chamam de Mowgli."], ["Baloo the bear and Bagheera the panther teach him the laws of the jungle.", "O urso Balu e a pantera Bagheera ensinam a ele as leis da selva."], ["Shere Khan, the tiger, wants to kill him.", "Shere Khan, o tigre, quer matá-lo."], ["Mowgli uses fire and defeats the tiger.", "Mowgli usa o fogo e derrota o tigre."]]}, {"t": "O Mágico de Oz", "m": "Clássico adaptado · L. Frank Baum, 1900 (domínio público)", "lv": "A2", "l": [["Dorothy lives on a farm in Kansas.", "Dorothy mora numa fazenda no Kansas."], ["A tornado carries her house to the magic land of Oz.", "Um tornado leva a casa dela para a terra mágica de Oz."], ["She follows the yellow brick road.", "Ela segue a estrada de tijolos amarelos."], ["She meets a Scarecrow, a Tin Man and a Lion.", "Ela conhece um Espantalho, um Homem de Lata e um Leão."], ["They want a brain, a heart and courage.", "Eles querem um cérebro, um coração e coragem."], ["In the end, Dorothy clicks her heels and says, \"There's no place like home.\"", "No fim, Dorothy bate os calcanhares e diz: \"Não há lugar como o nosso lar.\""]]}, {"t": "Mulherzinhas", "m": "Clássico adaptado · Louisa May Alcott, 1868 (domínio público)", "lv": "B1", "l": [["Meg, Jo, Beth and Amy are four sisters.", "Meg, Jo, Beth e Amy são quatro irmãs."], ["Their father is away at war.", "O pai delas está longe, na guerra."], ["They don't have much money, but they have love.", "Elas não têm muito dinheiro, mas têm amor."], ["Jo wants to be a writer.", "Jo quer ser escritora."], ["Beth gets very sick, and the family is together.", "Beth fica muito doente, e a família se une."], ["Each sister finds her own way in life.", "Cada irmã encontra o seu caminho na vida."]]}, {"t": "Huckleberry Finn", "m": "Clássico adaptado · Mark Twain, 1884 (domínio público)", "lv": "B1", "l": [["Huck is a boy who runs away from home.", "Huck é um menino que foge de casa."], ["He meets Jim, a man escaping from slavery.", "Ele conhece Jim, um homem fugindo da escravidão."], ["They travel down the Mississippi River on a raft.", "Eles descem o rio Mississippi numa jangada."], ["They have many adventures and become friends.", "Eles vivem muitas aventuras e ficam amigos."], ["Huck has to decide: follow the law or help his friend.", "Huck precisa decidir: seguir a lei ou ajudar o amigo."], ["He chooses to help Jim.", "Ele escolhe ajudar Jim."]]}, {"t": "Moby Dick", "m": "Clássico adaptado · Herman Melville, 1851 (domínio público)", "lv": "B1", "l": [["\"Call me Ishmael.\" Ishmael joins a whaling ship.", "\"Me chame de Ishmael.\" Ishmael entra num navio baleeiro."], ["The captain is Ahab. He has only one leg.", "O capitão é Ahab. Ele tem só uma perna."], ["A giant white whale, Moby Dick, took his leg.", "Uma baleia branca gigante, Moby Dick, levou a perna dele."], ["Ahab wants revenge.", "Ahab quer vingança."], ["They sail around the world looking for the whale.", "Eles navegam pelo mundo procurando a baleia."], ["In the end, the whale destroys the ship. Only Ishmael survives.", "No fim, a baleia destrói o navio. Só Ishmael sobrevive."]]}, {"t": "As Viagens de Gulliver", "m": "Clássico adaptado · Jonathan Swift, 1726 (domínio público)", "lv": "A2", "l": [["Gulliver is a doctor on a ship.", "Gulliver é médico num navio."], ["After a storm, he wakes up on a beach.", "Depois de uma tempestade, ele acorda numa praia."], ["He can't move. Tiny people tied him up!", "Ele não consegue se mexer. Pessoas minúsculas o amarraram!"], ["They are only six inches tall.", "Elas têm só quinze centímetros de altura."], ["Gulliver helps them win a war.", "Gulliver ajuda o povo a vencer uma guerra."], ["Later, he visits a land of giants, where he is the tiny one.", "Depois, ele visita uma terra de gigantes, onde ele é o pequenininho."]]}, {"t": "A Volta ao Mundo em 80 Dias", "m": "Clássico adaptado · Júlio Verne, 1872 (domínio público)", "lv": "A2", "l": [["Phileas Fogg is a very precise English gentleman.", "Phileas Fogg é um cavalheiro inglês muito pontual."], ["He bets that he can travel around the world in 80 days.", "Ele aposta que consegue dar a volta ao mundo em 80 dias."], ["He leaves London with his servant, Passepartout.", "Ele sai de Londres com o criado, Passepartout."], ["They travel by train, ship and even elephant.", "Eles viajam de trem, navio e até de elefante."], ["He arrives back one day late, or so he thinks.", "Ele volta com um dia de atraso, ou é o que ele pensa."], ["They crossed the date line. He wins the bet!", "Eles cruzaram a linha de data. Ele ganha a aposta!"]]}, {"t": "O Médico e o Monstro", "m": "Clássico adaptado · Robert Louis Stevenson, 1886 (domínio público)", "lv": "B1", "l": [["Dr. Jekyll is a good and respected doctor.", "O Dr. Jekyll é um médico bom e respeitado."], ["He creates a drink to separate good and evil.", "Ele cria uma bebida para separar o bem e o mal."], ["When he drinks it, he becomes Mr. Hyde.", "Quando bebe, ele se torna o Sr. Hyde."], ["Hyde is cruel and violent.", "Hyde é cruel e violento."], ["Soon, Jekyll changes into Hyde without the drink.", "Logo, Jekyll se transforma em Hyde sem a bebida."], ["We all have a good side and a dark side.", "Todos temos um lado bom e um lado sombrio."]]}, {"t": "Rip Van Winkle", "m": "Conto adaptado · Washington Irving, 1819 (domínio público)", "lv": "A2", "l": [["Rip lives in a village in the mountains of New York.", "Rip mora num vilarejo nas montanhas de Nova York."], ["One day, he goes hunting and meets some strange men.", "Um dia, ele vai caçar e encontra uns homens estranhos."], ["He drinks with them and falls asleep.", "Ele bebe com eles e adormece."], ["He wakes up with a long white beard.", "Ele acorda com uma barba branca enorme."], ["Twenty years have passed!", "Vinte anos se passaram!"], ["America is now a free country, and nobody remembers him.", "Os Estados Unidos agora são um país livre, e ninguém se lembra dele."]]}, {"t": "A Lenda do Cavaleiro sem Cabeça", "m": "Conto adaptado · Washington Irving, 1820 (domínio público)", "lv": "B1", "l": [["Ichabod Crane is a teacher in Sleepy Hollow.", "Ichabod Crane é professor em Sleepy Hollow."], ["He loves Katrina, a rich farmer's daughter.", "Ele ama Katrina, filha de um fazendeiro rico."], ["The town has a legend about a headless horseman.", "A cidade tem uma lenda sobre um cavaleiro sem cabeça."], ["One night, Ichabod rides home alone.", "Uma noite, Ichabod volta para casa sozinho a cavalo."], ["A dark rider chases him and throws something at him.", "Um cavaleiro sombrio o persegue e joga algo nele."], ["In the morning, people find only his hat and a broken pumpkin.", "De manhã, encontram só o chapéu dele e uma abóbora quebrada."]]}, {"t": "O Presente dos Magos", "m": "Conto adaptado · O. Henry, 1905 (domínio público)", "lv": "B1", "l": [["Della and Jim are young and poor, but very much in love.", "Della e Jim são jovens e pobres, mas muito apaixonados."], ["It's Christmas, and Della has only one dollar and eighty-seven cents.", "É Natal, e Della tem só um dólar e oitenta e sete centavos."], ["She sells her beautiful long hair to buy Jim a watch chain.", "Ela vende o lindo cabelo comprido para comprar uma corrente de relógio para Jim."], ["Jim comes home with combs for her hair.", "Jim chega em casa com pentes para o cabelo dela."], ["He sold his watch to buy them.", "Ele vendeu o relógio para comprá-los."], ["Their gifts are useless, but their love is priceless.", "Os presentes são inúteis, mas o amor deles não tem preço."]]}, {"t": "Beleza Negra", "m": "Clássico adaptado · Anna Sewell, 1877 (domínio público)", "lv": "A2", "l": [["Black Beauty is a beautiful black horse.", "Beleza Negra é um lindo cavalo preto."], ["He tells his own story.", "Ele conta a própria história."], ["His first owners are kind to him.", "Os primeiros donos são gentis com ele."], ["Later, he works in London, pulling a cab.", "Depois, ele trabalha em Londres puxando uma carruagem."], ["Some people are cruel to horses.", "Algumas pessoas são cruéis com os cavalos."], ["In the end, he finds a home with people who love him.", "No fim, ele encontra um lar com pessoas que o amam."]]}, {"t": "Anne de Green Gables", "m": "Clássico adaptado · L. M. Montgomery, 1908 (domínio público)", "lv": "A2", "l": [["Matthew and Marilla want a boy to help on the farm.", "Matthew e Marilla querem um menino para ajudar na fazenda."], ["Instead, they get Anne, a girl with red hair.", "Em vez disso, recebem Anne, uma menina ruiva."], ["Anne talks a lot and has a big imagination.", "Anne fala muito e tem uma imaginação enorme."], ["She gets into trouble, but everyone starts to love her.", "Ela se mete em confusão, mas todos começam a amá-la."], ["She studies hard and becomes a teacher.", "Ela estuda muito e se torna professora."], ["Green Gables becomes her true home.", "Green Gables se torna seu verdadeiro lar."]]}, {"t": "O Príncipe Feliz", "m": "Conto adaptado · Oscar Wilde, 1888 (domínio público)", "lv": "A2", "l": [["A golden statue of a prince stands above the city.", "Uma estátua dourada de um príncipe fica no alto da cidade."], ["The prince sees the poor people and cries.", "O príncipe vê as pessoas pobres e chora."], ["A little swallow stops to rest at his feet.", "Uma andorinha para para descansar aos pés dele."], ["The prince asks the bird to give his jewels and gold to the poor.", "O príncipe pede ao pássaro que dê suas joias e seu ouro aos pobres."], ["The swallow stays too long and dies in the cold.", "A andorinha fica tempo demais e morre de frio."], ["In heaven, the prince and the swallow are the most precious things in the city.", "No céu, o príncipe e a andorinha são as coisas mais preciosas da cidade."]]}, {"t": "Romeu e Julieta", "m": "Clássico adaptado · William Shakespeare, 1597 (domínio público)", "lv": "B1", "l": [["In Verona, two families hate each other.", "Em Verona, duas famílias se odeiam."], ["Romeo, a Montague, falls in love with Juliet, a Capulet.", "Romeu, um Montéquio, se apaixona por Julieta, uma Capuleto."], ["They get married in secret.", "Eles se casam em segredo."], ["Romeo is sent away from the city.", "Romeu é expulso da cidade."], ["Juliet drinks a potion to look dead.", "Julieta toma uma poção para parecer morta."], ["Romeo thinks she is really dead, and the story ends in tragedy.", "Romeu acha que ela morreu de verdade, e a história termina em tragédia."]]}, {"t": "O Coelho de Veludo", "m": "Conto adaptado · Margery Williams, 1922 (domínio público)", "lv": "A1", "l": [["A boy gets a velveteen rabbit for Christmas.", "Um menino ganha um coelho de veludo de Natal."], ["The rabbit wants to be real.", "O coelho quer ser de verdade."], ["\"When someone loves you for a long time, you become real,\" says an old toy.", "\"Quando alguém te ama por muito tempo, você se torna de verdade\", diz um brinquedo velho."], ["The boy loves the rabbit and sleeps with him every night.", "O menino ama o coelho e dorme com ele toda noite."], ["The rabbit becomes old and worn, but very loved.", "O coelho fica velho e gasto, mas muito amado."], ["In the end, a fairy makes him a real rabbit.", "No fim, uma fada o transforma num coelho de verdade."]]}];
+S.push(...LEIT2);
+{const OLV={"Morning Coffee": "A1", "The New Neighbor": "A1", "Dinner in Texas": "A1", "Imigração em 5 atos": "A2", "Consulta médica": "A2", "Alice no País das Maravilhas": "A2", "Um Conto de Natal": "B1", "As Aventuras de Tom Sawyer": "A2", "O Jardim Secreto": "A2", "Orgulho e Preconceito": "B1", "O Chamado da Floresta": "B1", "Peter Pan": "A2"};S.forEach(x=>{if(!x.lv)x.lv=OLV[x.t]||"A2"})}
+let stLv=store.get('stLv','Todas');
+function renderStories(){document.querySelectorAll('#stLv button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.l===stLv)));document.getElementById('stories').innerHTML=S.map((s,si)=>`<article class="story" data-lv="${s.lv}"${stLv!=='Todas'&&s.lv!==stLv?' hidden':''}><h3>${s.t}</h3><div class="meta"><span class="slv" style="background:${({A1:'#2E7D4F',A2:'#B08A00',B1:'#2C5DA8'})[s.lv]||'#16305C'}">${s.lv}</span>${s.m}</div>${s.l.map((l,li)=>`<div class="line"><button class="play sm" data-s="${si}" data-l="${li}" aria-label="Ouvir frase">${PLAY}</button><div class="txt"><div class="en">${nm(l[0])}</div><div class="pt">${nm(l[1])}</div></div></div>`).join('')}<div class="cta"><button class="btn ghost" data-all="${si}">Ouvir a história toda</button></div></article>`).join('');
 document.querySelectorAll('#stories .play').forEach(b=>b.onclick=()=>say(nm(S[+b.dataset.s].l[+b.dataset.l][0])));
 document.querySelectorAll('#stories [data-all]').forEach(b=>b.onclick=()=>sayQueue(S[+b.dataset.all].l.map(x=>nm(x[0]))));}
+document.getElementById('stLv').innerHTML=['Todas','A1','A2','B1'].map(l=>`<button data-l="${l}">${l==='Todas'?'Todas ('+S.length+')':l+' ('+S.filter(x=>x.lv===l).length+')'}</button>`).join('');
+document.querySelectorAll('#stLv button').forEach(b=>b.onclick=()=>{stLv=b.dataset.l;store.set('stLv',stLv);renderStories()});
 renderStories();
 const sw=document.getElementById('stories');
 document.getElementById('togglePt').onclick=e=>{sw.classList.toggle('hidept');e.target.textContent=sw.classList.contains('hidept')?'Mostrar português':'Esconder português'};
@@ -2151,6 +2169,7 @@ zone out|viajar (se distrair)|ZÔUN ÁUT|Sorry, I zoned out.|Desculpa, me distra
 
 /* ---------- Mapas completos ---------- */
 const MMT=`@A1|Se apresentar|Hi, I'm Carlos|sit
+I: 👋
 C: Se apresentar é a primeira conversa em qualquer lugar: no trabalho, na escola ou com o vizinho.
 C: Nos EUA, a apresentação é curta: nome, de onde é e um sorriso.
 P: Oi + nome + prazer.
@@ -2167,6 +2186,7 @@ D: Aperte a mão, olhe nos olhos e sorria. Isso vale tanto quanto as palavras.
 N: Cumprimentar no dia a dia
 
 @A1|Cumprimentar no dia a dia|Good morning, how are you?|sit
+I: ☀️
 C: O americano cumprimenta todo mundo: porteiro, caixa, vizinho. A resposta é sempre curta e positiva.
 P: "How are you?" é um oi, não uma pergunta de verdade.
 R: Manhã|Good morning!
@@ -2182,6 +2202,7 @@ D: Responda sempre devolvendo a pergunta: "And you?".
 N: Pedir um café
 
 @A1|Pedir um café|Can I get a coffee?|sit
+I: ☕
 C: Na cafeteria, o americano pede direto, com "Can I get" ou "I'd like".
 C: O atendente costuma perguntar o tamanho e o seu nome para escrever no copo.
 P: Can I get + o que quer + please.
@@ -2198,6 +2219,7 @@ D: Cafeteria nos EUA tem pressa: tenha o pedido pronto antes de chegar ao caixa.
 N: Pagar no caixa
 
 @A1|Pagar no caixa|How much is it?|sit
+I: 💳
 C: No caixa, as perguntas são sempre as mesmas: quanto é, como vai pagar e se quer o recibo.
 P: Quanto é? Cartão ou dinheiro? Recibo?
 R: Preço|How much is it?
@@ -2213,6 +2235,7 @@ D: Preços nos EUA quase nunca incluem o imposto. Ele aparece só no caixa.
 N: No supermercado
 
 @A1|No supermercado|Where can I find the milk?|sit
+I: 🛒
 C: No supermercado, você precisa achar produtos, perguntar preços e passar no caixa.
 P: Onde fica + produto?
 R: Procurar|Where can I find + produto?
@@ -2228,6 +2251,7 @@ D: Aisle se pronuncia "áil", com o S mudo.
 N: No restaurante
 
 @A1|No restaurante|A table for two, please|sit
+I: 🍝
 C: No restaurante americano, você espera na entrada, o host leva até a mesa e o garçom traz a conta quando você pede.
 P: Mesa, cardápio, pedido, conta.
 R: Chegar|A table for two, please.
@@ -2243,6 +2267,7 @@ D: Nos EUA, a gorjeta é de 15% a 20% e não vem na conta.
 N: Fast food e drive-thru
 
 @A1|Fast food e drive-thru|For here or to go?|sit
+I: 🍔
 C: No fast food e no drive-thru, tudo é rápido: combo, tamanho, bebida e para comer aqui ou levar.
 P: Número do combo + tamanho + bebida.
 R: Pedir combo|I'll have the number two.
@@ -2258,6 +2283,7 @@ D: No drive-thru, fale devagar e perto do microfone.
 N: Pedir informação na rua
 
 @A1|Pedir informação na rua|Excuse me, where is...?|sit
+I: 🧭
 C: Para pedir direção, comece com "Excuse me" e use frases curtas.
 P: Com licença + onde fica + lugar?
 R: Começar|Excuse me...
@@ -2273,6 +2299,7 @@ D: Tenha o endereço escrito no celular: é só mostrar.
 N: Esquerda, direita, reto
 
 @A1|Esquerda, direita, reto|Turn left, go straight|sit
+I: ⬅️
 C: Entender a resposta é tão importante quanto perguntar. São poucas palavras que se repetem.
 P: Left, right, straight, corner, block.
 R: Virar|Turn left / Turn right
@@ -2288,6 +2315,7 @@ D: Nos EUA, distância se mede em "blocks" (quarteirões), não em metros.
 N: Pegar um Uber ou táxi
 
 @A1|Pegar um Uber ou táxi|Can you take me to...?|sit
+I: 🚕
 C: No Uber, a conversa é curta: confirmar o nome, o destino e agradecer.
 P: Confirma o nome, diz o lugar, agradece.
 R: Confirmar|Are you here for Carlos?
@@ -2303,6 +2331,7 @@ D: Confira a placa (license plate) antes de entrar no carro.
 N: No hotel
 
 @A1|No hotel|I have a reservation|sit
+I: 🏨
 C: No check-in, você diz que tem reserva, mostra o documento e pergunta o que precisa.
 P: Reserva, nome, documento, horários.
 R: Chegar|I have a reservation.
@@ -2318,6 +2347,7 @@ D: Peça sempre "a late checkout" se precisar sair mais tarde.
 N: Falar do tempo
 
 @A1|Falar do tempo|It's hot today|sit
+I: 🌤️
 C: Falar do tempo é o assunto mais comum para puxar conversa com qualquer pessoa.
 P: It's + como está o tempo.
 R: Calor|It's hot.
@@ -2333,6 +2363,7 @@ D: Nos EUA, a temperatura é em Fahrenheit: 90°F é calor, 32°F é congelante.
 N: Dizer as horas
 
 @A1|Dizer as horas|What time is it?|sit
+I: ⏰
 C: Para combinar horários e pegar transporte, você precisa entender e dizer as horas.
 P: It's + hora.
 R: Hora cheia|It's three o'clock.
@@ -2348,6 +2379,7 @@ D: 12 p.m. é meio-dia e 12 a.m. é meia-noite.
 N: Telefone e e-mail
 
 @A1|Telefone e e-mail|What's your number?|sit
+I: 📱
 C: Trocar contato é comum no trabalho e com novos amigos. Números e letras são ditos um a um.
 P: Número dígito por dígito. E-mail com "at" e "dot".
 R: Telefone|What's your phone number?
@@ -2363,6 +2395,7 @@ D: Treine soletrar seu nome com o alfabeto em inglês.
 N: Falar da família
 
 @A1|Falar da família|I have two kids|sit
+I: 👨‍👩‍👧
 C: Família é assunto comum para criar intimidade nas conversas.
 P: I have + quantos + quem.
 R: Ter|I have a wife and two kids.
@@ -2378,6 +2411,7 @@ D: Leve uma foto da família no celular. Mostrar ajuda a conversa a fluir.
 N: Minha rotina
 
 @A1|Minha rotina|I wake up at six|sit
+I: 🗓️
 C: Contar a rotina é falar do presente: o que você faz todo dia.
 P: I + verbo + hora.
 R: Acordar|I wake up at...
@@ -2393,6 +2427,7 @@ D: Narre sua rotina em inglês enquanto faz as coisas: "Now I'm brushing my teet
 N: Na farmácia
 
 @A1|Na farmácia|I need something for a headache|sit
+I: 💊
 C: Na farmácia americana, muitos remédios ficam na prateleira, e o farmacêutico tira dúvidas.
 P: I need something for + problema.
 R: Pedir|I need something for + problema.
@@ -2408,6 +2443,7 @@ D: Farmácia nos EUA também é "drugstore". Lá se vende de tudo.
 N: Comprar roupas
 
 @A1|Comprar roupas|Can I try it on?|sit
+I: 👕
 C: Na loja de roupas, você pergunta tamanho, prova e decide.
 P: Tamanho, provador, preço, levo.
 R: Tamanho|Do you have this in medium?
@@ -2423,6 +2459,7 @@ D: Tamanhos americanos são diferentes: confira a tabela da loja.
 N: Agradecer e se desculpar
 
 @A1|Agradecer e se desculpar|Thank you, sorry, excuse me|sit
+I: 🙏
 C: "Please", "thank you" e "sorry" são usados o tempo todo nos EUA, até em situações pequenas.
 P: Educação é usada em dobro.
 R: Agradecer|Thank you. / Thanks a lot.
@@ -2438,6 +2475,7 @@ D: Esbarrou em alguém? "Sorry!" na hora, sempre.
 N: Pedir para repetir
 
 @A1|Pedir para repetir|Sorry, can you say that again?|sit
+I: 🔁
 C: Não entender é normal. O importante é saber pedir para repetir sem travar a conversa.
 P: Desculpa + repetir + devagar.
 R: Repetir|Can you say that again?
@@ -2453,6 +2491,7 @@ D: Avise logo no começo: "I'm still learning English". As pessoas falam mais de
 N: Cumprimentar o vizinho
 
 @A1|Cumprimentar o vizinho|Hi, I'm your new neighbor|sit
+I: 🏡
 C: Nos EUA, é comum se apresentar aos vizinhos e trocar conversas rápidas na rua.
 P: Oi + sou o vizinho + de onde.
 R: Apresentar|Hi, I'm your new neighbor.
@@ -2468,6 +2507,7 @@ D: Um aceno e um "Hi!" já criam uma boa relação com o vizinho.
 N: Convidar alguém
 
 @A1|Convidar alguém|Do you want to grab a coffee?|sit
+I: 💌
 C: Para convidar, o americano usa frases leves com "want to" ou "Let's".
 P: Quer + atividade? / Vamos + atividade!
 R: Convidar|Do you want to + atividade?
@@ -2483,6 +2523,7 @@ D: "Grab a coffee" e "grab lunch" soam leves e naturais.
 N: Dias e datas
 
 @A1|Dias e datas|My birthday is in May|sit
+I: 📆
 C: Para marcar compromissos, você precisa dos meses, dos dias e da forma americana de escrever datas.
 P: Nos EUA, a data é mês, dia, ano: 10/22/2026.
 R: Mês|in May
@@ -2498,6 +2539,7 @@ D: Sempre confira a data escrita: 03/04 é 4 de março nos EUA.
 N: Primeiro dia no trabalho
 
 @A1|Primeiro dia no trabalho|I'm the new guy|sit
+I: 🪪
 C: No primeiro dia, você se apresenta, pergunta onde ficam as coisas e conhece a equipe.
 P: Sou novo + o que faço + onde fica?
 R: Apresentar|Hi, I'm Carlos. I'm new here.
@@ -2513,6 +2555,7 @@ D: Escreva o nome de cada colega novo no caderno, com uma dica para lembrar.
 N: Combinar um horário
 
 @A2|Combinar um horário|Does Monday work for you?|sit
+I: 🕒
 C: Para marcar consulta, reunião ou encontro, o americano pergunta se o horário "funciona" para a pessoa.
 P: Funciona para você?
 R: Sugerir|How about Monday at ten?
@@ -2528,6 +2571,7 @@ D: Sempre confirme o fuso horário em reuniões online: "Eastern time?".
 N: Marcar consulta médica
 
 @A2|Marcar consulta médica|I'd like to make an appointment|sit
+I: 📋
 C: Nos EUA, quase tudo precisa de hora marcada: médico, dentista, cabeleireiro.
 P: Appointment = consulta / horário marcado.
 R: Marcar|I'd like to make an appointment.
@@ -2543,6 +2587,7 @@ D: Chegue 15 minutos antes: sempre tem formulário para preencher.
 N: No consultório
 
 @A2|No consultório|What seems to be the problem?|sit
+I: 🩺
 C: No médico, você explica o que sente, há quanto tempo e se toma algum remédio.
 P: O que dói + desde quando + alergias.
 R: Sintoma|I have a pain in my back.
@@ -2558,6 +2603,7 @@ D: Aponte onde dói enquanto fala: "It hurts here".
 N: No banco
 
 @A2|No banco|I'd like to open an account|sit
+I: 🏦
 C: No banco, você abre conta, saca dinheiro ou resolve problemas com o cartão.
 P: Conta, saque, depósito, cartão.
 R: Conta|I'd like to open an account.
@@ -2573,6 +2619,7 @@ D: ATM se fala letra por letra: "êi ti ém".
 N: No aeroporto
 
 @A2|No aeroporto|Window or aisle?|sit
+I: 🛫
 C: No aeroporto, você faz check-in, despacha a mala, passa pela segurança e procura o portão.
 P: Check-in, mala, portão, embarque.
 R: Check-in|I'd like to check in.
@@ -2588,6 +2635,7 @@ D: Aisle (corredor) se fala "áil". Window é a janela.
 N: Imigração
 
 @A2|Imigração|What's the purpose of your visit?|sit
+I: 🛂
 C: Na imigração, o oficial faz perguntas curtas. Responda de forma simples e direta.
 P: Responda só o que foi perguntado.
 R: Motivo|Tourism. / Business.
@@ -2603,6 +2651,7 @@ D: Deixe o endereço do hotel e a passagem de volta abertos no celular.
 N: Alugar um carro
 
 @A2|Alugar um carro|I have a reservation for a car|sit
+I: 🚙
 C: Para alugar carro, você mostra a reserva, a carteira de motorista e decide sobre o seguro.
 P: Reserva, carteira, seguro, gasolina.
 R: Retirar|I have a reservation.
@@ -2618,6 +2667,7 @@ D: Fotografe o carro todo antes de sair do estacionamento.
 N: No posto de gasolina
 
 @A2|No posto de gasolina|Pump number four|sit
+I: ⛽
 C: Nos EUA, quase sempre você mesmo abastece e paga no caixa ou na bomba.
 P: Bomba + valor + pagar.
 R: Bomba|Pump number four, please.
@@ -2633,6 +2683,7 @@ D: Gás de cozinha é "propane". No posto, "gas" é gasolina.
 N: Delivery e pedidos online
 
 @A2|Delivery e pedidos online|My order is missing|sit
+I: 🛵
 C: Nos aplicativos e por telefone, você pede, confirma o endereço e reclama se faltar algo.
 P: Pedido, endereço, tempo, problema.
 R: Pedir|I'd like to order...
@@ -2648,6 +2699,7 @@ D: Gorjeta para o entregador é comum: de 10% a 20%.
 N: Devolver ou trocar algo
 
 @A2|Devolver ou trocar algo|I'd like to return this|sit
+I: ↩️
 C: Nos EUA, devolver produtos é fácil, desde que você tenha o recibo e esteja no prazo.
 P: Devolver, trocar, reembolso.
 R: Devolver|I'd like to return this.
@@ -2663,6 +2715,7 @@ D: Guarde o recibo e a embalagem: sem eles, a devolução fica difícil.
 N: Reclamar com educação
 
 @A2|Reclamar com educação|There's a problem with...|sit
+I: 🗯️
 C: O americano reclama com calma e educação, mas com firmeza.
 P: Explique o problema e peça a solução.
 R: Começar|Excuse me, there's a problem.
@@ -2678,6 +2731,7 @@ D: Comece com "Excuse me" e termine com "Thank you", mesmo reclamando.
 N: Pedir ajuda no trabalho
 
 @A2|Pedir ajuda no trabalho|Do you have a minute?|sit
+I: 🆘
 C: No trabalho, peça ajuda de forma educada e mostre que respeita o tempo do colega.
 P: Tem um minuto + pedido + obrigado.
 R: Abrir|Do you have a minute?
@@ -2693,6 +2747,7 @@ D: Mostre o que já tentou antes de pedir: isso gera respeito.
 N: Reunião rápida
 
 @A2|Reunião rápida|Let's get started|sit
+I: 👥
 C: As reuniões americanas são objetivas: começam na hora, têm pauta e terminam com os próximos passos.
 P: Começar, dar opinião, resumir.
 R: Começar|Let's get started.
@@ -2708,6 +2763,7 @@ D: Anote os "next steps" no fim: é o que mais importa.
 N: Falar ao telefone
 
 @A2|Falar ao telefone|Can I speak to...?|sit
+I: 📞
 C: Ao telefone, você não vê a pessoa. Por isso, frases prontas ajudam muito.
 P: Quem é, com quem quer falar, recado.
 R: Atender|Hello, this is Carlos.
@@ -2723,6 +2779,7 @@ D: Fale devagar e repita os números para confirmar.
 N: Bate-papo do fim de semana
 
 @A2|Bate-papo do fim de semana|How was your weekend?|sit
+I: 🏖️
 C: Na segunda, todo mundo pergunta do fim de semana. Uma resposta curta e uma pergunta de volta mantêm a conversa.
 P: Como foi + o que fez + e você?
 R: Perguntar|How was your weekend?
@@ -2738,6 +2795,7 @@ D: Prepare três frases sobre o seu fim de semana no domingo à noite.
 N: Na academia
 
 @A2|Na academia|Can I work in?|sit
+I: 🏋️
 C: Na academia, você pergunta se o aparelho está livre, pede ajuda e combina revezamento.
 P: Está usando? Posso revezar?
 R: Livre|Are you using this?
@@ -2753,6 +2811,7 @@ D: Limpe o aparelho depois de usar: é regra em quase toda academia americana.
 N: No cabeleireiro e barbeiro
 
 @A2|No cabeleireiro e barbeiro|Just a trim, please|sit
+I: 💈
 C: Para cortar o cabelo, explique o tamanho e o estilo com palavras simples.
 P: Curto, aparar, lados, em cima.
 R: Aparar|Just a trim, please.
@@ -2768,6 +2827,7 @@ D: Leve uma foto do corte no celular. Uma imagem resolve tudo.
 N: Escola dos filhos
 
 @A2|Escola dos filhos|How is my daughter doing?|sit
+I: 🎒
 C: Na escola americana, os pais conversam com o professor sobre notas, comportamento e lição de casa.
 P: Como vai + o que melhorar + como ajudar.
 R: Perguntar|How is my daughter doing?
@@ -2783,6 +2843,7 @@ D: Escolas americanas usam muito e-mail e aplicativo: confira sempre.
 N: Fazer amizade
 
 @A2|Fazer amizade|We should hang out sometime|sit
+I: 😊
 C: Para transformar um conhecido em amigo, o americano sugere sair e troca contato.
 P: A gente devia sair + me passa seu número.
 R: Sugerir|We should hang out sometime.
@@ -2798,6 +2859,7 @@ D: Depois do primeiro encontro, mande uma mensagem curta: "Great to see you!".
 N: Se despedir e manter contato
 
 @A2|Se despedir e manter contato|Let's keep in touch|sit
+I: 👋
 C: Na despedida, o americano é caloroso e promete manter contato.
 P: Foi bom + vamos manter contato + se cuida.
 R: Agradecer|It was great to see you.
@@ -2813,6 +2875,7 @@ D: Encerre conversas com "Take care!": é caloroso e serve para tudo.
 N: Alugar um apartamento
 
 @A2|Alugar um apartamento|Is it still available?|sit
+I: 🏢
 C: Para alugar, você pergunta se o imóvel está livre, o valor, o que está incluso e marca uma visita.
 P: Disponível, aluguel, contas, visita.
 R: Disponível|Is it still available?
@@ -2828,6 +2891,7 @@ D: Utilities são água, luz e gás. Pergunte sempre se estão no valor.
 N: Enviar um pacote
 
 @A2|Enviar um pacote|I'd like to send this to Brazil|sit
+I: 📮
 C: No correio (post office), você diz o destino, escolhe a velocidade e declara o conteúdo.
 P: Destino, rapidez, conteúdo, preço.
 R: Enviar|I'd like to send this to Brazil.
@@ -2843,6 +2907,7 @@ D: Correio nos EUA é "USPS". Pacote é "package".
 N: No cinema
 
 @A2|No cinema|Two tickets for the seven o'clock show|sit
+I: 🍿
 C: No cinema, você escolhe o filme, o horário, os lugares e a pipoca.
 P: Filme, horário, ingressos, lugares.
 R: Ingressos|Two tickets for + filme.
@@ -2858,6 +2923,7 @@ D: Nos EUA, os filmes quase nunca têm legenda: ótimo treino de ouvido!
 N: Carro quebrado
 
 @A2|Carro quebrado|My car broke down|sit
+I: 🛠️
 C: Se o carro quebrar, você precisa chamar ajuda, explicar o problema e entender o mecânico.
 P: Quebrou, onde estou, o que aconteceu.
 R: Avisar|My car broke down.
@@ -2870,9 +2936,10 @@ E: The car won't start.|O carro não liga.
 E: How much will it cost to fix?|Quanto vai custar para consertar?
 X: My car broke.|My car broke down.|Carro quebrado é "broke down".
 D: Ligue o pisca-alerta (hazard lights) e fique em lugar seguro.
-N: Se apresentar
+N: Entrevista de emprego
 
 @A1|H no inglês|Quando o H sopra e quando some
+I: 🌬️
 C: Na maioria das palavras, o H tem um som de sopro leve, como um "rr" bem suave de "rato".
 C: Em algumas palavras que vieram do francês e do latim, o H não tem som nenhum.
 P: O H é um sopro. Às vezes ele sai, às vezes some.
@@ -2888,6 +2955,7 @@ D: Imagine embaçar um espelho com a boca. Esse ar é o som do H.
 N: Sons do TH
 
 @A1|Sons do TH|O som que não existe em português
+I: 👅
 C: O TH tem dois sons, e os dois são feitos com a ponta da língua entre os dentes.
 C: Um sai só com ar, sem vibrar a garganta. O outro vibra.
 P: Língua entre os dentes, como quem vai mostrar a língua de leve.
@@ -2902,6 +2970,7 @@ D: Ponha o dedo na frente da boca. Ao falar "think", a língua deve encostar nel
 N: Sons da letra U
 
 @A1|Sons da letra U|Sun, music, put e variações
+I: 🔤
 C: A letra U muda de som conforme a palavra. Não é sempre o "u" do português.
 P: O U tem três caminhos: "â" curto, "iú" e "u" fechado.
 R: â curto|sun, cup, bus, but, fun
@@ -2917,6 +2986,7 @@ D: Agrupe as palavras pelo som, não pela letra: sun, cup e bus vivem juntas.
 N: Dias da semana
 
 @A1|Dias da semana|Monday a Sunday
+I: 📅
 C: Os dias da semana organizam a rotina, os compromissos e os planos.
 C: Em inglês, os dias são sempre escritos com letra maiúscula.
 P: Cada dia é uma etiqueta para o tempo na semana.
@@ -2933,6 +3003,7 @@ D: Repita os sete dias em ordem, várias vezes, até a sequência ficar automát
 N: Pedir ajuda
 
 @A1|Pedir ajuda|Could you help me?
+I: 🆘
 C: Saber pedir ajuda com clareza e educação é útil em viagens, lojas, na rua e no trabalho.
 P: Pedir ajuda bem é falar claro e com gentileza.
 R: Simples|Can you help me?
@@ -2948,6 +3019,7 @@ D: Pessoa + pergunta + gentileza: "could" e "please" deixam o pedido mais educad
 N: Verbo to be
 
 @A1|Verbo to be|Ser e estar numa palavra só
+I: 🧩
 C: Em inglês, "ser" e "estar" são o mesmo verbo: to be.
 C: Ele muda de forma conforme a pessoa: am, is, are.
 P: I am, you are, he is. A pessoa escolhe a forma.
@@ -2965,6 +3037,7 @@ D: Pense em um sinal de igual: I = am, she = is, they = are.
 N: Plural das palavras
 
 @A1|Plural das palavras|Um carro, dois carros
+I: ➕
 C: Na maioria das palavras, basta colocar S no final.
 C: Algumas mudam a escrita ou a palavra inteira.
 P: Mais de um: quase sempre é só pôr S.
@@ -2982,6 +3055,7 @@ D: Faça uma lista só dos irregulares e leia todo dia.
 N: This, that, these, those
 
 @A1|This, that, these, those|Perto e longe, um e vários
+I: 👉
 C: Essas palavras apontam coisas, perto ou longe de você.
 P: TH-is perto, TH-at longe. Plural: these e those.
 R: Perto, um|this (este, esta)
@@ -2997,6 +3071,7 @@ D: Aponte para algo na mão (this) e para algo longe (that) enquanto fala.
 N: There is e there are
 
 @A1|There is e there are|Para dizer o que tem
+I: 📍
 C: Para dizer que algo existe em um lugar, o inglês usa "there is" e "there are".
 P: There is = tem um. There are = tem vários.
 R: Um|There is (There's) a bank.
@@ -3009,9 +3084,10 @@ E: Is there Wi-Fi here?|Tem Wi-Fi aqui?
 E: There aren't any chairs.|Não tem nenhuma cadeira.
 X: Have a bank here?|Is there a bank here?|Para "tem" no sentido de existir, não use "have".
 D: Imagine um mapa: there is aponta o que existe em cada lugar.
-N: Much e many
+N: A e an
 
 @A2|Much e many|Quantidade que se conta e que não se conta
+I: ⚖️
 C: "Much" é usado com coisas que não se contam. "Many" é usado com coisas contáveis no plural.
 C: Os dois significam "muito" ou "muitos".
 P: Much = muita quantidade, que não se conta em unidades. Many = muitos itens, que se contam.
@@ -3028,6 +3104,7 @@ D: Água, dinheiro e tempo: much. Livros, carros e pessoas: many.
 N: A lot of e lots of
 
 @A2|A lot of e lots of|Quantidade grande, sem complicação
+I: 📚
 C: "A lot of" e "lots of" significam muito, muitos, muita, muitas.
 C: Servem para coisas contáveis e incontáveis. "Lots of" é um pouco mais informal.
 P: A lot of = bastante. Serve para tudo.
@@ -3043,6 +3120,7 @@ D: Em frases afirmativas do dia a dia, prefira "a lot of": soa mais natural que 
 N: Too e enough
 
 @A2|Too e enough|Demais e o suficiente
+I: 🌡️
 C: "Too" indica excesso, algo além do necessário. "Enough" indica a medida certa.
 P: Pouco, enough (o bastante), too (passou do ponto).
 R: too + adjetivo|too hot, too expensive
@@ -3060,6 +3138,7 @@ D: Pense num ponteiro: enough fica no meio, too passa do ponto.
 N: Passado com -ed
 
 @A2|Passado com -ed|Três sons para o mesmo final
+I: ⏮️
 C: Os verbos regulares fazem o passado com -ed. Mas o -ed tem três sons diferentes.
 P: O -ed quase nunca soa "éd". Na maioria das vezes, só vira um T ou D.
 R: Som de T|worked, watched, liked, stopped
@@ -3074,6 +3153,7 @@ D: Só fale "id" quando o verbo termina em T ou D: want-ed, need-ed.
 N: Some e any
 
 @A2|Some e any|Algum, nenhum e qualquer
+I: 🍪
 C: "Some" aparece em frases afirmativas e em ofertas. "Any" aparece em perguntas e negativas.
 P: Some = um pouco, alguns. Any = algum? / nenhum.
 R: Afirmativa|I have some money.
@@ -3089,6 +3169,7 @@ D: Ofereceu algo? Use some, mesmo sendo pergunta.
 N: In, on, at no tempo
 
 @A2|In, on, at no tempo|Ano, dia e hora
+I: 🕰️
 C: As três palavras dizem "quando", mas cada uma serve para um tamanho de tempo.
 P: Do maior para o menor: IN (mês, ano), ON (dia), AT (hora).
 R: in|in October, in 2026, in the morning
@@ -3104,6 +3185,7 @@ D: Imagine uma pirâmide de cabeça para baixo: in no topo largo, at na ponta fi
 N: Will e going to
 
 @A2|Will e going to|Dois jeitos de falar do futuro
+I: 🔮
 C: "Going to" é para planos já decididos. "Will" é para decisões na hora, promessas e previsões.
 P: Já planejei: going to. Decidi agora: will.
 R: Plano|I'm going to travel next month.
@@ -3119,6 +3201,7 @@ D: Telefone tocou? "I'll get it!" Você decidiu na hora.
 N: O T americano
 
 @A2|O T americano|Por que water soa "uórer"
+I: 🇺🇸
 C: No inglês americano, o T entre duas vogais vira um R leve, como em "caro".
 C: Por isso water soa "uórer" e better soa "bérer".
 P: T entre vogais: toque leve da língua, como o R de "cara".
@@ -3131,9 +3214,10 @@ E: What a beautiful city!|Que cidade linda!
 E: Get it?|Entendeu?
 X: uóter (T bem marcado)|water ("uórer")|Com T forte você é entendido, mas soa estrangeiro.
 D: Fale "Get it?" rápido, como "Guérit?". Esse é o T americano.
-N: Should
+N: Estou fazendo agora
 
 @B1|Should|Para dar conselho
+I: 💡
 C: "Should" é usado para dar conselhos, recomendações e opiniões sobre o que é uma boa ideia fazer.
 C: É mais suave do que uma obrigação forte.
 P: Should = conselho, não obrigação.
@@ -3149,6 +3233,7 @@ D: Should = conselho, sugestão, recomendação. O próximo passo é "must", que
 N: Must e have to
 
 @B1|Must e have to|Obrigação de verdade
+I: ❗
 C: "Have to" é a obrigação do dia a dia, por regra ou necessidade. "Must" soa mais forte e aparece em regras e avisos.
 C: Na negativa, o sentido muda muito.
 P: Have to = preciso. Don't have to = não preciso. Mustn't = é proibido.
@@ -3165,6 +3250,7 @@ D: Na segurança do trabalho: "You must wear PPE" é regra; "You mustn't enter" 
 N: Já fiz, nunca fiz
 
 @B1|Já fiz, nunca fiz|O passado sem data
+I: ✅
 C: Para falar de experiências da vida, sem dizer quando, o inglês usa "have" + verbo no particípio.
 P: Já aconteceu, mas a data não importa.
 R: Experiência|I have been to New York.
@@ -3180,6 +3266,7 @@ D: Tem data? Passado simples. Sem data, só a experiência? Have + particípio.
 N: For e since
 
 @B1|For e since|Há quanto tempo
+I: ⏳
 C: "For" mostra quanto tempo dura. "Since" mostra quando começou.
 P: For = durante. Since = desde.
 R: for + período|for ten years, for two hours
@@ -3194,6 +3281,7 @@ D: For é a régua (quanto tempo). Since é o ponto de partida.
 N: Used to
 
 @B1|Used to|O que eu fazia antes
+I: 📼
 C: "Used to" fala de hábitos e situações do passado que não acontecem mais.
 P: Used to = costumava.
 R: Afirmativa|I used to smoke.
@@ -3208,6 +3296,7 @@ D: Pense numa foto antiga: "I used to have long hair."
 N: Comparar
 
 @B1|Comparar|Maior, melhor, o melhor
+I: 📐
 C: Para comparar, palavras curtas ganham -er e -est. Palavras longas usam more e most.
 P: Curta: bigger. Longa: more expensive.
 R: Curta|big → bigger → the biggest
@@ -3224,6 +3313,7 @@ D: Conte as sílabas: uma sílaba, -er. Três ou mais, more.
 N: Make e do
 
 @B1|Make e do|Dois "fazer"
+I: 🛠️
 C: Os dois significam "fazer". "Make" é criar ou produzir algo. "Do" é realizar tarefas e atividades.
 P: Make = cria algo novo. Do = executa uma tarefa.
 R: make|make a cake, make a decision, make money, make a mistake
@@ -3237,6 +3327,7 @@ D: Faça duas listas na geladeira: o que você "make" e o que você "do".
 N: Can, could, be able to
 
 @B1|Can, could, be able to|Poder e conseguir
+I: 💪
 C: "Can" é a capacidade ou permissão no presente. "Could" é o passado ou um pedido mais educado. "Be able to" serve para os outros tempos.
 P: Can = consigo. Could = conseguia / poderia.
 R: Presente|I can swim.
@@ -3249,9 +3340,10 @@ E: Could you repeat, please?|Poderia repetir, por favor?
 E: Will you be able to come?|Você vai conseguir vir?
 X: I will can go.|I'll be able to go.|Não junte will e can.
 D: Pedido para estranhos? Sempre "could": soa mais educado.
-N: Phrasal verbs que se separam
+N: Estava fazendo
 
 @B2|Phrasal verbs que se separam|Turn it off, não turn off it
+I: 🧲
 C: Muitos verbos de duas palavras aceitam a coisa no meio. Quando a coisa é "it", "them" ou "him", ela é obrigatória no meio.
 P: Pronome sempre no meio: turn it off.
 R: Com nome: dois jeitos|turn off the TV / turn the TV off
@@ -3266,6 +3358,7 @@ D: Imagine o pronome como um recheio de sanduíche: entre as duas partes.
 N: Imaginar com If
 
 @B2|Imaginar com If|Se eu fosse você
+I: 💭
 C: Para falar de situações imaginárias no presente, o inglês usa o passado depois de "if" e "would" na outra parte.
 P: If + passado, would + verbo.
 R: Real (pode acontecer)|If it rains, I'll stay home.
@@ -3280,6 +3373,7 @@ D: "If I were you" é a forma clássica de dar conselho. Use "were" para todas a
 N: Wish
 
 @B2|Wish|Queria que fosse diferente
+I: 🌠
 C: "Wish" expressa desejo de algo diferente da realidade, no presente ou no passado.
 P: Wish olha para trás no tempo: presente vira passado.
 R: Presente|I wish I spoke English.
@@ -3294,6 +3388,7 @@ D: Wish é o "quem dera" do inglês.
 N: Voz passiva
 
 @B2|Voz passiva|Quando a ação importa mais que quem fez
+I: 🔄
 C: Na voz passiva, o foco é no que aconteceu, não em quem fez.
 P: to be + particípio.
 R: Presente|English is spoken here.
@@ -3308,6 +3403,7 @@ D: Relatórios de segurança usam muito a passiva: "The area was inspected."
 N: Os mil sentidos de GET
 
 @B2|Os mil sentidos de GET|O verbo coringa do americano
+I: 🎁
 C: "Get" muda de sentido conforme o que vem depois. O americano usa o tempo todo.
 P: Get = mudar de estado ou obter algo.
 R: Conseguir / receber|get a job, get a message
@@ -3323,6 +3419,7 @@ D: Sempre que pensar em "ficar", "chegar" ou "conseguir", teste o get.
 N: Contar o que alguém disse
 
 @B2|Contar o que alguém disse|He said that...
+I: 🗨️
 C: Para repetir o que alguém falou, o verbo costuma recuar um tempo.
 P: Ele disse "I am tired" → He said he was tired.
 R: Presente → passado|"I'm tired." → She said she was tired.
@@ -3338,6 +3435,7 @@ D: Said = disse. Told + pessoa = disse para alguém.
 N: Stop doing e stop to do
 
 @B2|Stop doing e stop to do|O verbo muda o sentido
+I: 🛑
 C: Alguns verbos mudam de sentido conforme o que vem depois: o verbo com -ing ou com "to".
 P: Stop smoking = parar de fumar. Stop to smoke = parar para fumar.
 R: stop + -ing|parar de fazer
@@ -3353,6 +3451,7 @@ D: Verbos de gosto (enjoy, like, love) quase sempre aceitam -ing.
 N: Should have
 
 @B2|Should have|O conselho que chegou tarde
+I: 😕
 C: "Should have" + particípio fala de algo que teria sido melhor fazer, mas não foi feito.
 P: Should have = deveria ter.
 R: Arrependimento|I should have studied.
@@ -3364,9 +3463,10 @@ E: It could have been worse.|Poderia ter sido pior.
 E: We should have left earlier.|Deveríamos ter saído mais cedo.
 X: I should studied.|I should have studied.|Precisa do have + particípio.
 D: Na fala, "should have" vira "shoulda": "I shoulda known".
-N: Conectores de contraste
+N: Tinha feito
 
 @C1|Conectores de contraste|However, although, despite
+I: 🌓
 C: Para mostrar contraste com elegância, o inglês tem várias opções, e cada uma tem sua posição na frase.
 P: Although liga duas frases. Despite vem antes de uma coisa. However começa a frase.
 R: although + frase|Although it was late, we stayed.
@@ -3382,6 +3482,7 @@ D: In spite of = despite. Escolha um e use até ficar automático.
 N: Suavizar o que você diz
 
 @C1|Suavizar o que você diz|O inglês diplomático
+I: 🪶
 C: O falante avançado suaviza opiniões e pedidos para não soar direto demais.
 P: Quanto mais distância, mais educado: would, might, seems.
 R: Opinião|It seems that... / I'd say...
@@ -3397,6 +3498,7 @@ D: Use o passado para ser educado: "I wanted to ask..." soa mais gentil que "I w
 N: Frases com ênfase
 
 @C1|Frases com ênfase|What I need is...
+I: 📣
 C: Para destacar uma parte da frase, o inglês reorganiza a ordem das palavras.
 P: Coloque o mais importante no fim, depois de "is".
 R: What... is|What I need is a break.
@@ -3412,6 +3514,7 @@ D: Fale a palavra de ênfase mais alto e mais devagar.
 N: Palavras que andam juntas
 
 @C1|Palavras que andam juntas|Make a decision, take a break
+I: 🤝
 C: Algumas palavras sempre andam com outras. Trocar soa errado, mesmo com o sentido certo.
 P: Aprenda em pares, não palavra solta.
 R: make|make a decision, make an effort, make sense
@@ -3427,6 +3530,7 @@ D: Anote no caderno sempre o par inteiro: "make a decision", nunca só "decision
 N: Verbos com preposição fixa
 
 @C1|Verbos com preposição fixa|Depend on, not depend of
+I: 📌
 C: Muitos verbos pedem uma preposição própria, diferente do português.
 P: Decore o verbo junto com a preposição.
 R: depend on|depender de
@@ -3443,6 +3547,7 @@ D: Faça frases suas com cada par e repita em voz alta.
 N: Expressões idiomáticas
 
 @C1|Expressões idiomáticas|O sentido não está nas palavras
+I: 🎭
 C: Idioms são frases cujo sentido não se entende traduzindo palavra por palavra.
 P: Aprenda como um bloco, com a situação em que se usa.
 R: Fácil|a piece of cake
@@ -3459,6 +3564,7 @@ D: Associe cada expressão a uma imagem engraçada para lembrar.
 N: Mistura de tempos com If
 
 @C1|Mistura de tempos com If|Passado que afeta o presente
+I: 🌀
 C: Às vezes uma decisão do passado muda o presente. O inglês mistura os tempos na mesma frase.
 P: If + had + particípio, would + verbo agora.
 R: Passado → presente|If I had studied, I would be fluent now.
@@ -3468,9 +3574,10 @@ E: If I had slept more, I wouldn't be tired.|Se eu tivesse dormido mais, não es
 E: If I spoke English, I would have applied.|Se eu falasse inglês, teria me candidatado.
 X: If I would have studied...|If I had studied...|Na parte do if, não use would.
 D: Desenhe uma linha do tempo: a causa fica atrás, o resultado fica no agora.
-N: Formas elegantes
+N: Frases com particípio
 
 @C2|Formas elegantes|Had I known...
+I: 🎩
 C: Em textos e falas formais, o if some e o verbo vai para o começo.
 P: Had I known = If I had known.
 R: Had + pessoa|Had I known, I would have come.
@@ -3484,6 +3591,7 @@ D: Use em e-mails formais: "Should you need anything..." soa muito profissional.
 N: Inversão com negativas
 
 @C2|Inversão com negativas|Never have I seen...
+I: 🔃
 C: Para dar ênfase, palavras negativas vão para o começo e a ordem vira de pergunta.
 P: Palavra negativa primeiro, depois o verbo auxiliar.
 R: Never|Never have I seen...
@@ -3499,6 +3607,7 @@ D: É um recurso de discurso e escrita. Na conversa casual, use com moderação.
 N: So do I, neither do I
 
 @C2|So do I, neither do I|Concordar sem repetir tudo
+I: 🤜
 C: O nativo evita repetir a frase inteira. Ele responde só com o auxiliar.
 P: Concordou com afirmativa: so. Com negativa: neither.
 R: Afirmativa|I love coffee. → So do I.
@@ -3514,6 +3623,7 @@ D: O auxiliar repete o tempo da frase original: did com passado, can com can.
 N: Formal e informal
 
 @C2|Formal e informal|A mesma ideia, dois registros
+I: 👔
 C: O falante fluente escolhe as palavras conforme a situação: chefe, cliente ou amigo.
 P: Formal = palavras longas e completas. Informal = curtas e phrasal verbs.
 R: Pedir|Could you... / Can you...
@@ -3530,6 +3640,7 @@ D: E-mail para cliente: formal. Mensagem para colega: informal.
 N: A sílaba forte muda tudo
 
 @C2|A sílaba forte muda tudo|REcord e reCORD
+I: 🥁
 C: Em várias palavras, mudar a sílaba forte muda o sentido ou a classe da palavra.
 P: Substantivo: forte no começo. Verbo: forte no fim.
 R: REcord / reCORD|um registro / gravar
@@ -3545,6 +3656,7 @@ D: Bata palma na sílaba forte enquanto fala a palavra.
 N: Nuance de sinônimos
 
 @C2|Nuance de sinônimos|Cheap ou affordable?
+I: 🎨
 C: Palavras com sentido parecido passam impressões diferentes. Escolher bem mostra domínio.
 P: Mesma ideia, emoção diferente.
 R: thin · slim · skinny|neutro · elogio · crítica
@@ -3560,6 +3672,7 @@ D: Monte pares de palavras positivas e negativas, como numa balança.
 N: Ironia e understatement
 
 @C2|Ironia e understatement|Dizer menos para dizer mais
+I: 😏
 C: O falante nativo usa ironia e diz menos do que pensa para dar humor ou suavizar.
 P: O tom de voz carrega o sentido real.
 R: Ironia|Oh, great. Just what I needed.
@@ -3575,6 +3688,7 @@ D: Assista a comédias americanas e repare no tom das falas irônicas.
 N: Marcadores de discurso
 
 @C2|Marcadores de discurso|Mind you, that said, as it happens
+I: 🧷
 C: São palavras curtas que organizam a conversa e soam muito naturais.
 P: Pequenas palavras, grande fluência.
 R: Mind you|Mas olha... (uma ressalva)
@@ -3588,10 +3702,2169 @@ E: As it happens, I know him.|Por acaso, eu conheço ele.
 E: Come to think of it, you're right.|Pensando bem, você tem razão.
 X: Usar "actually" como "atualmente"|actually = na verdade|Atualmente é "currently" ou "nowadays".
 D: Escolha um marcador por semana e use em todas as conversas.
+N: Pares fixos
+
+@B1|Entrevista de emprego|Tell me about yourself|sit
+I: 💼
+C: Nos EUA, a entrevista começa com "Tell me about yourself": um resumo de um minuto sobre você e sua carreira.
+C: O americano valoriza exemplos concretos: o que você fez, como fez e qual foi o resultado.
+P: Quem sou + o que faço + por que quero esta vaga.
+R: Abrir|I've been working as + profissão + for + tempo.
+R: Mostrar resultado|I was responsible for... / I managed to...
+R: Por que a vaga|I'm interested in this position because...
+R: Fechar|Do you have any questions for me? → Yes, what does a typical day look like?
+E: I've been working as an engineer for twenty years.|Trabalho como engenheiro há vinte anos.
+E: I was responsible for safety in three factories.|Eu era responsável pela segurança em três fábricas.
+E: I'm a team player and I learn fast.|Gosto de trabalhar em equipe e aprendo rápido.
+E: What does a typical day look like?|Como é um dia normal de trabalho?
+X: I have 20 years of experience in this function.|I have 20 years of experience in this role.|"Function" não é cargo. Use role ou position.
+D: Treine o resumo de um minuto em voz alta, cronometrando no celular.
+N: Falar do seu trabalho
+
+@B1|Falar do seu trabalho|What do you do?|sit
+I: 🏭
+C: "What do you do?" é uma das primeiras perguntas que o americano faz. Ele quer saber a profissão, não o que você está fazendo agora.
+C: Responda com o cargo, a empresa e uma frase sobre o dia a dia.
+P: Cargo + onde + o que faço.
+R: Cargo|I'm a + profissão. / I work as a + profissão.
+R: Empresa|I work for + empresa. / I work at + lugar.
+R: Dia a dia|I'm in charge of... / I deal with...
+R: Opinião|I love what I do. / It's demanding, but rewarding.
+E: I'm a safety engineer.|Sou engenheiro de segurança.
+E: I work for a manufacturing company.|Trabalho para uma indústria.
+E: I'm in charge of training and inspections.|Sou responsável pelos treinamentos e inspeções.
+E: It's demanding, but rewarding.|É puxado, mas compensa.
+X: I work in the Toro company.|I work for Toro.|Para a empresa, use "work for". Sem "the" antes do nome.
+D: Faça a sua frase de profissão e grave no celular até sair sem pensar.
+N: Reunião de pais na escola
+
+@B1|Reunião de pais na escola|How is my son doing?|sit
+I: 🏫
+C: Nos EUA, a reunião com o professor se chama parent-teacher conference e dura cerca de 15 minutos.
+C: O professor fala de grades (notas), behavior (comportamento) e homework (lição de casa).
+P: Como ele está + o que melhorar + como ajudar em casa.
+R: Começar|How is my son / daughter doing?
+R: Dificuldade|Is he struggling with anything?
+R: Ajudar|What can we do at home to help?
+R: Agradecer|Thank you for everything you do.
+E: How is my daughter doing in math?|Como minha filha está em matemática?
+E: Is he struggling with anything?|Ele está com dificuldade em alguma coisa?
+E: He needs to turn in his homework on time.|Ele precisa entregar a lição no prazo.
+E: What can we do at home to help?|O que podemos fazer em casa para ajudar?
+X: How is my son in the school?|How is my son doing in school?|Use "doing" para perguntar sobre o desempenho, e "in school" sem "the".
+D: Leve três perguntas escritas. O professor vai gostar da organização.
+N: No dentista
+
+@B1|No dentista|I have a toothache|sit
+I: 🦷
+C: No dentista, você explica onde dói, desde quando e se é sensível ao frio ou ao doce.
+C: Nos EUA, a limpeza (cleaning) é feita a cada seis meses e o seguro costuma cobrir.
+P: Onde dói + desde quando + o que piora.
+R: Dor|I have a toothache. / This tooth hurts.
+R: Sensível|It's sensitive to cold.
+R: Marcar|I'd like to schedule a cleaning.
+R: Seguro|Do you take my dental insurance?
+E: I have a toothache on the left side.|Estou com dor de dente do lado esquerdo.
+E: It's sensitive to cold drinks.|Dói com bebida gelada.
+E: I'd like to schedule a cleaning.|Quero marcar uma limpeza.
+E: Do you take my insurance?|Vocês aceitam o meu plano?
+X: My tooth is doing pain.|My tooth hurts.|Em inglês, a parte do corpo "hurts".
+D: Aponte o dente e diga "this one": o dentista entende na hora.
+N: Pronto-socorro
+
+@B1|Pronto-socorro|I need to see a doctor right away|sit
+I: 🚑
+C: Para emergência grave, ligue 911 ou vá ao ER (emergency room). Para casos simples, vá a uma urgent care, que é mais rápida e barata.
+C: Na recepção, você explica o problema, mostra o documento e o seguro.
+P: O que aconteceu + quando + quanto dói (de 1 a 10).
+R: Chegar|I need to see a doctor right away.
+R: Contar|I fell and hurt my arm.
+R: Escala de dor|On a scale of 1 to 10, it's an 8.
+R: Seguro|Here's my insurance card.
+E: I need to see a doctor right away.|Preciso ver um médico agora.
+E: I fell and hurt my wrist.|Eu caí e machuquei o pulso.
+E: On a scale of one to ten, it's an eight.|Numa escala de um a dez, é oito.
+E: I don't have insurance. How much is it?|Não tenho seguro. Quanto custa?
+X: I am with pain.|I'm in pain.|Estar com dor é "be in pain".
+D: Guarde no celular uma foto do seguro e a lista dos seus remédios em inglês.
+N: Abrir conta e cartão
+
+@B1|Abrir conta e cartão|I'd like to open an account|sit
+I: 🏦
+C: Para abrir conta nos EUA, pedem documento com foto, comprovante de endereço e, às vezes, o SSN ou ITIN.
+C: Checking account é a conta corrente. Savings account é a poupança. Debit card é o cartão de débito.
+P: Quero abrir + qual conta + o que preciso.
+R: Abrir|I'd like to open a checking account.
+R: Documentos|What documents do I need?
+R: Taxas|Is there a monthly fee?
+R: Cartão|When will I get my debit card?
+E: I'd like to open a checking account.|Quero abrir uma conta corrente.
+E: What documents do I need?|Quais documentos eu preciso?
+E: Is there a monthly fee?|Tem tarifa mensal?
+E: My card was declined.|Meu cartão foi recusado.
+X: I want to open a current account.|I want to open a checking account.|Nos EUA, conta corrente é checking account. Current account é do inglês britânico.
+D: Antes de ir, escreva as quatro perguntas num papel e marque as respostas.
+N: Problema no hotel
+
+@B1|Problema no hotel|There's a problem with my room|sit
+I: 🛏️
+C: Se algo dá errado no quarto, ligue para a front desk (recepção). Fale com calma e diga o que precisa.
+C: Pedir troca de quarto é normal e quase sempre funciona com educação.
+P: Qual o problema + o que você quer.
+R: Problema|The air conditioning isn't working.
+R: Pedido|Could you send someone to fix it?
+R: Troca|Would it be possible to change rooms?
+R: Mais itens|Could I get some extra towels?
+E: The air conditioning isn't working.|O ar-condicionado não está funcionando.
+E: The room is too noisy.|O quarto é muito barulhento.
+E: Would it be possible to change rooms?|Seria possível trocar de quarto?
+E: Could I get some extra towels?|Poderia me trazer toalhas extras?
+X: The air conditioner is not functioning.|The AC isn't working.|O americano diz "isn't working" e chama de AC.
+D: Comece sempre com "Hi, this is room 512": eles já sabem quem você é.
+N: Voo atrasado ou cancelado
+
+@B1|Voo atrasado ou cancelado|My flight was canceled|sit
+I: ✈️
+C: Quando o voo atrasa (delayed) ou é cancelado (canceled), vá ao balcão ou use o app da companhia para remarcar (rebook).
+C: Pergunte sobre vouchers de refeição ou hotel se a culpa for da companhia.
+P: O que aconteceu + o que você precisa + até quando.
+R: Informar|My flight was canceled.
+R: Remarcar|Can you rebook me on the next flight?
+R: Conexão|I'm going to miss my connection.
+R: Ajuda|Do you provide a hotel voucher?
+E: My flight was delayed three hours.|Meu voo atrasou três horas.
+E: Can you rebook me on the next flight?|Pode me colocar no próximo voo?
+E: I'm going to miss my connection.|Vou perder a conexão.
+E: Do you provide a hotel voucher?|Vocês dão voucher de hotel?
+X: My flight was cancelled for today.|My flight was canceled.|O americano escreve canceled com um L só e não precisa de "for today".
+D: Tire foto do painel de partidas: ajuda a mostrar o número do voo.
+N: Aluguel por aplicativo
+
+@B1|Aluguel por aplicativo|Where can I find the key?|sit
+I: 🔑
+C: Em casas alugadas por aplicativo, quase tudo se resolve por mensagem com o anfitrião (host).
+C: As perguntas mais comuns são sobre chave, Wi-Fi, horário de entrada e de saída.
+P: Mensagem curta + educada + com o número da reserva.
+R: Chegada|What time is check-in?
+R: Chave|Where can I find the key?
+R: Wi-Fi|What's the Wi-Fi password?
+R: Saída|Can we do a late check-out?
+E: Hi! We're arriving around 6 p.m.|Oi! Vamos chegar por volta das 18h.
+E: Where can I find the key?|Onde fica a chave?
+E: What's the Wi-Fi password?|Qual é a senha do Wi-Fi?
+E: Can we do a late check-out?|Podemos sair mais tarde?
+X: Which is the password of the Wi-Fi?|What's the Wi-Fi password?|Para perguntar informação, use "what". A ordem é "Wi-Fi password".
+D: Copie e cole as quatro perguntas no aplicativo: elas servem para qualquer viagem.
+N: Churrasco com vizinhos
+
+@B1|Churrasco com vizinhos|Thanks for having us|sit
+I: 🍖
+C: O cookout ou barbecue é o encontro mais típico dos EUA, principalmente no 4 de julho e no Memorial Day.
+C: É educado levar algo (a side dish, drinks) e perguntar se pode ajudar.
+P: Chegar + oferecer ajuda + elogiar + agradecer.
+R: Chegar|Thanks for having us!
+R: Levar|We brought some potato salad.
+R: Ajudar|Can I give you a hand?
+R: Elogiar|This is delicious! Did you make it?
+E: Thanks for having us!|Obrigado pelo convite!
+E: We brought some drinks.|Trouxemos bebidas.
+E: Can I give you a hand?|Posso te ajudar?
+E: These burgers are amazing!|Esses hambúrgueres estão incríveis!
+X: Thank you for invite us.|Thanks for having us.|O jeito natural é "Thanks for having us" ou "Thanks for inviting us".
+D: Pergunte "What should I bring?" quando aceitar o convite.
+N: Thanksgiving
+
+@B1|Thanksgiving|What are you thankful for?|sit
+I: 🦃
+C: O Dia de Ação de Graças é na quarta quinta-feira de novembro. É o feriado mais familiar dos EUA.
+C: Na mesa, é comum cada pessoa dizer pelo que é grata.
+P: Peru + família + gratidão.
+R: Desejar|Happy Thanksgiving!
+R: Gratidão|I'm thankful for my family.
+R: Comida|Could you pass the stuffing, please?
+R: Depois|I'm so full!
+E: Happy Thanksgiving!|Feliz Dia de Ação de Graças!
+E: I'm thankful for my health and my family.|Sou grato pela saúde e pela minha família.
+E: Could you pass the mashed potatoes?|Pode me passar o purê?
+E: I'm so full, I can't eat another bite.|Estou cheio, não consigo comer mais nada.
+X: I'm grateful by my family.|I'm grateful for my family.|Grato por = grateful for / thankful for.
+D: Pense agora em três coisas pelas quais você é grato e diga em inglês.
+N: Festa de aniversário
+
+@B1|Festa de aniversário|Happy birthday! Make a wish|sit
+I: 🎂
+C: Nos EUA, canta-se Happy Birthday e a pessoa faz um pedido (make a wish) antes de soprar as velas.
+C: Cartões (birthday cards) são muito comuns, com uma mensagem curta.
+P: Parabéns + desejo + presente.
+R: Parabéns|Happy birthday!
+R: Desejo|I hope all your wishes come true.
+R: Presente|This is for you. I hope you like it.
+R: Idade|How old are you turning?
+E: Happy birthday! Make a wish!|Feliz aniversário! Faça um pedido!
+E: I hope all your wishes come true.|Espero que todos os seus desejos se realizem.
+E: This is for you. I hope you like it.|Isto é para você. Espero que goste.
+E: How old are you turning?|Vai fazer quantos anos?
+X: Congratulations for your birthday!|Happy birthday!|No aniversário, o americano diz "Happy birthday". Congratulations é para conquistas.
+D: Escreva um cartão curto em inglês para alguém da família hoje.
+N: Pedir recomendação
+
+@B1|Pedir recomendação|What would you recommend?|sit
+I: 🗺️
+C: O americano adora dar dicas. Pedir recomendação é um ótimo jeito de puxar conversa.
+C: Serve para restaurante, passeio, prato do cardápio ou série.
+P: Peça + diga o que você gosta + agradeça.
+R: Pedir|What would you recommend?
+R: Gosto|I'm into Italian food.
+R: Lugar|Is there a good place to eat around here?
+R: Opinião|Is it worth it?
+E: What would you recommend?|O que você recomenda?
+E: Is there a good place to eat around here?|Tem algum lugar bom para comer por aqui?
+E: What's popular here?|O que faz sucesso aqui?
+E: Is it worth it?|Vale a pena?
+X: What do you indicate?|What do you recommend?|"Indicate" não é indicar uma dica. Use recommend.
+D: Use em todo restaurante: "What's your favorite dish here?"
+N: Dar opinião
+
+@B1|Dar opinião|In my opinion...|sit
+I: 💬
+C: Dar opinião com educação é essencial no trabalho e com amigos.
+C: O americano costuma suavizar: "I think", "I feel like", "To be honest".
+P: Opinião + motivo + exemplo.
+R: Começar|I think... / In my opinion...
+R: Sincero|To be honest...
+R: Motivo|because...
+R: Perguntar|What do you think?
+E: I think it's a great idea.|Acho uma ótima ideia.
+E: To be honest, I'm not sure.|Para ser sincero, não tenho certeza.
+E: I feel like we need more time.|Sinto que precisamos de mais tempo.
+E: What do you think?|O que você acha?
+X: In my opinion, I think that...|In my opinion... / I think...|Use um ou outro. Juntos fica repetido.
+D: Toda vez que der opinião, devolva com "What do you think?".
+N: Dar conselho
+
+@B1|Dar conselho|If I were you...|sit
+I: 🤝
+C: Para aconselhar um amigo, o americano usa "You should", "Why don't you" e "If I were you".
+C: O tom é de sugestão, não de ordem.
+P: Problema + sugestão + apoio.
+R: Sugestão|You should talk to him.
+R: Ideia|Why don't you try again?
+R: No seu lugar|If I were you, I'd wait.
+R: Apoio|I'm here if you need me.
+E: You should see a doctor.|Você deveria ir ao médico.
+E: Why don't you take a break?|Por que você não descansa um pouco?
+E: If I were you, I'd call her.|Se eu fosse você, ligaria para ela.
+E: I'm here if you need me.|Estou aqui se precisar.
+X: If I was you...|If I were you...|Nessa expressão, o padrão é "were".
+D: Lembre: should = deveria; why don't you = por que não...
+N: Contar uma história
+
+@B1|Contar uma história|You won't believe what happened|sit
+I: 📖
+C: Contar o que aconteceu é uma das coisas que mais fazemos numa conversa.
+C: Use palavras de sequência: first, then, after that, finally.
+P: Começo + meio + fim + reação.
+R: Abrir|You won't believe what happened!
+R: Sequência|First... Then... After that...
+R: Surpresa|All of a sudden...
+R: Fim|In the end...
+E: You won't believe what happened yesterday!|Você não vai acreditar no que aconteceu ontem!
+E: First, my car broke down.|Primeiro, meu carro quebrou.
+E: All of a sudden, it started to rain.|De repente, começou a chover.
+E: In the end, everything worked out.|No fim, deu tudo certo.
+X: In the final, everything worked out.|In the end, everything worked out.|No fim = in the end.
+D: Conte em inglês o que você fez no último fim de semana, usando first, then e in the end.
+N: Reservar mesa
+
+@B1|Reservar mesa|A table for four at seven|sit
+I: 🍽️
+C: Reserva é reservation. Em restaurantes cheios, peça por telefone ou aplicativo.
+C: Você diz o dia, o horário, quantas pessoas e o seu nome.
+P: Dia + hora + pessoas + nome.
+R: Pedir|I'd like to make a reservation.
+R: Detalhes|For four people, at 7 p.m. on Friday.
+R: Nome|Under the name Silva.
+R: Pedido especial|Could we get a table by the window?
+E: I'd like to make a reservation for Friday.|Quero fazer uma reserva para sexta.
+E: A table for four at seven, please.|Uma mesa para quatro às sete, por favor.
+E: It's under the name Silva.|Está no nome Silva.
+E: Could we get a table outside?|Poderíamos ficar numa mesa do lado de fora?
+X: I want to reserve a table for four persons.|I'd like a table for four.|Use "people" e não precisa repetir: "a table for four".
+D: Pratique soletrar seu sobrenome em inglês: eles sempre pedem.
+N: Na oficina mecânica
+
+@B1|Na oficina mecânica|My car is making a weird noise|sit
+I: 🔧
+C: Na oficina (auto shop), explique o que o carro está fazendo e peça um orçamento (estimate) antes do serviço.
+C: Oil change é troca de óleo; tires são pneus; brakes são freios.
+P: O que acontece + quando + quanto custa.
+R: Problema|My car is making a weird noise.
+R: Quando|It happens when I brake.
+R: Orçamento|Can you give me an estimate?
+R: Prazo|When will it be ready?
+E: My car is making a weird noise.|Meu carro está fazendo um barulho estranho.
+E: It happens when I brake.|Acontece quando eu freio.
+E: Can you give me an estimate first?|Pode me dar um orçamento antes?
+E: When will it be ready?|Quando fica pronto?
+X: My car is doing a strange noise.|My car is making a weird noise.|Barulho, em inglês, se faz com "make".
+D: Grave o barulho com o celular e mostre ao mecânico.
+N: Conserto em casa
+
+@B1|Conserto em casa|The sink is leaking|sit
+I: 🚰
+C: Em apartamento alugado, você abre um maintenance request com o administrador (landlord ou property manager).
+C: Diga o problema, onde fica e se é urgente.
+P: O que quebrou + onde + urgência.
+R: Vazamento|The kitchen sink is leaking.
+R: Não funciona|The heater isn't working.
+R: Entupido|The toilet is clogged.
+R: Visita|When can someone come by?
+E: The kitchen sink is leaking.|A pia da cozinha está vazando.
+E: The heater isn't working.|O aquecedor não está funcionando.
+E: The toilet is clogged.|O vaso está entupido.
+E: When can someone come by?|Quando alguém pode passar aqui?
+X: The sink is dropping water.|The sink is leaking.|Vazar = leak.
+D: Mande foto junto com a mensagem: resolve mais rápido.
+N: Assistir a um jogo
+
+@B1|Assistir a um jogo|Who are you rooting for?|sit
+I: 🏈
+C: Futebol americano, basquete e beisebol são assunto em qualquer conversa nos EUA, principalmente no Super Bowl.
+C: Torcer para um time é root for. Soccer é o nosso futebol.
+P: Para quem torce + placar + reação.
+R: Torcer|Who are you rooting for?
+R: Placar|What's the score?
+R: Bom lance|What a play!
+R: Resultado|We won! / We lost.
+E: Who are you rooting for?|Para quem você está torcendo?
+E: What's the score?|Quanto está o jogo?
+E: What a play!|Que jogada!
+E: They're up by seven.|Eles estão ganhando por sete pontos.
+X: Which team are you fan?|Which team are you a fan of?|A preposição "of" vai no final.
+D: Escolha um time americano para acompanhar: vira assunto com qualquer colega.
+N: Planejar uma viagem
+
+@B1|Planejar uma viagem|We're thinking of going to...|sit
+I: 🧳
+C: Planejar viagem envolve falar de datas, lugares, orçamento e transporte.
+C: Use "We're thinking of" para planos ainda não fechados.
+P: Para onde + quando + quanto + como.
+R: Ideia|We're thinking of going to Florida.
+R: Datas|We'll be there from the 10th to the 17th.
+R: Orçamento|Our budget is around two thousand dollars.
+R: Transporte|Should we rent a car?
+E: We're thinking of going to Florida in July.|Estamos pensando em ir para a Flórida em julho.
+E: We'll be there for a week.|Vamos ficar uma semana.
+E: What's the best way to get around?|Qual o melhor jeito de se locomover?
+E: Should we rent a car?|Devemos alugar um carro?
+X: We are thinking in going.|We're thinking of going.|Pensar em = think of / think about.
+D: Faça um mini roteiro em inglês da sua próxima viagem, mesmo que seja dentro do Brasil.
+N: Atendimento por chat
+
+@B1|Atendimento por chat|I have an issue with my order|sit
+I: 💻
+C: Nas lojas online, o chat de atendimento resolve trocas, atrasos e cobranças. Escreva frases curtas.
+C: Tenha em mãos o número do pedido (order number).
+P: Problema + número do pedido + o que você quer.
+R: Problema|I have an issue with my order.
+R: Número|My order number is 4815.
+R: Atraso|It hasn't arrived yet.
+R: Pedido|I'd like a refund, please.
+E: I have an issue with my order.|Tenho um problema com meu pedido.
+E: It hasn't arrived yet.|Ainda não chegou.
+E: I received the wrong size.|Recebi o tamanho errado.
+E: I'd like a refund, please.|Quero o reembolso, por favor.
+X: I want my money back of the order.|I'd like a refund.|Refund é a palavra certa e soa mais educada.
+D: Guarde estas frases no bloco de notas para copiar quando precisar.
+N: No correio e entregas
+
+@B1|No correio e entregas|Can you sign for this package?|sit
+I: 📦
+C: Entregas nos EUA usam USPS, UPS, FedEx e Amazon. Às vezes precisam de assinatura.
+C: Se você não estiver em casa, deixam um aviso para retirar (pick up).
+P: Receber + assinar + retirar.
+R: Assinar|Can you sign for this package?
+R: Retirar|I'm here to pick up a package.
+R: Aviso|I got a delivery notice.
+R: Rastreio|What's the tracking number?
+E: I'm here to pick up a package.|Vim retirar um pacote.
+E: I got a delivery notice.|Recebi um aviso de entrega.
+E: Here's my ID.|Aqui está meu documento.
+E: What's the tracking number?|Qual é o código de rastreio?
+X: I came to catch a package.|I'm here to pick up a package.|Retirar = pick up.
+D: Mostre o aviso e o documento: quase não precisa falar.
+N: Pedir um favor
+
+@B1|Pedir um favor|Could you do me a favor?|sit
+I: 🙏
+C: Para pedir favor, o americano suaviza com "Could you" e "Would you mind".
+C: Agradecer depois é obrigatório: "I owe you one" (te devo uma).
+P: Suavizar + pedir + agradecer.
+R: Pedir|Could you do me a favor?
+R: Educado|Would you mind watching my bag?
+R: Aceitar|Sure, no problem.
+R: Agradecer|Thanks, I owe you one.
+E: Could you do me a favor?|Você pode me fazer um favor?
+E: Would you mind closing the door?|Você se importa de fechar a porta?
+E: Sure, no problem.|Claro, sem problema.
+E: Thanks, I owe you one!|Valeu, te devo uma!
+X: Would you mind to help me?|Would you mind helping me?|Depois de "mind", o verbo vem com -ing.
+D: Lembre: would you mind + verbo com -ing.
+N: Mudar de casa
+
+@B1|Mudar de casa|We're moving next week|sit
+I: 🚚
+C: Mudança é move. Moving truck é o caminhão. Pack é encaixotar.
+C: Avise os vizinhos, o trabalho e mude o endereço nos serviços.
+P: Quando + para onde + o que falta.
+R: Avisar|We're moving next week.
+R: Destino|We're moving to a bigger place.
+R: Ajuda|Could you help me move on Saturday?
+R: Endereço|I need to update my address.
+E: We're moving next week.|Vamos nos mudar semana que vem.
+E: I'm still packing.|Ainda estou encaixotando.
+E: Could you help me move on Saturday?|Você pode me ajudar na mudança no sábado?
+E: I need to update my address.|Preciso atualizar meu endereço.
+X: We are going to change of house.|We're moving.|Mudar de casa é simplesmente "move".
+D: Mudança = move. Trocar de roupa = change. Não misture.
+N: Negociar preço
+
+@B2|Negociar preço|Is there any wiggle room?|sit
+I: 🏷️
+C: Nos EUA, quase não se pechincha em loja. Mas carro, aluguel, serviços e compras grandes são negociáveis.
+C: O segredo é ser educado e firme: pedir desconto como pergunta, não como exigência.
+P: Elogie + pergunte + proponha + feche.
+R: Abrir|Is there any wiggle room on the price?
+R: Proposta|Would you take three thousand?
+R: Comparar|I got a better quote somewhere else.
+R: Fechar|If you can do that, we have a deal.
+E: Is there any wiggle room on the price?|Tem como melhorar o preço?
+E: Would you take three thousand?|Você aceitaria três mil?
+E: That's a bit out of my budget.|Está um pouco acima do meu orçamento.
+E: If you can do that, we have a deal.|Se fizer esse valor, fechamos negócio.
+X: Can you give me a discount of the price?|Can you do any better on the price?|"Do better on the price" é o jeito natural de pedir desconto.
+D: Fique em silêncio depois de fazer a proposta. Quem fala primeiro cede.
+N: Apresentação no trabalho
+
+@B2|Apresentação no trabalho|Let me walk you through|sit
+I: 📊
+C: Numa apresentação, o americano espera uma estrutura clara: o que vou mostrar, os pontos e a conclusão.
+C: Frases de transição deixam você seguro mesmo com vocabulário simples.
+P: Abertura + pontos + conclusão + perguntas.
+R: Abrir|Today I'm going to walk you through our results.
+R: Mudar de ponto|Moving on to the next slide...
+R: Destacar|The key takeaway here is...
+R: Fechar|To wrap up... Any questions?
+E: Let me walk you through the numbers.|Deixa eu explicar os números para vocês.
+E: Moving on to the next point.|Passando para o próximo ponto.
+E: The key takeaway is that accidents dropped by 30 percent.|O principal é que os acidentes caíram 30 por cento.
+E: To wrap up, any questions?|Para encerrar, alguma pergunta?
+X: I will present you the results.|I'll present the results to you.|"Present" não leva a pessoa direto depois. Ou diga "Let me show you".
+D: Escreva as frases de transição no rodapé dos slides para treinar.
+N: Ligar para atendimento
+
+@B2|Ligar para atendimento|I've been on hold for an hour|sit
+I: ☎️
+C: Ligar para empresas nos EUA envolve menus automáticos, espera (on hold) e transferências.
+C: Diga o motivo logo no começo e anote o nome de quem atendeu e o número do protocolo.
+P: Motivo + dados + solução + protocolo.
+R: Motivo|I'm calling about my bill.
+R: Espera|I've been on hold for an hour.
+R: Supervisor|Can I speak to a supervisor?
+R: Protocolo|Can I get a reference number?
+E: I'm calling about a charge on my account.|Estou ligando por causa de uma cobrança na minha conta.
+E: I've been on hold for an hour.|Estou esperando na linha há uma hora.
+E: Could you transfer me to the right department?|Pode me transferir para o setor certo?
+E: Can I get a reference number for this call?|Pode me passar um número de protocolo?
+X: I'm calling for complain.|I'm calling to complain.|Para dizer o objetivo, use "to" + verbo.
+D: Diga "representative" ou "agent" ao menu automático para falar com uma pessoa.
+N: Contestar uma cobrança
+
+@B2|Contestar uma cobrança|I was charged twice|sit
+I: 🧾
+C: Cobrança errada é comum: cobraram duas vezes, cobraram a mais ou cobraram algo cancelado.
+C: Peça para remover a cobrança (remove the charge) ou estornar (refund).
+P: O que aconteceu + valor + data + solução.
+R: Duplicado|I was charged twice for the same order.
+R: Errado|There's a charge I don't recognize.
+R: Cancelado|I canceled, but I'm still being charged.
+R: Solução|Could you reverse the charge?
+E: I was charged twice for the same order.|Fui cobrado duas vezes pelo mesmo pedido.
+E: There's a charge I don't recognize.|Tem uma cobrança que eu não reconheço.
+E: I canceled last month, but I'm still being charged.|Cancelei mês passado, mas continuo sendo cobrado.
+E: Could you reverse the charge?|Vocês podem estornar a cobrança?
+X: They charged me two times.|I was charged twice.|Duas vezes = twice. A voz passiva soa mais natural aqui.
+D: Tenha o extrato aberto na tela antes de ligar.
+N: Dar feedback
+
+@B2|Dar feedback|Can I give you some feedback?|sit
+I: 📝
+C: Nos EUA, o feedback costuma ser em sanduíche: um ponto positivo, a melhoria e outro positivo.
+C: Fale do comportamento, não da pessoa.
+P: Positivo + melhoria + apoio.
+R: Pedir licença|Can I give you some feedback?
+R: Positivo|You did a great job on...
+R: Melhoria|One thing you could work on is...
+R: Apoio|Let me know how I can help.
+E: Can I give you some quick feedback?|Posso te dar um feedback rápido?
+E: You did a great job on the report.|Você fez um ótimo trabalho no relatório.
+E: One thing you could work on is time management.|Uma coisa que você pode melhorar é a gestão do tempo.
+E: Let me know how I can help.|Me avise como posso ajudar.
+X: You are very bad at deadlines.|Meeting deadlines is something to work on.|Critique o comportamento, não a pessoa.
+D: Comece com o positivo e termine oferecendo ajuda.
+N: Discordar com educação
+
+@B2|Discordar com educação|I see your point, but...|sit
+I: ⚖️
+C: O americano evita o "No" seco no trabalho. Ele reconhece o outro lado antes de discordar.
+C: Discordar com respeito é sinal de profissionalismo.
+P: Reconhecer + mas + alternativa.
+R: Reconhecer|I see your point, but...
+R: Suavizar|I'm not sure I agree.
+R: Alternativa|What if we tried...?
+R: Concordar em parte|You're right about that, however...
+E: I see your point, but I think it's too risky.|Entendo seu ponto, mas acho arriscado demais.
+E: I'm not sure I agree with that.|Não sei se concordo com isso.
+E: What if we tried a different approach?|E se tentássemos outro caminho?
+E: That's a fair point.|É um ponto justo.
+X: You are wrong.|I see it a bit differently.|Diretamente "you are wrong" soa agressivo.
+D: Antes de discordar, repita em uma frase o que a pessoa disse.
+N: Saúde e hábitos
+
+@B2|Saúde e hábitos|I'm trying to cut down on sugar|sit
+I: 🥗
+C: Conversar sobre alimentação, exercício e sono é muito comum nos EUA.
+C: Expressões úteis: cut down on (diminuir), work out (malhar), get enough sleep (dormir o suficiente).
+P: Hábito + meta + dificuldade.
+R: Diminuir|I'm trying to cut down on sugar.
+R: Exercício|I work out three times a week.
+R: Sono|I don't get enough sleep.
+R: Meta|My goal is to lose ten pounds.
+E: I'm trying to cut down on sugar.|Estou tentando diminuir o açúcar.
+E: I work out three times a week.|Malho três vezes por semana.
+E: I don't get enough sleep.|Não durmo o suficiente.
+E: I've started walking every morning.|Comecei a caminhar toda manhã.
+X: I'm doing a diet.|I'm on a diet.|Estar de dieta = be on a diet.
+D: Fale do seu hábito do dia em inglês no espelho, de manhã.
+N: Vizinho barulhento
+
+@B2|Vizinho barulhento|Would you mind keeping it down?|sit
+I: 🔊
+C: Reclamar com o vizinho exige tato. Comece cordial e faça um pedido concreto.
+C: Keep it down = fazer menos barulho.
+P: Cumprimentar + explicar + pedir + agradecer.
+R: Abrir|Hi, sorry to bother you.
+R: Explicar|The music has been pretty loud at night.
+R: Pedir|Would you mind keeping it down after ten?
+R: Agradecer|I really appreciate it.
+E: Hi, sorry to bother you.|Oi, desculpa incomodar.
+E: The music has been pretty loud at night.|A música tem estado bem alta à noite.
+E: Would you mind keeping it down after ten?|Você se importa de baixar o volume depois das dez?
+E: I really appreciate it.|Agradeço muito.
+X: Please, do less noise.|Could you keep it down?|Fazer barulho = make noise. O pedido educado é "keep it down".
+D: Fale pessoalmente e com um sorriso antes de procurar o síndico.
+N: Batida de carro leve
+
+@B2|Batida de carro leve|Are you okay? Let's exchange information|sit
+I: 🚗
+C: Num acidente leve, verifique se todos estão bem, tire fotos e troque informações do seguro.
+C: Não discuta culpa na hora. Diga apenas os fatos.
+P: Saúde + fotos + dados + seguro.
+R: Saúde|Is everyone okay?
+R: Trocar dados|Let's exchange insurance information.
+R: Fotos|I'm going to take some pictures.
+R: Polícia|Should we call the police?
+E: Is everyone okay?|Estão todos bem?
+E: Let's exchange insurance information.|Vamos trocar os dados do seguro.
+E: Can I see your driver's license?|Posso ver sua habilitação?
+E: I'm going to take some pictures of the damage.|Vou tirar fotos do estrago.
+X: It was your guilt.|Let's let the insurance handle it.|Culpa é fault, mas evite falar disso na hora.
+D: Salve no celular: nome, telefone, placa, seguradora e número da apólice.
+N: Parado pela polícia
+
+@B2|Parado pela polícia|License and registration, please|sit
+I: 🚓
+C: Se a polícia mandar parar, encoste, desligue o carro, mantenha as mãos no volante e espere instruções.
+C: Responda com calma, de forma curta e educada.
+P: Calma + mãos visíveis + avisar antes de se mexer.
+R: Documentos|Here's my license and registration.
+R: Avisar|My documents are in the glove box. May I get them?
+R: Entender|I'm sorry, I didn't understand. Could you repeat that?
+R: Visitante|I'm visiting from Brazil.
+E: Good evening, officer.|Boa noite, policial.
+E: My license is in my wallet. May I get it?|Minha habilitação está na carteira. Posso pegar?
+E: I'm sorry, could you repeat that more slowly?|Desculpe, pode repetir mais devagar?
+E: Was I speeding?|Eu estava acima da velocidade?
+X: Wait, I will take my documents.|May I get my documents?|Peça permissão antes de pegar qualquer coisa.
+D: Mãos no volante e luz interna acesa à noite deixam o policial tranquilo.
+N: Reunião por vídeo
+
+@B2|Reunião por vídeo|You're on mute|sit
+I: 🖥️
+C: Em reuniões online, as frases mais comuns são sobre som, imagem e quem fala.
+C: You're on mute = você está no mudo. Ouvir isso é quase certo em toda reunião.
+P: Som + imagem + vez de falar.
+R: Mudo|You're on mute.
+R: Conexão|You're breaking up.
+R: Tela|Can everyone see my screen?
+R: Vez|Sorry, go ahead.
+E: You're on mute.|Você está no mudo.
+E: Sorry, you're breaking up.|Desculpa, você está cortando.
+E: Can everyone see my screen?|Todos estão vendo minha tela?
+E: Sorry, go ahead.|Desculpa, pode falar.
+X: My internet is falling.|My connection is bad.|Internet "caindo" se diz "my connection keeps dropping".
+D: Abra toda reunião com "Can everyone hear me?".
+N: Networking em eventos
+
+@B2|Networking em eventos|What brings you here?|sit
+I: 🤝
+C: Em eventos, o americano conversa com desconhecidos com facilidade. A pergunta clássica é "What brings you here?".
+C: Termine trocando contato: LinkedIn ou cartão.
+P: Apresentar + perguntar + interesse comum + contato.
+R: Abrir|Hi, I'm Carlos. What brings you here?
+R: Interesse|How did you get into that field?
+R: Ponte|We should keep in touch.
+R: Contato|Are you on LinkedIn?
+E: What brings you here?|O que te traz aqui?
+E: How did you get into that field?|Como você entrou nessa área?
+E: It was great talking to you.|Foi ótimo conversar com você.
+E: Let's connect on LinkedIn.|Vamos nos conectar no LinkedIn.
+X: Nice to know you.|Nice to meet you.|Ao conhecer alguém, use "meet".
+D: Leve uma pergunta pronta e um final pronto. O meio flui.
+N: Dar más notícias
+
+@B2|Dar más notícias|I'm afraid I have some bad news|sit
+I: 😔
+C: Para dar notícia ruim, prepare a pessoa, seja claro e mostre empatia.
+C: I'm afraid = infelizmente (não é medo aqui).
+P: Preparar + notícia + empatia + próximo passo.
+R: Preparar|I'm afraid I have some bad news.
+R: Notícia|The project has been canceled.
+R: Empatia|I know this isn't what you wanted to hear.
+R: Passo seguinte|Here's what we can do.
+E: I'm afraid I have some bad news.|Infelizmente tenho uma notícia ruim.
+E: The flight has been canceled.|O voo foi cancelado.
+E: I know this isn't what you wanted to hear.|Sei que não é o que você queria ouvir.
+E: Here's what we can do now.|Veja o que podemos fazer agora.
+X: Unfortunately I have a bad new.|I'm afraid I have some bad news.|News é sempre no plural e não usa "a".
+D: I'm afraid... é a forma mais educada de começar uma notícia ruim.
+N: Notícias e atualidades
+
+@B2|Notícias e atualidades|Did you hear about...?|sit
+I: 📰
+C: Comentar as notícias é comum, mas política e religião pedem cuidado com quem você não conhece bem.
+C: Prefira temas neutros: clima, economia, esporte, tecnologia.
+P: Puxar o assunto + opinião leve + pergunta.
+R: Puxar|Did you hear about the storm?
+R: Fonte|I read that...
+R: Opinião leve|It's kind of crazy, right?
+R: Pergunta|What do you make of it?
+E: Did you hear about the storm in Texas?|Você soube da tempestade no Texas?
+E: I read that prices are going up again.|Li que os preços vão subir de novo.
+E: It's kind of crazy, right?|Meio louco, né?
+E: What do you make of it?|O que você acha disso?
+X: Did you listen about the news?|Did you hear about it?|Ficar sabendo = hear about.
+D: Leia uma manchete em inglês por dia e comente em voz alta.
+N: Planejar um evento
+
+@B2|Planejar um evento|Let's put together a party|sit
+I: 🎉
+C: Organizar um evento envolve data, lugar, convidados, comida e quem faz o quê.
+C: Put together = organizar. Sign-up sheet = lista para cada um escolher o que levar.
+P: Data + lugar + lista + tarefas.
+R: Ideia|Let's put together a party for Mike.
+R: Data|Does Saturday work for everyone?
+R: Tarefas|Who's in charge of the food?
+R: Confirmar|Please RSVP by Friday.
+E: Let's put together a farewell party for Mike.|Vamos organizar uma festa de despedida para o Mike.
+E: Does Saturday work for everyone?|Sábado é bom para todo mundo?
+E: I'll take care of the decorations.|Eu cuido da decoração.
+E: Please RSVP by Friday.|Por favor, confirme presença até sexta.
+X: Let's organize a party surprise.|Let's throw a surprise party.|A ordem é "surprise party", e o verbo natural é "throw".
+D: RSVP = confirme presença. Você vai ver em todo convite.
+N: Trabalho voluntário
+
+@B2|Trabalho voluntário|I'd like to volunteer|sit
+I: 💚
+C: O voluntariado faz parte da cultura americana: igrejas, escolas, bancos de alimentos e eventos da comunidade.
+C: É ótimo para praticar inglês e fazer amigos.
+P: Oferecer + disponibilidade + habilidade.
+R: Oferecer|I'd like to volunteer.
+R: Tempo|I'm available on weekends.
+R: Habilidade|I can help with first aid training.
+R: Perguntar|How can I sign up?
+E: I'd like to volunteer at the food bank.|Quero ser voluntário no banco de alimentos.
+E: I'm available on Saturday mornings.|Estou disponível aos sábados de manhã.
+E: I can help with first aid.|Posso ajudar com primeiros socorros.
+E: How can I sign up?|Como faço para me inscrever?
+X: I want to do voluntary work there.|I'd like to volunteer there.|"Volunteer" já é verbo. É mais natural.
+D: Voluntariado é inglês real, com gente paciente. Vale ouro.
+N: Falar de dinheiro e contas
+
+@B2|Falar de dinheiro e contas|I'm on a tight budget|sit
+I: 💵
+C: Falar de dinheiro com amigos é comum de forma leve: orçamento, economia, contas e preços.
+C: On a tight budget = com orçamento apertado. Save up = juntar dinheiro.
+P: Situação + meta + estratégia.
+R: Apertado|I'm on a tight budget this month.
+R: Juntar|I'm saving up for a car.
+R: Dividir|Let's split the bill.
+R: Caro|That's a rip-off!
+E: I'm on a tight budget this month.|Estou com o orçamento apertado este mês.
+E: I'm saving up for a new car.|Estou juntando dinheiro para um carro novo.
+E: Let's split the bill.|Vamos dividir a conta.
+E: That's a rip-off!|Isso é um roubo!
+X: I'm economizing money.|I'm saving money.|Economizar = save.
+D: Split the bill é a frase que mais se usa em restaurante entre amigos.
+N: Pedir aumento
+
+@B2|Pedir aumento|I'd like to discuss my salary|sit
+I: 📈
+C: Pedir aumento nos EUA é normal. Mostre resultados, pesquisa de mercado e peça uma reunião.
+C: Fale de valor entregue, não de necessidade pessoal.
+P: Resultados + mercado + pedido + abertura.
+R: Pedir reunião|Could we schedule a time to talk about my compensation?
+R: Resultados|Over the past year, I've...
+R: Pedido|I'd like to discuss a raise.
+R: Abertura|What would it take to get there?
+E: Could we schedule a time to talk about my compensation?|Podemos marcar um horário para falar sobre minha remuneração?
+E: Over the past year, I've reduced costs by 15 percent.|No último ano, reduzi os custos em 15 por cento.
+E: I'd like to discuss a raise.|Gostaria de conversar sobre um aumento.
+E: What would it take to get there?|O que seria preciso para chegar lá?
+X: I need more money because my rent went up.|Based on my results, I'd like to discuss a raise.|Argumente com resultados, não com problemas pessoais.
+D: Leve três números concretos do seu trabalho.
+N: Mudar de emprego
+
+@B2|Mudar de emprego|I've decided to move on|sit
+I: 🚪
+C: Pedir demissão nos EUA é resign ou quit. O aviso padrão é de duas semanas (two weeks' notice).
+C: Saia bem: agradeça e se ofereça para ajudar na transição.
+P: Decisão + agradecimento + transição.
+R: Anunciar|I've decided to move on.
+R: Aviso|I'm giving my two weeks' notice.
+R: Agradecer|I'm grateful for everything I've learned here.
+R: Transição|I'm happy to help train my replacement.
+E: I've decided to move on.|Decidi seguir em frente.
+E: I'm giving my two weeks' notice.|Estou dando o aviso de duas semanas.
+E: I'm grateful for the opportunity.|Sou grato pela oportunidade.
+E: I'm happy to help with the transition.|Fico feliz em ajudar na transição.
+X: I'm going to ask for my demission.|I'm going to resign.|Demissão (pedir) = resign. Ser demitido = get fired ou be laid off.
+D: Laid off = demitido por corte. Fired = demitido por justa causa.
+N: Conduzir uma reunião
+
+@C1|Conduzir uma reunião|Let's get started|sit
+I: 🧭
+C: Quem conduz a reunião abre, controla o tempo, dá a palavra e fecha com próximos passos.
+C: Frases curtas de condução mostram liderança mesmo com sotaque.
+P: Abrir + pauta + palavra + próximos passos.
+R: Abrir|Let's get started. Thanks for joining.
+R: Pauta|We have three items on the agenda.
+R: Dar a palavra|Maria, would you like to weigh in?
+R: Fechar|Let's recap the action items.
+E: Let's get started. Thanks for joining.|Vamos começar. Obrigado por participarem.
+E: We have three items on the agenda today.|Temos três itens na pauta hoje.
+E: Maria, would you like to weigh in?|Maria, quer dar sua opinião?
+E: Let's take this offline.|Vamos tratar disso fora da reunião.
+X: Let's begin the meeting with the agenda points.|Let's go through the agenda.|Go through é mais natural para seguir a pauta.
+D: Termine sempre com "Who's doing what by when?".
+N: Negociar contrato
+
+@C1|Negociar contrato|That's a deal breaker for us|sit
+I: 📑
+C: Em negociação formal, você separa o que é essencial (deal breaker) do que é flexível.
+C: Use condicionais para propor trocas: "If you..., we could...".
+P: Interesse + condição + concessão + acordo.
+R: Limite|That's a deal breaker for us.
+R: Troca|If you extend the deadline, we could lower the price.
+R: Flexível|We have some flexibility on the payment terms.
+R: Acordo|I think we've found common ground.
+E: That's a deal breaker for us.|Isso inviabiliza o acordo para nós.
+E: If you extend the deadline, we could lower the price.|Se vocês estenderem o prazo, podemos baixar o preço.
+E: We have some flexibility on the payment terms.|Temos certa flexibilidade nas condições de pagamento.
+E: I think we've found common ground.|Acho que chegamos a um meio-termo.
+X: We need to arrive at an agreement.|We need to reach an agreement.|Chegar a um acordo = reach an agreement.
+D: Anote antes: o que é inegociável e o que você pode ceder.
+N: Mediar conflito na equipe
+
+@C1|Mediar conflito na equipe|Let's hear both sides|sit
+I: 🕊️
+C: Para mediar, ouça os dois lados, resuma sem julgar e leve a conversa para a solução.
+C: Fale de fatos e impacto, não de culpados.
+P: Ouvir + resumir + foco na solução.
+R: Ouvir|Let's hear both sides.
+R: Resumir|So what I'm hearing is...
+R: Impacto|This is affecting the whole team.
+R: Solução|What can we agree on going forward?
+E: Let's hear both sides first.|Vamos ouvir os dois lados primeiro.
+E: So what I'm hearing is that the deadlines weren't clear.|Então o que estou entendendo é que os prazos não estavam claros.
+E: This is affecting the whole team.|Isso está afetando a equipe toda.
+E: What can we agree on going forward?|Em que podemos concordar daqui para frente?
+X: Who is guilty here?|What went wrong here?|Em mediação, evite falar em culpa.
+D: Repita o que cada um disse antes de propor qualquer coisa.
+N: Fazer um brinde
+
+@C1|Fazer um brinde|I'd like to propose a toast|sit
+I: 🥂
+C: Brindes são comuns em casamentos, despedidas e jantares. Duram menos de dois minutos.
+C: Estrutura: agradecer, uma história curta, um desejo e erguer o copo.
+P: Agradecer + história + desejo + Cheers.
+R: Abrir|I'd like to propose a toast.
+R: História|I still remember the day we met...
+R: Desejo|Here's to many more years of success.
+R: Fechar|Cheers!
+E: Could I have everyone's attention?|Posso ter a atenção de todos?
+E: I'd like to propose a toast to the happy couple.|Gostaria de fazer um brinde ao casal.
+E: Here's to many more years together.|A muitos anos mais juntos.
+E: Cheers!|Saúde!
+X: Health!|Cheers!|No brinde, diga "Cheers".
+D: Here's to... = um brinde a... É a frase-chave do brinde.
+N: Convencer alguém
+
+@C1|Convencer alguém|Hear me out|sit
+I: 🎯
+C: Para persuadir, mostre o benefício para o outro, use dados e antecipe objeções.
+C: Hear me out = me escuta até o fim.
+P: Benefício + prova + objeção + chamada.
+R: Pedir atenção|Hear me out.
+R: Benefício|This would save us a lot of time.
+R: Objeção|I know what you're thinking, but...
+R: Chamada|Let's give it a try for a month.
+E: Hear me out for a second.|Me escuta um segundo.
+E: This would save us ten hours a week.|Isso nos economizaria dez horas por semana.
+E: I know what you're thinking, but the cost is low.|Sei o que você está pensando, mas o custo é baixo.
+E: Let's give it a try for a month.|Vamos testar por um mês.
+X: Trust me, it's the best.|Here's why it works.|Mostre o motivo em vez de pedir confiança.
+D: Benefício primeiro. Ninguém compra a ideia, compra o resultado.
+N: Entrevista para promoção
+
+@C1|Entrevista para promoção|Where do you see yourself in five years?|sit
+I: 🏆
+C: Na entrevista interna, mostre impacto, visão de futuro e capacidade de liderar.
+C: Use o método STAR: situação, tarefa, ação e resultado.
+P: Situação + tarefa + ação + resultado.
+R: Situação|When I joined the team, accidents were rising.
+R: Ação|I implemented a new training program.
+R: Resultado|As a result, incidents dropped by 40 percent.
+R: Futuro|I see myself leading a larger team.
+E: When I joined, accidents were rising.|Quando entrei, os acidentes estavam aumentando.
+E: I implemented a new training program.|Implantei um novo programa de treinamento.
+E: As a result, incidents dropped by 40 percent.|Como resultado, os incidentes caíram 40 por cento.
+E: I see myself leading a larger team.|Me vejo liderando uma equipe maior.
+X: I made a lot of things.|I led several key projects.|"Fiz muitas coisas" não convence. Seja específico.
+D: Prepare três histórias STAR curtas sobre o seu trabalho.
+N: Conversa com o médico
+
+@C1|Conversa com o médico|What are my options?|sit
+I: 🩺
+C: Numa consulta séria, você pergunta sobre exames, diagnóstico, tratamento e efeitos colaterais.
+C: Peça para repetir em palavras simples: "in plain English".
+P: Resultado + opções + riscos + próximos passos.
+R: Resultado|What do my test results mean?
+R: Opções|What are my options?
+R: Riscos|Are there any side effects?
+R: Simples|Could you explain that in plain English?
+E: What do my test results mean?|O que significam meus exames?
+E: What are my treatment options?|Quais são minhas opções de tratamento?
+E: Are there any side effects?|Tem efeitos colaterais?
+E: Could you explain that in plain English?|Pode explicar em palavras simples?
+X: I want a second opinion of another doctor.|I'd like to get a second opinion.|Get a second opinion é a expressão fixa.
+D: Leve as perguntas escritas e anote as respostas.
+N: Temas delicados
+
+@C1|Temas delicados|Let's agree to disagree|sit
+I: 🧩
+C: Política, religião e dinheiro dividem opiniões. Nos EUA, muita gente evita esses temas com quem conhece pouco.
+C: Se o assunto surgir, ouça, seja respeitoso e saiba encerrar com elegância.
+P: Ouvir + respeitar + encerrar sem briga.
+R: Ouvir|That's an interesting perspective.
+R: Neutro|I can see why people feel that way.
+R: Encerrar|Let's agree to disagree.
+R: Mudar|Anyway, how's your family doing?
+E: That's an interesting perspective.|Que ponto de vista interessante.
+E: I can see why people feel that way.|Entendo por que as pessoas pensam assim.
+E: Let's agree to disagree.|Vamos concordar em discordar.
+E: Anyway, how was your vacation?|Enfim, como foram as férias?
+X: Your opinion is absurd.|I see it differently.|Mantenha o respeito, mesmo discordando.
+D: Tenha sempre uma pergunta pronta para mudar de assunto.
+N: E-mail profissional
+
+@C1|E-mail profissional|I hope this email finds you well|sit
+I: 📧
+C: O e-mail americano é curto, direto e cordial. Assunto claro, pedido na primeira linha e fechamento educado.
+C: Evite traduzir fórmulas longas do português.
+P: Saudação + objetivo + detalhe + fechamento.
+R: Abrir|Hi John, I hope you're doing well.
+R: Objetivo|I'm reaching out to...
+R: Anexo|Please find attached the report.
+R: Fechar|Let me know if you have any questions. Best, Carlos
+E: I'm reaching out to schedule a meeting.|Estou entrando em contato para marcar uma reunião.
+E: Please find attached the inspection report.|Segue em anexo o relatório de inspeção.
+E: Just following up on my last email.|Só retomando meu último e-mail.
+E: Let me know if you have any questions.|Qualquer dúvida, me avise.
+X: Follows attached the report.|Please find the report attached.|"Segue em anexo" não se traduz palavra por palavra.
+D: Releia e corte 30 por cento do texto antes de enviar.
+N: Humor e piadas
+
+@C1|Humor e piadas|I'm just kidding|sit
+I: 😂
+C: O humor americano é muito baseado em autoironia, exagero e trocadilhos (puns).
+C: Se a piada não for entendida, "I'm just kidding" salva a situação.
+P: Leveza + autoironia + saída rápida.
+R: Brincar|I'm just kidding.
+R: Exagero|I've told you a million times!
+R: Autoironia|I'm not a morning person.
+R: Reagir|That's hilarious!
+E: I'm just kidding!|Tô brincando!
+E: I'm not a morning person.|Não sou uma pessoa matinal.
+E: That's hilarious!|Isso é hilário!
+E: You're pulling my leg.|Você está tirando com a minha cara.
+X: I'm joking you.|I'm joking. / I'm kidding.|"Joke" não leva a pessoa como objeto.
+D: Aprenda uma piada curta em inglês e conte para alguém da família.
+N: Dar condolências
+
+@C1|Dar condolências|I'm so sorry for your loss|sit
+I: 🕯️
+C: Em momentos de perda, poucas palavras e sinceridade bastam.
+C: Ofereça ajuda concreta em vez de frases longas.
+P: Sinto muito + presença + ajuda.
+R: Condolência|I'm so sorry for your loss.
+R: Presença|My thoughts are with you and your family.
+R: Ajuda|Is there anything I can do?
+R: Lembrança|He will be deeply missed.
+E: I'm so sorry for your loss.|Sinto muito pela sua perda.
+E: My thoughts are with you and your family.|Estou pensando em você e na sua família.
+E: Is there anything I can do to help?|Posso fazer alguma coisa para ajudar?
+E: She will be deeply missed.|Ela vai fazer muita falta.
+X: My sentiments.|I'm so sorry for your loss.|"Meus sentimentos" se diz "I'm sorry for your loss".
+D: Menos é mais. Uma frase sincera vale mais que um discurso.
+N: Pedido de desculpas formal
+
+@C1|Pedido de desculpas formal|We take full responsibility|sit
+I: 🙇
+C: Em nome da empresa, o pedido de desculpas reconhece o erro, assume a responsabilidade e mostra a solução.
+C: Evite desculpas que culpam o outro ("I'm sorry if you felt...").
+P: Reconhecer + assumir + corrigir + prevenir.
+R: Reconhecer|We apologize for the inconvenience.
+R: Assumir|We take full responsibility.
+R: Corrigir|Here's what we're doing to fix it.
+R: Prevenir|We've put measures in place so this won't happen again.
+E: We sincerely apologize for the delay.|Pedimos sinceras desculpas pelo atraso.
+E: We take full responsibility.|Assumimos total responsabilidade.
+E: Here's what we're doing to fix it.|Veja o que estamos fazendo para corrigir.
+E: This won't happen again.|Isso não vai se repetir.
+X: We are sorry for the inconvenient.|We apologize for the inconvenience.|O substantivo é inconvenience.
+D: Reconheça, assuma e mostre a solução, nessa ordem.
+N: Falar de improviso
+
+@C2|Falar de improviso|Off the top of my head|sit
+I: 🎤
+C: Quando pedem para você falar sem preparo, ganhe tempo com frases de abertura e organize em três pontos.
+C: Off the top of my head = assim de cabeça.
+P: Ganhar tempo + três pontos + fechamento.
+R: Ganhar tempo|That's a great question. Let me think.
+R: De cabeça|Off the top of my head, I'd say...
+R: Organizar|There are three things that come to mind.
+R: Fechar|So, in a nutshell...
+E: That's a great question. Let me think for a second.|Ótima pergunta. Deixa eu pensar um segundo.
+E: Off the top of my head, I'd say three months.|Assim de cabeça, eu diria três meses.
+E: Three things come to mind.|Três coisas me vêm à cabeça.
+E: So, in a nutshell, safety comes first.|Então, resumindo, segurança em primeiro lugar.
+X: Let me think a little bit more about.|Let me think about it.|Não deixe a preposição solta no fim, sem objeto.
+D: Responda sempre em três pontos. O cérebro do ouvinte adora o número três.
+N: Conversa sofisticada
+
+@C2|Conversa sofisticada|It's a fascinating paradox|sit
+I: 🍷
+C: Em jantares e eventos, conversa de alto nível mistura curiosidade, referências e perguntas abertas.
+C: Vocabulário preciso impressiona mais que palavras difíceis.
+P: Pergunta aberta + escuta + conexão.
+R: Curiosidade|What got you interested in that?
+R: Aprofundar|That's a fascinating point. How so?
+R: Conexão|That reminds me of...
+R: Reconhecer|I hadn't thought of it that way.
+E: What got you interested in architecture?|O que te fez se interessar por arquitetura?
+E: That's a fascinating point. How so?|Ponto fascinante. Como assim?
+E: That reminds me of a book I read.|Isso me lembra um livro que li.
+E: I hadn't thought of it that way.|Eu não tinha pensado por esse lado.
+X: It's very interesting, very very interesting.|That's genuinely fascinating.|Varie os adjetivos em vez de repetir "very".
+D: Faça perguntas que começam com How e Why. Elas abrem a conversa.
+N: Recusar com diplomacia
+
+@C2|Recusar com diplomacia|I'm afraid I'll have to pass|sit
+I: 🎩
+C: Dizer não sem ofender é uma arte. O americano agradece, recusa e às vezes oferece outra opção.
+C: I'll have to pass = vou ter que recusar.
+P: Agradecer + recusar + alternativa.
+R: Agradecer|Thank you so much for thinking of me.
+R: Recusar|I'm afraid I'll have to pass this time.
+R: Motivo leve|I've got a lot on my plate right now.
+R: Alternativa|Maybe next time?
+E: Thank you so much for thinking of me.|Muito obrigado por lembrar de mim.
+E: I'm afraid I'll have to pass this time.|Infelizmente vou ter que recusar desta vez.
+E: I've got a lot on my plate right now.|Estou com muita coisa agora.
+E: Rain check?|Fica para a próxima?
+X: No, I can't, I don't want.|I'll have to pass, but thanks.|Recusas diretas soam rudes em inglês.
+D: Rain check = deixar para outro dia. Muito americano.
+N: Contar histórias que prendem
+
+@C2|Contar histórias que prendem|Picture this|sit
+I: 🎬
+C: Storytelling é a habilidade mais valorizada em apresentações nos EUA. Comece no meio da ação.
+C: Use o presente para deixar a cena viva: "So I'm standing there...".
+P: Cena + conflito + virada + lição.
+R: Cena|Picture this: it's 6 a.m. and the alarm goes off.
+R: Tensão|And then, out of nowhere...
+R: Virada|That's when it hit me.
+R: Lição|The lesson I took from it was...
+E: Picture this: it's 6 a.m. at the factory.|Imagine a cena: são 6 da manhã na fábrica.
+E: So I'm standing there, and nobody says a word.|Aí eu estou lá parado e ninguém fala nada.
+E: That's when it hit me.|Foi aí que caiu a ficha.
+E: The lesson I took from it was simple.|A lição que tirei foi simples.
+X: Then it fell the token.|That's when it hit me.|Caiu a ficha = it hit me / it dawned on me.
+D: Toda boa história tem um momento "that's when it hit me".
+N: Gírias dos jovens
+
+@C2|Gírias dos jovens|No cap, that's fire|sit
+I: 🔥
+C: Os jovens americanos criam gírias o tempo todo, muitas vindas das redes sociais.
+C: Entender é útil. Usar exige cuidado: em adulto, pode soar forçado.
+P: Entenda tudo, use pouco.
+R: Verdade|No cap = sem mentira, é sério
+R: Muito bom|It's fire. / It slaps.
+R: Exagero|I'm dead. = morri de rir
+R: Vibe|That's a vibe. / Lowkey / Highkey
+E: No cap, that burger is fire.|Sério, esse hambúrguer é muito bom.
+E: I'm dead, that video is hilarious.|Morri, esse vídeo é hilário.
+E: I lowkey want to go.|Eu meio que quero ir.
+E: That song slaps.|Essa música é muito boa.
+X: That's very fire.|That's fire.|"Fire" já é o máximo. Não usa "very".
+D: Ouça podcasts e vídeos de jovens para reconhecer, não para decorar.
+N: Metáforas do esporte
+
+@C2|Metáforas do esporte|Let's touch base|sit
+I: ⚾
+C: O inglês americano do trabalho está cheio de metáforas do beisebol e do futebol americano.
+C: Entender isso faz você acompanhar reuniões de verdade.
+P: Esporte vira linguagem de escritório.
+R: Touch base|conversar rapidamente
+R: Ballpark figure|um valor aproximado
+R: Hit it out of the park|arrasar
+R: Drop the ball|pisar na bola
+E: Let's touch base next week.|Vamos conversar semana que vem.
+E: Can you give me a ballpark figure?|Pode me dar um valor aproximado?
+E: You hit it out of the park!|Você arrasou!
+E: I dropped the ball on that one.|Pisei na bola nessa.
+X: I stepped on the ball.|I dropped the ball.|Pisar na bola = drop the ball.
+D: Quando ouvir uma metáfora estranha na reunião, provavelmente é do beisebol.
+N: Sotaques dos EUA
+
+@C2|Sotaques dos EUA|Y'all, wicked, you guys|sit
+I: 🗽
+C: O inglês dos EUA muda por região: o Sul fala y'all, Boston fala wicked, a Califórnia fala dude e like.
+C: Entender os sotaques é sinal de nível avançado.
+P: Mesma língua, músicas diferentes.
+R: Sul|y'all = vocês / fixin' to = prestes a
+R: Nordeste (Boston)|wicked = muito / pahk the cah = park the car
+R: Califórnia|dude, like, totally
+R: Meio-oeste|pop = refrigerante / you betcha
+E: Are y'all coming to the party?|Vocês vêm para a festa?
+E: That was wicked good.|Foi muito bom.
+E: Dude, that was totally awesome.|Cara, foi incrível.
+E: Do you want some pop?|Quer refrigerante?
+X: Y'all is singular.|Y'all is plural.|Y'all quer dizer vocês, para mais de uma pessoa.
+D: Assista a vídeos de pessoas de cada região e compare.
+N: Contratos e termos legais
+
+@C2|Contratos e termos legais|Read the fine print|sit
+I: ⚖️
+C: Contratos de aluguel, celular e serviços têm termos que confundem até nativos.
+C: Fine print = letras miúdas. Liability = responsabilidade legal.
+P: Leia antes, pergunte tudo, assine depois.
+R: Letras miúdas|Read the fine print.
+R: Multa|Is there an early termination fee?
+R: Renovação|Does it renew automatically?
+R: Responsabilidade|Who is liable for damages?
+E: Always read the fine print.|Sempre leia as letras miúdas.
+E: Is there an early termination fee?|Tem multa por cancelamento antecipado?
+E: Does the contract renew automatically?|O contrato renova automaticamente?
+E: Who is liable for damages?|Quem é responsável pelos danos?
+X: Is there a fine to cancel?|Is there a cancellation fee?|Fine é multa de trânsito ou judicial. Em contrato, use fee.
+D: Pergunte sempre "Does it renew automatically?" antes de assinar.
+N: Se apresentar
+
+@A1|A e an|a car, an apple
+I: 🍎
+C: "A" e "an" significam um ou uma. A escolha depende do SOM da palavra seguinte, não da letra.
+C: Som de vogal pede "an". Som de consoante pede "a".
+P: Se a boca abre com vogal, use an.
+R: Consoante|a car, a house, a dog
+R: Vogal|an apple, an egg, an idea
+R: H mudo|an hour, an honest man
+R: U com som de IU|a university, a uniform
+E: I have a car.|Eu tenho um carro.
+E: I want an apple.|Quero uma maçã.
+E: We waited an hour.|Esperamos uma hora.
+E: She goes to a university in Texas.|Ela estuda numa universidade no Texas.
+X: a hour|an hour|O H de hour é mudo: o som começa com vogal.
+D: Fale em voz alta: o ouvido decide melhor que a regra.
+N: Meu, seu, dele, dela
+
+@A1|Meu, seu, dele, dela|my, your, his, her
+I: 👪
+C: Em inglês, o possessivo combina com o DONO, não com a coisa.
+C: His = dele. Her = dela. Our = nosso. Their = deles.
+P: Olhe para o dono: homem é his, mulher é her.
+R: Eu → my|my car
+R: Você → your|your house
+R: Ele → his / Ela → her|his wife / her husband
+R: Nós → our / Eles → their|our kids / their dog
+E: This is my wife.|Esta é minha esposa.
+E: Is this your bag?|Esta bolsa é sua?
+E: Her husband is a doctor.|O marido dela é médico.
+E: Their house is big.|A casa deles é grande.
+X: She loves his husband.|She loves her husband.|O dono é ela, então é "her".
+D: Desenhe um boneco e uma boneca e escreva his e her embaixo de cada um.
+N: Eu e me
+
+@A1|Eu e me|I, me, he, him
+I: 🙋
+C: Em inglês, o pronome muda quando a pessoa faz a ação e quando recebe a ação.
+C: Antes do verbo: I, he, she, we, they. Depois do verbo ou preposição: me, him, her, us, them.
+P: Quem faz vem antes. Quem recebe vem depois.
+R: I → me|I love her. She loves me.
+R: He → him|He called me. I called him.
+R: She → her|She saw us. We saw her.
+R: We → us / They → them|They help us. We help them.
+E: Call me later.|Me liga mais tarde.
+E: I like him.|Eu gosto dele.
+E: Can you help us?|Você pode nos ajudar?
+E: Tell them I said hi.|Diga a eles que mandei um oi.
+X: Give to me.|Give it to me. / Give me that.|Em inglês, o verbo precisa do objeto.
+D: Depois de with, for e to, sempre: me, him, her, us, them.
+N: Can e can't
+
+@A1|Can e can't|I can swim
+I: 🏊
+C: "Can" mostra o que você consegue fazer ou pede permissão.
+C: O verbo depois de can fica sempre igual, sem -s e sem to.
+P: Can + verbo puro.
+R: Afirmativa|I can swim.
+R: Negativa|I can't drive.
+R: Pergunta|Can you help me?
+R: Permissão|Can I sit here?
+E: I can speak a little English.|Falo um pouco de inglês.
+E: I can't hear you.|Não estou te ouvindo.
+E: Can you help me?|Pode me ajudar?
+E: Can I pay by card?|Posso pagar no cartão?
+X: He cans swim.|He can swim.|Can nunca recebe -s.
+D: Pronúncia: can = KÉN (fraco). Can't = KÉNT (forte, com T).
+N: Ordens e pedidos
+
+@A1|Ordens e pedidos|Open the door, please
+I: 🚦
+C: Para dar instrução ou pedir algo, comece direto pelo verbo, sem "you".
+C: Para negar, use "Don't" antes do verbo. O "please" deixa tudo educado.
+P: Verbo primeiro + please.
+R: Pedir|Open the door, please.
+R: Proibir|Don't touch that.
+R: Convidar|Come in! Have a seat.
+R: Juntos|Let's go!
+E: Sit down, please.|Sente-se, por favor.
+E: Don't worry.|Não se preocupe.
+E: Come in!|Entre!
+E: Let's eat!|Vamos comer!
+X: No touch.|Don't touch.|Proibição começa com "Don't".
+D: Placas nos EUA são cheias disso: Stop, Yield, Do not enter.
+N: O S do he e she
+
+@A1|O S do he e she|He works, she lives
+I: ➕
+C: No presente, quando o sujeito é he, she ou it, o verbo ganha -s.
+C: É o erro mais comum de brasileiros, mesmo em nível avançado.
+P: Ele, ela, isso: põe o S.
+R: Eu, você, nós, eles|I work, you work, they work
+R: Ele, ela|he works, she works
+R: Verbos em -o, -sh, -ch|go → goes, watch → watches
+R: Have|he has
+E: She works in a hospital.|Ela trabalha num hospital.
+E: He lives in Miami.|Ele mora em Miami.
+E: My son watches TV every day.|Meu filho vê TV todo dia.
+E: She has two kids.|Ela tem dois filhos.
+X: He work here.|He works here.|Ele trabalha: o S é obrigatório.
+D: Grife o S em vermelho quando escrever frases com he e she.
+N: Do e does nas perguntas
+
+@A1|Do e does nas perguntas|Do you like it?
+I: ❓
+C: Para perguntar no presente, o inglês coloca do ou does no começo.
+C: Does é para he, she e it. Quando usa does, o verbo perde o -s.
+P: Do / Does + pessoa + verbo puro.
+R: Você, eles|Do you work here?
+R: Ele, ela|Does she speak English?
+R: Com pergunta|Where do you live?
+R: Negativa|I don't know. / He doesn't know.
+E: Do you like coffee?|Você gosta de café?
+E: Does he work on Saturdays?|Ele trabalha aos sábados?
+E: Where do you live?|Onde você mora?
+E: She doesn't eat meat.|Ela não come carne.
+X: Does she works?|Does she work?|O -s já está no does.
+D: Does já carrega o S. O verbo fica livre.
+N: Perguntas e negativas com to be
+
+@A1|Perguntas e negativas com to be|Are you okay? I'm not
+I: 🔁
+C: Com o verbo to be, a pergunta é feita invertendo a ordem: o verbo vai para a frente.
+C: Para negar, basta colocar "not" depois do verbo.
+P: Inverter para perguntar. Bloquear com not para negar.
+R: Afirmativa|You are tired.
+R: Pergunta (inversão)|Are you tired?
+R: Negativa (bloqueio)|I'm not tired.
+R: Curtas|Yes, I am. / No, she isn't.
+E: Are you from Brazil?|Você é do Brasil?
+E: Is she your sister?|Ela é sua irmã?
+E: I'm not ready.|Não estou pronto.
+E: They aren't at home.|Eles não estão em casa.
+X: You are tired?|Are you tired?|Na pergunta, o "are" vai para a frente.
+D: Imagine as palavras trocando de lugar: you are → are you.
+N: A regra do Y
+
+@A1|A regra do Y|city, cities, study, studied
+I: 🧪
+C: Palavras terminadas em consoante + Y mudam: o Y vira I antes de -es e -ed.
+C: Se antes do Y vem vogal, nada muda: day → days, play → played.
+P: Consoante + Y = vira IE. Vogal + Y = fica.
+R: Plural|city → cities, baby → babies
+R: Verbo com he/she|study → studies
+R: Passado|try → tried, study → studied
+R: Vogal antes|day → days, play → played
+E: There are many big cities in Texas.|Há muitas cidades grandes no Texas.
+E: She studies every night.|Ela estuda todas as noites.
+E: I tried, but I couldn't.|Tentei, mas não consegui.
+E: We played all day.|Brincamos o dia todo.
+X: citys|cities|Consoante + Y vira IES.
+D: Lembre do "laboratório": o Y se transforma quando encosta numa consoante.
+N: Quantificadores
+
+@A1|Quantificadores|all, both, each, every
+I: 🔢
+C: Quantificadores dizem quantos de um grupo: todos, os dois, cada um.
+C: Both é só para duas coisas. Each e every usam o verbo no singular.
+P: All = todos. Both = os dois. Each / every = cada.
+R: Todos|All my friends are here.
+R: Os dois|Both of my kids speak English.
+R: Cada (um por um)|Each student has a book.
+R: Todo (rotina)|I run every day.
+E: All the stores are closed.|Todas as lojas estão fechadas.
+E: Both of them are doctors.|Os dois são médicos.
+E: Each room has a TV.|Cada quarto tem uma TV.
+E: I call my mom every day.|Ligo para minha mãe todo dia.
+X: Every days|Every day|Depois de every, o substantivo fica no singular.
+D: Both = 2. All = 3 ou mais. Every day = todo dia.
+N: Palavras de pergunta
+
+@A1|Palavras de pergunta|What, where, when, who
+I: 🔍
+C: As palavras de pergunta (wh-) vêm no começo e são seguidas de do, does, is ou are.
+C: How também entra no grupo: how much, how many, how old, how long.
+P: Wh + auxiliar + pessoa + verbo.
+R: O quê / Onde|What? / Where?
+R: Quando / Quem|When? / Who?
+R: Por quê / Qual|Why? / Which?
+R: Como|How? How much? How old?
+E: What's your name?|Qual é o seu nome?
+E: Where do you work?|Onde você trabalha?
+E: When is your birthday?|Quando é seu aniversário?
+E: How much is it?|Quanto custa?
+X: Where you live?|Where do you live?|Não esqueça o "do".
+D: Faça uma pergunta com cada palavra sobre a sua família.
+N: Onde está: in, on, under
+
+@A1|Onde está: in, on, under|in the box, on the table
+I: 📦
+C: Preposições de lugar mostram onde algo está.
+C: In = dentro. On = em cima, encostado. Under = embaixo. Next to = ao lado.
+P: Imagine uma caixa e uma bola.
+R: Dentro|in the box, in the car
+R: Em cima|on the table, on the wall
+R: Embaixo|under the bed
+R: Ao lado / Entre|next to the bank / between the bank and the store
+E: The keys are in my bag.|As chaves estão na minha bolsa.
+E: Your phone is on the table.|Seu celular está na mesa.
+E: The cat is under the bed.|O gato está embaixo da cama.
+E: The pharmacy is next to the bank.|A farmácia fica ao lado do banco.
+X: The picture is in the wall.|The picture is on the wall.|Quadro na parede = on the wall.
+D: Pegue um objeto e coloque em lugares diferentes, dizendo a frase.
+N: Much e many
+
+@A2|Estou fazendo agora|I'm working right now
+I: ⏳
+C: Para falar do que está acontecendo agora, use am / is / are + verbo com -ing.
+C: Também serve para planos já marcados: "I'm meeting him tomorrow".
+P: To be + verbo-ing.
+R: Agora|I'm cooking right now.
+R: Pergunta|What are you doing?
+R: Negativa|She isn't working today.
+R: Plano marcado|We're flying to Miami on Friday.
+E: I'm cooking right now.|Estou cozinhando agora.
+E: What are you doing?|O que você está fazendo?
+E: It's raining.|Está chovendo.
+E: We're flying to Miami on Friday.|Vamos voar para Miami na sexta.
+X: I'm knowing her.|I know her.|Verbos como know, like e want não usam -ing.
+D: Narre em inglês o que você está fazendo agora, em voz baixa.
+N: Was e were
+
+@A2|Was e were|I was tired, they were late
+I: ⏮️
+C: Was e were são o passado do verbo to be (era, estava, foi).
+C: Was: I, he, she, it. Were: you, we, they.
+P: Was para um. Were para você e para vários.
+R: Um|I was / he was / she was
+R: Vários|you were / we were / they were
+R: Pergunta|Were you at home?
+R: Negativa|It wasn't easy.
+E: I was very tired yesterday.|Eu estava muito cansado ontem.
+E: They were late.|Eles estavam atrasados.
+E: Where were you?|Onde você estava?
+E: It wasn't easy.|Não foi fácil.
+X: They was late.|They were late.|Com they, use were.
+D: Fale como foi o seu dia ontem usando was.
+N: Passado irregular
+
+@A2|Passado irregular|go, went, gone
+I: 🧱
+C: Os verbos mais usados são irregulares no passado: não seguem o -ed.
+C: A boa notícia: são uns 50 principais, e você usa os mesmos todo dia.
+P: Decore em blocos de três.
+R: Ir / Ter|go → went, have → had
+R: Fazer / Ver|do → did, see → saw
+R: Comer / Beber|eat → ate, drink → drank
+R: Dizer / Pegar|say → said, get → got
+E: I went to the beach.|Fui à praia.
+E: We had dinner at home.|Jantamos em casa.
+E: I saw her yesterday.|Vi ela ontem.
+E: He said yes.|Ele disse sim.
+X: I goed home.|I went home.|Go é irregular: went.
+D: Escolha cinco verbos irregulares por semana e use em frases do seu dia.
+N: Perguntas no passado
+
+@A2|Perguntas no passado|Did you see it?
+I: 🕰️
+C: Para perguntar ou negar no passado, use did. O verbo volta para a forma básica.
+C: O did já mostra que é passado.
+P: Did + pessoa + verbo puro.
+R: Pergunta|Did you call him?
+R: Negativa|I didn't see it.
+R: Com wh-|What did you do?
+R: Resposta curta|Yes, I did. / No, I didn't.
+E: Did you have lunch?|Você almoçou?
+E: I didn't sleep well.|Não dormi bem.
+E: What did you do last weekend?|O que você fez no fim de semana passado?
+E: Where did you go?|Aonde você foi?
+X: Did you went?|Did you go?|Com did, o verbo fica no básico.
+D: Did já é passado: não precisa colocar passado duas vezes.
+N: O maior e o melhor
+
+@A2|O maior e o melhor|the biggest, the best
+I: 🥇
+C: Para dizer que algo é o mais de todos, use the + -est (palavras curtas) ou the most (palavras longas).
+C: Irregulares: good → the best, bad → the worst.
+P: Curta: -est. Longa: the most.
+R: Curtas|big → the biggest, cheap → the cheapest
+R: Longas|expensive → the most expensive
+R: Irregulares|good → the best, bad → the worst
+R: Com Y|happy → the happiest
+E: This is the best pizza in town.|Esta é a melhor pizza da cidade.
+E: It's the most expensive hotel.|É o hotel mais caro.
+E: Today is the hottest day of the year.|Hoje é o dia mais quente do ano.
+E: That was the worst movie ever.|Foi o pior filme de todos.
+X: the most big|the biggest|Palavra curta usa -est.
+D: Fale do melhor e do pior restaurante que você conhece.
+N: Sempre, às vezes, nunca
+
+@A2|Sempre, às vezes, nunca|always, sometimes, never
+I: 📅
+C: Advérbios de frequência dizem com que frequência algo acontece.
+C: Eles vêm antes do verbo principal, mas depois do to be.
+P: 100 por cento always, 0 por cento never.
+R: Escala|always, usually, often, sometimes, rarely, never
+R: Antes do verbo|I always drink coffee.
+R: Depois do to be|She is never late.
+R: Pergunta|How often do you work out?
+E: I always drink coffee in the morning.|Sempre tomo café de manhã.
+E: She is never late.|Ela nunca se atrasa.
+E: We sometimes eat out.|Às vezes comemos fora.
+E: How often do you go to the gym?|Com que frequência você vai à academia?
+X: I drink always coffee.|I always drink coffee.|O advérbio vem antes do verbo.
+D: Desenhe uma régua de 0 a 100 e coloque cada palavra.
+N: Contável e incontável
+
+@A2|Contável e incontável|apples, water, advice
+I: 🥛
+C: Alguns substantivos podem ser contados (one apple, two apples). Outros não (water, money, advice).
+C: Incontáveis não têm plural e não usam a/an.
+P: Dá para contar nos dedos? Contável.
+R: Contáveis|an apple, two apples, many apples
+R: Incontáveis|water, money, information, advice
+R: Medir|a glass of water, a piece of advice
+R: Pergunta|How many apples? / How much water?
+E: Can I have a glass of water?|Pode me dar um copo de água?
+E: I need some advice.|Preciso de um conselho.
+E: How much money do you have?|Quanto dinheiro você tem?
+E: Let me give you a piece of advice.|Deixa eu te dar um conselho.
+X: informations|information|Information não tem plural em inglês.
+D: Advice, information, news e furniture: sempre sem S.
+N: O S de posse
+
+@A2|O S de posse|John's car
+I: 🔖
+C: Para dizer de quem é algo, o inglês usa apóstrofo + s: John's car = o carro do John.
+C: Se a palavra já termina em s de plural, só coloca o apóstrofo: my parents' house.
+P: Dono + 's + coisa.
+R: Uma pessoa|Maria's phone
+R: Plural com s|my parents' house
+R: Plural irregular|the children's room
+R: Pergunta|Whose bag is this?
+E: This is John's car.|Este é o carro do John.
+E: My parents' house is in Ohio.|A casa dos meus pais fica em Ohio.
+E: The kids' room is upstairs.|O quarto das crianças fica no andar de cima.
+E: Whose phone is this?|De quem é este celular?
+X: the car of John|John's car|Para pessoas, use 's.
+D: Pense ao contrário do português: primeiro o dono, depois a coisa.
+N: Bored ou boring
+
+@A2|Bored ou boring|I'm bored, the movie is boring
+I: 😴
+C: Adjetivos com -ed descrevem como a pessoa se sente. Com -ing, descrevem o que causa o sentimento.
+C: Errar isso muda totalmente o sentido.
+P: -ed = eu sinto. -ing = a coisa causa.
+R: Entediado / chato|bored / boring
+R: Interessado / interessante|interested / interesting
+R: Cansado / cansativo|tired / tiring
+R: Animado / empolgante|excited / exciting
+E: I'm bored.|Estou entediado.
+E: This movie is boring.|Este filme é chato.
+E: I'm interested in history.|Me interesso por história.
+E: The trip was exciting.|A viagem foi empolgante.
+X: I'm boring.|I'm bored.|"I'm boring" quer dizer "eu sou chato".
+D: Cuidado com "I'm boring"! Diga "I'm bored".
+N: Preposições de movimento
+
+@A2|Preposições de movimento|into, out of, across
+I: 🏃
+C: Preposições de movimento mostram para onde algo vai.
+C: Aparecem muito em direções e histórias.
+P: Imagine uma seta.
+R: Para dentro / fora|into / out of
+R: Atravessar|across the street
+R: Subir / Descer|up the stairs / down the hill
+R: Passar por|through the tunnel / past the bank
+E: He walked into the room.|Ele entrou na sala.
+E: Get out of the car.|Saia do carro.
+E: Walk across the street.|Atravesse a rua.
+E: Go past the bank and turn left.|Passe o banco e vire à esquerda.
+X: He entered in the room.|He walked into the room. / He entered the room.|Enter não usa "in".
+D: Use estas palavras para explicar o caminho de casa até o trabalho.
+N: Pedidos educados
+
+@A2|Pedidos educados|Could you...? Can I...?
+I: 🎩
+C: O tom do pedido muda tudo. Could e would soam mais educados que can.
+C: Para pedir algo para você, use "Can I get" ou "Could I have".
+P: Quanto mais formal, mais could e would.
+R: Normal|Can you help me?
+R: Mais educado|Could you help me?
+R: Muito educado|Would you mind helping me?
+R: Pedir algo|Could I have the check, please?
+E: Could you say that again?|Poderia repetir?
+E: Can I get a coffee, please?|Me vê um café, por favor?
+E: Could I have the check, please?|Poderia me trazer a conta?
+E: Would you mind waiting a minute?|Você se importa de esperar um minuto?
+X: I want the check.|Could I have the check, please?|"I want" soa grosseiro no restaurante.
+D: Substitua todo "I want" por "Could I have" ou "I'd like".
+N: Should
+
+@B1|Estava fazendo|I was sleeping when you called
+I: 🌙
+C: Para falar de uma ação que estava acontecendo num momento do passado, use was / were + -ing.
+C: Muito usado com uma ação curta que interrompe: "when you called".
+P: Ação longa (-ing) + ação curta (passado).
+R: Estava|I was sleeping.
+R: Interrupção|I was sleeping when you called.
+R: Ao mesmo tempo|While I was cooking, he was cleaning.
+R: Pergunta|What were you doing?
+E: I was sleeping when you called.|Eu estava dormindo quando você ligou.
+E: What were you doing at 8?|O que você estava fazendo às 8?
+E: It was raining all day.|Choveu o dia todo.
+E: While I was driving, my phone rang.|Enquanto eu dirigia, o telefone tocou.
+X: When you called, I slept.|When you called, I was sleeping.|A ação em andamento pede -ing.
+D: Desenhe uma linha longa (estava) cortada por um X (quando).
+N: Se chover
+
+@B1|Se chover|If it rains, I'll stay home
+I: 🌧️
+C: Para falar de algo possível no futuro e sua consequência, use if + presente, will + verbo.
+C: Depois do if, nunca use will.
+P: If + presente, will + verbo.
+R: Estrutura|If it rains, I'll stay home.
+R: Ordem inversa|I'll call you if I have time.
+R: Unless|Unless you hurry, we'll be late.
+R: Pergunta|What will you do if he says no?
+E: If it rains, I'll stay home.|Se chover, fico em casa.
+E: I'll call you if I have time.|Te ligo se tiver tempo.
+E: If you need help, let me know.|Se precisar de ajuda, me avise.
+E: What will you do if he says no?|O que você vai fazer se ele disser não?
+X: If it will rain...|If it rains...|Depois de if, use o presente.
+D: If puxa o presente. O will fica do outro lado da vírgula.
+N: Gerúndio ou infinitivo
+
+@B1|Gerúndio ou infinitivo|I enjoy cooking, I want to cook
+I: 🔀
+C: Alguns verbos pedem o próximo verbo com -ing. Outros pedem to + verbo.
+C: Não há lógica perfeita: é questão de ouvir e repetir em blocos.
+P: Decore o par: enjoy + ing, want + to.
+R: Com -ing|enjoy, mind, finish, avoid, keep
+R: Com to|want, need, decide, hope, plan
+R: Os dois (mesmo sentido)|like, love, start, begin
+R: Depois de preposição|I'm good at cooking.
+E: I enjoy cooking.|Gosto de cozinhar.
+E: I want to travel more.|Quero viajar mais.
+E: She decided to quit.|Ela decidiu pedir demissão.
+E: Keep going!|Continue!
+X: I enjoy to cook.|I enjoy cooking.|Enjoy pede -ing.
+D: Monte dois cartões: verbos que pedem -ing e verbos que pedem to.
+N: Who, which e that
+
+@B1|Who, which e that|The man who called
+I: 🔗
+C: Who, which e that ligam informações sobre uma pessoa ou coisa sem começar outra frase.
+C: Who é para pessoas. Which é para coisas. That serve para os dois.
+P: Pessoa = who. Coisa = which. Os dois = that.
+R: Pessoa|The man who called is my boss.
+R: Coisa|The car which I bought is red.
+R: Os dois|The book that you lent me
+R: Lugar|The city where I was born
+E: The woman who lives next door is a nurse.|A mulher que mora ao lado é enfermeira.
+E: This is the car that I bought.|Este é o carro que eu comprei.
+E: The house where I grew up is gone.|A casa onde eu cresci não existe mais.
+E: Do you know anyone who speaks Spanish?|Você conhece alguém que fale espanhol?
+X: The man which called|The man who called|Para pessoas, use who ou that.
+D: No dia a dia, o americano usa muito that, para tudo.
+N: Might e may
+
+@B1|Might e may|It might rain
+I: 🌦️
+C: Might e may mostram possibilidade: talvez aconteça.
+C: Might é um pouco mais incerto e é muito usado na conversa.
+P: Might = talvez sim, talvez não.
+R: Possibilidade|It might rain later.
+R: Negativa|I might not go.
+R: Permissão formal|May I come in?
+R: Sinônimo|maybe = might
+E: It might rain later.|Pode ser que chova mais tarde.
+E: I might not go to the party.|Talvez eu não vá à festa.
+E: May I ask a question?|Posso fazer uma pergunta?
+E: You might want to check that.|Talvez seja bom você conferir isso.
+X: It might to rain.|It might rain.|Depois de might, verbo sem to.
+D: You might want to... é um jeito educado de dar conselho.
+N: Né? no final
+
+@B1|Né? no final|It's hot, isn't it?
+I: 🏷️
+C: As question tags são o "né?" do inglês. Repetem o auxiliar com o sinal oposto.
+C: Afirmativa leva tag negativa. Negativa leva tag afirmativa.
+P: Positivo → negativo. Negativo → positivo.
+R: Com to be|It's hot, isn't it?
+R: Com do|You like it, don't you?
+R: Negativa|She isn't here, is she?
+R: Passado|You went, didn't you?
+E: It's a beautiful day, isn't it?|Que dia lindo, né?
+E: You're from Brazil, aren't you?|Você é do Brasil, né?
+E: He doesn't smoke, does he?|Ele não fuma, né?
+E: You called him, didn't you?|Você ligou para ele, né?
+X: You like it, no?|You like it, don't you?|Em inglês, a tag repete o auxiliar.
+D: Na dúvida, "right?" no final funciona na conversa informal.
+N: So e such
+
+@B1|So e such|so good, such a good day
+I: ✨
+C: So e such intensificam: tão, tanto.
+C: So vem antes de adjetivo sozinho. Such vem antes de a/an + adjetivo + substantivo.
+P: So + adjetivo. Such + a + adjetivo + coisa.
+R: So|It's so good!
+R: Such|It's such a good movie!
+R: Plural|They're such nice people.
+R: Consequência|It was so cold that we stayed home.
+E: You're so kind!|Você é tão gentil!
+E: It was such a long day.|Foi um dia tão longo.
+E: They're such nice people.|Eles são pessoas tão legais.
+E: I was so tired that I fell asleep.|Eu estava tão cansado que dormi.
+X: It's so a good day.|It's such a good day.|Com substantivo, use such a.
+D: So para elogiar sozinho. Such para elogiar algo.
+N: Already, yet e still
+
+@B1|Already, yet e still|I haven't finished yet
+I: ⏱️
+C: Already = já (mais cedo do que se esperava). Yet = ainda não ou já (em perguntas). Still = ainda (continua).
+C: Muito usados com o have + particípio.
+P: Already sim, yet ainda não, still continua.
+R: Já|I've already eaten.
+R: Ainda não|I haven't finished yet.
+R: Já? (pergunta)|Have you finished yet?
+R: Ainda|I'm still waiting.
+E: I've already called him.|Já liguei para ele.
+E: I haven't decided yet.|Ainda não decidi.
+E: Have you eaten yet?|Você já comeu?
+E: She's still at work.|Ela ainda está no trabalho.
+X: I didn't finish still.|I haven't finished yet.|Ainda não = not... yet, no final.
+D: Yet mora no fim da frase. Already e still ficam no meio.
+N: Estar acostumado
+
+@B1|Estar acostumado|I'm used to the cold
+I: 🧥
+C: Be used to = estar acostumado. Get used to = se acostumar (processo).
+C: Não confunda com used to (costumava), que fala do passado.
+P: Be used to = já me acostumei. Get used to = estou me acostumando.
+R: Acostumado|I'm used to waking up early.
+R: Se acostumando|I'm getting used to the food.
+R: Ainda não|I'm not used to driving here.
+R: Comparar|I used to smoke. (costumava)
+E: I'm used to the cold.|Estou acostumado com o frio.
+E: I'm getting used to my new job.|Estou me acostumando com o novo emprego.
+E: I'm not used to driving on the highway.|Não estou acostumado a dirigir na rodovia.
+E: You'll get used to it.|Você vai se acostumar.
+X: I'm used to wake up early.|I'm used to waking up early.|Depois de "be used to", o verbo vai com -ing.
+D: You'll get used to it é ótimo para encorajar alguém.
+N: Both, either e neither
+
+@B1|Both, either e neither|Neither of us
+I: ✌️
+C: Para falar de duas opções: both (os dois), either (um ou outro), neither (nenhum dos dois).
+C: Neither já é negativo, não precisa de not.
+P: Both = sim e sim. Either = um ou outro. Neither = nem um nem outro.
+R: Os dois|Both options are good.
+R: Qualquer um|Either is fine.
+R: Nenhum|Neither of them came.
+R: Pares|either... or / neither... nor
+E: Both of my parents work.|Meus pais trabalham, os dois.
+E: Either day is fine for me.|Qualquer um dos dias está bom para mim.
+E: Neither of us knew.|Nenhum de nós dois sabia.
+E: You can pay either in cash or by card.|Você pode pagar em dinheiro ou no cartão.
+X: Neither of us didn't know.|Neither of us knew.|Neither já é negativo.
+D: Either is fine = tanto faz (entre duas opções).
+N: Venho fazendo
+
+@B1|Venho fazendo|I've been working here for ten years
+I: 🔄
+C: Para algo que começou no passado e continua até agora, use have / has been + -ing.
+C: Muito usado com for e since.
+P: Começou antes + continua agora.
+R: Estrutura|I've been working here for ten years.
+R: Pergunta|How long have you been waiting?
+R: Recente|I've been thinking about it.
+R: Desde|She's been studying since 8.
+E: I've been working here for ten years.|Trabalho aqui há dez anos.
+E: How long have you been waiting?|Há quanto tempo você está esperando?
+E: I've been thinking about it.|Tenho pensado nisso.
+E: It's been raining since morning.|Está chovendo desde de manhã.
+X: I'm working here for ten years.|I've been working here for ten years.|Há + tempo, até agora, pede have been + -ing.
+D: How long have you been...? é a pergunta mais comum para conhecer alguém.
+N: Perguntas indiretas
+
+@B1|Perguntas indiretas|Could you tell me where...?
+I: 🧐
+C: Para soar educado, o americano faz pergunta dentro de outra: "Could you tell me...".
+C: Dentro da pergunta indireta, a ordem volta ao normal (sem inversão).
+P: Abertura educada + ordem normal.
+R: Lugar|Could you tell me where the bathroom is?
+R: Hora|Do you know what time it opens?
+R: Sim ou não|Do you know if he's coming?
+R: Preço|Could you tell me how much it costs?
+E: Could you tell me where the station is?|Poderia me dizer onde fica a estação?
+E: Do you know what time it opens?|Você sabe que horas abre?
+E: Do you know if she's coming?|Você sabe se ela vem?
+E: Could you tell me how much it costs?|Poderia me dizer quanto custa?
+X: Could you tell me where is the bathroom?|Could you tell me where the bathroom is?|Na pergunta indireta, o verbo vai para o fim.
+D: Comece com "Do you know..." e mantenha a ordem de frase normal.
+N: Phrasal verbs que se separam
+
+@B2|Tinha feito|I had already left
+I: ⏪
+C: Para mostrar que uma ação aconteceu antes de outra no passado, use had + particípio.
+C: É o passado do passado.
+P: Duas ações no passado: a mais antiga leva had.
+R: Estrutura|When I arrived, she had already left.
+R: Nunca antes|I had never seen snow before.
+R: Pergunta|Had you met him before?
+R: Arrependimento|If only I had known.
+E: When I arrived, the movie had already started.|Quando cheguei, o filme já tinha começado.
+E: I had never seen snow before that trip.|Eu nunca tinha visto neve antes daquela viagem.
+E: She had worked there for years.|Ela tinha trabalhado lá por anos.
+E: Had you met him before?|Você já o conhecia antes?
+X: When I arrived, she already left.|When I arrived, she had already left.|A ação mais antiga pede had.
+D: Desenhe duas setas no passado: a primeira leva had.
+N: Se eu tivesse feito
+
+@B2|Se eu tivesse feito|If I had known, I would have come
+I: 🔮
+C: Para imaginar um passado diferente, use if + had + particípio, would have + particípio.
+C: É o condicional dos arrependimentos e das hipóteses do passado.
+P: Se tivesse... teria...
+R: Estrutura|If I had known, I would have come.
+R: Negativa|If she hadn't called, I wouldn't have known.
+R: Curta|I would have helped.
+R: Pronúncia|would have = WÚDâv / woulda
+E: If I had known, I would have come.|Se eu soubesse, teria vindo.
+E: If we had left earlier, we wouldn't have missed the flight.|Se tivéssemos saído antes, não teríamos perdido o voo.
+E: I would have called you.|Eu teria te ligado.
+E: What would you have done?|O que você teria feito?
+X: If I would have known...|If I had known...|Depois de if, use had, não would.
+D: Na fala rápida, would have vira "woulda". Treine o ouvido.
+N: Dedução: deve ter sido
+
+@B2|Dedução: deve ter sido|He must have forgotten
+I: 🕵️
+C: Para deduzir algo do passado, use must have (com certeza), might have (talvez) e can't have (impossível).
+C: É o jeito do detetive falar.
+P: Certeza, dúvida, impossível + have + particípio.
+R: Certeza|He must have forgotten.
+R: Talvez|She might have missed the bus.
+R: Impossível|They can't have finished already.
+R: Presente|He must be tired.
+E: He must have forgotten about the meeting.|Ele deve ter esquecido da reunião.
+E: She might have missed the bus.|Ela pode ter perdido o ônibus.
+E: They can't have finished already.|Não é possível que já tenham terminado.
+E: You must be tired.|Você deve estar cansado.
+X: He must forgot.|He must have forgotten.|Dedução no passado: must have + particípio.
+D: Brinque de detetive: veja algo fora do lugar e deduza o que aconteceu.
+N: Mandar fazer
+
+@B2|Mandar fazer|I had my car fixed
+I: ✂️
+C: Quando outra pessoa faz o serviço para você, o inglês usa have ou get + coisa + particípio.
+C: "I cut my hair" quer dizer que você mesmo cortou!
+P: Have + coisa + feito por alguém.
+R: Estrutura|I had my car fixed.
+R: Informal|I got my hair cut.
+R: Futuro|I need to get my eyes checked.
+R: Pergunta|Where do you get your nails done?
+E: I had my car fixed yesterday.|Mandei consertar meu carro ontem.
+E: I got my hair cut.|Cortei o cabelo (no cabeleireiro).
+E: I need to get my eyes checked.|Preciso fazer exame de vista.
+E: We're having the house painted.|Estamos mandando pintar a casa.
+X: I cut my hair at the barber.|I got my hair cut.|Se outro fez, use get / have + particípio.
+D: Serviços: get my car washed, get my nails done, get my hair cut.
+N: A não ser que
+
+@B2|A não ser que|unless, as long as
+I: 🚧
+C: Unless = a não ser que (if not). As long as = desde que, contanto que.
+C: São conectores de condição muito comuns no trabalho.
+P: Unless = se não. As long as = com a condição de.
+R: A não ser que|We'll be late unless we leave now.
+R: Desde que|You can go as long as you're back by ten.
+R: Caso|Take an umbrella in case it rains.
+R: Supondo|Suppose he says no?
+E: We'll be late unless we leave now.|Vamos nos atrasar a não ser que saiamos agora.
+E: You can borrow it as long as you return it.|Pode pegar emprestado, desde que devolva.
+E: Take an umbrella in case it rains.|Leve guarda-chuva caso chova.
+E: Unless I'm wrong, the meeting is at three.|A não ser que eu esteja errado, a reunião é às três.
+X: Unless you don't hurry...|Unless you hurry...|Unless já é negativo.
+D: In case = por precaução. If = se acontecer.
+N: Embora e apesar de
+
+@B2|Embora e apesar de|although, despite
+I: 🌉
+C: Although e even though ligam duas ideias opostas e pedem uma frase completa.
+C: Despite e in spite of pedem um substantivo ou verbo com -ing.
+P: Although + frase. Despite + coisa.
+R: Embora|Although it was raining, we went out.
+R: Mesmo que|Even though I was tired, I finished.
+R: Apesar de|Despite the rain, we went out.
+R: Com -ing|Despite being tired, I finished.
+E: Although it was expensive, we bought it.|Embora fosse caro, compramos.
+E: Even though I was tired, I finished the report.|Mesmo cansado, terminei o relatório.
+E: Despite the traffic, we arrived on time.|Apesar do trânsito, chegamos na hora.
+E: In spite of being sick, she came to work.|Apesar de estar doente, ela veio trabalhar.
+X: Despite of the rain|Despite the rain|Despite não leva "of".
+D: Despite sozinho, in spite of com of. Nunca "despite of".
+N: Estarei fazendo
+
+@B2|Estarei fazendo|This time tomorrow, I'll be flying
+I: 🛫
+C: Will be + -ing mostra algo em andamento num momento do futuro.
+C: Will have + particípio mostra algo que já estará concluído até um momento.
+P: Will be -ing = no meio da ação. Will have done = já terminado.
+R: Em andamento|This time tomorrow, I'll be flying.
+R: Concluído|By Friday, I'll have finished.
+R: Educado|Will you be using the car tonight?
+R: Prazo|By the end of the year, we'll have saved enough.
+E: This time tomorrow, I'll be flying to Miami.|Amanhã a esta hora estarei voando para Miami.
+E: By Friday, I'll have finished the report.|Até sexta, terei terminado o relatório.
+E: Will you be using the car tonight?|Você vai usar o carro hoje à noite?
+E: By 2027, we'll have lived here for ten years.|Em 2027, faremos dez anos morando aqui.
+X: Tomorrow at 9 I will work.|Tomorrow at 9 I'll be working.|Ação em andamento num horário pede will be -ing.
+D: By + data = até tal data. Combina com will have.
+N: Qualquer um, onde quer que
+
+@B2|Qualquer um, onde quer que|whatever, wherever, whoever
+I: ♾️
+C: Palavras com -ever significam qualquer: whatever (o que quer que), wherever (onde quer que), whoever (quem quer que).
+C: Whatever sozinho também é uma resposta informal: "tanto faz".
+P: -ever = qualquer, não importa.
+R: O que for|Do whatever you want.
+R: Onde for|Sit wherever you like.
+R: Quem for|Whoever wins, we'll celebrate.
+R: Quando for|Call me whenever you need.
+E: Do whatever you want.|Faça o que quiser.
+E: Sit wherever you like.|Sente onde quiser.
+E: Call me whenever you need.|Me ligue sempre que precisar.
+E: However hard it is, don't give up.|Por mais difícil que seja, não desista.
+X: What you want, you can do.|You can do whatever you want.|O que quer que = whatever.
+D: Cuidado: "Whatever." sozinho, com tom seco, soa mal-educado.
+N: Prefixos e sufixos
+
+@B2|Prefixos e sufixos|un-, re-, -ful, -less
+I: 🧬
+C: Prefixos e sufixos multiplicam seu vocabulário: com uma palavra, você ganha várias.
+C: Un- e dis- negam. Re- repete. -ful = cheio de. -less = sem.
+P: Uma raiz, várias palavras.
+R: Negar|happy → unhappy, agree → disagree
+R: Repetir|do → redo, start → restart
+R: Com / sem|care → careful / careless
+R: Pessoa|teach → teacher, employ → employee
+E: I'm unhappy with the result.|Estou insatisfeito com o resultado.
+E: Please be careful.|Por favor, tenha cuidado.
+E: That was careless.|Isso foi descuidado.
+E: We need to redo the report.|Precisamos refazer o relatório.
+X: unpossible|impossible|Algumas palavras usam im- ou in-: impossible, incorrect.
+D: Escolha uma palavra por dia e crie a família dela.
+N: Prefiro e é melhor
+
+@B2|Prefiro e é melhor|I'd rather, you'd better
+I: 🧭
+C: I'd rather = eu prefiro. You'd better = é melhor você (conselho forte, quase aviso).
+C: Os dois usam o verbo sem to.
+P: Rather = preferência. Better = é bom fazer, senão...
+R: Prefiro|I'd rather stay home.
+R: Prefiro que|I'd rather you didn't smoke here.
+R: É melhor|You'd better hurry.
+R: Negativa|You'd better not be late.
+E: I'd rather stay home tonight.|Prefiro ficar em casa hoje.
+E: Would you rather walk or drive?|Você prefere ir a pé ou de carro?
+E: You'd better hurry, or you'll miss the bus.|É melhor você se apressar, senão vai perder o ônibus.
+E: We'd better not be late.|É melhor não nos atrasarmos.
+X: I'd rather to stay.|I'd rather stay.|Sem to depois de rather e de better.
+D: Would you rather...? é ótimo para brincar e treinar conversa.
+N: Conectores de contraste
+
+@C1|Frases com particípio|Having finished, he left
+I: ✒️
+C: Orações com particípio deixam a frase mais curta e elegante, muito usadas em textos e falas formais.
+C: Having + particípio mostra que uma ação terminou antes da outra.
+P: Corte o sujeito repetido e use -ing ou particípio.
+R: Ação anterior|Having finished the report, he went home.
+R: Ao mesmo tempo|Walking down the street, I saw an old friend.
+R: Passiva|Built in 1900, the house is very old.
+R: Causa|Not knowing what to do, I called my boss.
+E: Having finished the report, he went home.|Depois de terminar o relatório, ele foi para casa.
+E: Walking down the street, I saw an old friend.|Andando pela rua, vi um velho amigo.
+E: Built in 1900, the house needs repairs.|Construída em 1900, a casa precisa de reparos.
+E: Not knowing what to do, I called my boss.|Sem saber o que fazer, liguei para meu chefe.
+X: Walking down the street, the rain started.|Walking down the street, I got caught in the rain.|O sujeito das duas partes precisa ser o mesmo.
+D: Use em relatórios: deixa o texto mais enxuto e profissional.
+N: Sugerir que alguém faça
+
+@C1|Sugerir que alguém faça|I suggest that he go
+I: 📜
+C: Depois de suggest, recommend, insist e it's important that, o americano usa o verbo na forma básica, mesmo com he e she.
+C: É o subjuntivo, comum em contextos formais nos EUA.
+P: Suggest that + pessoa + verbo puro.
+R: Sugerir|I suggest that he call the client.
+R: Recomendar|We recommend that she see a specialist.
+R: Insistir|They insisted that he stay.
+R: Importante|It's essential that everyone be on time.
+E: I suggest that he call the client today.|Sugiro que ele ligue para o cliente hoje.
+E: The doctor recommended that she rest.|O médico recomendou que ela descansasse.
+E: It's important that everyone wear a helmet.|É importante que todos usem capacete.
+E: They insisted that we stay for dinner.|Eles insistiram que ficássemos para o jantar.
+X: I suggest him to call.|I suggest that he call. / I suggest calling.|Suggest não aceita pessoa + to.
+D: Normas de segurança em inglês usam muito: "It is required that all workers wear PPE".
+N: Inversão com condição
+
+@C1|Inversão com condição|Had I known...
+I: 🎭
+C: Em inglês formal, o if pode sumir e o verbo vai para a frente: Had I known = If I had known.
+C: Aparece em discursos, contratos e e-mails formais.
+P: Tire o if e inverta.
+R: Passado|Had I known, I would have called.
+R: Hipótese|Were I in your position, I'd accept.
+R: Possível|Should you need anything, let me know.
+R: Normal|If I had known... = Had I known...
+E: Had I known, I would have called you.|Se eu soubesse, teria te ligado.
+E: Should you have any questions, please contact me.|Caso tenha alguma dúvida, entre em contato.
+E: Were I in your position, I'd accept the offer.|Se eu estivesse no seu lugar, aceitaria a oferta.
+E: Had we left earlier, we'd have caught the train.|Se tivéssemos saído antes, teríamos pegado o trem.
+X: If had I known...|Had I known...|Na inversão, o if desaparece.
+D: Should you need anything... é o fechamento perfeito de e-mail formal.
+N: Diz-se que
+
+@C1|Diz-se que|It is said that...
+I: 🗞️
+C: Para relatar o que as pessoas dizem ou acreditam sem citar quem, use It is said / believed / reported that.
+C: Muito comum em notícias e relatórios.
+P: Fala impessoal: ninguém assume a frase.
+R: Dizem|It is said that he's a millionaire.
+R: Acredita-se|It is believed that the fire started in the kitchen.
+R: Relata-se|It has been reported that two people were injured.
+R: Outra forma|He is said to be a millionaire.
+E: It is said that the hotel is haunted.|Dizem que o hotel é assombrado.
+E: It is believed that the fire started in the kitchen.|Acredita-se que o incêndio começou na cozinha.
+E: It has been reported that two workers were injured.|Foi informado que dois trabalhadores se feriram.
+E: She is known to be very strict.|Ela é conhecida por ser muito rígida.
+X: Is said that...|It is said that...|O inglês sempre precisa de sujeito: it.
+D: Ótimo para relatórios de incidente: impessoal e preciso.
+N: Respostas curtas e elipse
+
+@C1|Respostas curtas e elipse|I'd love to. So do I.
+I: ✂️
+C: O nativo corta palavras repetidas: responde só com o auxiliar ou com to.
+C: Isso deixa a fala natural e rápida.
+P: Não repita o que já foi dito.
+R: Com to|Want to come? I'd love to.
+R: Com auxiliar|Can you swim? I used to.
+R: Concordar|I'm tired. So am I.
+R: Substituir|I think so. / I hope not.
+E: Do you want to join us? I'd love to.|Quer vir com a gente? Adoraria.
+E: Have you been to Chicago? No, but I'd like to.|Já foi a Chicago? Não, mas gostaria.
+E: Is it going to rain? I hope not.|Vai chover? Espero que não.
+E: Will he come? I think so.|Ele vem? Acho que sim.
+X: I think yes.|I think so.|Acho que sim = I think so.
+D: I think so, I hope so, I guess not: decore como blocos.
+N: Substantivos fortes
+
+@C1|Substantivos fortes|make a decision, give an explanation
+I: 🏛️
+C: Em textos formais, o inglês troca verbos por substantivos: decide → make a decision.
+C: Isso dá peso e formalidade ao que você diz.
+P: Verbo comum → expressão com substantivo.
+R: Decidir|decide → make a decision
+R: Explicar|explain → give an explanation
+R: Melhorar|improve → make an improvement
+R: Analisar|analyze → carry out an analysis
+E: We need to make a decision today.|Precisamos tomar uma decisão hoje.
+E: Could you give us a brief explanation?|Poderia nos dar uma breve explicação?
+E: We carried out a full investigation.|Realizamos uma investigação completa.
+E: There has been a significant improvement.|Houve uma melhora significativa.
+X: take a decision|make a decision|No inglês americano, decisão se toma com "make".
+D: Relatórios ficam mais formais: troque 3 verbos por substantivos.
+N: Advérbios de opinião
+
+@C1|Advérbios de opinião|Frankly, admittedly, apparently
+I: 🗣️
+C: Um advérbio no começo da frase mostra sua atitude sobre o que vai dizer.
+C: É um recurso muito usado por falantes avançados.
+P: Uma palavra no começo = seu tom.
+R: Sinceridade|Frankly, honestly
+R: Concessão|Admittedly, granted
+R: Dizem|Apparently, supposedly
+R: Sorte|Fortunately, luckily, unfortunately
+E: Frankly, I don't think it will work.|Francamente, não acho que vá funcionar.
+E: Admittedly, we made some mistakes.|É verdade que cometemos alguns erros.
+E: Apparently, the meeting was canceled.|Pelo jeito, a reunião foi cancelada.
+E: Luckily, nobody was hurt.|Por sorte, ninguém se feriu.
+X: Actually, I live in São Paulo (no sentido de atualmente).|Currently, I live in São Paulo.|Actually = na verdade. Atualmente = currently.
+D: Apparently é ótimo para contar fofoca sem se comprometer.
+N: Substantivos de phrasal verbs
+
+@C1|Substantivos de phrasal verbs|breakdown, outcome, feedback
+I: 🧱
+C: Muitos phrasal verbs viram substantivos: break down → breakdown, check in → check-in.
+C: São muito comuns no trabalho e nas notícias.
+P: Verbo de duas palavras vira uma coisa.
+R: Quebra / análise|breakdown
+R: Resultado|outcome
+R: Retrocesso|setback
+R: Avanço|breakthrough
+E: Can you give me a breakdown of the costs?|Pode me passar o detalhamento dos custos?
+E: We're happy with the outcome.|Estamos satisfeitos com o resultado.
+E: It was a minor setback.|Foi um pequeno contratempo.
+E: The team made a breakthrough.|A equipe teve um grande avanço.
+X: The out-come was good.|The outcome was good.|Escreva junto: outcome, setback, breakthrough.
+D: Em reuniões, procure ouvir: outcome, setback, follow-up, turnover.
+N: Graus de certeza
+
+@C1|Graus de certeza|bound to, likely to, unlikely to
+I: 📏
+C: O inglês avançado mede a certeza com precisão: bound to (com certeza), likely to (provável), unlikely to (improvável).
+C: Muito útil para previsões no trabalho.
+P: Escala de 0 a 100 por cento.
+R: Certo|It's bound to happen.
+R: Provável|Prices are likely to go up.
+R: Improvável|He's unlikely to accept.
+R: Chance|There's a good chance that...
+E: It's bound to rain this weekend.|Com certeza vai chover neste fim de semana.
+E: Prices are likely to go up.|Os preços devem subir.
+E: He's unlikely to accept the offer.|É pouco provável que ele aceite a oferta.
+E: There's a good chance we'll finish early.|Há boa chance de terminarmos mais cedo.
+X: It's probable that he comes.|He's likely to come.|"Likely to" soa muito mais natural.
+D: Troque "maybe" por likely e unlikely e você soa avançado.
+N: Formas elegantes
+
+@C2|Pares fixos|sooner or later, pros and cons
+I: 👯
+C: Binômios são pares fixos de palavras que sempre aparecem na mesma ordem.
+C: Trocar a ordem soa estranho para o nativo.
+P: A ordem é fixa: decore o par.
+R: Tempo|sooner or later, now and then
+R: Decisão|pros and cons, give and take
+R: Estado|safe and sound, sick and tired
+R: Detalhe|odds and ends, ups and downs
+E: Sooner or later, you'll have to decide.|Mais cedo ou mais tarde, você vai ter que decidir.
+E: Let's weigh the pros and cons.|Vamos pesar os prós e contras.
+E: They arrived safe and sound.|Chegaram sãos e salvos.
+E: I'm sick and tired of waiting.|Estou de saco cheio de esperar.
+X: later or sooner|sooner or later|A ordem não muda.
+D: Leia em voz alta: o ritmo do par ajuda a gravar.
+N: Eufemismos
+
+@C2|Eufemismos|let go, passed away
+I: 🌸
+C: Eufemismos suavizam temas difíceis: morte, demissão, idade, dinheiro.
+C: O americano usa muito, principalmente no trabalho.
+P: Palavra dura → palavra suave.
+R: Demitir|fire → let go
+R: Morrer|die → pass away
+R: Velho|old → senior
+R: Pobre|poor → low-income
+E: We had to let him go.|Tivemos que dispensá-lo.
+E: Her father passed away last year.|O pai dela faleceu ano passado.
+E: Senior citizens get a discount.|Idosos têm desconto.
+E: The company is downsizing.|A empresa está reduzindo o quadro.
+X: My father died last year (em contexto formal de condolências).|My father passed away last year.|Passed away soa mais delicado.
+D: Em notícia de demissão, ouça: let go, laid off, downsizing.
+N: Jargão corporativo
+
+@C2|Jargão corporativo|circle back, bandwidth
+I: 🏢
+C: Escritórios americanos têm um vocabulário próprio que nativos usam todo dia (e às vezes riem dele).
+C: Entender evita ficar perdido em reuniões.
+P: Palavras simples com sentido de escritório.
+R: Retomar|circle back = voltar ao assunto depois
+R: Capacidade|bandwidth = tempo e energia disponíveis
+R: Alinhar|get on the same page
+R: Rápido|quick win = resultado fácil e rápido
+E: Let's circle back on this next week.|Vamos retomar isso semana que vem.
+E: I don't have the bandwidth for another project.|Não tenho tempo para outro projeto.
+E: Let's make sure we're on the same page.|Vamos garantir que estamos alinhados.
+E: This could be a quick win.|Isso pode ser uma vitória rápida.
+X: Let's align ourselves.|Let's get on the same page.|Alinhar = get on the same page.
+D: Anote cada jargão novo que ouvir nas reuniões e procure aqui.
+N: Inglês de manchete
+
+@C2|Inglês de manchete|Fire Hits Plant, 2 Hurt
+I: 📰
+C: Manchetes em inglês cortam artigos e verbos auxiliares e usam o presente para fatos passados.
+C: Hurt = feridos. Probe = investigação. Slash = cortar.
+P: Telegrama: só o essencial.
+R: Sem artigos|Fire Hits Plant
+R: Presente = passado|Mayor Resigns
+R: Futuro com to|President to Visit Brazil
+R: Palavras curtas|probe, slash, vow, eye
+E: Fire hits factory, two hurt.|Incêndio atinge fábrica; dois feridos.
+E: Mayor to resign next week.|Prefeito vai renunciar semana que vem.
+E: Company slashes prices.|Empresa corta preços.
+E: Police probe crash.|Polícia investiga acidente.
+X: Ler "Mayor resigns" como presente.|Mayor resigns = o prefeito renunciou.|Na manchete, o presente conta fato já ocorrido.
+D: Leia três manchetes por dia num site americano.
+N: Ditados americanos
+
+@C2|Ditados americanos|The early bird catches the worm
+I: 🐦
+C: Ditados aparecem em conversas, filmes e discursos. Alguns têm equivalente em português.
+C: Conhecer os principais ajuda a entender o sentido escondido.
+P: Ditado em inglês ↔ ditado em português.
+R: Deus ajuda quem cedo madruga|The early bird catches the worm.
+R: Não chore pelo leite derramado|Don't cry over spilled milk.
+R: Quem vê cara não vê coração|Don't judge a book by its cover.
+R: Mais vale um pássaro na mão|A bird in the hand is worth two in the bush.
+E: The early bird catches the worm.|Deus ajuda quem cedo madruga.
+E: Don't cry over spilled milk.|Não adianta chorar pelo leite derramado.
+E: Don't judge a book by its cover.|Não julgue pelas aparências.
+E: Better late than never.|Antes tarde do que nunca.
+X: Traduzir o ditado palavra por palavra.|Use o ditado equivalente em inglês.|Ditados não se traduzem literalmente.
+D: Escolha um ditado por semana e use em uma conversa.
+N: Americano e britânico
+
+@C2|Americano e britânico|apartment x flat
+I: 🇺🇸
+C: O inglês americano e o britânico mudam em vocabulário, ortografia e pronúncia.
+C: O foco deste app é o americano. Conhecer as diferenças evita confusão em filmes e séries.
+P: EUA x Reino Unido.
+R: Moradia|apartment (EUA) / flat (UK)
+R: Carro|gas, truck (EUA) / petrol, lorry (UK)
+R: Comida|fries, cookie (EUA) / chips, biscuit (UK)
+R: Ortografia|color, center (EUA) / colour, centre (UK)
+E: I live in an apartment downtown.|Moro num apartamento no centro.
+E: I need to get gas.|Preciso abastecer.
+E: Can I get some fries?|Pode me ver batata frita?
+E: Take the elevator to the fifth floor.|Pegue o elevador até o quinto andar.
+X: Pedir chips nos EUA esperando batata frita.|Ask for fries.|Nos EUA, chips é batata de pacote.
+D: Elevator, apartment, gas, fries: o kit do inglês americano.
+N: Recursos de discurso
+
+@C2|Recursos de discurso|Not only... but also
+I: 🎙️
+C: Discursos marcantes usam repetição, contraste e grupos de três para prender a atenção.
+C: Esses recursos funcionam em apresentações e brindes.
+P: Três, contraste e repetição.
+R: Três|We came, we saw, we conquered.
+R: Contraste|Not only... but also...
+R: Repetição|Every day, every hour, every minute.
+R: Pergunta retórica|What does this mean for us?
+E: Not only did we reduce costs, but we also improved safety.|Não só reduzimos custos, como também melhoramos a segurança.
+E: Safety is not a priority; it's a value.|Segurança não é prioridade, é valor.
+E: What does this mean for our team?|O que isso significa para a nossa equipe?
+E: Faster, safer, and cheaper.|Mais rápido, mais seguro e mais barato.
+X: Not only we reduced costs...|Not only did we reduce costs...|Com "not only" no início, inverta: did we.
+D: Termine sua próxima apresentação com uma frase de três partes.
+N: Reduções da fala
+
+@C2|Reduções da fala|gonna, wanna, gotta
+I: 🎧
+C: Na fala rápida, o americano junta e encurta palavras. Entender isso é a chave para entender filmes e séries.
+C: Escreva o normal, mas treine o ouvido para as reduções.
+P: Ouvido treinado entende a fala real.
+R: going to|gonna
+R: want to|wanna
+R: have got to|gotta
+R: Outras|kinda (kind of), lemme (let me), dunno (don't know)
+E: I'm gonna call you later.|Vou te ligar mais tarde.
+E: Do you wanna grab lunch?|Quer almoçar?
+E: I gotta go.|Tenho que ir.
+E: Lemme see.|Deixa eu ver.
+X: I'm gonna to go.|I'm gonna go.|Gonna já inclui o to.
+D: Assista a uma cena de série e conte quantos gonna e wanna aparecem.
+N: Palavras com dois sentidos
+
+@C2|Palavras com dois sentidos|fine, mean, run
+I: 🎲
+C: Muitas palavras do dia a dia têm sentidos bem diferentes conforme o contexto.
+C: O nativo brinca muito com isso, e as piadas dependem disso.
+P: Contexto decide o sentido.
+R: Fine|bem / multa
+R: Mean|significar / malvado
+R: Run|correr / administrar / funcionar
+R: Charge|cobrar / carregar
+E: I'm fine, thanks.|Estou bem, obrigado.
+E: I got a parking fine.|Levei uma multa de estacionamento.
+E: Don't be mean to your sister.|Não seja malvado com sua irmã.
+E: She runs a small business.|Ela administra um pequeno negócio.
+X: My phone is charging me.|My phone is charging.|Charge com objeto = cobrar alguém.
+D: Faça uma lista de palavras com dois sentidos e uma frase para cada.
 N: Revisão geral
 `;
 const MMC={C:'Conceito central',R:'Estrutura / regra',E:'Exemplos com tradução',X:'Erro comum de brasileiros',D:'Dica visual e conexão'};
-const MMS=MMT.split('\n@').map(b=>b.replace(/^@/,'').trim()).filter(Boolean).map(b=>{const ls=b.split('\n');const h=ls[0].split('|');const o={lv:h[0],t:h[1],sub:h[2],k:h[3]==='sit'?'sit':'gram',C:[],P:'',R:[],E:[],X:[],D:'',N:''};ls.slice(1).forEach(l=>{const m=l.match(/^([CPREXDN]): (.*)$/);if(!m)return;const k=m[1],v=m[2];if(k==='C')o.C.push(v);else if(k==='P')o.P=v;else if(k==='D')o.D=v;else if(k==='N')o.N=v;else o[k].push(v.split('|'))});return o});
+const MMS=MMT.split('\n@').map(b=>b.replace(/^@/,'').trim()).filter(Boolean).map(b=>{const ls=b.split('\n');const h=ls[0].split('|');const o={lv:h[0],t:h[1],sub:h[2],k:h[3]==='sit'?'sit':'gram',C:[],P:'',R:[],E:[],X:[],D:'',N:'',I:'🧠'};ls.slice(1).forEach(l=>{const m=l.match(/^([CPREXDNI]): (.*)$/);if(!m)return;const k=m[1],v=m[2];if(k==='C')o.C.push(v);else if(k==='P')o.P=v;else if(k==='D')o.D=v;else if(k==='N')o.N=v;else if(k==='I')o.I=v;else o[k].push(v.split('|'))});return o});
 MMS.sort((a,b)=>['A1','A2','B1','B2','C1','C2'].indexOf(a.lv)-['A1','A2','B1','B2','C1','C2'].indexOf(b.lv)||(a.k===b.k?0:a.k==='sit'?-1:1));
 const LVC={A1:'#2E7D4F',A2:'#B08A00',B1:'#2C5DA8',B2:'#6B3FA0',C1:'#C2352B',C2:'#16305C'};
 let mmMode=store.get('mmMode','full');
@@ -3602,7 +5875,8 @@ document.querySelectorAll('#mmType button').forEach(b=>b.onclick=()=>{mmType=b.d
 function renderMM(){
   document.querySelectorAll('#mmType button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.k===mmType)));
   const box=document.getElementById('mmaps');
-  box.innerHTML=MMS.map((m,i)=>((mapLv!=='Todos'&&m.lv!==mapLv)||(mmType!=='all'&&m.k!==mmType))?'':`<details class="mm" id="mm${i}"><summary><span class="mlvb" style="background:${LVC[m.lv]}">${m.lv}</span><span class="mt"><b>${m.t}</b><span>${m.k==='sit'?'Situação · ':''}${m.sub}</span></span><span class="chev">›</span></summary><div class="mmb">
+  box.innerHTML=MMS.map((m,i)=>((mapLv!=='Todos'&&m.lv!==mapLv)||(mmType!=='all'&&m.k!==mmType))?'':`<details class="mm" id="mm${i}"><summary><span class="mlvb" style="background:${LVC[m.lv]}">${m.lv}</span><span class="mico" aria-hidden="true">${m.I}</span><span class="mt"><b>${m.t}</b><span>${m.k==='sit'?'Situação · ':''}${m.sub}</span></span><span class="chev">›</span></summary><div class="mmb">
+<div class="mmill" style="--lc:${LVC[m.lv]}"><div class="mmc"><span>${m.I}</span><b>${m.t}</b></div><div class="mmbr">${m.R.map(r=>`<span>${r[0]}</span>`).join('')}</div></div>
 <div class="blk" style="--bc:var(--m2)"><h4><i>1</i>${MMC.C}</h4><ul>${m.C.map(c=>`<li>${c}</li>`).join('')}</ul>${m.P?`<div class="pense"><b>Pense assim:</b> ${m.P}</div>`:''}</div>
 <div class="blk" style="--bc:var(--m1)"><h4><i>2</i>${MMC.R}</h4>${m.R.map(r=>`<div class="rrw"><b>${r[0]}</b><span>${r[1]||''}</span></div>`).join('')}</div>
 <div class="blk" style="--bc:var(--m3)"><h4><i>3</i>${MMC.E}</h4>${m.E.map((e,j)=>`<div class="exr"><button class="play sm" data-m="${i}" data-j="${j}" aria-label="Ouvir">${PLAY}</button><span class="t"><b>${e[0]}</b><span>${e[1]}</span></span></div>`).join('')}</div>
