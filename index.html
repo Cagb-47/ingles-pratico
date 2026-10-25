@@ -37,6 +37,58 @@
 .mmill .mmbr span{border:2px solid var(--lc);border-radius:999px;padding:4px 10px;font:700 .8rem var(--f-body);background:var(--paper)}
 .lvf{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}.lvf button{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:7px 12px;font:700 .85rem var(--f-body);cursor:pointer}.lvf button[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
 .story .slv{display:inline-block;color:#fff;font:800 .72rem var(--f-mono);padding:2px 7px;border-radius:6px;margin-right:6px;vertical-align:middle}
+
+.fcsearch{width:100%;box-sizing:border-box;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:10px;padding:11px 12px;font:600 1rem var(--f-body);margin:0 0 12px}
+.fgrid{display:grid;gap:10px}
+.fcardb{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;text-align:left;border:2px solid var(--line);border-radius:16px;background:var(--paper);color:var(--ink);padding:12px 14px;cursor:pointer;font:inherit}
+.fcardb .fe{font-size:2rem}.fcardb b{display:block;font:800 1.05rem var(--f-display)}.fcardb small{color:var(--muted)}
+.fcardb .fs{font:800 .8rem var(--f-mono);padding:4px 8px;border-radius:8px;background:var(--soft);white-space:nowrap}
+.fhead{border:3px solid var(--ink);border-radius:18px;padding:14px;margin:6px 0 12px;background:linear-gradient(135deg,#FFF6D8,#FFE9EF);color:#1A1A2E;text-align:center;position:relative}
+.fhead .fe{font-size:2.4rem}.fhead h3{margin:2px 0 0;font:900 1.5rem var(--f-display);color:#D7263D;text-transform:uppercase;letter-spacing:.02em}.fhead .fsub{font:700 .95rem var(--f-body);font-style:italic}
+.fhead .flv{position:absolute;right:10px;top:10px;background:#16A3B8;color:#fff;font:900 .85rem var(--f-mono);padding:6px 8px;border-radius:10px}
+.fscore{display:inline-block;margin-top:8px;background:#F2C230;color:#2A2100;border:2px solid #1A1A2E;border-radius:999px;padding:4px 14px;font:800 .95rem var(--f-body)}
+.fsec{border:3px solid #1A1A2E;border-radius:16px;margin:0 0 14px;overflow:hidden;background:var(--paper)}
+.fsec>h4{margin:0;padding:8px 12px;color:#fff;font:800 1rem var(--f-body);background:var(--sc)}
+.fsec>h4 i{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#fff;color:var(--sc);font-style:normal;margin-right:6px;font-size:.85rem}
+.fsec .fq{padding:10px 12px;border-top:1px dashed var(--line)}.fsec .fq:first-of-type{border-top:0}
+.fq .ft{font-weight:700;font-size:1.02rem;line-height:1.45}.fq .ft .em{font-size:1.25rem;margin-right:6px}
+.fq .bl{display:inline-block;min-width:64px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.fq .bl.ok{color:#1E8E4A;border-color:#1E8E4A}.fq .bl.no{color:#C2352B;border-color:#C2352B}
+.fopts{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.fopts button{border:2px solid var(--ink);background:var(--paper);color:var(--ink);border-radius:999px;padding:6px 12px;font:700 .92rem var(--f-body);cursor:pointer;text-align:left}
+.fopts button.ok{background:#1E8E4A;border-color:#1E8E4A;color:#fff}.fopts button.no{background:#C2352B;border-color:#C2352B;color:#fff}
+.fopts button:disabled{cursor:default}.fopts button:disabled:not(.ok):not(.no){opacity:.45}
+.fwrong{color:#C2352B;text-decoration:underline wavy #C2352B;text-underline-offset:4px}
+.fnote{font-size:.88rem;margin-top:4px;color:var(--muted)}
+.flig{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px}
+.flig .col{display:grid;gap:8px;align-content:start}
+.flig button{border:2px solid var(--ink);background:var(--paper);color:var(--ink);border-radius:12px;padding:9px 8px;font:700 .9rem var(--f-body);cursor:pointer;min-height:44px}
+.flig button.sel{outline:3px solid #F2C230;outline-offset:1px}.flig button.done{background:#E3F6EA;border-color:#1E8E4A;color:#14532D;cursor:default}
+.flig button.miss{animation:fshake .35s}.flig button .pn{display:inline-block;background:#1E8E4A;color:#fff;border-radius:6px;padding:0 6px;margin-right:4px;font-size:.8rem}
+@keyframes fshake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.flemb{border:3px solid #1A1A2E;border-radius:16px;background:#FFF3C4;color:#2A2100;padding:10px 12px;margin:0 0 14px}
+.flemb b{display:block;margin-bottom:6px}.flemb .chips2{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.flemb .chips2 span{background:#fff;border:2px solid #1A1A2E;border-radius:10px;padding:5px 8px;font:700 .85rem var(--f-body)}
+.fres{border:3px dashed #1A1A2E;border-radius:16px;padding:14px;text-align:center;margin:0 0 14px;background:var(--soft)}
+.fres b{font:900 1.4rem var(--f-display)}
+.fgab{border:2px dashed var(--line);border-radius:14px;padding:10px 12px;margin:0 0 14px;font-size:.9rem}.fgab li{margin:3px 0}
+.tq{border:3px solid #1A1A2E;border-radius:18px;padding:16px;background:var(--paper);margin:0 0 12px}
+.tq .tqk{font:800 .78rem var(--f-mono);text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.tq .tqp{font:800 1.25rem var(--f-display);margin:8px 0 12px}
+.tq .fopts{display:grid;gap:8px}.tq .fopts button{border-radius:12px;padding:11px 12px;font-size:1rem}
+.tprog{height:8px;border-radius:99px;background:var(--line);overflow:hidden;margin:0 0 12px}.tprog i{display:block;height:100%;background:#1E8E4A}
+.fixb{margin:8px 0 0 6px;border:2px solid var(--navy);border-radius:999px;background:var(--paper);color:var(--navy);font:700 .85rem var(--f-body);padding:6px 12px;cursor:pointer}
+.fcl{display:grid;gap:12px}
+.fcc{box-sizing:border-box;display:grid;grid-template-columns:76px minmax(0,1fr);gap:12px;border:3px solid #1A1A2E;border-radius:18px;background:var(--paper);padding:10px;box-shadow:0 5px 0 var(--cc,#F2C230);cursor:pointer;text-align:left;color:var(--ink);font:inherit;width:100%}
+.fcc .fpic{display:grid;place-items:center;font-size:2.4rem;border:2px solid #1A1A2E;border-radius:14px;background:color-mix(in srgb,var(--cc,#F2C230) 18%,transparent)}
+.fcc .rw{display:grid;grid-template-columns:22px 1fr;gap:6px;align-items:center;line-height:1.25}
+.fcc .rw .ic{font-size:1rem}.fcc .pt{color:#1E8E4A;font-weight:700}.fcc .en{font:900 1.2rem var(--f-display)}
+.fcc .pr{display:inline-block;background:color-mix(in srgb,var(--cc,#F2C230) 22%,transparent);border-radius:8px;padding:1px 8px;font:800 1rem var(--f-body)}
+.fcc.known{opacity:.75}.fcc .fkn{justify-self:start;border:2px solid #1E8E4A;background:var(--paper);color:#1E8E4A;border-radius:999px;padding:3px 10px;font:800 .78rem var(--f-body);cursor:pointer}.fcc .fkn[aria-pressed="true"]{background:#1E8E4A;color:#fff}
+.fct{box-sizing:border-box;border:3px solid #1A1A2E;border-radius:22px;background:var(--paper);padding:22px 16px;text-align:center;box-shadow:0 6px 0 #F2C230;margin:0 0 14px;min-height:230px;display:grid;align-content:center;gap:8px}
+.fct .big{font-size:3.4rem}.fct .pt{font:800 1.3rem var(--f-display);color:#1E8E4A}.fct .en{font:900 1.6rem var(--f-display)}.fct .pr{font:800 1.15rem var(--f-body);background:#FFF3C4;color:#2A2100;border-radius:10px;padding:4px 10px;justify-self:center}
+.fct .lbl{font:800 .72rem var(--f-mono);text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.fbtns{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 </style>
 <title>Inglês Prático</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -277,6 +329,8 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
       <button role="tab" data-tab="livro" aria-selected="false">Livro</button>
       <button role="tab" data-tab="rotina" aria-selected="false">Rotina</button>
       <button role="tab" data-tab="mapas" aria-selected="false">Mapas</button>
+      <button role="tab" data-tab="exerc" aria-selected="false">Exercícios</button>
+      <button role="tab" data-tab="flash" aria-selected="false">Flashcards</button>
       <button role="tab" data-tab="palavras" aria-selected="false">Palavras</button>
       <button role="tab" data-tab="phrasal" aria-selected="false">Phrasal Verbs</button>
       <button role="tab" data-tab="nativo" aria-selected="false">Frases</button>
@@ -342,6 +396,22 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
     <h3 id="trHistT" hidden>Últimas traduções</h3>
     <div id="trHist"></div>
     <p class="note">Se o microfone não funcionar, permita o uso do microfone para o site (toque no cadeado ao lado do endereço) e use o Chrome no Android ou o Safari no iPhone. As frases que já estão no app aparecem com a pronúncia; as outras são traduzidas pela internet (serviço gratuito MyMemory).</p>
+  </section>
+
+  <section id="exerc" data-panel hidden>
+    <h2>Exercícios de fixação</h2>
+    <p class="sub" id="exSub"></p>
+    <div class="wmode" role="group" aria-label="Tipo de exercício"><button id="exModeF" aria-pressed="true">Fichas</button><button id="exModeT" aria-pressed="false">Treino rápido</button></div>
+    <div id="exBox"></div>
+  </section>
+
+  <section id="flash" data-panel hidden>
+    <h2>Flashcards: escrito x falado</h2>
+    <p class="sub" id="fcSub"></p>
+    <div class="lvf" id="fcDeck" role="group" aria-label="Baralho"></div>
+    <div class="wmode" role="group" aria-label="Modo"><button id="fcModeL" aria-pressed="true">Ver lista</button><button id="fcModeT" aria-pressed="false">Treinar</button></div>
+    <input id="fcSearch" type="search" placeholder="Buscar em português ou inglês" aria-label="Buscar cartão" class="fcsearch">
+    <div id="fcBox"></div>
   </section>
 
   <section id="niveis" data-panel hidden>
@@ -5881,7 +5951,7 @@ function renderMM(){
 <div class="blk" style="--bc:var(--m1)"><h4><i>2</i>${MMC.R}</h4>${m.R.map(r=>`<div class="rrw"><b>${r[0]}</b><span>${r[1]||''}</span></div>`).join('')}</div>
 <div class="blk" style="--bc:var(--m3)"><h4><i>3</i>${MMC.E}</h4>${m.E.map((e,j)=>`<div class="exr"><button class="play sm" data-m="${i}" data-j="${j}" aria-label="Ouvir">${PLAY}</button><span class="t"><b>${e[0]}</b><span>${e[1]}</span></span></div>`).join('')}</div>
 <div class="blk" style="--bc:var(--m4)"><h4><i>4</i>${MMC.X}</h4>${m.X.map(x=>`<div class="err"><span class="no">✗ ${x[0]}</span><span class="ok">✓ ${x[1]}</span><span>${x[2]}</span></div>`).join('')}</div>
-<div class="blk" style="--bc:var(--m5)"><h4><i>5</i>${MMC.D}</h4><div>${m.D}</div>${m.N&&MMS.some(x=>x.t===m.N)?`<button class="nxt" data-next="${m.N}">Próximo tema: ${m.N} →</button>`:''}</div>
+<div class="blk" style="--bc:var(--m5)"><h4><i>5</i>${MMC.D}</h4><div>${m.D}</div>${m.N&&MMS.some(x=>x.t===m.N)?`<button class="nxt" data-next="${m.N}">Próximo tema: ${m.N} →</button>`:''}<button class="fixb" data-fix="${i}">✏️ Exercício de fixação</button></div>
 </div></details>`).join('');
   box.querySelectorAll('.play').forEach(b=>b.onclick=()=>say(MMS[+b.dataset.m].E[+b.dataset.j][0]));
   box.querySelectorAll('.nxt').forEach(b=>b.onclick=()=>{const k=MMS.findIndex(x=>x.t===b.dataset.next);if(k<0)return;if((mapLv!=='Todos'&&MMS[k].lv!==mapLv)||(mmType!=='all'&&MMS[k].k!==mmType)){mapLv='Todos';mmType='all';store.set('mapLv',mapLv);store.set('mmType',mmType);renderMaps()}const d=document.getElementById('mm'+k);d.open=true;d.scrollIntoView({block:'start'})});
@@ -6027,6 +6097,812 @@ document.getElementById('micTg').onclick=e=>listen(e.currentTarget);
 document.getElementById('trGoPt').onclick=()=>translate(ta.value,'pt');
 document.getElementById('trGoTg').onclick=()=>translate(ta.value,'tg');
 renderHist();
+}
+
+/* ---------- Exercícios ---------- */
+{
+const FT=`@A1|Verbo to be|Ser e estar|🧩
+L: I am ; you / we / they are ; he / she / it is ; negar: am not, isn't, aren't
+1: 🙋|I ___ a teacher.|am|is,are
+1: 👩|She ___ my sister.|is|am,are
+1: 👨‍👩‍👧|We ___ from Brazil.|are|is,am
+1: 🌤️|It ___ hot today.|is|are,am
+1: 🏠|They ___ at home.|are|is,am
+1: 😴|You ___ tired.|are|is,am
+2: I|am
+2: She|is
+2: They|are
+2: It|is
+3: ___ you okay?|Are|Is
+3: He ___ a doctor. (não é)|isn't|aren't
+3: I ___ hungry. (não estou)|'m not|isn't
+4: She are my wife.|She is my wife.|She am my wife.
+4: I is ready.|I am ready.|I are ready.
+4: You is late.|You are late.|You am late.
+4: Is they here?|Are they here?|Am they here?
+
+@A1|A e an|Um e uma|🍎
+L: a + som de consoante ; an + som de vogal ; an hour (H mudo) ; a university (som de IU)
+1: 🚗|I have ___ car.|a|an
+1: 🍎|She wants ___ apple.|an|a
+1: ⏰|We waited ___ hour.|an|a
+1: 🏠|They live in ___ big house.|a|an
+1: 🥚|I eat ___ egg every day.|an|a
+1: 🎓|He goes to ___ university.|a|an
+2: um carro|a car
+2: uma laranja|an orange
+2: uma ideia|an idea
+2: um uniforme|a uniform
+3: It's ___ interesting book.|an|a
+3: She is ___ nurse.|a|an
+3: That's ___ honest answer.|an|a
+4: I have an car.|I have a car.|I have the car.
+4: He is a engineer.|He is an engineer.|He is engineer.
+4: Wait a hour.|Wait an hour.|Wait one hours.
+4: She is teacher.|She is a teacher.|She is an teacher.
+
+@A1|Meu, seu, dele, dela|Possessivos|👪
+L: I → my ; you → your ; he → his / she → her ; we → our / they → their
+1: 👩|This is ___ wife. (eu)|my|your,her
+1: 👨|John loves ___ wife.|his|her,their
+1: 👩‍🦰|Maria and ___ husband live here.|her|his,their
+1: 🐶|They walk ___ dog every day.|their|our,his
+1: 🏡|We love ___ new house.|our|their,your
+1: 🎒|Is this ___ bag? (você)|your|my,his
+2: eu|my
+2: ele|his
+2: ela|her
+2: eles|their
+3: Ana is with ___ son.|her|his
+3: Peter called ___ mother.|his|her
+3: The kids are in ___ room.|their|our
+4: She loves his husband.|She loves her husband.|She loves him husband.
+4: He calls her wife every day.|He calls his wife every day.|He calls he wife every day.
+4: They car is new.|Their car is new.|There car is new.
+4: What's you name?|What's your name?|What's yours name?
+
+@A1|This, that, these, those|Este, aquele|👉
+L: this = este (perto, um) ; these = estes (perto, vários) ; that = aquele (longe, um) ; those = aqueles (longe, vários)
+1: 📱|___ is my phone. (aqui na mão)|This|These,Those
+1: 🍪|___ cookies are good. (aqui)|These|This,That
+1: 🏔️|Look at ___ mountain! (lá longe)|that|those,these
+1: 🐦|___ birds are beautiful. (lá longe)|Those|That,These
+1: 👟|Are ___ your shoes? (aqui)|these|this,that
+1: 🏢|___ building is very tall. (lá longe)|That|Those,This
+2: this|este (aqui)
+2: these|estes (aqui)
+2: that|aquele (lá)
+2: those|aqueles (lá)
+3: ___ apples are fresh. (aqui)|These|This
+3: Is ___ your car? (lá)|that|those
+3: I like ___ shirt. (aqui)|this|these
+4: This shoes are new.|These shoes are new.|That shoes are new.
+4: Those car is red.|That car is red.|These car is red.
+4: These is my friend.|This is my friend.|Those is my friend.
+4: I love that flowers.|I love those flowers.|I love this flowers.
+
+@A1|There is e there are|Tem, existe|📍
+L: there is + uma coisa ; there are + várias ; pergunta: Is there? / Are there? ; negativa: there isn't / there aren't
+1: 🏦|___ a bank near here.|There is|There are
+1: 🍎|___ three apples on the table.|There are|There is
+1: 🚻|___ a restroom upstairs?|Is there|Are there
+1: 🐟|___ many fish in the lake.|There are|There is
+1: 🥛|___ no milk in the fridge.|There is|There are
+1: 🪑|___ any chairs?|Are there|Is there
+2: There is|uma coisa
+2: There are|várias coisas
+2: Is there...?|Tem um...?
+2: There aren't|Não tem (vários)
+3: ___ a pharmacy on this street?|Is there|Are there
+3: There ___ two bedrooms.|are|is
+3: There ___ a problem.|is|are
+4: Have a bank near here.|There is a bank near here.|There are a bank near here.
+4: There is five people.|There are five people.|There have five people.
+4: Are there a hotel here?|Is there a hotel here?|Is there hotels here?
+4: There isn't no water.|There isn't any water.|There aren't no water.
+
+@A1|Can e can't|Poder e conseguir|🏊
+L: can + verbo puro ; can't = não pode / não consegue ; pergunta: Can you...? ; nunca: cans, can to
+1: 🏊|I ___ swim. (sim)|can|can't
+1: 🚗|She ___ drive. (não)|can't|can
+1: 🙋|___ I sit here?|Can|Do
+1: 🗣️|He ___ speak English well.|can|cans
+1: 👂|I ___ hear you. (não)|can't|can
+1: 🧑‍🍳|___ you cook?|Can|Are
+2: I can|eu consigo
+2: I can't|eu não consigo
+2: Can I...?|Posso...?
+2: Can you...?|Você pode...?
+3: She can ___ the guitar.|play|plays
+3: ___ you help me?|Can|Do
+3: Sorry, I ___ come tomorrow.|can't|don't can
+4: He cans swim.|He can swim.|He can swims.
+4: I can to help you.|I can help you.|I can helping you.
+4: You can speak English?|Can you speak English?|Do you can speak English?
+4: I don't can go.|I can't go.|I no can go.
+
+@A1|O S do he e she|Presente com he, she, it|➕
+L: I / you / we / they work ; he / she / it works ; go → goes, watch → watches ; have → has
+1: 👩‍⚕️|She ___ in a hospital.|works|work
+1: 🏙️|He ___ in Miami.|lives|live
+1: 📺|My son ___ TV every day.|watches|watch
+1: 🐕|The dog ___ a lot.|sleeps|sleep
+1: 👨‍👧|He ___ two kids.|has|have
+1: 🚌|They ___ to school by bus.|go|goes
+2: eu trabalho|I work
+2: ela trabalha|she works
+2: ele tem|he has
+2: eles vão|they go
+3: My wife ___ coffee every morning.|drinks|drink
+3: We ___ English on Mondays.|study|studies
+3: He ___ at 6 a.m.|gets up|get up
+4: He work here.|He works here.|He working here.
+4: She have a car.|She has a car.|She haves a car.
+4: My father go to church.|My father goes to church.|My father gos to church.
+4: It rain a lot here.|It rains a lot here.|It raining a lot here.
+
+@A1|Do e does|Perguntas e negativas|❓
+L: Do: I, you, we, they ; Does: he, she, it ; com does, o verbo perde o S ; don't / doesn't
+1: ☕|___ you like coffee?|Do|Does
+1: 👩|___ she speak English?|Does|Do
+1: 🏠|Where ___ you live?|do|does
+1: 🥩|He ___ eat meat. (não)|doesn't|don't
+1: 🧑‍💼|___ they work on Saturdays?|Do|Does
+1: 🤷|I ___ know.|don't|doesn't
+2: Do you...?|Você...?
+2: Does he...?|Ele...?
+2: I don't|eu não
+2: She doesn't|ela não
+3: Does she ___ here?|work|works
+3: What time ___ the store open?|does|do
+3: We ___ have a car.|don't|doesn't
+4: Does she works here?|Does she work here?|Do she works here?
+4: He don't like it.|He doesn't like it.|He doesn't likes it.
+4: Where you live?|Where do you live?|Where does you live?
+4: Do he have kids?|Does he have kids?|Does he has kids?
+
+@A2|Was e were|O passado do to be|⏮️
+L: I / he / she / it was ; you / we / they were ; wasn't / weren't ; pergunta: Were you...?
+1: 😴|I ___ very tired yesterday.|was|were
+1: ⏰|They ___ late.|were|was
+1: 🏖️|The beach ___ beautiful.|was|were
+1: 🏠|___ you at home last night?|Were|Was
+1: 😕|It ___ easy. (não)|wasn't|weren't
+1: 👫|We ___ friends at school.|were|was
+2: I|was
+2: you|were
+2: she|was
+2: they|were
+3: Where ___ you?|were|was
+3: My parents ___ in Florida.|were|was
+3: The movie ___ good. (não)|wasn't|weren't
+4: They was late.|They were late.|They are late yesterday.
+4: I were at work.|I was at work.|I am at work yesterday.
+4: Was you there?|Were you there?|Did you were there?
+4: She weren't happy.|She wasn't happy.|She didn't was happy.
+
+@A2|O passado|went, had, saw e did|🕰️
+L: regular: -ed (worked) ; irregular: go → went, have → had, see → saw ; pergunta: Did + verbo puro ; negativa: didn't + verbo puro
+1: 🏖️|I ___ to the beach last weekend.|went|go,goed
+1: 🍝|We ___ pasta for dinner.|had|have,haved
+1: 👀|I ___ her yesterday.|saw|see,seed
+1: 📞|___ you call him?|Did|Do
+1: 😴|I ___ sleep well. (não)|didn't|don't
+1: 💼|She ___ late yesterday.|worked|works
+2: go|went
+2: eat|ate
+2: buy|bought
+2: say|said
+3: Did you ___ the email?|send|sent
+3: What ___ you do last night?|did|do
+3: He ___ a new car last month.|bought|buyed
+4: I goed home.|I went home.|I did went home.
+4: Did you went out?|Did you go out?|Do you went out?
+4: She didn't called me.|She didn't call me.|She not called me.
+4: We eated pizza.|We ate pizza.|We did eat pizzas yesterday ago.
+
+@A2|Some e any|Algum e nenhum|🍪
+L: some: afirmativa e oferta ; any: pergunta e negativa ; Would you like some...? ; I don't have any...
+1: 💵|I have ___ money.|some|any
+1: ❓|Do you have ___ questions?|any|some
+1: 🥛|There isn't ___ milk.|any|some
+1: ☕|Would you like ___ coffee?|some|any
+1: 🍞|I need ___ bread.|some|any
+1: 👫|She doesn't have ___ brothers.|any|some
+2: some|afirmativa
+2: any|pergunta
+2: not any|nenhum
+2: some?|oferta
+3: Are there ___ eggs?|any|some
+3: Can I have ___ water?|some|any
+3: We didn't buy ___ fruit.|any|some
+4: I don't have some money.|I don't have any money.|I don't have no money.
+4: Do you have some kids? (pergunta neutra)|Do you have any kids?|Have you some kids?
+4: Would you like any tea?|Would you like some tea?|Do you like any tea?
+4: There isn't some sugar.|There isn't any sugar.|There is any sugar.
+
+@A2|Much e many|Muito e muitos|⚖️
+L: many + coisas que se contam ; much + coisas que não se contam ; How many? / How much? ; a lot of serve para os dois
+1: 🍎|How ___ apples do you want?|many|much
+1: 💧|How ___ water do you drink?|much|many
+1: 👥|There are ___ people here.|many|much
+1: ⏳|I don't have ___ time.|much|many
+1: 💵|How ___ is it?|much|many
+1: 🧳|How ___ bags do you have?|many|much
+2: many|people
+2: much|money
+2: many|cars
+2: much|time
+3: She doesn't eat ___ sugar.|much|many
+3: How ___ kids do you have?|many|much
+3: There aren't ___ hotels here.|many|much
+4: How much people?|How many people?|How many peoples?
+4: I have many work.|I have a lot of work.|I have many works.
+4: How many money?|How much money?|How many moneys?
+4: She has much friends.|She has many friends.|She has much friend.
+
+@A2|Estou fazendo agora|am, is, are + -ing|⏳
+L: agora: am / is / are + -ing ; know, like, want: sem -ing ; planos marcados: We're flying Friday ; pergunta: What are you doing?
+1: 🍳|I ___ cooking right now.|am|is,are
+1: 🌧️|It ___ raining.|is|are,am
+1: 👀|What ___ you doing?|are|is,am
+1: 📞|She ___ talking on the phone.|is|are,am
+1: ✈️|We ___ flying to Miami on Friday.|are|is,am
+1: 🙅|He ___ working today.|isn't|aren't,not
+2: estou comendo|I'm eating
+2: ela está dormindo|she's sleeping
+2: eles estão jogando|they're playing
+2: está nevando|it's snowing
+3: Shh! The baby is ___.|sleeping|sleep
+3: I ___ you. (saber)|know|am knowing
+3: Look! It ___ snowing.|is|are
+4: I'm knowing her.|I know her.|I knowing her.
+4: She cooking now.|She's cooking now.|She cook now.
+4: What you are doing?|What are you doing?|What do you doing?
+4: They is playing.|They are playing.|They playing.
+
+@A2|Comparar e o melhor|bigger e the biggest|🥇
+L: curta: bigger / the biggest ; longa: more expensive / the most expensive ; good → better → the best ; bad → worse → the worst
+1: 🏙️|New York is ___ than Miami.|bigger|more big,biggest
+1: 💎|This hotel is ___ than that one.|more expensive|expensiver,most expensive
+1: 🍕|This is ___ pizza in town.|the best|the better,the goodest
+1: 🌡️|Today is ___ than yesterday.|hotter|more hot,hottest
+1: 🎬|That was ___ movie ever.|the worst|the baddest,the worse
+1: 🐢|A turtle is ___ than a rabbit.|slower|more slow,slowest
+2: good|better
+2: bad|worse
+2: big|bigger
+2: happy|happier
+3: My car is ___ than yours.|older|more old
+3: She is ___ person I know.|the nicest|the most nice
+3: English is ___ than Chinese.|easier|more easy
+4: She is more tall than me.|She is taller than me.|She is tallest than me.
+4: This is the most big city.|This is the biggest city.|This is the more big city.
+4: He is more good than me.|He is better than me.|He is gooder than me.
+4: It's the more expensive car.|It's the most expensive car.|It's the expensivest car.
+
+@A2|Will e going to|O futuro|🔮
+L: going to = plano já decidido ; will = decisão na hora ; will = promessa e previsão ; I'll = I will
+1: ✈️|We're ___ visit Orlando next month. (já planejado)|going to|will
+1: ☎️|The phone is ringing. I ___ get it!|'ll|'m going to
+1: 🌧️|Look at those clouds! It's ___ rain.|going to|will
+1: 🤝|I ___ help you, I promise.|will|am going to
+1: 🏠|They're ___ buy a house.|going to|will to
+1: 🍕|I think I ___ have the pizza.|'ll|'m going
+2: I'll|eu vou (decidi agora)
+2: I'm going to|eu vou (já planejei)
+2: I won't|eu não vou
+2: Will you...?|Você vai...?
+3: Don't worry, I ___ tell anyone.|won't|don't
+3: She's going ___ study medicine.|to|for
+3: ___ you be at the meeting?|Will|Do
+4: I will to call you.|I'll call you.|I will calling you.
+4: She going to travel.|She's going to travel.|She go to travel.
+4: I'm going travel.|I'm going to travel.|I going to travel.
+4: It will rains.|It will rain.|It wills rain.
+
+@A2|Sempre, às vezes, nunca|Frequência|📅
+L: always 100% ; usually, often, sometimes ; rarely, never 0% ; antes do verbo, depois do to be
+1: ☕|I ___ drink coffee in the morning. (todo dia)|always|never
+1: ⏰|She is ___ late. (nunca)|never|always
+1: 🍽️|We ___ eat out. (às vezes)|sometimes|always
+1: 🏋️|How ___ do you work out?|often|many
+1: 📺|He ___ watches TV. (quase nunca)|rarely|usually
+1: 🚌|I ___ take the bus. (normalmente)|usually|never
+2: always|sempre
+2: usually|normalmente
+2: sometimes|às vezes
+2: never|nunca
+3: She ___ on time.|is always|always is
+3: I ___ fish.|never eat|eat never
+3: They ___ tired after work.|are usually|usually are
+4: I drink always water.|I always drink water.|Always I drink water.
+4: She always is happy.|She is always happy.|She is happy always is.
+4: I don't never smoke.|I never smoke.|I not never smoke.
+4: How many often do you go?|How often do you go?|How much often do you go?
+
+@B1|Should e must|Conselho e obrigação|💡
+L: should = conselho ; must = obrigação forte ; mustn't = proibido ; don't have to = não precisa
+1: 😴|I'm tired. You ___ sleep.|should|shouldn't
+1: 🦷|I have a toothache. You ___ see a dentist.|should|shouldn't
+1: ☕|It's late. You ___ drink coffee.|shouldn't|should
+1: 🍬|You ___ eat so much candy.|shouldn't|should
+1: 💧|You ___ drink more water.|should|shouldn't
+1: ☔|It's raining. You ___ take an umbrella.|should|shouldn't
+2: must|deve (obrigação)
+2: mustn't|é proibido
+2: should|deveria
+2: don't have to|não precisa
+3: You ___ stop at a red light.|must|mustn't
+3: It's Sunday. I ___ work.|don't have to|mustn't
+3: You ___ smoke here.|mustn't|don't have to
+4: You should to rest.|You should rest.|You should resting.
+4: He shoulds study.|He should study.|He should studies.
+4: She have to go.|She has to go.|She haves to go.
+4: You must to wait.|You must wait.|You must waiting.
+
+@B1|Já fiz, nunca fiz|have + particípio|✅
+L: have / has + particípio ; ever = já (alguma vez) ; never = nunca ; already = já ; yet = ainda não
+1: 🗽|Have you ___ been to New York?|ever|never
+1: 🍣|I've ___ eaten sushi.|never|ever
+1: ✉️|I've ___ sent the email.|already|yet
+1: 📄|I haven't finished ___.|yet|already
+1: ✈️|She ___ traveled a lot.|has|have
+1: 🎬|We ___ seen that movie.|have|has
+2: be|been
+2: see|seen
+2: eat|eaten
+2: go|gone
+3: Have you ___ lunch yet?|had|have
+3: He has ___ to Paris twice.|been|went
+3: I've known her ___ ten years.|for|since
+4: I have went there.|I have gone there.|I have go there.
+4: Did you ever been to Brazil?|Have you ever been to Brazil?|Have you ever was in Brazil?
+4: She have finished.|She has finished.|She has finish.
+4: I didn't finish yet.|I haven't finished yet.|I don't finished yet.
+
+@B1|For e since|Há quanto tempo|⏳
+L: for + quantidade de tempo ; since + ponto de partida ; How long have you...? ; I've lived here for 5 years
+1: 🏠|I've lived here ___ five years.|for|since
+1: 💼|She's worked here ___ 2015.|since|for
+1: ⏳|We've waited ___ an hour.|for|since
+1: 🎂|I've known him ___ we were kids.|since|for
+1: 🌧️|It's been raining ___ Monday.|since|for
+1: 📚|They've studied English ___ months.|for|since
+2: for|ten years
+2: since|2010
+2: for|a long time
+2: since|last week
+3: How ___ have you been here?|long|much
+3: I haven't seen her ___ Christmas.|since|for
+3: He's been sick ___ three days.|for|since
+4: I live here for ten years.|I've lived here for ten years.|I'm living here since ten years.
+4: She works here since 2010.|She has worked here since 2010.|She worked here for 2010.
+4: I know him since school.|I've known him since school.|I knew him for school.
+4: How long are you here?|How long have you been here?|How much time are you here?
+
+@B1|Used to|Eu costumava|📼
+L: used to + verbo = costumava ; didn't use to ; Did you use to...? ; be used to = estar acostumado
+1: 🚬|I ___ smoke, but I quit.|used to|use to
+1: 🏫|We ___ walk to school.|used to|were used
+1: ❓|Did you ___ live in Rio?|use to|used to
+1: 🥦|I ___ like vegetables. (não costumava)|didn't use to|didn't used to
+1: 🎸|He ___ play in a band.|used to|uses to
+1: 🧥|I'm ___ the cold now.|used to|use to
+2: I used to|eu costumava
+2: I didn't use to|eu não costumava
+2: I'm used to|estou acostumado
+2: I'm getting used to|estou me acostumando
+3: She ___ have long hair.|used to|is used to
+3: I'm used to ___ early.|waking up|wake up
+3: You'll get used ___ it.|to|for
+4: I use to play soccer when I was a kid.|I used to play soccer when I was a kid.|I was use to play soccer.
+4: Did you used to work there?|Did you use to work there?|Used you to work there?
+4: I'm used to wake up early.|I'm used to waking up early.|I used to waking up early now.
+4: He didn't used to drink.|He didn't use to drink.|He not used to drink.
+
+@B1|Se chover|If + presente, will|🌧️
+L: If + presente, will + verbo ; depois do if, nunca will ; unless = a não ser que ; If you need help, let me know
+1: 🏠|If it rains, I ___ stay home.|'ll|would
+1: 📞|I'll call you if I ___ time.|have|will have
+1: 🚌|If you don't hurry, you ___ miss the bus.|'ll|would
+1: 💵|If she ___ the job, she'll move.|gets|will get
+1: 🙋|If you need help, ___ me know.|let|will let
+1: ⏰|We'll be late ___ we leave now.|unless|if
+2: If it rains|se chover
+2: If you study|se você estudar
+2: I'll call you|vou te ligar
+2: Unless you hurry|a não ser que se apresse
+3: What will you do if he ___ no?|says|will say
+3: If I see her, I ___ tell her.|'ll|would
+3: ___ you need anything, call me.|If|Unless
+4: If it will rain, I'll stay.|If it rains, I'll stay.|If it rain, I stay.
+4: If you will come, we'll go.|If you come, we'll go.|If you came, we'll go.
+4: I'll call you if I will have time.|I'll call you if I have time.|I call you if I will have time.
+4: Unless you don't hurry, you'll miss it.|Unless you hurry, you'll miss it.|Unless hurry, you miss it.
+
+@B2|Se eu fosse|If + passado, would|💭
+L: If + passado, would + verbo ; If I were you... ; situação imaginária ; I'd = I would
+1: 💰|If I ___ rich, I'd travel the world.|were|am
+1: 🧑‍💼|If I were you, I ___ take the job.|'d|'ll
+1: 🗣️|If she ___ English, she'd get a better job.|spoke|speaks
+1: 🏝️|What ___ you do if you won the lottery?|would|will
+1: 🚗|If we had a car, we ___ drive there.|'d|'ll
+1: 🐶|If I ___ a dog, I'd walk every day.|had|have
+2: If I were you|se eu fosse você
+2: If I had time|se eu tivesse tempo
+2: If it were cheaper|se fosse mais barato
+2: What would you do?|o que você faria?
+3: If I ___ more time, I'd study more.|had|have
+3: She'd be happier if she ___ less.|worked|works
+3: If I ___ you, I'd wait.|were|am
+4: If I would have money, I'd buy it.|If I had money, I'd buy it.|If I have money, I'd buy it.
+4: If I was you, I'll wait.|If I were you, I'd wait.|If I am you, I wait.
+4: What will you do if you were rich?|What would you do if you were rich?|What you would do if you were rich?
+4: I'd go if I can.|I'd go if I could.|I'll go if I could.
+
+@B2|Voz passiva|Foi feito por|🔄
+L: to be + particípio ; is made / was built / will be done ; by = por ; foco no resultado, não em quem fez
+1: 🏛️|This house ___ built in 1950.|was|is
+1: 📦|The package ___ delivered tomorrow.|will be|was
+1: 🍎|Apples ___ grown in Washington.|are|is
+1: 📄|The report ___ written by Ana.|was|were
+1: 🧑‍🔧|The car ___ being repaired now.|is|was
+1: 🚫|Smoking ___ not allowed here.|is|are
+2: build|built
+2: write|written
+2: make|made
+2: steal|stolen
+3: My phone ___ stolen yesterday.|was|is
+3: English is ___ all over the world.|spoken|speak
+3: The meeting has been ___.|canceled|cancel
+4: The bridge was build in 1990.|The bridge was built in 1990.|The bridge built in 1990.
+4: My car was stole.|My car was stolen.|My car stolen.
+4: The windows are clean every day.|The windows are cleaned every day.|The windows cleaned every day.
+4: The book was wrote by Twain.|The book was written by Twain.|The book written by Twain.
+
+@B2|Contar o que alguém disse|He said that...|🗨️
+L: said (sem pessoa) / told me (com pessoa) ; o tempo volta um passo: is → was ; will → would ; can → could
+1: 🗣️|He ___ he was tired.|said|told
+1: 👩|She ___ me she was busy.|told|said
+1: 🔁|"I'm hungry." → He said he ___ hungry.|was|is
+1: 📅|"I will call." → She said she ___ call.|would|will
+1: 🏊|"I can swim." → He said he ___ swim.|could|can
+1: ❓|She asked me where I ___.|lived|do live
+2: is|was
+2: will|would
+2: can|could
+2: am going to|was going to
+3: He told ___ the truth.|me|to me
+3: She asked if I ___ coffee.|wanted|want
+3: They said they ___ tired.|were|are
+4: He said me that he was busy.|He told me that he was busy.|He said to me he is busy yesterday.
+4: She told that she was tired.|She said that she was tired.|She told she is tired.
+4: He asked me where do I live.|He asked me where I lived.|He asked me where I do live.
+4: She said she will come.|She said she would come.|She said she comes.`;
+const FICHAS=FT.split('\n\n').map(b=>{const ls=b.trim().split('\n');const h=ls[0].slice(1).split('|');const g=k=>ls.filter(l=>l.startsWith(k+': ')).map(l=>l.slice(3));
+ return {lv:h[0],t:h[1],sub:h[2],e:h[3],L:g('L')[0].split(' ; '),c:g('1').map(x=>{const p=x.split('|');return {em:p[0],q:p[1],a:p[2],w:p[3].split(',')}}),m:g('2').map(x=>x.split('|')),s:g('3').map(x=>{const p=x.split('|');return {q:p[0],a:p[1],w:[p[2]]}}),x:g('4').map(x=>x.split('|'))}});
+window.FICHAS=FICHAS;
+const LVCX={A1:'#2E7D4F',A2:'#B08A00',B1:'#2C5DA8',B2:'#6B3FA0',C1:'#C2352B',C2:'#16305C'};
+const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fill=(q,a)=>{q=q.includes('→')?q.split('→').pop().trim():q;return q.replace('___',a).replace(/ '/g,"'").replace(/\s*\(.*?\)/g,'').trim()};
+const blank=q=>esc(q).replace('___','<span class="bl">&nbsp;</span>');
+const box=document.getElementById('exBox');
+let exMode='F',fLv=store.get('fLv','Todos'),fBest=store.get('fBest',{});
+const TOT=17;
+document.getElementById('exSub').textContent=FICHAS.length+' fichas com '+TOT+' questões cada ('+FICHAS.length*TOT+' questões), do A1 ao B2, no estilo das fichas impressas: complete, ligue, escolha e corrija o erro. E o treino rápido, com as frases dos '+MMS.length+' mapas mentais.';
+function setMode(m){exMode=m;document.getElementById('exModeF').setAttribute('aria-pressed',String(m==='F'));document.getElementById('exModeT').setAttribute('aria-pressed',String(m==='T'));m==='F'?listF():treinoMenu()}
+document.getElementById('exModeF').onclick=()=>setMode('F');document.getElementById('exModeT').onclick=()=>setMode('T');
+function listF(){
+  const lv=['Todos','A1','A2','B1','B2'];
+  box.innerHTML=`<div class="lvf" id="fLvB">${lv.map(l=>`<button data-l="${l}" aria-pressed="${l===fLv}">${l==='Todos'?'Todas':l}</button>`).join('')}</div><div class="fgrid">${FICHAS.map((f,i)=>(fLv!=='Todos'&&f.lv!==fLv)?'':`<button class="fcardb" data-i="${i}"><span class="fe">${f.e}</span><span><b>${esc(f.t)}</b><small><span class="slv" style="background:${LVCX[f.lv]};color:#fff;font:800 .7rem var(--f-mono);padding:1px 6px;border-radius:6px;margin-right:6px">${f.lv}</span>Ficha ${String(i+1).padStart(3,'0')} · ${esc(f.sub)}</small></span><span class="fs">${fBest[f.t]!=null?'⭐ '+fBest[f.t]+'/'+TOT:'Nova'}</span></button>`).join('')}</div>`;
+  box.querySelectorAll('#fLvB button').forEach(b=>b.onclick=()=>{fLv=b.dataset.l;store.set('fLv',fLv);listF()});
+  box.querySelectorAll('.fcardb').forEach(b=>b.onclick=()=>openF(+b.dataset.i));
+}
+function openF(fi){
+  const f=FICHAS[fi];let score=0,done=0;const missL={};
+  const q1=f.c.map(c=>({...c,o:shuf([c.a,...c.w])})),q3=f.s.map(c=>({...c,o:shuf([c.a,...c.w])})),q4=f.x.map(x=>({w:x[0],a:x[1],o:shuf([x[1],x[2]])}));
+  const L=shuf(f.m.map((p,i)=>({t:p[0],i}))),R=shuf(f.m.map((p,i)=>({t:p[1],i})));
+  const sec=(n,t,c,inner)=>`<div class="fsec" style="--sc:${c}"><h4><i>${n}</i>${t}</h4>${inner}</div>`;
+  const opt=(id,o)=>`<div class="fopts" data-q="${id}">${o.map(x=>`<button data-v="${esc(x)}">${esc(x)}</button>`).join('')}</div>`;
+  box.innerHTML=`<button class="btn ghost" id="fBack" style="margin:0 0 8px">← Todas as fichas</button>
+  <div class="fhead"><span class="flv">NÍVEL ${f.lv}</span><div class="fe">${f.e}</div><h3>${esc(f.t)}</h3><div class="fsub">${esc(f.sub)}</div><span class="fscore">Acertos: <span id="fSc">0</span> / ${TOT}</span></div>
+  <div class="flemb"><b>💡 Lembrete</b><div class="chips2">${f.L.map(x=>`<span>${esc(x)}</span>`).join('')}</div></div>
+  ${sec(1,'Complete','#E5484D',q1.map((c,i)=>`<div class="fq"><div class="ft"><span class="em">${c.em}</span>${blank(c.q)}</div>${opt('c'+i,c.o)}</div>`).join(''))}
+  ${sec(2,'Ligue: toque num item da esquerda e depois no par da direita','#2F6FDE',`<div class="flig"><div class="col" id="fL">${L.map(x=>`<button data-k="${x.i}">${esc(x.t)}</button>`).join('')}</div><div class="col" id="fR">${R.map(x=>`<button data-k="${x.i}">${esc(x.t)}</button>`).join('')}</div></div>`)}
+  ${sec(3,'Escolha','#7C4DDB',q3.map((c,i)=>`<div class="fq"><div class="ft">${blank(c.q)}</div>${opt('s'+i,c.o)}</div>`).join(''))}
+  ${sec(4,'Corrija o erro: escolha a frase certa','#14A37F',q4.map((c,i)=>`<div class="fq"><div class="ft">😕 <span class="fwrong">${esc(c.w)}</span></div>${opt('x'+i,c.o)}</div>`).join(''))}
+  <div id="fEnd"></div>
+  <details class="fgab"><summary><b>Gabarito</b> (confira no fim)</summary><ol><li>${f.c.map(c=>esc(c.a)).join(' · ')}</li><li>${f.m.map(p=>esc(p[0])+' = '+esc(p[1])).join(' · ')}</li><li>${f.s.map(c=>esc(c.a)).join(' · ')}</li><li>${f.x.map(x=>esc(x[1])).join(' · ')}</li></ol></details>`;
+  window.scrollTo(0,0);
+  const up=ok=>{done++;if(ok)score++;document.getElementById('fSc').textContent=score;if(done===TOT)finish()};
+  function finish(){const prev=fBest[f.t];if(prev==null||score>prev){fBest[f.t]=score;store.set('fBest',fBest)}touchDay();
+    const msg=score===TOT?'Perfeito! 🎉':score>=13?'Muito bem! 👏':score>=9?'Bom trabalho! Refaça para fixar. 💪':'Continue treinando, você vai chegar lá! 🌱';
+    const nx=FICHAS[fi+1];
+    document.getElementById('fEnd').innerHTML=`<div class="fres"><b>${score} de ${TOT}</b><div>${msg}</div><div class="cta" style="justify-content:center"><button class="btn" id="fAgain">Refazer</button>${nx?`<button class="btn ghost" id="fNext">Próxima: ${esc(nx.t)} →</button>`:''}</div></div>`;
+    document.getElementById('fAgain').onclick=()=>openF(fi);if(nx)document.getElementById('fNext').onclick=()=>openF(fi+1);
+    document.getElementById('fEnd').scrollIntoView({block:'center'});}
+  document.getElementById('fBack').onclick=listF;
+  box.querySelectorAll('.fopts').forEach(g=>g.querySelectorAll('button').forEach(b=>b.onclick=()=>{
+    const id=g.dataset.q,t=id[0],k=+id.slice(1);const it=t==='c'?q1[k]:t==='s'?q3[k]:q4[k];const ok=b.dataset.v===it.a;
+    g.querySelectorAll('button').forEach(x=>{x.disabled=true;if(x.dataset.v===it.a)x.classList.add('ok')});if(!ok)b.classList.add('no');
+    const bl=g.parentElement.querySelector('.bl');if(bl){bl.textContent=it.a;bl.classList.add(ok?'ok':'no')}
+    if(!ok){const n=document.createElement('div');n.className='fnote';n.textContent='Jeito certo: '+(t==='x'?it.a:fill(it.q,it.a));g.after(n)}
+    say(t==='x'?it.a:fill(it.q,it.a));up(ok)}));
+  let sel=null;const pairs=new Set(f.m.map(p=>p[0]+'\u0001'+p[1]));let pn=0;
+  box.querySelectorAll('#fL button').forEach(b=>b.onclick=()=>{if(b.classList.contains('done'))return;box.querySelectorAll('#fL button').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');sel=b});
+  box.querySelectorAll('#fR button').forEach(b=>b.onclick=()=>{if(!sel||b.classList.contains('done'))return;
+    if(pairs.has(sel.textContent+'\u0001'+b.textContent)){pn++;[sel,b].forEach(x=>{x.classList.remove('sel');x.classList.add('done');x.insertAdjacentHTML('afterbegin',`<span class="pn">${pn}</span>`)});const first=!missL[sel.dataset.k];say(/[a-z]/i.test(sel.textContent)&&!/[ãçéêáíóú]/i.test(sel.textContent)?sel.textContent:b.textContent);sel=null;up(first)}
+    else{missL[sel.dataset.k]=1;b.classList.add('miss');setTimeout(()=>b.classList.remove('miss'),400)}});
+}
+/* treino rápido */
+const XOK=x=>x&&x[0]&&x[1]&&x[0]!==x[1]&&!/^(Usar|Ler|Pedir|Traduzir|Not |Errar)/.test(x[0])&&!/[=]/.test(x[1])&&/^[A-Za-z"']/.test(x[1]);
+let tLv=store.get('tLv','A1'),tBest=store.get('tBest',{});
+function pool(lv){return MMS.filter(m=>lv==='Todos'||m.lv===lv)}
+function makeQ(maps,n,all){
+  const src=all||maps;const E=src.flatMap(m=>m.E.map(e=>e)),qs=[];
+  const items=shuf(maps.flatMap(m=>[...m.E.map(e=>({k:'e',e,m})),...m.X.filter(XOK).map(x=>({k:'x',x,m}))]));
+  const dis=(val,idx)=>shuf(E.map(e=>e[idx]).filter(v=>v!==val)).filter((v,i,a)=>a.indexOf(v)===i).slice(0,3);
+  items.slice(0,n).forEach((it,i)=>{
+    if(it.k==='x')qs.push({type:'Qual está certa?',p:'Uma destas frases tem erro. Toque na certa.',a:it.x[1],o:shuf([it.x[1],it.x[0]]),say:it.x[1],why:it.x[2]});
+    else{const t=i%3;if(t===0)qs.push({type:'O que significa?',p:it.e[0],a:it.e[1],o:shuf([it.e[1],...dis(it.e[1],1)]),say:it.e[0],play:1});
+    else if(t===1)qs.push({type:'Como se diz em inglês?',p:it.e[1],a:it.e[0],o:shuf([it.e[0],...dis(it.e[0],0)]),say:it.e[0]});
+    else qs.push({type:'Ouça e escolha',p:'🔊 Toque para ouvir de novo',a:it.e[0],o:shuf([it.e[0],...dis(it.e[0],0)]),say:it.e[0],listen:1})}});
+  return qs;
+}
+function treinoMenu(){
+  const lv=['A1','A2','B1','B2','C1','C2','Todos'];
+  box.innerHTML=`<p class="tip">10 perguntas com as frases e os erros comuns dos mapas mentais: o que significa, como se diz, ouça e escolha, e qual está certa. A cada treino as perguntas mudam.</p><div class="lvf" id="tLvB">${lv.map(l=>`<button data-l="${l}" aria-pressed="${l===tLv}">${l==='Todos'?'Todos os níveis':l}${tBest[l]!=null?' ⭐'+tBest[l]:''}</button>`).join('')}</div><div class="cta"><button class="btn" id="tGo">Começar o treino (${tLv==='Todos'?'todos os níveis':'nível '+tLv})</button></div>`;
+  box.querySelectorAll('#tLvB button').forEach(b=>b.onclick=()=>{tLv=b.dataset.l;store.set('tLv',tLv);treinoMenu()});
+  document.getElementById('tGo').onclick=()=>runT(makeQ(pool(tLv),10),'Treino '+(tLv==='Todos'?'geral':tLv),tLv);
+}
+function runT(qs,title,key){
+  let i=0,sc=0;const wrong=[];
+  function q(){const x=qs[i];
+    box.innerHTML=`<button class="btn ghost" id="tBack" style="margin:0 0 8px">← Sair do treino</button><div class="tprog"><i style="width:${i/qs.length*100}%"></i></div><div class="tq"><div class="tqk">${esc(title)} · ${i+1} de ${qs.length} · ${esc(x.type)}</div><div class="tqp" ${x.listen||x.play?'role="button" tabindex="0" id="tSay" style="cursor:pointer"':''}>${x.listen?'🔊 Toque para ouvir de novo':esc(x.p)+(x.play?' 🔊':'')}</div><div class="fopts">${x.o.map(o=>`<button data-v="${esc(o)}">${esc(o)}</button>`).join('')}</div><div id="tFb"></div></div>`;
+    document.getElementById('tBack').onclick=()=>setMode(key&&key.startsWith('map:')?'T':'T');
+    const ts=document.getElementById('tSay');if(ts)ts.onclick=()=>say(x.say);if(x.listen)say(x.say);
+    box.querySelectorAll('.tq .fopts button').forEach(b=>b.onclick=()=>{const ok=b.dataset.v===x.a;box.querySelectorAll('.tq .fopts button').forEach(y=>{y.disabled=true;if(y.dataset.v===x.a)y.classList.add('ok')});if(!ok){b.classList.add('no');wrong.push(x)}else sc++;
+      say(x.say);document.getElementById('tFb').innerHTML=`${!ok&&x.why?`<p class="fnote">${esc(x.why)}</p>`:''}<div class="cta"><button class="btn" id="tNx">${i+1<qs.length?'Próxima →':'Ver resultado'}</button></div>`;
+      document.getElementById('tNx').onclick=()=>{i++;i<qs.length?q():end()}})}
+  function end(){if(key&&!key.startsWith('map:')){if(tBest[key]==null||sc>tBest[key]){tBest[key]=sc;store.set('tBest',tBest)}}touchDay();
+    box.innerHTML=`<div class="fres"><b>${sc} de ${qs.length}</b><div>${sc===qs.length?'Perfeito! 🎉':sc>=qs.length*.7?'Muito bem! 👏':'Continue treinando! 💪'}</div></div>${wrong.length?`<h3>Para revisar</h3>${wrong.map(w=>`<div class="exr" style="margin-bottom:8px"><button class="play sm" data-s="${esc(w.say)}" aria-label="Ouvir">${PLAY}</button><span class="t"><b>${esc(w.say)}</b><span>${esc(w.type==='O que significa?'?w.a:w.type==='Como se diz em inglês?'?w.p:'')}</span></span></div>`).join('')}`:''}<div class="cta"><button class="btn" id="tAgain">Treinar de novo</button><button class="btn ghost" id="tMenu">Outro nível</button></div>`;
+    box.querySelectorAll('.exr .play').forEach(b=>b.onclick=()=>say(b.dataset.s));
+    document.getElementById('tAgain').onclick=()=>runT(key&&key.startsWith('map:')?makeQ([MMS[+key.slice(4)]],8,pool(MMS[+key.slice(4)].lv)):makeQ(pool(tLv),10),title,key);document.getElementById('tMenu').onclick=treinoMenu;}
+  q();
+}
+window.startMapTreino=mi=>{show('exerc');exMode='T';document.getElementById('exModeF').setAttribute('aria-pressed','false');document.getElementById('exModeT').setAttribute('aria-pressed','true');const m=MMS[mi];runT(makeQ([m],8,pool(m.lv)),'Fixação: '+m.t,'map:'+mi)};
+document.getElementById('mmaps').addEventListener('click',e=>{const b=e.target.closest('.fixb');if(b)window.startMapTreino(+b.dataset.fix)});
+listF();
+}
+
+/* ---------- Flashcards ---------- */
+{
+const FA=`🏃|Eu tenho que ir.|I gotta go.|AI GÁRA GÔU
+🤷|Eu não sei.|I don't know.|AI DUNÔU
+🤯|De jeito nenhum!|No way!|NÔU UÊI
+🙄|Você tá de brincadeira.|You're kidding me.|IÓR KÍDIN MI
+🚶|Vou nessa.|I'm gonna head out.|AIM GÂNA RRÉD ÁUT
+🍕|Quer comer alguma coisa?|Wanna grab something to eat?|UÂNA GRÉB SÂMTHIN TA ÍT
+🙋|Deixa eu ver.|Let me see.|LÉMI SÍ
+🤔|Sei lá.|I dunno.|AI DÂNÔU
+👍|Beleza.|Sounds good.|SÁUNZ GÚD
+👌|Tá bom.|Okay, cool.|ÔUKÊI, KÚL
+😎|Tudo certo.|All good.|ÓL GÚD
+🙂|E aí, beleza?|What's up?|UÓTS ÂP
+🗣️|O que você disse?|What'd you say?|UÓDJA SÊI
+❓|O que você quer?|Whatcha want?|UÓTCHA UÂNT
+👀|O que você tá fazendo?|Whatcha doing?|UÓTCHA DÚIN
+🕒|Já volto.|Be right back.|BI RÁIT BÉK
+⏳|Peraí um segundo.|Hold on a sec.|RRÔUL DÓN A SÉK
+🙏|Valeu!|Thanks a lot!|THÉNKS A LÓT
+😅|Foi mal.|My bad.|MAI BÉD
+🫡|Pode deixar.|I got it.|AI GÓRIT
+🤝|Fechado!|Deal!|DÍL
+😴|Tô morto de cansado.|I'm beat.|AIM BÍT
+🥵|Tá muito quente.|It's so hot.|ITS SÔU RRÓT
+🥶|Tá congelando.|It's freezing.|ITS FRÍZIN
+🍽️|Tô morrendo de fome.|I'm starving.|AIM STÁRVIN
+💸|Tá muito caro.|That's way too expensive.|DÉTS UÊI TU IKSPÉNSIV
+😂|Que engraçado!|That's hilarious!|DÉTS RRILÉRIÂS
+😮|Sério?|Seriously?|SÍRIÂSLI
+😲|Não acredito!|I can't believe it!|AI KÉNT BILÍVIT
+🎉|Que demais!|That's awesome!|DÉTS ÓSÂM
+👏|Mandou bem!|Good job!|GÚD DJÓB
+💪|Você consegue!|You got this!|IÚ GÓT DÍS
+🙌|Até que enfim!|Finally!|FÁINÂLI
+😬|Ops!|Oops!|ÚPS
+🤐|Fica entre nós.|Keep it between us.|KÍPIT BITUÍN ÂS
+🫢|Não conta pra ninguém.|Don't tell anyone.|DÔUN TÉL ÉNIUÂN
+🥱|Que tédio.|This is so boring.|DÍS IZ SÔU BÓRIN
+😤|Tô de saco cheio.|I'm fed up.|AIM FÉD ÂP
+🙃|Fazer o quê.|It is what it is.|ITIZ UÓDITIZ
+🤞|Tomara!|Hopefully!|RRÔUPFÂLI
+🧐|Como assim?|What do you mean?|UÓDA IÁ MÍN
+🔁|Pode repetir?|Can you say that again?|KÂNIÁ SÊI DÉDÂGÉN
+🐢|Mais devagar, por favor.|Slow down, please.|SLÔU DÁUN, PLÍZ
+💡|Faz sentido.|That makes sense.|DÉT MÊIKS SÉNS
+🙆|Entendi.|Got it.|GÓRIT
+🤨|Tem certeza?|Are you sure?|AR IÁ CHÚR
+🚫|Nem pensar.|No chance.|NÔU TCHÉNS
+⏰|Tô atrasado.|I'm running late.|AIM RÂNIN LÊIT
+🏠|Tô chegando.|I'm almost there.|AIM ÓLMÔUST DÉR
+🚗|Tô a caminho.|I'm on my way.|AIM ÓN MAI UÊI
+🍻|Bora tomar uma?|Wanna grab a drink?|UÂNA GRÉBA DRÍNK
+☕|Bora tomar um café?|Wanna grab a coffee?|UÂNA GRÉBA KÓFI
+🎬|Bora ver um filme?|Wanna watch a movie?|UÂNA UÓTCHA MÚVI
+📞|Te ligo depois.|I'll call you later.|ÁIL KÓLIÁ LÊIRER
+💬|Me manda mensagem.|Text me.|TÉKS MI
+👋|Até mais!|See ya!|SÍ IÁ
+🌙|Boa noite, durma bem.|Night, sleep tight.|NÁIT, SLÍP TÁIT
+☀️|Bom dia!|Morning!|MÓRNIN
+🙂|Prazer em te conhecer.|Nice to meet you.|NÁIS TA MÍTCHA
+🤗|Quanto tempo!|Long time no see!|LÓNG TÁIM NÔU SÍ
+😊|Como vai você?|How's it going?|RRÁUZIT GÔUIN
+👌|Tudo bem, e você?|Good, you?|GÚD, IÚ
+😐|Mais ou menos.|So-so.|SÔU SÔU
+🥰|Que fofo!|That's so cute!|DÉTS SÔU KIÚT
+😋|Tá uma delícia.|This is so good.|DÍS IZ SÔU GÚD
+🤢|Que nojo!|Gross!|GRÔUS
+😡|Que raiva!|That's so annoying!|DÉTS SÔU ANÓIN
+😓|Que pena.|That's too bad.|DÉTS TU BÉD
+💔|Sinto muito.|I'm so sorry.|AIM SÔU SÓRI
+🫶|Te amo.|Love you.|LÂV IÁ
+👨‍👩‍👧|Mande lembranças pra família.|Say hi to your family.|SÊI RRÁI TA IÓR FÉMLI
+🎂|Feliz aniversário!|Happy birthday!|RRÉPI BÂRTHDEI
+🍀|Boa sorte!|Good luck!|GÚD LÂK
+🙏|Se cuida!|Take care!|TÊIK KÉR
+🧭|Onde fica o banheiro?|Where's the restroom?|UÉRZ DÂ RÉSTRUM
+💵|Quanto é?|How much is it?|RRÁU MÂTCH IZIT
+🧾|A conta, por favor.|Can I get the check?|KÂNAI GÉT DÂ TCHÉK
+🥡|Pra viagem.|To go.|TA GÔU
+🍴|Pra comer aqui.|For here.|FOR RRÍR
+💳|Pode ser no cartão?|Can I pay with card?|KÂNAI PÊI UÍDH KÁRD
+🛍️|Só estou olhando.|I'm just looking.|AIM DJÂS LÚKIN
+👗|Posso provar?|Can I try it on?|KÂNAI TRÁIRÓN
+📦|Tem esse em outro tamanho?|Do you have this in another size?|DIÁ RRÉV DÍS INÂNÂDHER SÁIZ
+🚕|Me leva até este endereço.|Take me to this address.|TÊIK MI TA DÍS ÉDRES
+🗺️|Tô perdido.|I'm lost.|AIM LÓST
+🆘|Me ajuda?|Can you help me out?|KÂNIÁ RRÉLP MI ÁUT
+😷|Não tô me sentindo bem.|I don't feel good.|AI DÔUN FÍL GÚD
+🤕|Tá doendo.|It hurts.|IT RRÂRTS
+💊|Onde tem uma farmácia?|Where's a pharmacy?|UÉRZ A FÁRMÂSI
+🚨|Chama a polícia!|Call the cops!|KÓL DÂ KÓPS
+🏃|Corre!|Run!|RÂN
+🛑|Para com isso!|Knock it off!|NÓKIRÓF
+😌|Relaxa.|Chill out.|TCHÍL ÁUT
+🤫|Fica quieto.|Be quiet.|BI KUÁIÂT
+🤙|Firmeza!|Cool!|KÚL
+🔥|Muito bom!|That's fire!|DÉTS FÁIÂR
+💯|Com certeza!|Absolutely!|ÉBSÂLÚTLI
+👎|Que droga.|That sucks.|DÉT SÂKS
+🙈|Que vergonha!|So embarrassing!|SÔU IMBÉRÂSIN
+🎯|Exatamente!|Exactly!|IGZÉKLI
+🤷‍♂️|Tanto faz.|Whatever.|UÓDÉVER
+🧠|Pensando bem...|On second thought...|ÓN SÉKÂN THÓT
+⏭️|Deixa pra lá.|Never mind.|NÉVER MÁIND
+🫠|Tô sem graça.|I feel awkward.|AI FÍL ÓKUÂRD
+😏|Até parece!|Yeah, right!|IÉ, RÁIT
+🤓|Boa pergunta.|Good question.|GÚD KUÉSTCHÂN
+✅|Pronto!|All set!|ÓL SÉT
+⌛|Demorou!|About time!|ÂBÁUT TÁIM
+👂|Tô te ouvindo.|I'm listening.|AIM LÍSÂNIN
+📵|Tô sem sinal.|I've got no signal.|AIV GÓT NÔU SÍGNÂL
+🔋|Meu celular tá descarregando.|My phone is dying.|MAI FÔUN IZ DÁIIN
+📶|Qual a senha do Wi-Fi?|What's the Wi-Fi password?|UÓTS DÂ UÁIFAI PÉSUÂRD
+🧑‍💼|Tô atolado de trabalho.|I'm swamped.|AIM SUÓMPT
+🏖️|Tô de folga.|I'm off today.|AIM ÓF TUDÊI
+🗓️|Que dia é hoje?|What's today?|UÓTS TUDÊI
+⏱️|Que horas são?|What time is it?|UÓT TÁIMIZIT
+🌧️|Vai chover.|It's gonna rain.|ITS GÂNA RÊIN
+🌤️|Que dia lindo!|What a beautiful day!|UÓRA BIÚRIFÂL DÊI
+🍳|O que tem pra comer?|What's for dinner?|UÓTS FOR DÍNER
+😴|Vou dormir.|I'm gonna hit the sack.|AIM GÂNA RRÍT DÂ SÉK
+🛌|Tô com sono.|I'm sleepy.|AIM SLÍPI
+🚿|Vou tomar banho.|I'm gonna take a shower.|AIM GÂNA TÊIKA CHÁUER
+🧹|Vou arrumar a casa.|I'm gonna clean up.|AIM GÂNA KLÍN ÂP
+🛒|Vou no mercado.|I'm going to the store.|AIM GÔUIN TA DÂ STÓR
+🏋️|Vou malhar.|I'm gonna work out.|AIM GÂNA UÂRK ÁUT
+📺|Tô vendo série.|I'm watching a show.|AIM UÓTCHIN A CHÔU
+🎮|Bora jogar?|Wanna play?|UÂNA PLÊI
+🍿|Esse filme é muito bom.|This movie is so good.|DÍS MÚVI IZ SÔU GÚD
+🎶|Adoro essa música!|I love this song!|AI LÂV DÍS SÓNG
+🧑‍🤝‍🧑|A gente se vê.|See you around.|SÍ IÁ ÂRÁUND
+🏡|Fica à vontade.|Make yourself at home.|MÊIK IORSÉLF ÉT RRÔUM
+🥤|Quer beber alguma coisa?|Can I get you something to drink?|KÂNAI GÉTCHA SÂMTHIN TA DRÍNK
+🎁|É pra você.|This is for you.|DÍS IZ FOR IÚ
+😇|Não precisava!|You shouldn't have!|IÚ CHÚDÂNÂV
+🙂|De nada.|No problem.|NÔU PRÓBLÂM
+😊|Imagina!|Don't mention it!|DÔUN MÉNCHÂNIT
+🤲|Disponha.|Anytime.|ÉNITÁIM
+🔜|Já vou!|Coming!|KÂMIN
+🚪|Pode entrar.|Come on in.|KÂMÔNIN
+🪑|Senta aí.|Have a seat.|RRÉVA SÍT
+🧊|Calma aí.|Take it easy.|TÊIKIRÍZI
+⚡|Rapidinho.|Real quick.|RÍL KUÍK
+🐌|Sem pressa.|No rush.|NÔU RÂCH
+🎲|Depende.|It depends.|IT DIPÉNDZ
+🤞|Vamos ver.|We'll see.|UÍL SÍ
+🎈|Parece divertido.|Sounds like fun.|SÁUNZ LÁIK FÂN
+😍|Adorei!|I love it!|AI LÂVIT
+👀|Olha só!|Look at that!|LÚKÉT DÉT
+🙊|Esqueci!|I forgot!|AI FORGÓT
+📝|Anota aí.|Write it down.|RÁIRIT DÁUN
+🔍|Tô procurando minhas chaves.|I'm looking for my keys.|AIM LÚKIN FOR MAI KÍZ
+🧳|Tô de viagem.|I'm traveling.|AIM TRÉVÂLIN
+✈️|Boa viagem!|Have a safe trip!|RRÉVA SÊIF TRÍP
+🏁|Chegamos!|We're here!|UÍR RRÍR
+💼|Vou trabalhar.|I'm off to work.|AIM ÓF TA UÂRK
+🥳|Bora comemorar!|Let's celebrate!|LÉTS SÉLÂBREIT
+🤑|Tô sem grana.|I'm broke.|AIM BRÔUK
+🍔|Tô a fim de um hambúrguer.|I'm craving a burger.|AIM KRÊIVIN A BÂRGER
+🧃|Pode ser.|Sure, why not?|CHÚR, UÁI NÓT
+🙅|Prefiro não.|I'd rather not.|AID RÉDHER NÓT
+🫤|Não sei não.|I'm not so sure.|AIM NÓT SÔU CHÚR
+🗳️|Tô dentro!|I'm in!|AIM ÍN
+🚷|Tô fora.|Count me out.|KÁUNT MI ÁUT
+🤜|Valeu, te devo uma.|Thanks, I owe you one.|THÉNKS, AI ÔU IÁ UÂN
+🧩|É complicado.|It's complicated.|ITS KÓMPLIKEIRID
+🤹|Tô fazendo mil coisas.|I've got a lot on my plate.|AIV GÓRA LÓRÓN MAI PLÊIT
+🧘|Fica tranquilo.|Don't worry about it.|DÔUN UÂRI ÂBÁURIT
+🥇|Você é o melhor!|You're the best!|IÓR DÂ BÉST
+😜|Tô zoando.|Just kidding.|DJÂS KÍDIN
+😑|Sem comentários.|No comment.|NÔU KÓMÉNT
+📣|Fala sério!|Come on!|KÂMÓN
+🔄|Muda de assunto.|Change the subject.|TCHÊINDJ DÂ SÂBDJEKT
+🙇|Com licença.|Excuse me.|IKSKIÚZ MI
+↩️|Desculpa, o quê?|Sorry, what?|SÓRI, UÓT
+👂|Não ouvi.|I didn't catch that.|AI DÍDÂN KÉTCH DÉT
+🫵|É a sua vez.|It's your turn.|ITS IÓR TÂRN
+⏸️|Vamos dar uma pausa.|Let's take a break.|LÉTS TÊIKA BRÊIK
+🎤|Pode falar.|Go ahead.|GÔU ÂRRÉD
+🧾|Vamos rachar a conta.|Let's split the bill.|LÉTS SPLÍT DÂ BÍL
+🧑‍🍳|Eu que fiz.|I made it myself.|AI MÊIDIT MAISÉLF
+📸|Tira uma foto nossa?|Can you take our picture?|KÂNIÁ TÊIK ÁUER PÍKTCHER
+🌎|De onde você é?|Where are you from?|UÉRÂRIÁ FRÂM
+🇧🇷|Sou do Brasil.|I'm from Brazil.|AIM FRÂM BRÂZÍL
+🗨️|Falo um pouco de inglês.|I speak a little English.|AI SPÍKA LÍRÂL ÍNGLICH
+📚|Tô aprendendo inglês.|I'm learning English.|AIM LÂRNIN ÍNGLICH
+🙏|Obrigado pela paciência.|Thanks for your patience.|THÉNKS FOR IÓR PÊICHÂNS`;
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const CARDS={f:[],p:[],w:[]};const seen=new Set();
+FA.split('\n').forEach((l,i)=>{const x=l.split('|');CARDS.f.push({id:'f'+i,e:x[0],pt:x[1],en:x[2],pr:x[3],c:'#F2C230'});seen.add(x[2].toLowerCase())});
+const addP=(en,pt,pr,e)=>{if(!en||!pt||!pr)return;const k=en.toLowerCase();if(seen.has(k))return;seen.add(k);CARDS.p.push({id:'p'+CARDS.p.length,e:e||'💬',pt,en,pr,c:'#2F6FDE'})};
+try{L.forEach(l=>(l.p||[]).forEach(p=>addP(p[0],p[1],p[2],'🗨️')))}catch(e){}
+try{N.forEach(g=>String(g.r||'').trim().split('\n').forEach(r=>{const x=r.split('|');addP(x[0],x[1],x[2],'💬')}))}catch(e){}
+try{SOS.forEach(g=>String(g.r||'').trim().split('\n').forEach(r=>{const x=r.split('|');addP(x[0],x[1],x[2],'🆘')}))}catch(e){}
+const WE={'Básicas':'⭐','Perguntas e ligações':'❓','Pessoas e família':'👨‍👩‍👧','Corpo e saúde':'🩺','Comida e bebida':'🍎','Casa':'🏠','Cidade e lugares':'🏙️','Transporte e viagem':'✈️','Trabalho e dinheiro':'💼','Tempo e calendário':'📅','Clima e natureza':'🌤️','Números':'🔢','Cores e roupas':'👕','Ações':'🏃','Descrever':'🎨','Escola e estudo':'🎒','Escritório e tecnologia':'💻','Sentimentos':'💛'};
+try{Object.entries(RAW).forEach(([cat,txt])=>String(txt).trim().split('\n').forEach(r=>{const x=r.split('|');if(x.length<3)return;const k='w:'+x[0].toLowerCase();if(seen.has(k))return;seen.add(k);CARDS.w.push({id:'w'+CARDS.w.length,e:WE[cat]||'📘',pt:x[1],en:x[0],pr:x[2],c:'#14A37F'})}))}catch(e){}
+const DK=[['f','🗣️ Escrito x Falado'],['p','💬 Frases'],['w','📘 Palavras'],['all','Todos']];
+const TOTAL=CARDS.f.length+CARDS.p.length+CARDS.w.length;window.FC_TOTAL=TOTAL;window.FC_COUNTS={f:CARDS.f.length,p:CARDS.p.length,w:CARDS.w.length};
+let deck=store.get('fcDeck','f'),fmode='L',known=store.get('fcKnown',{}),shown=40,tq=[],ti=0,flipped=false;
+const list=()=>deck==='all'?[...CARDS.f,...CARDS.p,...CARDS.w]:CARDS[deck];
+const fbox=document.getElementById('fcBox'),srch=document.getElementById('fcSearch');
+function sub(){const k=Object.keys(known).length;document.getElementById('fcSub').textContent=TOTAL+' flashcards com o português, a tradução e o jeito fácil de falar: '+CARDS.f.length+' do inglês falado de verdade, '+CARDS.p.length+' frases e '+CARDS.w.length+' palavras. Você já sabe '+k+'.'}
+function decks(){document.getElementById('fcDeck').innerHTML=DK.map(([k,t])=>`<button data-d="${k}" aria-pressed="${k===deck}">${t} (${k==='all'?TOTAL:CARDS[k].length})</button>`).join('');document.querySelectorAll('#fcDeck button').forEach(b=>b.onclick=()=>{deck=b.dataset.d;store.set('fcDeck',deck);shown=40;render()})}
+const nmx=t=>typeof nm==='function'?nm(t):t;
+function cardHTML(c){return `<div class="fcc${known[c.id]?' known':''}" data-id="${c.id}" style="--cc:${c.c}" role="button" tabindex="0"><span class="fpic">${c.e}</span><span style="display:grid;gap:5px"><span class="rw"><span class="ic">🇧🇷</span><span class="pt">${esc(nmx(c.pt))}</span></span><span class="rw"><span class="ic">🇺🇸</span><span class="en">${esc(nmx(c.en))}</span></span><span class="rw"><span class="ic">🗣️</span><span><span class="pr">${esc(nmx(c.pr).toLowerCase())}</span></span></span><button class="fkn" data-k="${c.id}" aria-pressed="${!!known[c.id]}">${known[c.id]?'✓ Já sei':'Marcar: já sei'}</button></span></div>`}
+function render(){decks();sub();srch.hidden=fmode!=='L';
+  document.getElementById('fcModeL').setAttribute('aria-pressed',String(fmode==='L'));document.getElementById('fcModeT').setAttribute('aria-pressed',String(fmode==='T'));
+  if(fmode==='T')return startT();
+  const q=srch.value.trim().toLowerCase();const all=list().filter(c=>!q||c.pt.toLowerCase().includes(q)||c.en.toLowerCase().includes(q));
+  fbox.innerHTML=all.length?`<div class="fcl">${all.slice(0,shown).map(cardHTML).join('')}</div>${all.length>shown?`<div class="cta"><button class="btn ghost" id="fcMore">Mostrar mais (${all.length-shown})</button></div>`:''}<p class="note">Toque no cartão para ouvir. Marque “já sei” nos que você já domina.</p>`:'<div class="wempty">Nenhum cartão encontrado.</div>';
+  const m=document.getElementById('fcMore');if(m)m.onclick=()=>{shown+=60;render()};
+  fbox.querySelectorAll('.fcc').forEach(b=>{const c=all.find(x=>x.id===b.dataset.id);b.onclick=e=>{if(e.target.closest('.fkn')){tog(c.id);render();return}say(nmx(c.en))}})}
+function tog(id){if(known[id])delete known[id];else{known[id]=1;touchDay()}store.set('fcKnown',known)}
+function startT(){const l=list();tq=[...l];ti=0;
+  const u=tq.filter(c=>!known[c.id]);tq=[...u.sort(()=>Math.random()-.5),...tq.filter(c=>known[c.id])];showT()}
+function showT(){if(!tq.length){fbox.innerHTML='<div class="wempty">Sem cartões.</div>';return}const c=tq[ti%tq.length];flipped=false;
+  const k=Object.keys(known).filter(id=>list().some(x=>x.id===id)).length;
+  fbox.innerHTML=`<div class="tprog"><i style="width:${k/list().length*100}%"></i></div><p class="tip" style="margin-top:0">Você já sabe ${k} de ${list().length} cartões deste baralho.</p><div class="fct" id="fcT" role="button" tabindex="0"><div class="big">${c.e}</div><div class="lbl">em português</div><div class="pt">${esc(nmx(c.pt))}</div><div id="fcBack" hidden><div class="lbl">tradução</div><div class="en">${esc(nmx(c.en))}</div><div class="lbl" style="margin-top:6px">como falar</div><div class="pr">${esc(nmx(c.pr).toLowerCase())}</div></div><div class="lbl" id="fcHint" style="margin-top:8px">Pense em como se diz e toque para virar</div></div><div class="fbtns"><button class="btn ghost" id="fcAgain">🔁 Revisar de novo</button><button class="btn" id="fcKnow">✓ Já sei</button></div><div class="cta"><button class="btn ghost" id="fcSay">🔊 Ouvir</button></div>`;
+  const flip=()=>{if(flipped)return say(nmx(c.en));flipped=true;document.getElementById('fcBack').hidden=false;document.getElementById('fcHint').hidden=true;say(nmx(c.en))};
+  document.getElementById('fcT').onclick=flip;document.getElementById('fcSay').onclick=()=>{flip();say(nmx(c.en))};
+  document.getElementById('fcAgain').onclick=()=>{if(known[c.id]){delete known[c.id];store.set('fcKnown',known)}tq.push(tq.splice(ti%tq.length,1)[0]);showT()};
+  document.getElementById('fcKnow').onclick=()=>{if(!known[c.id]){known[c.id]=1;store.set('fcKnown',known);touchDay()}ti++;showT();sub()}}
+document.getElementById('fcModeL').onclick=()=>{fmode='L';render()};document.getElementById('fcModeT').onclick=()=>{fmode='T';render()};
+srch.oninput=()=>{shown=40;render()};
+render();
 }
 
 updateStats();
