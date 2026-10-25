@@ -101,6 +101,16 @@
 .pvc .pi{position:absolute;right:6px;top:6px;font-size:1.9rem;line-height:1}
 .pvc .pill{margin-top:auto;height:4px;border-radius:9px;background:var(--pc);opacity:.6}
 .pvc .ps{font:800 .66rem var(--f-mono);text-transform:uppercase;color:#666}
+
+.apc{display:grid;grid-template-columns:140px 1fr;gap:14px;align-items:center;margin:4px 0 14px}
+.apc img{width:140px;height:auto;border-radius:8px;border:2px solid var(--ink);box-shadow:0 5px 0 #F2C230}
+.apc .btn{display:block;text-align:center;text-decoration:none;margin-bottom:8px}
+.apmeta{font-size:.85rem;color:var(--muted);margin:2px 0 0}
+.appr{border:2px solid var(--ink);border-radius:14px;padding:12px 14px;background:var(--paper);margin:0 0 14px}
+.appr ul{margin:6px 0 8px;padding-left:4px;list-style:none}.appr li{margin:4px 0}.appr p{margin:0;font-size:.92rem}
+.aptoc{list-style:none;padding:0;margin:0 0 12px}.aptoc li{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed var(--line);padding:8px 2px}
+.aptoc b{font:600 .85rem var(--f-mono);white-space:nowrap}
+@media (max-width:360px){.apc{grid-template-columns:1fr}.apc img{justify-self:center}}
 </style>
 <title>Inglês Prático</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -350,6 +360,7 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
       <button role="tab" data-tab="historias" aria-selected="false">Leitura</button>
       <button role="tab" data-tab="sos" aria-selected="false">SOS</button>
       <button role="tab" data-tab="plano" aria-selected="false">Trilha</button>
+      <button role="tab" data-tab="apost" aria-selected="false">Apostila</button>
     </nav>
   </div>
 </header>
@@ -424,6 +435,20 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
     <div class="wmode" role="group" aria-label="Modo"><button id="fcModeL" aria-pressed="true">Ver lista</button><button id="fcModeT" aria-pressed="false">Treinar</button></div>
     <input id="fcSearch" type="search" placeholder="Buscar em português ou inglês" aria-label="Buscar cartão" class="fcsearch">
     <div id="fcBox"></div>
+  </section>
+
+  <section id="apost" data-panel hidden>
+    <h2>Apostila completa em PDF</h2>
+    <p class="sub">Todo o conteúdo do app numa apostila formatada para imprimir e estudar também sem o celular: 276 páginas numeradas, do começo ao fim, com sumário, exercícios para escrever, gabarito e páginas para anotações.</p>
+    <div class="apc"><img src="apostila-capa.jpg" alt="Capa da apostila Inglês Prático" width="140" height="198"><div>
+      <a class="btn" id="apDown" href="apostila.pdf" download="Apostila-Ingles-Pratico.pdf">📥 Baixar a apostila (PDF)</a>
+      <a class="btn ghost" id="apOpen" href="apostila.pdf" target="_blank" rel="noopener">🖨️ Abrir para imprimir</a>
+      <p class="apmeta">276 páginas · A4 · cerca de 12 MB<br>Baixe com Wi-Fi.</p></div></div>
+    <div class="appr"><b>Como imprimir</b><ul><li>📄 Papel <b>A4</b>, orientação <b>retrato</b></li><li>🔁 <b>Frente e verso</b>, virando pela <b>borda longa</b></li><li>💯 Escala <b>tamanho real (100%)</b>, sem “ajustar à página”</li><li>📎 A margem de dentro é maior, para furar, grampear ou encadernar em espiral</li><li>⬜ Cada parte começa numa página da direita, por isso algumas páginas ficam em branco de propósito</li></ul>
+    <p>Se a impressora não faz frente e verso sozinha, imprima primeiro as páginas <b>ímpares</b>, vire o papel e imprima as <b>pares</b>. Também dá para imprimir só uma parte: veja as páginas no sumário abaixo.</p></div>
+    <h3>O que tem na apostila</h3>
+    <ol class="aptoc"><li><span>🧭 Antes de começar</span><b>pág. 5</b></li><li><span>☕ Parte 01 · Uma situação por vez</span><b>pág. 9</b></li><li><span>🪜 Parte 02 · Do zero ao avançado</span><b>pág. 17</b></li><li><span>📘 Parte 03 · Junto com o livro</span><b>pág. 27</b></li><li><span>🧠 Parte 04 · Mapas mentais</span><b>pág. 39</b></li><li><span>🧲 Parte 05 · Phrasal verbs com imagens</span><b>pág. 159</b></li><li><span>🗣️ Parte 06 · Escrito x Falado</span><b>pág. 177</b></li><li><span>💬 Parte 07 · Frases e fala nativa</span><b>pág. 187</b></li><li><span>📚 Parte 08 · Vocabulário</span><b>pág. 197</b></li><li><span>📖 Parte 09 · Leitura bilíngue</span><b>pág. 209</b></li><li><span>🎵 Parte 10 · Inglês com músicas</span><b>pág. 229</b></li><li><span>🆘 Parte 11 · SOS Inglês</span><b>pág. 233</b></li><li><span>✏️ Parte 12 · Exercícios de fixação</span><b>pág. 237</b></li><li><span>🗺️ Parte 13 · Trilha livre de estudo</span><b>pág. 263</b></li><li><span>✅ Gabarito das fichas</span><b>pág. 267</b></li><li><span>✍️ Minhas anotações</span><b>pág. 269</b></li></ol>
+    <p class="note">A apostila acompanha a versão do app (Versão 2 · até a aula 2 · gerada em 25/10/2026). Quando o app ganhar conteúdo novo, ela também é atualizada.</p>
   </section>
 
   <section id="niveis" data-panel hidden>
