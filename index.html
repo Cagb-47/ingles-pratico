@@ -6867,8 +6867,8 @@ const box=document.getElementById('exBox');
 let exMode='F',fLv=store.get('fLv','Todos'),fBest=store.get('fBest',{});
 const TOT=17;
 document.getElementById('exSub').textContent=FICHAS.length+' fichas com '+TOT+' questões cada ('+FICHAS.length*TOT+' questões), do A1 ao B2, no estilo das fichas impressas: complete, ligue, escolha e corrija o erro. E o treino rápido, com as frases dos '+MMS.length+' mapas mentais.';
-function setMode(m){exMode=m;document.getElementById('exModeF').setAttribute('aria-pressed',String(m==='F'));document.getElementById('exModeT').setAttribute('aria-pressed',String(m==='T'));m==='F'?listF():treinoMenu()}
-document.getElementById('exModeF').onclick=()=>setMode('F');document.getElementById('exModeT').onclick=()=>setMode('T');
+function exSetMode(m){exMode=m;document.getElementById('exModeF').setAttribute('aria-pressed',String(m==='F'));document.getElementById('exModeT').setAttribute('aria-pressed',String(m==='T'));m==='F'?listF():treinoMenu()}
+document.getElementById('exModeF').onclick=()=>exSetMode('F');document.getElementById('exModeT').onclick=()=>exSetMode('T');
 function listF(){
   const lv=['Todos','A1','A2','B1','B2'];
   box.innerHTML=`<div class="lvf" id="fLvB">${lv.map(l=>`<button data-l="${l}" aria-pressed="${l===fLv}">${l==='Todos'?'Todas':l}</button>`).join('')}</div><div class="fgrid">${FICHAS.map((f,i)=>(fLv!=='Todos'&&f.lv!==fLv)?'':`<button class="fcardb" data-i="${i}"><span class="fe">${f.e}</span><span><b>${esc(f.t)}</b><small><span class="slv" style="background:${LVCX[f.lv]};color:#fff;font:800 .7rem var(--f-mono);padding:1px 6px;border-radius:6px;margin-right:6px">${f.lv}</span>Ficha ${String(i+1).padStart(3,'0')} · ${esc(f.sub)}</small></span><span class="fs">${fBest[f.t]!=null?'⭐ '+fBest[f.t]+'/'+TOT:'Nova'}</span></button>`).join('')}</div>`;
@@ -6936,7 +6936,7 @@ function runT(qs,title,key){
   let i=0,sc=0;const wrong=[];
   function q(){const x=qs[i];
     box.innerHTML=`<button class="btn ghost" id="tBack" style="margin:0 0 8px">← Sair do treino</button><div class="tprog"><i style="width:${i/qs.length*100}%"></i></div><div class="tq"><div class="tqk">${esc(title)} · ${i+1} de ${qs.length} · ${esc(x.type)}</div><div class="tqp" ${x.listen||x.play?'role="button" tabindex="0" id="tSay" style="cursor:pointer"':''}>${x.listen?'🔊 Toque para ouvir de novo':esc(x.p)+(x.play?' 🔊':'')}</div><div class="fopts">${x.o.map(o=>`<button data-v="${esc(o)}">${esc(o)}</button>`).join('')}</div><div id="tFb"></div></div>`;
-    document.getElementById('tBack').onclick=()=>setMode(key&&key.startsWith('map:')?'T':'T');
+    document.getElementById('tBack').onclick=()=>exSetMode(key&&key.startsWith('map:')?'T':'T');
     const ts=document.getElementById('tSay');if(ts)ts.onclick=()=>say(x.say);if(x.listen)say(x.say);
     box.querySelectorAll('.tq .fopts button').forEach(b=>b.onclick=()=>{const ok=b.dataset.v===x.a;box.querySelectorAll('.tq .fopts button').forEach(y=>{y.disabled=true;if(y.dataset.v===x.a)y.classList.add('ok')});if(!ok){b.classList.add('no');wrong.push(x)}else sc++;
       say(x.say);document.getElementById('tFb').innerHTML=`${!ok&&x.why?`<p class="fnote">${esc(x.why)}</p>`:''}<div class="cta"><button class="btn" id="tNx">${i+1<qs.length?'Próxima →':'Ver resultado'}</button></div>`;
