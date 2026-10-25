@@ -647,8 +647,8 @@ document.querySelectorAll('.speed button').forEach(b=>{b.setAttribute('aria-pres
 let studyDays=store.get('days',[]);
 function touchDay(){const d=new Date().toISOString().slice(0,10);if(!studyDays.includes(d)){studyDays.push(d);store.set('days',studyDays)}}
 function updateStats(){
-  const doneN=(store.get('done',[])).length,knownN=(store.get('known',[])).length,daysN=studyDays.length;
-  document.getElementById('day').textContent=daysN+(daysN===1?' dia':' dias')+' de estudo · '+doneN+(doneN===1?' aula':' aulas')+' · '+knownN+(knownN===1?' palavra':' palavras');
+  const doneN=(store.get('done',[])).length,daysN=studyDays.length;const KS=new Set((store.get('known',[])).map(x=>String(x).toLowerCase()));const FM=window.FC_MAP||{};Object.keys(store.get('fcKnown',{})).forEach(id=>KS.add(FM[id]||id));const knownN=KS.size;
+  document.getElementById('day').textContent=daysN+(daysN===1?' dia':' dias')+' de estudo · '+doneN+(doneN===1?' aula':' aulas')+' · '+knownN+(knownN===1?' palavra ou frase que já sabe':' palavras e frases que já sabe');
   const total=L.length+Object.values(W).reduce((a,b)=>a+b.length,0);
   document.getElementById('barfill').style.width=Math.min(100,(doneN+knownN)/total*100)+'%';
 }
@@ -7151,6 +7151,7 @@ const WE={'Básicas':'⭐','Perguntas e ligações':'❓','Pessoas e família':'
 try{PVL.forEach((v,i)=>CARDS.v.push({id:'v'+i,e:v[1],pt:v[3],en:v[2],pr:v[4],c:'#C62F3B'}))}catch(e){}
 try{Object.entries(RAW).forEach(([cat,txt])=>String(txt).trim().split('\n').forEach(r=>{const x=r.split('|');if(x.length<3)return;const k='w:'+x[0].toLowerCase();if(seen.has(k))return;seen.add(k);CARDS.w.push({id:'w'+CARDS.w.length,e:WE[cat]||'📘',pt:x[1],en:x[0],pr:x[2],c:'#14A37F'})}))}catch(e){}
 const DK=[['f','🗣️ Escrito x Falado'],['v','🧲 Phrasal verbs'],['p','💬 Frases'],['w','📘 Palavras'],['all','Todos']];
+window.FC_MAP={};Object.values(CARDS).forEach(a=>a.forEach(c=>window.FC_MAP[c.id]=String(c.en).toLowerCase()));
 const TOTAL=CARDS.f.length+CARDS.v.length+CARDS.p.length+CARDS.w.length;window.FC_TOTAL=TOTAL;window.FC_COUNTS={f:CARDS.f.length,v:CARDS.v.length,p:CARDS.p.length,w:CARDS.w.length};
 let deck=store.get('fcDeck','f'),fmode='L',known=store.get('fcKnown',{}),shown=40,tq=[],ti=0,flipped=false;
 const list=()=>deck==='all'?[...CARDS.f,...CARDS.v,...CARDS.p,...CARDS.w]:CARDS[deck];
@@ -7166,7 +7167,7 @@ function render(){decks();sub();srch.hidden=fmode!=='L';
   fbox.innerHTML=all.length?`<div class="fcl">${all.slice(0,shown).map(cardHTML).join('')}</div>${all.length>shown?`<div class="cta"><button class="btn ghost" id="fcMore">Mostrar mais (${all.length-shown})</button></div>`:''}<p class="note">Toque no cartão para ouvir. Marque “já sei” nos que você já domina.</p>`:'<div class="wempty">Nenhum cartão encontrado.</div>';
   const m=document.getElementById('fcMore');if(m)m.onclick=()=>{shown+=60;render()};
   fbox.querySelectorAll('.fcc').forEach(b=>{const c=all.find(x=>x.id===b.dataset.id);b.onclick=e=>{if(e.target.closest('.fkn')){tog(c.id);render();return}say(nmx(c.en))}})}
-function tog(id){if(known[id])delete known[id];else{known[id]=1;touchDay()}store.set('fcKnown',known)}
+function tog(id){if(known[id])delete known[id];else{known[id]=1;touchDay()}store.set('fcKnown',known);if(typeof updateStats==='function')updateStats()}
 function startT(){const l=list();tq=[...l];ti=0;
   const u=tq.filter(c=>!known[c.id]);tq=[...u.sort(()=>Math.random()-.5),...tq.filter(c=>known[c.id])];showT()}
 function showT(){if(!tq.length){fbox.innerHTML='<div class="wempty">Sem cartões.</div>';return}const c=tq[ti%tq.length];flipped=false;
@@ -7174,8 +7175,8 @@ function showT(){if(!tq.length){fbox.innerHTML='<div class="wempty">Sem cartões
   fbox.innerHTML=`<div class="tprog"><i style="width:${k/list().length*100}%"></i></div><p class="tip" style="margin-top:0">Você já sabe ${k} de ${list().length} cartões deste baralho.</p><div class="fct" id="fcT" role="button" tabindex="0"><div class="big">${c.e}</div><div class="lbl">em português</div><div class="pt">${esc(nmx(c.pt))}</div><div id="fcBack" hidden><div class="lbl">tradução</div><div class="en">${esc(nmx(c.en))}</div><div class="lbl" style="margin-top:6px">como falar</div><div class="pr">${esc(nmx(c.pr).toLowerCase())}</div></div><div class="lbl" id="fcHint" style="margin-top:8px">Pense em como se diz e toque para virar</div></div><div class="fbtns"><button class="btn ghost" id="fcAgain">🔁 Revisar de novo</button><button class="btn" id="fcKnow">✓ Já sei</button></div><div class="cta"><button class="btn ghost" id="fcSay">🔊 Ouvir</button></div>`;
   const flip=()=>{if(flipped)return say(nmx(c.en));flipped=true;document.getElementById('fcBack').hidden=false;document.getElementById('fcHint').hidden=true;say(nmx(c.en))};
   document.getElementById('fcT').onclick=flip;document.getElementById('fcSay').onclick=()=>{flip();say(nmx(c.en))};
-  document.getElementById('fcAgain').onclick=()=>{if(known[c.id]){delete known[c.id];store.set('fcKnown',known)}tq.push(tq.splice(ti%tq.length,1)[0]);showT()};
-  document.getElementById('fcKnow').onclick=()=>{if(!known[c.id]){known[c.id]=1;store.set('fcKnown',known);touchDay()}ti++;showT();sub()}}
+  document.getElementById('fcAgain').onclick=()=>{if(known[c.id]){delete known[c.id];store.set('fcKnown',known);if(typeof updateStats==='function')updateStats()}tq.push(tq.splice(ti%tq.length,1)[0]);showT()};
+  document.getElementById('fcKnow').onclick=()=>{if(!known[c.id]){known[c.id]=1;store.set('fcKnown',known);touchDay()}ti++;showT();sub();if(typeof updateStats==='function')updateStats()}}
 document.getElementById('fcModeL').onclick=()=>{fmode='L';render()};document.getElementById('fcModeT').onclick=()=>{fmode='T';render()};
 srch.oninput=()=>{shown=40;render()};
 render();
