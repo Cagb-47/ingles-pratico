@@ -397,6 +397,35 @@ nav[role=tablist],.subnav{-webkit-mask-image:linear-gradient(90deg,#000 88%,tran
 img.emo{height:1.2em;width:1.2em;object-fit:contain;vertical-align:-0.24em;display:inline-block;pointer-events:none;-webkit-user-drag:none}
 .zpic img.emo,.zo img.emo,.zmatch .em img.emo{height:1em;width:1em;vertical-align:middle;filter:drop-shadow(0 6px 10px rgba(22,48,92,.18))}
 .htile .ti img.emo,.acard .ae img.emo,.zc img.emo,.dcard .de img.emo{filter:drop-shadow(0 3px 6px rgba(0,0,0,.18))}
+
+.abch{font:800 1.12rem/1.2 var(--f-display);margin:18px 0 6px}
+.abcx{margin:0 0 10px;color:var(--muted);font-size:.93rem}
+.abcg{display:grid;grid-template-columns:repeat(auto-fill,minmax(66px,1fr));gap:8px;margin:0 0 10px}
+.abcl{border:1.5px solid var(--line);background:var(--paper);color:var(--ink);border-radius:14px;padding:8px 2px 7px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;box-shadow:0 2px 0 rgba(22,48,92,.10);min-height:64px}
+.abcl b{font:800 1.75rem/1 var(--f-display)}
+.abcl small{font:800 .76rem/1.1 var(--f-body);color:#2C5DA8;text-align:center}
+.abcl.vg{background:rgba(242,194,48,.22);border-color:rgba(242,194,48,.75)}
+.abcl.on{background:#16305C;border-color:#16305C;color:#fff}.abcl.on small{color:#F2C230}
+.abcleg{font-size:.84rem;color:var(--muted);margin:0 0 6px}
+.abcleg i{display:inline-block;width:12px;height:12px;border-radius:3px;background:rgba(242,194,48,.6);vertical-align:-1px;margin-right:4px}
+.abcrow{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 6px}
+.abcrow .btn{flex:1 1 150px}
+.abcas{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:0 0 6px}
+.abcas button{border:1.5px solid var(--line);background:var(--paper);color:var(--ink);border-radius:12px;padding:8px 10px;text-align:left;font:600 .92rem var(--f-body);cursor:pointer}
+.abcas b{font:800 1rem var(--f-display);color:#16305C}
+.abcpr{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 2px}
+.abcpr button{border:0;background:#16305C;color:#fff;border-radius:12px;padding:7px 12px;font:800 1rem var(--f-display);cursor:pointer;display:flex;gap:6px;align-items:baseline}
+.abcpr button small{font:700 .78rem var(--f-body);color:#F2C230}
+.abcsp{display:flex;gap:8px;margin:4px 0 8px}
+.abcsp input{flex:1;min-width:0;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:12px;padding:10px;font:600 1rem var(--f-body)}
+.abcout{display:flex;flex-wrap:wrap;gap:6px;min-height:8px}
+.abcout span{display:flex;flex-direction:column;align-items:center;background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:5px 8px;min-width:40px}
+.abcout b{font:800 1.2rem var(--f-display)}.abcout small{font:700 .72rem var(--f-body);color:#2C5DA8}
+.abcout .sp{border:0;background:none;min-width:12px}
+.abcq{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:10px 0}
+.abcq button{border:1.5px solid var(--line);background:var(--paper);color:var(--ink);border-radius:14px;padding:14px 0;font:800 1.6rem var(--f-display);cursor:pointer}
+.abcq button.ok{background:#1E8E4A;border-color:#1E8E4A;color:#fff}
+.abcq button.no{background:#C2352B;border-color:#C2352B;color:#fff}
 </style>
 <title>Inglês Prático</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -738,8 +767,10 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
 
   <section id="pron" data-panel hidden>
     <h2>🗣️ Guia de pronúncia</h2>
-    <p class="sub">Os sons do inglês americano que mais confundem quem fala português. Leia a dica, ouça as palavras e repita em voz alta, devagar, até soar natural.</p>
-    <div id="prList"></div>
+    <p class="sub">Comece pelo alfabeto, que você vai usar para soletrar o nome, o e-mail e o endereço. Depois treine os sons do inglês americano que mais confundem quem fala português. Ouça e repita em voz alta, devagar.</p>
+    <div class="mfseg" id="prSeg"><button type="button" data-v="abc" aria-pressed="true">🔤 Alfabeto</button><button type="button" data-v="sons" aria-pressed="false">👄 Sons que confundem</button></div>
+    <div id="abcBox"></div>
+    <div id="prList" hidden></div>
   </section>
 
   <section id="aula" data-panel hidden>
@@ -815,7 +846,7 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
     <p>Se a impressora não faz frente e verso sozinha, imprima primeiro as páginas <b>ímpares</b>, vire o papel e imprima as <b>pares</b>. Também dá para imprimir só uma parte: veja as páginas no sumário abaixo.</p></div>
     <h3>O que tem na apostila</h3>
     <ol class="aptoc"><li><span>🧭 Antes de começar</span><b>pág. 5</b></li><li><span>🌱 Parte 01 · Comece do zero</span><b>pág. 9</b></li><li><span>☕ Parte 02 · Uma situação por vez</span><b>pág. 17</b></li><li><span>🪜 Parte 03 · Do zero ao avançado</span><b>pág. 25</b></li><li><span>📘 Parte 04 · Junto com o livro</span><b>pág. 35</b></li><li><span>🧠 Parte 05 · Mapas mentais</span><b>pág. 53</b></li><li><span>🧩 Parte 06 · Montar frases</span><b>pág. 173</b></li><li><span>👄 Parte 07 · Guia de pronúncia</span><b>pág. 181</b></li><li><span>🧲 Parte 08 · Phrasal verbs com imagens</span><b>pág. 187</b></li><li><span>🗣️ Parte 09 · Escrito x Falado</span><b>pág. 205</b></li><li><span>💬 Parte 10 · Frases e fala nativa</span><b>pág. 215</b></li><li><span>📚 Parte 11 · Vocabulário</span><b>pág. 225</b></li><li><span>📖 Parte 12 · Leitura bilíngue</span><b>pág. 237</b></li><li><span>🎧 Parte 13 · Roteiros dos áudios</span><b>pág. 257</b></li><li><span>🎵 Parte 14 · Inglês com músicas</span><b>pág. 299</b></li><li><span>🆘 Parte 15 · SOS Inglês</span><b>pág. 303</b></li><li><span>✏️ Parte 16 · Exercícios de fixação</span><b>pág. 307</b></li><li><span>🗺️ Parte 17 · Trilha livre de estudo</span><b>pág. 333</b></li><li><span>✅ Gabarito das fichas</span><b>pág. 337</b></li><li><span>✍️ Minhas anotações</span><b>pág. 339</b></li></ol>
-    <p class="note">A apostila acompanha a versão do app (Versão 3 · até a aula 3 · gerada em 03/11/2026). Quando o app ganhar conteúdo novo, ela também é atualizada.</p>
+    <p class="note">A apostila acompanha a versão do app (Versão 3.1 · até a aula 3 · gerada em 03/11/2026). Quando o app ganhar conteúdo novo, ela também é atualizada.</p>
   </section>
 
   <section id="niveis" data-panel hidden>
@@ -7629,7 +7660,7 @@ const T=[
  ['palavras','📚',fmt(nWords)+' palavras','Com pronúncia'],
  ['nativo','💬','Frases nativas',N.length+' grupos'],
  ['montar','🧩','Montar frases','A ordem das palavras com cores'],
- ['pron','🗣️','Guia de pronúncia','14 sons que confundem'],
+ ['pron','🗣️','Guia de pronúncia','Alfabeto e 14 sons que confundem'],
  ['historias','📖',S.length+' leituras','Bilíngues, com áudio'],
  ['musicas','🎵',MU.length+' músicas','Por nível'],
  ['rotina','🗓️','Rotina','Dicas da professora'],
@@ -8387,6 +8418,72 @@ const _us=updateStats;updateStats=function(){_us.apply(this,arguments);refresh()
 const _showP=show;show=function(id){_showP(id);refresh()};
 /* sem nome ainda: abre os ajustes na primeira vez que a pessoa entra numa aula */
 refresh();
+}
+
+/* ---------- Pronúncia › Alfabeto ---------- */
+{
+const AB={"L":[["A","êi","apple"],["B","bí","boy"],["C","cí","cat"],["D","dí","dog"],["E","í","egg"],["F","éf","fox"],["G","djí","girl"],["H","êitch","hotel"],["I","ái","ice"],["J","djêi","John"],["K","kêi","kite"],["L","él","love"],["M","ém","Mary"],["N","én","Nancy"],["O","ôu","orange"],["P","pí","Peter"],["Q","kiú","queen"],["R","ár","Robert"],["S","és","Sam"],["T","tí","Tom"],["U","iú","umbrella"],["V","ví","Victor"],["W","dâbou-iú","water"],["X","éks","x-ray"],["Y","uái","yellow"],["Z","zí","zebra"]],"G":[["AEI","A, E e I: as vogais trocadas","Em inglês o A se fala \"êi\", o E se fala \"í\" e o I se fala \"ái\". É quase o contrário do português, por isso confunde tanto no começo."],["GJ","G e J","G é \"djí\" (rima com E) e J é \"djêi\" (rima com A). Pense: G de \"girl\", J de \"John\"."],["BV","B e V","B é \"bí\", com os lábios fechando. V é \"ví\", com os dentes de cima encostando no lábio de baixo."],["MN","M e N","Ao telefone, M e N soam iguais. Por isso os americanos dizem \"M as in Mary\" e \"N as in Nancy\"."],["HRWYZ","Letras com nome bem diferente","H é \"êitch\", R é \"ár\", W é \"dâbou-iú\" (quer dizer \"dois U\"), Y é \"uái\" e Z é \"zí\" nos Estados Unidos."]],"F":[["How do you spell that?","Como se escreve isso?","RRÁU DU IU SPÉL DÉT?"],["Can you spell your last name, please?","Pode soletrar seu sobrenome, por favor?","KÉN IU SPÉL IÓR LÉST NÊIM, PLÍZ?"],["Sure. It's S, I, L, V, A.","Claro. É S, I, L, V, A.","XÚR. ITS ÉS, ÁI, ÉL, VÍ, ÊI."],["Is that B as in boy?","É B de \"boy\"?","IZ DÉT BÍ ÉZ IN BÓI?"],["No, V as in Victor.","Não, V de \"Victor\".","NÔU, VÍ ÉZ IN VÍKTÂR."],["It's double L.","São dois L.","ITS DÂBOU ÉL."],["My email is carlos at gmail dot com.","Meu e-mail é carlos arroba gmail ponto com.","MÁI ÍMEIL IZ KÁRLOUS ÉT DJÍMEIL DÁT KÁM."],["Sorry, can you spell that again, slowly?","Desculpe, pode soletrar de novo, devagar?","SÓRI, KÉN IU SPÉL DÉT ÂGUÉN, SLÔULI?"]]};
+const box=document.getElementById('abcBox'),prl=document.getElementById('prList');
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const LT=Object.fromEntries(AB.L.map(x=>[x[0],x]));
+const VOW='AEIOU';
+const sayL=l=>say(l+'.');
+const flash=l=>{const b=box.querySelector('.abcl[data-l="'+l+'"]');if(!b)return;b.classList.add('on');setTimeout(()=>b.classList.remove('on'),700)};
+const toLetters=t=>String(t||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toUpperCase().split('').map(c=>/[A-Z]/.test(c)?c:(c===' '?' ':'')).join('').replace(/ +/g,' ').trim();
+const card=(t,body)=>`<div class="prc"><h3>${t}</h3>${body}</div>`;
+box.innerHTML=
+  card('🔤 As 26 letras',`<p>Toque numa letra para ouvir. Embaixo de cada uma está um jeito fácil de ler em português.</p>
+    <p class="abcleg"><i></i>As vogais estão em amarelo.</p>
+    <div class="abcg">${AB.L.map(x=>`<button type="button" class="abcl${VOW.includes(x[0])?' vg':''}" data-l="${x[0]}" aria-label="Letra ${x[0]}, fala-se ${esc(x[1])}"><b lang="en">${x[0]}</b><small>${esc(x[1])}</small></button>`).join('')}</div>
+    <div class="abcrow"><button type="button" class="btn" id="abcAll">▶ Ouvir o alfabeto todo</button></div>`)
+ +card('🤔 Letras que confundem',`<p>Toque nas letras para ouvir uma depois da outra e perceber a diferença.</p>${AB.G.map((g,gi)=>`<div class="prw" style="grid-template-columns:1fr"><b>${esc(g[1])}</b><div class="abcpr">${g[0].split('').map(l=>`<button type="button" data-l="${l}"><span lang="en">${l}</span><small>${esc(LT[l][1])}</small></button>`).join('')}<button type="button" data-g="${gi}" aria-label="Ouvir todas">🔊</button></div><span class="pt">${esc(g[2])}</span></div>`).join('')}`)
+ +card('🧾 "B as in boy": para não ter dúvida',`<p>Nos Estados Unidos, ao telefone ou num balcão, é comum dizer a letra e uma palavra que começa com ela. Toque para ouvir.</p><div class="abcas">${AB.L.map(x=>`<button type="button" data-as="${x[0]}" lang="en"><b>${x[0]}</b> as in ${esc(x[2])}</button>`).join('')}</div>`)
+ +card('📞 Como soletrar nos EUA',`<p>Frases para pedir e dizer como se escreve um nome ou um e-mail. Arroba é <b>at</b>, ponto é <b>dot</b>, hífen é <b>dash</b> e sublinhado é <b>underscore</b>.</p>${AB.F.map((f,fi)=>`<div class="prw"><b lang="en">${esc(f[0])}</b><button class="play" data-f="${fi}" aria-label="Ouvir">🔊</button><span class="pp">🗣️ ${esc(f[2])}</span><span class="pt">${esc(f[1])}</span></div>`).join('')}`)
+ +card('✍️ Treino: soletre o seu nome',`<p>Escreva seu nome (ou e-mail, ou rua) e ouça letra por letra. Depois repita junto, em voz alta.</p>
+    <div class="abcsp"><input id="abcIn" maxlength="40" autocomplete="off" placeholder="Ex.: Carlos" aria-label="Palavra para soletrar"><button type="button" class="btn" id="abcGo">🔊 Soletrar</button></div>
+    <div class="abcout" id="abcOut" aria-live="polite"></div>`)
+ +card('🎯 Jogo: qual letra você ouviu?',`<div id="abcQ"><p>Ouça a letra e toque na certa. São 10 rodadas, com as letras que mais confundem.</p><div class="abcrow"><button type="button" class="btn" id="abcStart">▶ Começar o jogo</button></div><p class="abcleg" id="abcBest"></p></div>`);
+box.querySelectorAll('.abcl').forEach(b=>b.onclick=()=>{sayL(b.dataset.l);flash(b.dataset.l)});
+document.getElementById('abcAll').onclick=()=>sayQueue(AB.L.map(x=>x[0]+'.'));
+box.querySelectorAll('.abcpr [data-l]').forEach(b=>b.onclick=()=>sayL(b.dataset.l));
+box.querySelectorAll('.abcpr [data-g]').forEach(b=>b.onclick=()=>sayQueue(AB.G[+b.dataset.g][0].split('').map(l=>l+'.')));
+box.querySelectorAll('[data-as]').forEach(b=>b.onclick=()=>{const x=LT[b.dataset.as];say(x[0]+', as in '+x[2]+'.')});
+box.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>say(AB.F[+b.dataset.f][0]));
+/* soletrar */
+const inp=document.getElementById('abcIn'),out=document.getElementById('abcOut');
+const spell=()=>{const t=toLetters(inp.value);if(!t){out.innerHTML='<p class="abcleg">Escreva um nome com letras para soletrar.</p>';return}
+  out.innerHTML=t.split('').map(c=>c===' '?'<span class="sp"></span>':`<span><b lang="en">${c}</b><small>${esc(LT[c][1])}</small></span>`).join('');
+  store.set('abcLast',inp.value);sayQueue(t.replace(/ /g,'').split('').map(c=>c+'.'));if(typeof touchDay==='function')touchDay()};
+document.getElementById('abcGo').onclick=spell;inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();spell()}});
+inp.value=store.get('abcLast','')||(document.getElementById('uname')||{}).value||'';
+/* jogo */
+const qb=document.getElementById('abcQ');
+const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const HARD='AEIGJBVMNHRWYZKQ';
+const showBest=()=>{const b=store.get('abcBest',0),el=document.getElementById('abcBest');if(el)el.textContent=b?('Seu recorde: '+b+' de 10.'):''};
+let order=[],qi=0,sc=0;
+const start=()=>{order=Array.from({length:10},(_,i)=>{const pool=i%3===2?AB.L.map(x=>x[0]):HARD.split('');return pool[Math.floor(Math.random()*pool.length)]});qi=0;sc=0;draw()};
+const opts=l=>{const grp=AB.G.find(g=>g[0].includes(l));let o=grp?grp[0].split('').filter(x=>x!==l):[];o=shuf(o).slice(0,3);
+  const rest=shuf(AB.L.map(x=>x[0]).filter(x=>x!==l&&!o.includes(x)));while(o.length<3)o.push(rest.pop());return shuf([l,...o])};
+const draw=()=>{
+  if(qi>=order.length){if(sc>store.get('abcBest',0))store.set('abcBest',sc);if(typeof touchDay==='function')touchDay();if(typeof updateStats==='function')updateStats();
+    qb.innerHTML=`<div class="mtr"><div style="font-size:3rem" aria-hidden="true">${sc>=8?'🎉':'💪'}</div><div class="mq">${sc} de ${order.length} certas</div><p>${sc>=8?'Muito bem! Seu ouvido já reconhece as letras.':'Continue treinando: em poucos dias as letras ficam fáceis.'}</p><div class="mbtns"><button type="button" class="btn" id="abcAgain">Jogar de novo</button></div></div>`;
+    document.getElementById('abcAgain').onclick=start;return}
+  const l=order[qi];
+  qb.innerHTML=`<div class="mtr"><div class="mprog">Rodada ${qi+1} de ${order.length} · ✓ ${sc}</div><div class="mq">Qual letra você ouviu?</div><div class="mbtns"><button type="button" class="btn ghost" id="abcRep">🔊 Ouvir de novo</button></div><div class="abcq">${opts(l).map(x=>`<button type="button" data-x="${x}" lang="en">${x}</button>`).join('')}</div><div class="mfb" id="abcFb" aria-live="polite"></div><div class="mbtns"><button type="button" class="btn" id="abcNext" hidden>${qi+1<order.length?'Próxima':'Ver resultado'}</button></div></div>`;
+  document.getElementById('abcRep').onclick=()=>sayL(l);
+  let done=false;const fb=document.getElementById('abcFb');
+  qb.querySelectorAll('.abcq button').forEach(b=>b.onclick=()=>{if(done)return;done=true;const ok=b.dataset.x===l;if(ok)sc++;
+    b.classList.add(ok?'ok':'no');qb.querySelector('.abcq [data-x="'+l+'"]').classList.add('ok');
+    fb.className='mfb '+(ok?'ok':'no');fb.textContent=ok?'Isso! 👏 '+l+' se fala "'+LT[l][1]+'".':'Era o '+l+', que se fala "'+LT[l][1]+'". Ouça de novo.';
+    sayL(l);const n=document.getElementById('abcNext');n.hidden=false;n.onclick=()=>{qi++;draw()}});
+  setTimeout(()=>sayL(l),250)};
+document.getElementById('abcStart').onclick=start;showBest();
+/* os dois botões do topo da aba */
+const setPr=v=>{document.querySelectorAll('#prSeg button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.v===v)));box.hidden=v!=='abc';prl.hidden=v!=='sons';store.set('prV',v)};
+document.querySelectorAll('#prSeg button').forEach(b=>b.onclick=()=>setPr(b.dataset.v));
+setPr(store.get('prV','abc')==='sons'?'sons':'abc');
+window.__abc={AB,setPr,toLetters};
 }
 
 updateStats();
