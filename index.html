@@ -289,6 +289,43 @@ body.onhome .credit{display:none}
 .asec button span{display:block;font-size:1.25rem}
 .asec button small{display:block;font:600 .7rem var(--f-body);opacity:.75}
 .asec button[aria-pressed="true"]{background:#16305C;color:#fff}
+
+.mfseg{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:6px 0 14px}
+.mfseg button{border:2px solid var(--line);background:var(--paper);color:var(--ink);border-radius:14px;padding:11px 6px;font:800 .95rem var(--f-body);cursor:pointer}
+.mfseg button[aria-pressed="true"]{background:#16305C;border-color:#16305C;color:#fff}
+.mfc{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:14px;margin:0 0 14px}
+.mfc h3{margin:0 0 4px;font:800 1.15rem/1.2 var(--f-display)}
+.mfc .mx{margin:0 0 10px;color:var(--muted);font-size:.95rem}
+.mff{display:flex;flex-wrap:wrap;gap:4px;align-items:center;margin:0 0 10px;font:700 .78rem var(--f-body)}
+.mff i{font-style:normal;color:var(--muted)}
+.mtag{display:inline-block;color:#fff;border-radius:8px;padding:3px 7px;font:800 .72rem/1.2 var(--f-body);letter-spacing:.02em}
+.mfx{border-top:1px dashed var(--line);padding:10px 0 4px;display:grid;grid-template-columns:1fr auto;gap:6px 10px;align-items:center}
+.mbl{display:flex;flex-wrap:wrap;gap:5px}
+.mb{display:inline-flex;flex-direction:column;align-items:center;border-radius:10px;padding:5px 9px 4px;color:#fff;min-width:0}
+.mb b{font:800 1.05rem/1.15 var(--f-display)}
+.mb small{font:700 .62rem/1.1 var(--f-body);opacity:.92;text-transform:uppercase;letter-spacing:.04em;margin-top:2px}
+.mfx .pt{grid-column:1/-1;color:var(--muted);font-size:.9rem;margin-top:-2px}
+.mfx .play{width:44px;height:44px;border-radius:50%;border:0;background:var(--navy,#16305C);color:#fff;font-size:1.1rem;cursor:pointer}
+.mtip{display:flex;gap:8px;background:rgba(242,194,48,.18);border-radius:12px;padding:10px;margin-top:10px;font-size:.92rem}
+.mleg{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 12px}
+.mtr{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:14px;text-align:center}
+.mtr .mq{font:800 1.15rem/1.3 var(--f-display);margin:4px 0 10px}
+.mtr .mprog{font:700 .8rem var(--f-mono);color:var(--muted)}
+.mslot{min-height:58px;border:2px dashed var(--line);border-radius:14px;padding:6px;display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:8px 0}
+.mpool{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:8px 0 12px}
+.mpool .mb,.mslot .mb{border:0;cursor:pointer;font:inherit;box-shadow:0 3px 0 rgba(0,0,0,.2)}
+.mpool .mb:disabled{opacity:.25;box-shadow:none}
+.mfb{min-height:1.5em;font-weight:800}.mfb.ok{color:#1E8E4A}.mfb.no{color:#C2352B}
+.mbtns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.prc{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:14px;margin:0 0 12px}
+.prc h3{margin:0 0 4px;font:800 1.1rem/1.2 var(--f-display);display:flex;gap:8px;align-items:center}
+.prc h3 span{font-size:1.5rem}
+.prc p{margin:0 0 8px;color:var(--muted);font-size:.94rem}
+.prw{display:grid;grid-template-columns:1fr auto;gap:2px 10px;align-items:center;border-top:1px dashed var(--line);padding:8px 0}
+.prw b{font:800 1.12rem var(--f-display)}
+.prw .pp{font:800 .82rem var(--f-mono);color:#2C5DA8}
+.prw .pt{font-size:.88rem;color:var(--muted)}
+.prw .play{grid-row:1/span 3;grid-column:2;width:42px;height:42px;border-radius:50%;border:0;background:var(--navy,#16305C);color:#fff;font-size:1.05rem;cursor:pointer}
 </style>
 <title>Inglês Prático</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -538,6 +575,8 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
       <button role="tab" data-tab="palavras" aria-selected="false">Palavras</button>
       <button role="tab" data-tab="phrasal" aria-selected="false">Phrasal Verbs</button>
       <button role="tab" data-tab="nativo" aria-selected="false">Frases</button>
+      <button role="tab" data-tab="montar" aria-selected="false">🧩 Montar frases</button>
+      <button role="tab" data-tab="pron" aria-selected="false">🗣️ Pronúncia</button>
       <button role="tab" data-tab="musicas" aria-selected="false">Músicas</button>
       <button role="tab" data-tab="historias" aria-selected="false">Leitura</button>
       <button role="tab" data-tab="sos" aria-selected="false">SOS</button>
@@ -603,6 +642,20 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
     <div class="amode" id="aMode" role="group" aria-label="Jeito de ouvir"></div>
     <p class="ahint" id="aHint"></p>
     <div class="alist" id="aList" role="list"></div>
+  </section>
+
+  <section id="montar" data-panel hidden>
+    <h2>🧩 Montar frases</h2>
+    <p class="sub">Uma frase em inglês é como blocos de montar coloridos. Cada cor tem um papel: quem, faz o quê, o quê, onde, quando. Veja os exemplos, toque em 🔊 para ouvir e depois treine montando as frases.</p>
+    <div class="mfseg" role="group" aria-label="Escolher a parte"><button type="button" data-v="ver" aria-pressed="true">📖 Entender</button><button type="button" data-v="treino" aria-pressed="false">🧩 Montar</button></div>
+    <div id="mfVer"></div>
+    <div id="mfTreino" hidden></div>
+  </section>
+
+  <section id="pron" data-panel hidden>
+    <h2>🗣️ Guia de pronúncia</h2>
+    <p class="sub">Os sons do inglês americano que mais confundem quem fala português. Leia a dica, ouça as palavras e repita em voz alta, devagar, até soar natural.</p>
+    <div id="prList"></div>
   </section>
 
   <section id="aula" data-panel hidden>
@@ -7425,6 +7478,8 @@ const T=[
  ['phrasal','🧲',fmt(PVL.length)+' phrasal verbs','Com imagens'],
  ['palavras','📚',fmt(nWords)+' palavras','Com pronúncia'],
  ['nativo','💬','Frases nativas',N.length+' grupos'],
+ ['montar','🧩','Montar frases','A ordem das palavras com cores'],
+ ['pron','🗣️','Guia de pronúncia','14 sons que confundem'],
  ['historias','📖',S.length+' leituras','Bilíngues, com áudio'],
  ['musicas','🎵',MU.length+' músicas','Por nível'],
  ['rotina','🗓️','Rotina','Dicas da professora'],
@@ -8099,6 +8154,47 @@ const openEp=n=>{if(P)pause();const ep=EP[n];P={ep,m:mode,st:steps(ep,mode),si:0
 window.addEventListener('hvstart',()=>{if(P&&P.playing)pause()});
 const _show3=show;show=function(id){_show3(id);if(id==='audios')renderList();else if(P&&!ov.hidden)close()};
 renderList();window.__aready=1;window.__aud={get P(){return P},EP,au,durOf,openEp,close};
+}
+
+/* ---------- Montar frases e Guia de pronúncia ---------- */
+{
+const MF={"R":{"S":["Quem","sujeito: de quem se fala?","#2C5DA8"],"V":["Faz o quê","verbo: a ação","#D9692B"],"O":["O quê","objeto: o que recebe a ação","#2E7D4F"],"F":["Quando","frequência ou tempo","#C2357B"],"L":["Onde","lugar","#14817F"],"D":["Como está","descrição de quem fala","#7B3FA0"],"B":["am / is / are","o verbo to be: ser ou estar","#B5651D"],"A":["Ajudante","do / does: ajuda a perguntar","#C2352B"],"N":["Negação","don't / doesn't: faz a negativa","#8E1B1B"],"W":["Pergunta","what, where, when...","#0F5E8C"],"Q":["Quantas vezes","always, never...","#B08A00"]},"C":[{"n":"1","e":"🧱","t":"A ordem das palavras","x":"Em inglês a ordem é quase sempre a mesma: primeiro QUEM, depois o que FAZ, depois O QUÊ e, no fim, QUANDO. Pense em blocos de montar.","f":[["S","V","O","F"]],"ex":[[[["I","S"],["drink","V"],["coffee","O"],["every morning","F"]],"Eu bebo café toda manhã."],[[["My son","S"],["plays","V"],["soccer","O"],["after school","F"]],"Meu filho joga futebol depois da escola."],[[["We","S"],["watch","V"],["movies","O"],["on Fridays","F"]],"Nós vemos filmes às sextas."],[[["Carlos","S"],["reads","V"],["the news","O"],["at lunch","F"]],"O Carlos lê as notícias no almoço."]],"tip":"O QUANDO vai no fim da frase. Em português dá para mudar a ordem; em inglês é melhor seguir os blocos."},{"n":"2","e":"🔎","t":"Nem tudo depois do verbo é a mesma coisa","x":"Depois do verbo pode vir O QUÊ (uma coisa), COMO ESTÁ (com am, is, are) ou ONDE (um lugar). Cada um responde a uma pergunta diferente.","f":[["S","V","O"],["S","B","D"],["S","V","L"]],"ex":[[[["My wife","S"],["buys","V"],["flowers","O"]],"Minha esposa compra flores. (o quê?)"],[[["My wife","S"],["is","B"],["happy","D"]],"Minha esposa está feliz. (como está?)"],[[["My wife","S"],["works","V"],["downtown","L"]],"Minha esposa trabalha no centro. (onde?)"],[[["The kids","S"],["are","B"],["hungry","D"]],"As crianças estão com fome. (como estão?)"],[[["Paul","S"],["lives","V"],["in Texas","L"]],"O Paul mora no Texas. (onde?)"]],"tip":"Depois de am, is, are vem como a pessoa está ou o que ela é: I am tired, She is a nurse."},{"n":"3","e":"🚫","t":"Como fazer a negativa","x":"Para dizer que NÃO, coloque don't ou doesn't antes do verbo. Com he, she e it use doesn't e tire o -s do verbo.","f":[["S","N","V","O","F"]],"ex":[[[["I","S"],["don't","N"],["eat","V"],["meat","O"]],"Eu não como carne."],[[["He","S"],["doesn't","N"],["drive","V"],["to work","L"]],"Ele não vai de carro para o trabalho."],[[["She","S"],["doesn't","N"],["drink","V"],["coffee","O"],["at night","F"]],"Ela não toma café à noite."],[[["They","S"],["don't","N"],["live","V"],["here","L"]],"Eles não moram aqui."],[[["I","S"],["'m not","N"],["tired","D"]],"Eu não estou cansado. (com am, is, are, basta usar not)"]],"tip":"He works → He doesn't work. O -s mudou de lugar: foi para o doesn't. Nunca diga he doesn't works."},{"n":"4","e":"❓","t":"Como fazer perguntas","x":"Para perguntar, comece com a palavra de pergunta (se tiver), depois do ou does, depois QUEM e o verbo sem -s.","f":[["W","A","S","V"],["A","S","V","O"]],"ex":[[[["Where","W"],["do","A"],["you","S"],["work","V"]],"Onde você trabalha?"],[[["What","W"],["does","A"],["he","S"],["eat","V"],["for breakfast","F"]],"O que ele come no café da manhã?"],[[["When","W"],["do","A"],["they","S"],["travel","V"]],"Quando eles viajam?"],[[["Do","A"],["you","S"],["like","V"],["pizza","O"]],"Você gosta de pizza?"],[[["Does","A"],["she","S"],["speak","V"],["English","O"]],"Ela fala inglês?"]],"tip":"Com am, is, are NÃO use do nem does: Where are you? Is he at home? Are you OK?"},{"n":"5","e":"🔁","t":"Sempre, às vezes, nunca","x":"As palavras de QUANTAS VEZES (always, usually, sometimes, never) ficam antes do verbo, mas depois de am, is, are.","f":[["S","Q","V","O"],["S","B","Q","D"]],"ex":[[[["I","S"],["always","Q"],["drink","V"],["water","O"]],"Eu sempre bebo água."],[[["She","S"],["never","Q"],["eats","V"],["fast food","O"]],"Ela nunca come fast food."],[[["We","S"],["sometimes","Q"],["cook","V"],["pasta","O"]],"Às vezes a gente faz macarrão."],[[["He","S"],["is","B"],["always","Q"],["late","D"]],"Ele está sempre atrasado."]],"tip":"Com am, is, are a ordem muda: He is always late, e não He always is late."},{"n":"6","e":"📍","t":"Onde e quando juntos","x":"Quando a frase tem ONDE e QUANDO, o lugar vem primeiro e o tempo depois.","f":[["S","V","L","F"]],"ex":[[[["I","S"],["work","V"],["at the office","L"],["on Mondays","F"]],"Eu trabalho no escritório às segundas."],[[["We","S"],["have dinner","V"],["at home","L"],["every night","F"]],"Nós jantamos em casa toda noite."],[[["They","S"],["go","V"],["to the beach","L"],["in January","F"]],"Eles vão à praia em janeiro."]],"tip":"Uma dica para lembrar: primeiro ONDE, depois QUANDO."}],"E":[[[["I","S"],["eat","V"],["bread","O"],["every day","F"]],"Eu como pão todo dia."],[[["She","S"],["likes","V"],["music","O"]],"Ela gosta de música."],[[["We","S"],["study","V"],["English","O"],["at lunch","F"]],"Nós estudamos inglês no almoço."],[[["My father","S"],["reads","V"],["books","O"]],"Meu pai lê livros."],[[["The baby","S"],["is","B"],["tired","D"]],"O bebê está cansado."],[[["Tom","S"],["works","V"],["at home","L"]],"O Tom trabalha em casa."],[[["I","S"],["am","B"],["happy","D"],["today","F"]],"Eu estou feliz hoje."],[[["They","S"],["play","V"],["tennis","O"],["on Sundays","F"]],"Eles jogam tênis aos domingos."],[[["I","S"],["don't","N"],["like","V"],["rain","O"]],"Eu não gosto de chuva."],[[["He","S"],["doesn't","N"],["watch","V"],["TV","O"]],"Ele não vê TV."],[[["We","S"],["don't","N"],["work","V"],["on Saturdays","F"]],"Nós não trabalhamos aos sábados."],[[["She","S"],["doesn't","N"],["eat","V"],["sugar","O"]],"Ela não come açúcar."],[[["Do","A"],["you","S"],["speak","V"],["Spanish","O"]],"Você fala espanhol?"],[[["Does","A"],["he","S"],["have","V"],["a car","O"]],"Ele tem carro?"],[[["Where","W"],["do","A"],["you","S"],["live","V"]],"Onde você mora?"],[[["What","W"],["does","A"],["she","S"],["do","V"]],"O que ela faz?"],[[["When","W"],["do","A"],["you","S"],["wake up","V"]],"Quando você acorda?"],[[["I","S"],["always","Q"],["walk","V"],["to work","L"]],"Eu sempre vou a pé para o trabalho."],[[["He","S"],["never","Q"],["drinks","V"],["soda","O"]],"Ele nunca toma refrigerante."],[[["She","S"],["is","B"],["always","Q"],["busy","D"]],"Ela está sempre ocupada."],[[["We","S"],["eat","V"],["at a restaurant","L"],["on Fridays","F"]],"Nós comemos num restaurante às sextas."],[[["My kids","S"],["play","V"],["in the park","L"],["every afternoon","F"]],"Meus filhos brincam no parque toda tarde."],[[["Where","W"],["is","B"],["the bathroom","S"]],"Onde fica o banheiro?"],[[["I","S"],["need","V"],["a new phone","O"]],"Eu preciso de um celular novo."]],"P":[{"e":"👅","t":"O TH soprado","x":"Coloque a ponta da língua entre os dentes e solte o ar, sem voz. Não é T nem F.","w":[["think","pensar","THÍNK"],["three","três","THRÍ"],["thank you","obrigado","THÉNK IU"],["Thursday","quinta-feira","THÂRZDEI"]]},{"e":"🐝","t":"O TH vibrado","x":"A mesma posição da língua, mas agora com voz, como se fosse um D vibrando. Aparece em palavras muito comuns.","w":[["this","isto","DIS"],["the","o, a","DÂ"],["mother","mãe","MÂDER"],["together","juntos","TUGUÉDER"]]},{"e":"💨","t":"O H com ar","x":"O H do inglês é um sopro leve, como o R de \"rato\". Ele nunca é mudo nessas palavras.","w":[["house","casa","RRÁUS"],["hello","olá","RRELÔU"],["hotel","hotel","RROTÉL"],["happy","feliz","RRÉPI"]]},{"e":"🔄","t":"O R americano","x":"Enrole a ponta da língua para trás sem encostar no céu da boca. Nunca é o R forte de \"rato\".","w":[["red","vermelho","RÉD"],["right","certo","RÁIT"],["car","carro","KÁR"],["world","mundo","UÂRLD"]]},{"e":"🐑","t":"Vogal curta e vogal longa","x":"Às vezes só o tamanho da vogal muda a palavra. Curta e rápida, ou longa e esticada.","w":[["ship · sheep","navio · ovelha","XÍP · XÍÍP"],["live · leave","morar · sair","LÍV · LÍÍV"],["full · fool","cheio · bobo","FÚL · FÚÚL"]]},{"e":"😺","t":"O A bem aberto","x":"Abra bem a boca, entre o A e o É. É o som de cat e man, diferente do E fechado de bed.","w":[["cat","gato","KÉT"],["man · men","homem · homens","MÉN · MÉN"],["bad · bed","ruim · cama","BÉD · BÉD"],["apple","maçã","ÉPOL"]]},{"e":"✋","t":"Sem I no final","x":"O brasileiro costuma colocar um I depois da consoante. Em inglês a palavra termina seca.","w":[["big","grande","BÍG (não \"bíghi\")"],["book","livro","BÚK (não \"búki\")"],["dog","cachorro","DÓG (não \"dóghi\")"],["Facebook","Facebook","FÊISBUK (não \"fêisbuki\")"]]},{"e":"🏫","t":"Sem I no começo","x":"Palavras que começam com S seguido de consoante não ganham um I antes.","w":[["school","escola","SKÚL (não \"iskúl\")"],["Spanish","espanhol","SPÉNICH"],["study","estudar","STÂDI"],["street","rua","STRÍT"]]},{"e":"⏪","t":"O final -ed","x":"O passado com -ed tem três sons: T depois de sons como k, p, s; D depois da maioria; e ID só depois de T ou D.","w":[["worked","trabalhei","UÂRKT"],["played","joguei","PLÊID"],["wanted","quis","UÓNTID"],["needed","precisei","NÍDID"]]},{"e":"🤫","t":"Letras mudas","x":"Algumas letras estão escritas, mas não se falam.","w":[["know","saber","NÔU"],["write","escrever","RÁIT"],["walk","andar","UÓK"],["listen","ouvir","LÍSSEN"],["hour","hora","ÁUER"]]},{"e":"💧","t":"O T que vira R","x":"No inglês americano, o T entre duas vogais fica rápido e suave, parecido com o R de \"caro\".","w":[["water","água","UÓRER"],["better","melhor","BÉRER"],["little","pequeno","LÍROL"],["get up","levantar","GUÉRÂP"]]},{"e":"👄","t":"O M final de boca fechada","x":"No final da palavra o M fecha os lábios. Não vira \"ão\" nem some.","w":[["time","tempo","TÁIM"],["room","quarto","RÚM"],["home","casa","RRÔUM"],["I'm","eu sou","ÁIM"]]},{"e":"🔗","t":"As palavras grudam","x":"Na fala rápida, as palavras se juntam. Entender isso ajuda muito a ouvir.","w":[["What do you want?","O que você quer?","UÓDJA UÓNT?"],["I'm going to eat.","Vou comer.","AIM GÓNA ÍT."],["I want to sleep.","Quero dormir.","AI UÓNA SLÍP."],["Let me see.","Deixa eu ver.","LÉMI SÍ."]]},{"e":"⚖️","t":"Can ou can't?","x":"No can, a voz fica fraca e rápida. No can't, a voz é forte e o A é bem aberto.","w":[["I can swim.","Eu sei nadar.","AI KÂN SUÍM."],["I can't swim.","Eu não sei nadar.","AI KÉNT SUÍM."]]}]};
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const sent=b=>{const t=b.map(x=>x[0]).join(' ').replace(/ 'm/g,"'m");return t+(['W','A'].includes(b[0][1])?'?':'.')};
+const blk=(x,lab)=>{const r=MF.R[x[1]];return `<span class="mb" style="background:${r[2]}"><b>${esc(x[0])}</b>${lab?`<small>${esc(r[0])}</small>`:''}</span>`};
+const tag=k=>{const r=MF.R[k];return `<span class="mtag" style="background:${r[2]}" title="${esc(r[1])}">${esc(r[0])}</span>`};
+const ver=document.getElementById('mfVer'),tr=document.getElementById('mfTreino');
+const renderVer=()=>{
+  ver.innerHTML=MF.C.map((c,ci)=>`<div class="mfc"><h3>${c.e} ${esc(c.t)}</h3><p class="mx">${esc(c.x)}</p>${c.f.map(f=>`<div class="mff">${f.map(tag).join('<i>+</i>')}</div>`).join('')}${c.ex.map((x,xi)=>`<div class="mfx"><div class="mbl">${x[0].map(b=>blk(b,1)).join('')}</div><button class="play" data-c="${ci}" data-x="${xi}" aria-label="Ouvir">🔊</button><div class="pt">${esc(x[1])}</div></div>`).join('')}<div class="mtip"><span aria-hidden="true">💡</span><span>${esc(c.tip)}</span></div></div>`).join('')
+   +`<div class="mfc"><h3>🎨 O que cada cor quer dizer</h3><div class="mleg">${Object.keys(MF.R).map(k=>`<span class="mtag" style="background:${MF.R[k][2]}">${esc(MF.R[k][0])}</span><span style="font-size:.82rem;color:var(--muted);margin-right:6px">${esc(MF.R[k][1])}</span>`).join('')}</div></div>`;
+  ver.querySelectorAll('.play').forEach(b=>b.onclick=()=>say(sent(MF.C[+b.dataset.c].ex[+b.dataset.x][0])))};
+/* exercício */
+const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+let order=[],qi=0,pick=[],score=0;
+const newRound=()=>{order=shuf(MF.E.map((_,i)=>i)).slice(0,10);qi=0;score=0;drawQ()};
+const drawQ=()=>{
+  if(qi>=order.length){const best=store.get('mfBest',0);if(score>best)store.set('mfBest',score);if(typeof touchDay==='function')touchDay();if(typeof updateStats==='function')updateStats();
+    tr.innerHTML=`<div class="mtr"><div style="font-size:3rem" aria-hidden="true">${score>=8?'🎉':'💪'}</div><div class="mq">${score} de ${order.length} certas</div><p>${score>=8?'Muito bem! Você já entende a ordem dos blocos.':'Continue treinando. A cada rodada fica mais natural.'}</p><div class="mbtns"><button class="btn" id="mfAgain">Treinar de novo</button><button class="btn ghost" id="mfBack">Ver as explicações</button></div></div>`;
+    document.getElementById('mfAgain').onclick=newRound;document.getElementById('mfBack').onclick=()=>setV('ver');return}
+  const [b,pt]=MF.E[order[qi]];pick=[];const pool=shuf(b.map((_,i)=>i));
+  tr.innerHTML=`<div class="mtr"><div class="mprog">Frase ${qi+1} de ${order.length} · ✓ ${score}</div><div class="mq">“${esc(pt)}”</div><p style="margin:0;color:var(--muted);font-size:.9rem">Toque nos blocos na ordem certa para montar a frase em inglês.</p><div class="mslot" id="mfSlot" aria-live="polite"></div><div class="mpool" id="mfPool">${pool.map(i=>`<button type="button" class="mb" data-i="${i}" style="background:${MF.R[b[i][1]][2]}"><b>${esc(b[i][0])}</b><small>${esc(MF.R[b[i][1]][0])}</small></button>`).join('')}</div><div class="mfb" id="mfFb"></div><div class="mbtns"><button class="btn ghost" id="mfUndo">↩ Desfazer</button><button class="btn" id="mfCheck" disabled>Conferir</button></div></div>`;
+  const slot=document.getElementById('mfSlot'),fb=document.getElementById('mfFb'),ck=document.getElementById('mfCheck');let done=false;
+  const sync=()=>{slot.innerHTML=pick.map(i=>blk(b[i],0)).join('');tr.querySelectorAll('#mfPool .mb').forEach(x=>x.disabled=pick.includes(+x.dataset.i));ck.disabled=pick.length!==b.length};
+  tr.querySelectorAll('#mfPool .mb').forEach(x=>x.onclick=()=>{if(done)return;pick.push(+x.dataset.i);sync()});
+  document.getElementById('mfUndo').onclick=()=>{if(done)return;pick.pop();sync()};
+  ck.onclick=()=>{if(!done){done=true;const ok=pick.every((v,k)=>b[v][0]===b[k][0]);if(ok)score++;
+      fb.className='mfb '+(ok?'ok':'no');fb.innerHTML=(ok?'Isso! 👏 ':'Quase! O certo é: ')+'<br><span style="font-size:1.1rem">'+esc(sent(b))+'</span>';
+      slot.innerHTML=b.map(x=>blk(x,1)).join('');say(sent(b));ck.textContent=qi+1<order.length?'Próxima →':'Ver resultado';ck.disabled=false;document.getElementById('mfUndo').hidden=true}
+    else{qi++;drawQ()}};
+  sync()};
+const setV=v=>{document.querySelectorAll('#montar .mfseg button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.v===v)));ver.hidden=v!=='ver';tr.hidden=v!=='treino';if(v==='treino')newRound()};
+document.querySelectorAll('#montar .mfseg button').forEach(b=>b.onclick=()=>setV(b.dataset.v));
+renderVer();
+/* pronúncia */
+const pl=document.getElementById('prList');
+pl.innerHTML=MF.P.map((p,pi)=>`<div class="prc"><h3><span aria-hidden="true">${p.e}</span>${esc(p.t)}</h3><p>${esc(p.x)}</p>${p.w.map((w,wi)=>`<div class="prw"><b lang="en">${esc(w[0])}</b><button class="play" data-p="${pi}" data-w="${wi}" aria-label="Ouvir ${esc(w[0])}">🔊</button><span class="pp">🗣️ ${esc(w[2])}</span><span class="pt">${esc(w[1])}</span></div>`).join('')}</div>`).join('');
+pl.querySelectorAll('.play').forEach(b=>b.onclick=()=>{const w=MF.P[+b.dataset.p].w[+b.dataset.w][0];say(w.replace(/ · /g,'. '))});
+window.__mf={MF,sent,setV};
 }
 
 updateStats();
