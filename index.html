@@ -365,6 +365,34 @@ nav[role=tablist],.subnav{-webkit-mask-image:linear-gradient(90deg,#000 88%,tran
   main .wrow:active,main .wrow.on{border-left-color:#2B7FD4}
   main .wrow:active span,main .wrow.on span{filter:none}
 }
+
+.mtools{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 12px}
+.mtools .btn{flex:1 1 140px}
+.mtools .btn[aria-pressed="true"]{background:var(--mustard);color:var(--mustard-ink);border-color:var(--mustard)}
+.madd{background:var(--paper);border:1.5px solid var(--line);border-radius:16px;padding:14px;margin:0 0 14px;display:grid;gap:10px}
+.madd[hidden]{display:none}
+.madd h3{margin:0;font:800 1.05rem var(--f-display)}
+.madd label{display:grid;gap:4px;font:700 .88rem var(--f-body);color:var(--muted)}
+.madd input,.madd select{border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;padding:10px;font:600 1rem var(--f-body);width:100%;box-sizing:border-box}
+.mferr{margin:0;color:#C2352B;font-weight:700;min-height:1em}
+.mbtns2{display:flex;gap:8px;flex-wrap:wrap}
+.mus .mrm{border:1.5px solid #C2352B;color:#C2352B;background:none;border-radius:10px;padding:6px 10px;font:700 .85rem var(--f-body);cursor:pointer}
+.mus .mine{background:#2B7FD4;color:#fff;font:800 .7rem var(--f-body);padding:2px 7px;border-radius:7px;margin-left:4px}
+.mhid{margin-top:14px;background:var(--paper);border:1.5px dashed var(--line);border-radius:14px;padding:4px 12px}
+.mhid summary{cursor:pointer;font-weight:800;padding:8px 0}
+.mhrow{display:flex;align-items:center;gap:8px;justify-content:space-between;border-top:1px solid var(--line);padding:8px 0}
+.mhrow span{min-width:0}
+.mhrow .bk{border:0;background:var(--navy);color:#fff;border-radius:10px;padding:6px 10px;font:700 .85rem var(--f-body);cursor:pointer;white-space:nowrap}
+.mhrow .del{border:0;background:none;color:#C2352B;font:700 .85rem var(--f-body);cursor:pointer;white-space:nowrap}
+.mlinks{display:flex;flex-direction:column;gap:6px}
+.mlb{border:1.5px solid var(--navy);background:none;color:var(--navy);border-radius:10px;padding:6px 10px;font:700 .88rem var(--f-body);cursor:pointer;text-align:left}
+.mlb[aria-expanded="true"]{background:var(--navy);color:#fff}
+.mlyr{margin-top:10px;border-top:1px dashed var(--line);padding-top:10px;display:grid;gap:6px}
+.mlyr label{display:grid;gap:4px;font:700 .88rem var(--f-body);color:var(--muted)}
+.mlta{border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;padding:10px;font:500 1rem/1.4 var(--f-body);width:100%;box-sizing:border-box;resize:vertical}
+.mlh,.mlst{margin:0;font-size:.85rem;color:var(--muted)}
+.mll{display:grid;text-align:left;border:0;background:var(--bg);border-radius:10px;padding:8px 10px;cursor:pointer;font:inherit;color:var(--ink)}
+.mll span{font:700 1rem/1.3 var(--f-body)}.mll small{color:var(--muted);font-size:.88rem;margin-top:2px}
 </style>
 <title>Inglês Prático</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -888,8 +916,8 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
 
   <section id="musicas" data-panel hidden>
     <h2>Inglês com músicas</h2>
-    <p class="sub">33 músicas separadas por nível. Antes de ouvir, leia o tema e treine as palavras. Depois, ouça com a letra aberta no YouTube ou no Spotify e marque quando terminar.</p>
-    <p class="note" style="margin-top:0">As letras não estão no app porque têm direitos autorais. O botão abre a música no YouTube.</p>
+    <p class="sub"><span id="musCount">33</span> músicas separadas por nível. Antes de ouvir, leia o tema e treine as palavras. Depois, ouça com a letra aberta no YouTube ou no Spotify e marque quando terminar.</p>
+    <p class="note" style="margin-top:0">As letras não ficam guardadas no app porque têm direitos autorais. Em cada música, 📝 abre a letra com tradução no site Letras e ▶ abre a música no YouTube.</p>
     <div class="mym" id="myMus">
       <h3 style="margin:0 0 4px">🎧 Minhas músicas</h3>
       <p class="sub" style="margin:0 0 10px">Escolha a música que você gosta. Ela fica guardada no app para ouvir devagar, repetir trechos e entender a letra linha por linha.</p>
@@ -907,6 +935,20 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
       <div id="myList"></div>
     </div>
     <div id="myPlayer" class="mypl" hidden></div>
+    <div class="mtools" id="musTools">
+      <button type="button" class="btn ghost" id="musEdit" aria-pressed="false">✏️ Editar lista</button>
+      <button type="button" class="btn" id="musAddBtn">➕ Incluir música</button>
+    </div>
+    <form class="madd" id="musAdd" hidden>
+      <h3>➕ Incluir uma música</h3>
+      <label>Nome da música<input id="maT" required maxlength="80" placeholder="Ex.: Count on Me"></label>
+      <label>Cantor ou banda<input id="maA" required maxlength="60" placeholder="Ex.: Bruno Mars"></label>
+      <label>Nível<select id="maL"><option>A1</option><option>A2</option><option>B1</option><option>B2</option></select></label>
+      <label>Tema (opcional)<input id="maC" maxlength="80" placeholder="Ex.: amizade"></label>
+      <label>Palavras para treinar (opcional, separadas por vírgula)<input id="maW" maxlength="160" placeholder="Ex.: friend, need, always"></label>
+      <p class="mferr" id="maErr" aria-live="polite"></p>
+      <div class="mbtns2"><button type="submit" class="btn">Salvar música</button><button type="button" class="btn ghost" id="maCancel">Cancelar</button></div>
+    </form>
     <div class="wtools" id="musFilter"></div>
     <div id="musList"></div>
   </section>
@@ -6541,11 +6583,63 @@ renderMaps();setMM(mmMode);
 const MU=MUS.trim().split('\n').map(l=>l.split('|'));
 let musLv=store.get('musLv','Todos'),musDone=store.get('musDone',[]);
 document.getElementById('musFilter').innerHTML=['Todos','A1','A2','B1','B2'].map(l=>`<button data-l="${l}">${l==='Todos'?'Todas':l}</button>`).join('');
+let musHide=store.get('musHide',[]),musMine=store.get('musMine',[]),musEditing=false;
+let musLyr=store.get('musLyr',{}),musLyrTr=store.get('musLyrTr',{});const musOpen=new Set(),musEditLyr=new Set();
+const lyrHtml=m=>{const txt=musLyr[m.k]||'';const ed=!txt||musEditLyr.has(m.k);
+  if(ed)return `<div class="mlyr"><label>Cole aqui a letra que você copiou<textarea class="mlta" data-k="${m.k}" rows="8" placeholder="Copie a letra no site e cole aqui">${mEsc(txt)}</textarea></label><div class="mbtns2"><button type="button" class="btn mls" data-k="${m.k}">💾 Salvar letra</button>${txt?`<button type="button" class="btn ghost mlc" data-k="${m.k}">Cancelar</button>`:''}</div></div>`;
+  const lines=txt.split('\n').map(x=>x.trim()).filter(Boolean),tr=musLyrTr[m.k]||[];
+  return `<div class="mlyr"><p class="mlh">Toque numa linha para ouvir. ${lines.length} linhas.</p>${lines.map((l,i)=>`<button type="button" class="mll" data-l="${mEsc(l)}"><span lang="en">${mEsc(l)}</span>${tr[i]?`<small>${mEsc(tr[i])}</small>`:''}</button>`).join('')}<div class="mbtns2">${tr.length?'':`<button type="button" class="btn mlt" data-k="${m.k}">🌐 Traduzir linha por linha</button>`}<button type="button" class="btn ghost mle" data-k="${m.k}">✏️ Editar</button><button type="button" class="btn ghost mld" data-k="${m.k}">🗑️ Apagar letra</button></div><p class="mlst" aria-live="polite"></p></div>`};
+const mEsc=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 function renderMus(){
   document.querySelectorAll('#musFilter button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.l===musLv)));
-  document.getElementById('musList').innerHTML=MU.map((m,i)=>(musLv!=='Todos'&&m[0]!==musLv)?'':`<div class="mus"><div class="mh"><span class="mlvb" style="background:${LVC[m[0]]};color:#fff;font:800 .8rem var(--f-mono);padding:3px 7px;border-radius:7px">${m[0]}</span><b>${m[1]}</b><span>${m[2]} · ${m[3]}</span></div><div><b>Tema:</b> ${m[4]}</div><div class="chips">${m[5].split(',').map(w=>`<button class="chip" data-w="${w.trim()}">${w.trim()} 🔊</button>`).join('')}</div><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><a class="yt" href="https://www.youtube.com/results?search_query=${encodeURIComponent(m[1]+' '+m[2]+' lyrics')}" target="_blank" rel="noopener">Ouvir no YouTube →</a><label style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="mu${i}" data-i="${i}" ${musDone.includes(i)?'checked':''} style="width:22px;height:22px;accent-color:var(--m1)">Ouvi e treinei</label></div></div>`).join('');
-  document.querySelectorAll('#musList .chip').forEach(b=>b.onclick=()=>say(b.dataset.w));
-  document.querySelectorAll('#musList input').forEach(c=>c.onchange=()=>{const n=+c.dataset.i;musDone=c.checked?[...musDone,n]:musDone.filter(x=>x!==n);store.set('musDone',musDone);if(c.checked)touchDay()});
+  const items=[...MU.map((m,i)=>({k:'b'+i,i,l:m[0],t:m[1],a:m[2],p:m[3],c:m[4],w:m[5],done:musDone.includes(i),hid:musHide.includes(i)})),
+    ...musMine.map(m=>({k:'c'+m.id,id:m.id,mine:1,l:m.l,t:m.t,a:m.a,p:'',c:m.c,w:m.w,done:!!m.d,hid:!!m.h}))];
+  const vis=items.filter(m=>!m.hid);
+  document.getElementById('musCount').textContent=vis.length;
+  const list=vis.filter(m=>musLv==='Todos'||m.l===musLv);
+  const words=w=>(w||'').split(',').map(x=>x.trim()).filter(Boolean);
+  document.getElementById('musList').innerHTML=(list.length?list.map(m=>`<div class="mus" data-k="${m.k}"><div class="mh"><span class="mlvb" style="background:${LVC[m.l]||'#16305C'};color:#fff;font:800 .8rem var(--f-mono);padding:3px 7px;border-radius:7px">${mEsc(m.l)}</span><b>${mEsc(m.t)}</b><span>${mEsc(m.a)}${m.p?' · '+mEsc(m.p):''}${m.mine?'<i class="mine">Sua</i>':''}</span></div>${m.c?`<div><b>Tema:</b> ${mEsc(m.c)}</div>`:''}${words(m.w).length?`<div class="chips">${words(m.w).map(w=>`<button class="chip" data-w="${mEsc(w)}">${mEsc(w)} 🔊</button>`).join('')}</div>`:''}<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><span class="mlinks"><a class="yt" href="https://www.youtube.com/results?search_query=${encodeURIComponent(m.t+' '+m.a+' lyrics')}" target="_blank" rel="noopener">▶ Ouvir no YouTube</a><a class="yt" href="https://www.google.com/search?q=${encodeURIComponent(m.t+' '+m.a+' letra tradução site:letras.mus.br')}" target="_blank" rel="noopener">📝 Letra e tradução</a><a class="yt" href="https://genius.com/search?q=${encodeURIComponent(m.t+' '+m.a)}" target="_blank" rel="noopener">📄 Letra no Genius</a><button type="button" class="mlb" data-k="${m.k}" aria-expanded="${musOpen.has(m.k)}">📝 Minha letra${musLyr[m.k]?' ✓':''}</button></span>${musEditing?`<button type="button" class="mrm" data-k="${m.k}">🗑️ Tirar da lista</button>`:`<label style="display:flex;gap:6px;align-items:center"><input type="checkbox" data-k="${m.k}" ${m.done?'checked':''} style="width:22px;height:22px;accent-color:var(--m1)">Ouvi e treinei</label>`}</div>${musOpen.has(m.k)?lyrHtml(m):''}</div>`).join(''):'<p class="wempty">Nenhuma música neste nível. Toque em ➕ Incluir música para colocar uma.</p>')
+   +(items.some(m=>m.hid)?`<details class="mhid" ${musEditing?'open':''}><summary>Músicas que você tirou (${items.filter(m=>m.hid).length})</summary>${items.filter(m=>m.hid).map(m=>`<div class="mhrow"><span><b>${mEsc(m.t)}</b> · ${mEsc(m.a)}</span><span style="display:flex;gap:6px">${m.mine?`<button type="button" class="del" data-k="${m.k}">Apagar</button>`:''}<button type="button" class="bk" data-k="${m.k}">↩ Trazer de volta</button></span></div>`).join('')}</details>`:'');
+  const box=document.getElementById('musList');
+  box.querySelectorAll('.chip').forEach(b=>b.onclick=()=>say(b.dataset.w));
+  const setFlag=(k,field,v)=>{if(k[0]==='b'){const i=+k.slice(1);if(field==='hid'){musHide=v?[...new Set([...musHide,i])]:musHide.filter(x=>x!==i);store.set('musHide',musHide)}else{musDone=v?[...new Set([...musDone,i])]:musDone.filter(x=>x!==i);store.set('musDone',musDone)}}
+    else{const m=musMine.find(x=>'c'+x.id===k);if(m){m[field==='hid'?'h':'d']=v;store.set('musMine',musMine)}}};
+  box.querySelectorAll('input[type=checkbox]').forEach(c=>c.onchange=()=>{setFlag(c.dataset.k,'done',c.checked);if(c.checked)touchDay()});
+  box.querySelectorAll('.mrm').forEach(b=>b.onclick=()=>{setFlag(b.dataset.k,'hid',true);renderMus()});
+  box.querySelectorAll('.bk').forEach(b=>b.onclick=()=>{setFlag(b.dataset.k,'hid',false);renderMus()});
+  box.querySelectorAll('.del').forEach(b=>b.onclick=()=>{musMine=musMine.filter(x=>'c'+x.id!==b.dataset.k);store.set('musMine',musMine);renderMus()});
+  const keep=k=>{const el=document.querySelector('#musList .mus[data-k="'+k+'"]');if(el)try{el.scrollIntoView({block:'start'})}catch(e){}};
+  box.querySelectorAll('.mlb').forEach(b=>b.onclick=()=>{const k=b.dataset.k;musOpen.has(k)?musOpen.delete(k):musOpen.add(k);renderMus();keep(k)});
+  box.querySelectorAll('.mls').forEach(b=>b.onclick=()=>{const k=b.dataset.k,v=box.querySelector('.mlta[data-k="'+k+'"]').value.trim();if(!v)return;
+    if(v!==musLyr[k]){delete musLyrTr[k];store.set('musLyrTr',musLyrTr)}musLyr[k]=v;store.set('musLyr',musLyr);musEditLyr.delete(k);renderMus();keep(k)});
+  box.querySelectorAll('.mlc').forEach(b=>b.onclick=()=>{musEditLyr.delete(b.dataset.k);renderMus();keep(b.dataset.k)});
+  box.querySelectorAll('.mle').forEach(b=>b.onclick=()=>{musEditLyr.add(b.dataset.k);renderMus();keep(b.dataset.k)});
+  box.querySelectorAll('.mld').forEach(b=>b.onclick=()=>{const k=b.dataset.k;delete musLyr[k];delete musLyrTr[k];store.set('musLyr',musLyr);store.set('musLyrTr',musLyrTr);renderMus();keep(k)});
+  box.querySelectorAll('.mll').forEach(b=>b.onclick=()=>say(b.dataset.l,0.7));
+  box.querySelectorAll('.mlt').forEach(b=>b.onclick=async()=>{const k=b.dataset.k,st=b.closest('.mlyr').querySelector('.mlst');const lines=(musLyr[k]||'').split('\n').map(x=>x.trim()).filter(Boolean);
+    b.disabled=true;const out=[];
+    for(let i=0;i<lines.length;i++){st.textContent='Traduzindo '+(i+1)+' de '+lines.length+'...';
+      try{const r=await fetch('https://api.mymemory.translated.net/get?q='+encodeURIComponent(lines[i])+'&langpair=en|pt-BR');const j=await r.json();const t=(j&&j.responseData&&j.responseData.translatedText)||'';
+        if(/MYMEMORY WARNING/i.test(t)){st.textContent='O tradutor gratuito chegou ao limite de hoje. Tente amanhã.';b.disabled=false;return}
+        out.push(t.replace(/&#39;/g,"'").replace(/&quot;/g,'"').replace(/&amp;/g,'&'))}catch(e){st.textContent='Sem internet para traduzir agora. Tente de novo depois.';b.disabled=false;return}}
+    musLyrTr[k]=out;store.set('musLyrTr',musLyrTr);renderMus();keep(k)});
+}
+{
+const ed=document.getElementById('musEdit'),ab=document.getElementById('musAddBtn'),fm=document.getElementById('musAdd'),err=document.getElementById('maErr');
+ed.onclick=()=>{musEditing=!musEditing;ed.setAttribute('aria-pressed',String(musEditing));ed.textContent=musEditing?'✓ Pronto':'✏️ Editar lista';renderMus()};
+ab.onclick=()=>{fm.hidden=!fm.hidden;err.textContent='';if(!fm.hidden){fm.reset();document.getElementById('maT').focus()}};
+document.getElementById('maCancel').onclick=()=>{fm.hidden=true};
+fm.onsubmit=e=>{e.preventDefault();const g=id=>document.getElementById(id).value.trim();const t=g('maT'),a=g('maA');
+  if(!t||!a){err.textContent='Preencha o nome da música e o cantor.';return}
+  const all=[...MU.map(m=>m[1]),...musMine.map(m=>m.t)].map(x=>x.toLowerCase());
+  if(all.includes(t.toLowerCase())&&!confirmDup){err.textContent='Essa música já está na lista. Toque em Salvar de novo para incluir assim mesmo.';confirmDup=true;return}
+  confirmDup=false;
+  const m={id:Date.now().toString(36),l:document.getElementById('maL').value,t,a,c:g('maC'),w:g('maW')};
+  musMine=[...musMine,m];store.set('musMine',musMine);fm.hidden=true;
+  if(musLv!=='Todos'&&musLv!==m.l){musLv='Todos';store.set('musLv',musLv)}
+  renderMus();const el=document.querySelector('#musList .mus[data-k="c'+m.id+'"]');if(el)try{el.scrollIntoView({block:'center'})}catch(e){}};
+let confirmDup=false;
+['maT','maA'].forEach(id=>document.getElementById(id).addEventListener('input',()=>{confirmDup=false;err.textContent=''}));
 }
 document.querySelectorAll('#musFilter button').forEach(b=>b.onclick=()=>{musLv=b.dataset.l;store.set('musLv',musLv);renderMus()});
 renderMus();
