@@ -3,26 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#16305C">
+<meta name="theme-color" content="#134B70">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="favicon-48.png" sizes="48x48">
-<link rel="icon" href="icon-ip-192.png" sizes="192x192">
+<link rel="icon" href="icon-v4-192.png" sizes="192x192">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Inglês Prático">
 <meta name="description" content="Inglês americano para vida pessoal, trabalho e escola, do nível 1 ao 4, com áudio.">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
 .trbtns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:4px 0 10px}
-.trmic{border:0;border-radius:16px;padding:16px 10px;background:var(--navy);color:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;font:600 .85rem var(--f-body);text-align:center}
+.trmic{border:0;border-radius:16px;padding:16px 10px;background:var(--navy);background-image:linear-gradient(135deg,#0B3350 0%,#134B70 48%,#1E6E9C 100%);color:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;font:600 .85rem var(--f-body);text-align:center}
 .trmic .ic{font-size:2rem;line-height:1}.trmic b{font:800 1rem var(--f-body)}
-.trmic.alt{background:var(--mustard);color:var(--mustard-ink)}
+.trmic.alt{background:var(--mustard);background-image:linear-gradient(135deg,#FFDB6E 0%,#F6BC3C 55%,#EC9F1E 100%);color:var(--mustard-ink)}
 .trmic.on{background:#C2352B;color:#fff;animation:trp 1s infinite}
 @keyframes trp{50%{transform:scale(.96);opacity:.85}}
 .trstatus{min-height:1.4em;font-weight:600;margin:4px 0 10px;color:var(--ink)}
 .trtype textarea{width:100%;box-sizing:border-box;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:10px;padding:11px 12px;font:600 1rem var(--f-body);resize:vertical}
 .trrow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0 14px}.trrow .btn{width:100%;padding-left:6px;padding-right:6px;font-size:.88rem}
 .trcard{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px;margin:0 0 12px}
-.trcard .trfrom{font-size:.9rem;opacity:.75}.trcard .trto{font:800 1.35rem var(--f-body);margin:6px 0}.trcard .trpr{font:700 .9rem var(--f-mono);color:#2C5DA8;margin-bottom:6px}
+.trcard .trfrom{font-size:.9rem;opacity:.75}.trcard .trto{font:800 1.35rem var(--f-body);margin:6px 0}.trcard .trpr{font:700 .9rem var(--f-mono);color:#1F6FA3;margin-bottom:6px}
 .trcard .trlbl{font:800 .7rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;opacity:.6}
 .trcard .cta{margin:8px 0 0;display:flex;gap:8px;flex-wrap:wrap}
 .trh{display:flex;gap:10px;align-items:center;border-bottom:1px solid var(--line);padding:9px 0;cursor:pointer;background:none;border-left:0;border-right:0;border-top:0;width:100%;text-align:left;color:var(--ink);font:inherit}
@@ -36,7 +36,7 @@
 .mmill .mmbr{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:10px;position:relative}
 .mmill .mmbr::before{content:"";position:absolute;left:50%;top:-10px;height:10px;border-left:2px solid var(--lc)}
 .mmill .mmbr span{border:2px solid var(--lc);border-radius:999px;padding:4px 10px;font:700 .8rem var(--f-body);background:var(--paper)}
-.lvf{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}.lvf button{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:7px 12px;font:700 .85rem var(--f-body);cursor:pointer}.lvf button[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.lvf{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}.lvf button{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:7px 12px;font:700 .85rem var(--f-body);cursor:pointer}.lvf button[aria-pressed="true"]{background:var(--navy);background-image:linear-gradient(135deg,#0B3350 0%,#134B70 48%,#1E6E9C 100%);color:#fff;border-color:var(--navy)}
 .story .slv{display:inline-block;color:#fff;font:800 .72rem var(--f-mono);padding:2px 7px;border-radius:6px;margin-right:6px;vertical-align:middle}
 
 .fcsearch{width:100%;box-sizing:border-box;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:10px;padding:11px 12px;font:600 1rem var(--f-body);margin:0 0 12px}
@@ -47,7 +47,7 @@
 .fhead{border:3px solid var(--ink);border-radius:18px;padding:14px;margin:6px 0 12px;background:linear-gradient(135deg,#FFF6D8,#FFE9EF);color:#1A1A2E;text-align:center;position:relative}
 .fhead .fe{font-size:2.4rem}.fhead h3{margin:2px 0 0;font:900 1.5rem var(--f-display);color:#D7263D;text-transform:uppercase;letter-spacing:.02em}.fhead .fsub{font:700 .95rem var(--f-body);font-style:italic}
 .fhead .flv{position:absolute;right:10px;top:10px;background:#16A3B8;color:#fff;font:900 .85rem var(--f-mono);padding:6px 8px;border-radius:10px}
-.fscore{display:inline-block;margin-top:8px;background:#F2C230;color:#2A2100;border:2px solid #1A1A2E;border-radius:999px;padding:4px 14px;font:800 .95rem var(--f-body)}
+.fscore{display:inline-block;margin-top:8px;background:#F2C230;background-image:linear-gradient(135deg,#FFDB6E 0%,#F6BC3C 55%,#EC9F1E 100%);color:#2A2100;border:2px solid #1A1A2E;border-radius:999px;padding:4px 14px;font:800 .95rem var(--f-body)}
 .fsec{border:3px solid #1A1A2E;border-radius:16px;margin:0 0 14px;overflow:hidden;background:var(--paper)}
 .fsec>h4{margin:0;padding:8px 12px;color:#fff;font:800 1rem var(--f-body);background:var(--sc)}
 .fsec>h4 i{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#fff;color:var(--sc);font-style:normal;margin-right:6px;font-size:.85rem}
@@ -91,12 +91,12 @@
 .fct .lbl{font:800 .72rem var(--f-mono);text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
 .fbtns{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 
-.pvhero{border:3px solid #1A1A2E;border-radius:16px;background:#16305C;color:#fff;padding:12px 14px;margin:0 0 12px;font-size:.95rem}.pvhero b{display:block;font:900 1.35rem var(--f-display);color:#F2C230}
+.pvhero{border:3px solid #1A1A2E;border-radius:16px;background:#134B70;background-image:linear-gradient(135deg,#0B3350 0%,#134B70 48%,#1E6E9C 100%);color:#fff;padding:12px 14px;margin:0 0 12px;font-size:.95rem}.pvhero b{display:block;font:900 1.35rem var(--f-display);color:#F2C230}
 .pvg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @media (max-width:359px){.pvg{grid-template-columns:1fr}}
 .pvc{box-sizing:border-box;position:relative;border:3px solid #1A1A2E;border-radius:16px;background:var(--pbg);color:#1A1A2E;padding:10px 10px 12px;text-align:left;cursor:pointer;font:inherit;min-height:190px;display:flex;flex-direction:column;gap:6px;overflow:hidden}
 .pvc .ph{font:900 1.25rem/1.05 var(--f-display);text-transform:uppercase;color:var(--pc);letter-spacing:.01em;padding-right:34px}
-.pvc .pm{align-self:flex-start;background:#F2C230;color:#2A2100;border-radius:999px;padding:2px 10px;font:800 .85rem var(--f-body)}
+.pvc .pm{align-self:flex-start;background:#F2C230;background-image:linear-gradient(135deg,#FFDB6E 0%,#F6BC3C 55%,#EC9F1E 100%);color:#2A2100;border-radius:999px;padding:2px 10px;font:800 .85rem var(--f-body)}
 .pvc .pr{font:700 .72rem var(--f-mono);color:#555}
 .pvc .px{font:700 .88rem/1.25 var(--f-body)}.pvc .pt{font-size:.82rem;color:#444;margin-top:-2px}
 .pvc .pi{position:absolute;right:6px;top:6px;font-size:1.9rem;line-height:1}
@@ -116,17 +116,17 @@
 body.onhome header .brand,body.onhome header .ver,body.onhome header .bar,body.onhome main .speed,body.onhome main .warn{display:none!important}
 body.onhome header .wrap{padding-top:6px}
 body.onhome main .wrap{padding-top:12px}
-.hero{position:relative;overflow:hidden;background:#16305C;color:#fff;border-radius:24px;padding:26px 18px 20px;isolation:isolate;box-shadow:0 10px 30px rgba(10,26,54,.25)}
-.hero:before{content:"";position:absolute;right:-120px;top:-110px;width:330px;height:330px;border-radius:50%;background:#F2C230;opacity:.13;z-index:-1}
+.hero{position:relative;overflow:hidden;background:#134B70;background-image:linear-gradient(135deg,#0B3350 0%,#134B70 48%,#1E6E9C 100%);color:#fff;border-radius:24px;padding:26px 18px 20px;isolation:isolate;box-shadow:0 10px 30px rgba(10,26,54,.25)}
+.hero:before{content:"";position:absolute;right:-120px;top:-110px;width:330px;height:330px;border-radius:50%;background:#F2C230;background-image:linear-gradient(135deg,#FFDB6E 0%,#F6BC3C 55%,#EC9F1E 100%);opacity:.13;z-index:-1}
 .hero:after{content:"";position:absolute;left:-90px;bottom:-120px;width:300px;height:300px;border-radius:50%;background:#C2352B;opacity:.18;z-index:-1}
 .hflag{position:absolute;right:18px;top:20px;font-size:2.3rem;line-height:1}
 .hk{font:700 .68rem var(--f-mono);letter-spacing:.24em;text-transform:uppercase;color:#F2C230;padding-right:56px}
 .ht{font:800 clamp(2.6rem,13vw,3.6rem)/.95 var(--f-display);margin:12px 0 0;color:#fff;letter-spacing:-.02em}
-.ht span{display:inline-block;background:#F2C230;color:#2A2100;border-radius:14px;padding:0 12px 4px;margin-top:4px}
+.ht span{display:inline-block;background:#F2C230;background-image:linear-gradient(135deg,#FFDB6E 0%,#F6BC3C 55%,#EC9F1E 100%);color:#2A2100;border-radius:14px;padding:0 12px 4px;margin-top:4px}
 .hs{font:800 1.18rem/1.2 var(--f-display);margin:18px 0 4px}
 .hd{margin:0;opacity:.88;font-size:.98rem}
 .hprog{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin:14px 0 4px;font:600 .8rem var(--f-mono);opacity:.95}
-.hcont{border:0;border-radius:999px;background:#F2C230;color:#2A2100;font:800 .9rem var(--f-body);padding:9px 14px;cursor:pointer;box-shadow:0 3px 0 rgba(0,0,0,.25)}
+.hcont{border:0;border-radius:999px;background:#F2C230;background-image:linear-gradient(135deg,#FFDB6E 0%,#F6BC3C 55%,#EC9F1E 100%);color:#2A2100;font:800 .9rem var(--f-body);padding:9px 14px;cursor:pointer;box-shadow:0 3px 0 rgba(0,0,0,.25)}
 .hgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0 0}
 .htile{display:flex;align-items:center;gap:10px;text-align:left;min-height:64px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.32);border-radius:16px;color:#fff;padding:10px 12px;cursor:pointer;font:inherit;transition:transform .12s,background .12s}
 .htile:hover{background:rgba(255,255,255,.14)}.htile:active{transform:scale(.97)}
@@ -205,9 +205,9 @@ body.onhome .credit{display:none}
 .hshare{display:block;width:100%;margin-top:10px;border:0;background:#25D366;color:#073b1d;border-radius:14px;padding:11px;font:800 .95rem var(--f-body);cursor:pointer}
 @media (prefers-reduced-motion:reduce){.znode.next .zc,.zmic.on{animation:none}.zconf span{display:none}}
 
-.drank{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center;background:linear-gradient(135deg,#16305C,#2C5DA8);color:#fff;border-radius:20px;padding:14px 16px;box-shadow:0 6px 18px rgba(22,48,92,.25)}
+.drank{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center;background:linear-gradient(135deg,#0B3350 0%,#134B70 48%,#1E6E9C 100%);color:#fff;border-radius:20px;padding:14px 16px;box-shadow:0 6px 18px rgba(19,75,112,.25)}
 .drank .re{font-size:2.6rem}.drank small{display:block;font:700 .7rem var(--f-mono);letter-spacing:.14em;text-transform:uppercase;opacity:.8}.drank b{font:800 1.3rem var(--f-display)}
-.drank .rb{height:10px;border-radius:99px;background:rgba(255,255,255,.25);overflow:hidden;margin-top:6px}.drank .rb i{display:block;height:100%;background:#F2C230}
+.drank .rb{height:10px;border-radius:99px;background:rgba(255,255,255,.25);overflow:hidden;margin-top:6px}.drank .rb i{display:block;height:100%;background:#F2C230;background-image:linear-gradient(135deg,#FFDB6E 0%,#F6BC3C 55%,#EC9F1E 100%)}
 .drank .rn{font-size:.8rem;opacity:.9;margin-top:4px}
 .dcards{display:grid;gap:10px}
 .dcard{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;text-align:left;border:0;border-radius:20px;padding:16px;color:#fff;cursor:pointer;font:inherit;box-shadow:0 5px 0 rgba(0,0,0,.2)}
@@ -239,7 +239,7 @@ body.onhome .credit{display:none}
 .mypl audio{width:100%;margin:8px 0}
 .mypl .row{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
 .mypl .row button{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:7px 12px;font:700 .88rem var(--f-body);cursor:pointer}
-.mypl .row button[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.mypl .row button[aria-pressed="true"]{background:var(--navy);background-image:linear-gradient(135deg,#0B3350 0%,#134B70 48%,#1E6E9C 100%);color:#fff;border-color:var(--navy)}
 .myln{display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:start;border-top:1px dashed var(--line);padding:8px 0;cursor:pointer;text-align:left;background:none;border-left:0;border-right:0;border-bottom:0;width:100%;color:var(--ink);font:inherit}
 .myln b{display:block;font-weight:700}.myln span{color:var(--muted);font-size:.93rem}
 @media (max-width:360px){.mymadd{grid-template-columns:1fr}}
@@ -250,7 +250,7 @@ body.onhome .credit{display:none}
 .amode{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:6px 0 4px}
 .amode button{border:2px solid var(--line);background:var(--paper);color:var(--ink);border-radius:14px;padding:10px 6px;font:700 .86rem/1.2 var(--f-body);cursor:pointer}
 .amode button span{display:block;font-size:1.3rem;margin-bottom:2px}
-.amode button[aria-pressed="true"]{border-color:#2C5DA8;background:#2C5DA8;color:#fff}
+.amode button[aria-pressed="true"]{border-color:#1F6FA3;background:#1F6FA3;color:#fff}
 .ahint{font-size:.85rem;color:var(--muted,#667);margin:4px 2px 12px;min-height:1.2em}
 .alist{display:grid;gap:10px}
 .acard{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;text-align:left;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);border-radius:18px;padding:14px;cursor:pointer;font:inherit}
@@ -259,7 +259,7 @@ body.onhome .credit{display:none}
 .acard b{display:block;font:800 1.05rem/1.2 var(--f-display)}.acard small{display:block;font-size:.84rem;opacity:.8;margin-top:2px}
 .acard .am{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
 .acard .am i{font:700 .7rem var(--f-mono);font-style:normal;border-radius:8px;padding:3px 7px;background:rgba(0,0,0,.06)}
-.acard .ap{font-size:1.5rem;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#2C5DA8;color:#fff}
+.acard .ap{font-size:1.5rem;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#1F6FA3;color:#fff}
 .acard.done .ap{background:#2E7D4F}
 #al,#al *{box-sizing:border-box}#al{overflow-x:hidden}
 .apl{max-width:720px;width:100%;margin:0 auto;padding:12px 16px 24px;display:flex;flex-direction:column;gap:10px;flex:1;min-height:0}
@@ -274,14 +274,14 @@ body.onhome .credit{display:none}
 .atr.notr .apt{display:none}
 .aln.on{background:rgba(242,194,48,.25)}
 .aln.n .aen{font-weight:600;font-style:italic}
-.abar{height:8px;border-radius:99px;background:rgba(0,0,0,.08);overflow:hidden}.abar i{display:block;height:100%;width:0;background:#2C5DA8;transition:width .3s}
+.abar{height:8px;border-radius:99px;background:rgba(0,0,0,.08);overflow:hidden}.abar i{display:block;height:100%;width:0;background:#1F6FA3;transition:width .3s}
 .atime{display:flex;justify-content:space-between;font:700 .75rem var(--f-mono);opacity:.7}
 .actl{display:flex;justify-content:center;align-items:center;gap:18px}
 .actl button{border:0;cursor:pointer;border-radius:50%;background:rgba(0,0,0,.07);color:var(--ink);width:56px;height:56px;font-size:1.4rem}
-.actl .apb{width:76px;height:76px;background:#2C5DA8;color:#fff;font-size:2rem;box-shadow:0 5px 0 rgba(0,0,0,.18)}
+.actl .apb{width:76px;height:76px;background:#1F6FA3;color:#fff;font-size:2rem;box-shadow:0 5px 0 rgba(0,0,0,.18)}
 .aopts{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;font-size:.85rem}
 .aopts button{border:1.5px solid var(--line);background:var(--paper);color:var(--ink);border-radius:10px;padding:6px 10px;font:700 .82rem var(--f-body);cursor:pointer}
-.aopts button[aria-pressed="true"]{background:#16305C;color:#fff;border-color:#16305C}
+.aopts button[aria-pressed="true"]{background:#134B70;background-image:linear-gradient(135deg,#0B3350 0%,#134B70 48%,#1E6E9C 100%);color:#fff;border-color:#134B70}
 .arep{text-align:center;font-weight:800;color:#B08A00;min-height:1.3em}
 .aend{text-align:center;padding:18px 10px}.aend .big{font-size:3rem}.aend b{display:block;font:800 1.3rem var(--f-display);margin:6px 0}
 
@@ -289,11 +289,11 @@ body.onhome .credit{display:none}
 .asec button{border:0;border-radius:12px;padding:9px 4px;font:800 .86rem/1.15 var(--f-body);cursor:pointer;background:rgba(0,0,0,.06);color:var(--ink)}
 .asec button span{display:block;font-size:1.25rem}
 .asec button small{display:block;font:600 .7rem var(--f-body);opacity:.75}
-.asec button[aria-pressed="true"]{background:#16305C;color:#fff}
+.asec button[aria-pressed="true"]{background:#134B70;background-image:linear-gradient(135deg,#0B3350 0%,#134B70 48%,#1E6E9C 100%);color:#fff}
 
 .mfseg{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:6px 0 14px}
 .mfseg button{border:2px solid var(--line);background:var(--paper);color:var(--ink);border-radius:14px;padding:11px 6px;font:800 .95rem var(--f-body);cursor:pointer}
-.mfseg button[aria-pressed="true"]{background:#16305C;border-color:#16305C;color:#fff}
+.mfseg button[aria-pressed="true"]{background:#134B70;background-image:linear-gradient(135deg,#0B3350 0%,#134B70 48%,#1E6E9C 100%);border-color:#134B70;color:#fff}
 .mfc{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:14px;margin:0 0 14px}
 .mfc h3{margin:0 0 4px;font:800 1.15rem/1.2 var(--f-display)}
 .mfc .mx{margin:0 0 10px;color:var(--muted);font-size:.95rem}
@@ -306,7 +306,7 @@ body.onhome .credit{display:none}
 .mb b{font:800 1.05rem/1.15 var(--f-display)}
 .mb small{font:700 .62rem/1.1 var(--f-body);opacity:.92;text-transform:uppercase;letter-spacing:.04em;margin-top:2px}
 .mfx .pt{grid-column:1/-1;color:var(--muted);font-size:.9rem;margin-top:-2px}
-.mfx .play{width:44px;height:44px;border-radius:50%;border:0;background:var(--navy,#16305C);color:#fff;font-size:1.1rem;cursor:pointer}
+.mfx .play{width:44px;height:44px;border-radius:50%;border:0;background:var(--navy,#134B70);color:#fff;font-size:1.1rem;cursor:pointer}
 .mtip{display:flex;gap:8px;background:rgba(242,194,48,.18);border-radius:12px;padding:10px;margin-top:10px;font-size:.92rem}
 .mleg{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 12px}
 .mtr{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:14px;text-align:center}
@@ -324,15 +324,15 @@ body.onhome .credit{display:none}
 .prc p{margin:0 0 8px;color:var(--muted);font-size:.94rem}
 .prw{display:grid;grid-template-columns:1fr auto;gap:2px 10px;align-items:center;border-top:1px dashed var(--line);padding:8px 0}
 .prw b{font:800 1.12rem var(--f-display)}
-.prw .pp{font:800 .82rem var(--f-mono);color:#2C5DA8}
+.prw .pp{font:800 .82rem var(--f-mono);color:#1F6FA3}
 .prw .pt{font-size:.88rem;color:var(--muted)}
-.prw .play{grid-row:1/span 3;grid-column:2;width:42px;height:42px;border-radius:50%;border:0;background:var(--navy,#16305C);color:#fff;font-size:1.05rem;cursor:pointer}
+.prw .play{grid-row:1/span 3;grid-column:2;width:42px;height:42px;border-radius:50%;border:0;background:var(--navy,#134B70);color:#fff;font-size:1.05rem;cursor:pointer}
 
 .subnav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:8px 0 10px}
 .subnav[hidden]{display:none}
 .subnav button{flex:0 0 auto;border:1.5px solid rgba(255,255,255,.35);background:rgba(255,255,255,.08);color:var(--navy-ink);border-radius:999px;padding:7px 13px;font:700 .86rem var(--f-body);cursor:pointer;opacity:.9}
 .subnav button[hidden]{display:none}
-.subnav button[aria-selected="true"]{background:var(--mustard);border-color:var(--mustard);color:var(--mustard-ink);opacity:1}
+.subnav button[aria-selected="true"]{background:var(--mustard);background-image:linear-gradient(135deg,#FFDB6E 0%,#F6BC3C 55%,#EC9F1E 100%);border-color:var(--mustard);color:var(--mustard-ink);opacity:1}
 
 /* topo enxuto */
 .brand{display:flex;align-items:center;gap:10px;flex-wrap:nowrap}
@@ -342,10 +342,10 @@ header .day,header .ver,header .bar{display:none!important}
 .hchip{font:700 .82rem var(--f-body);background:rgba(255,255,255,.12);color:var(--navy-ink);border-radius:999px;padding:5px 10px;white-space:nowrap;font-variant-numeric:tabular-nums}
 .hchip:empty{display:none}
 .hset{border:0;background:rgba(255,255,255,.12);color:var(--navy-ink);width:40px;height:40px;border-radius:12px;font-size:1.15rem;cursor:pointer;flex:0 0 auto}
-.hset[aria-expanded="true"]{background:var(--mustard)}
+.hset[aria-expanded="true"]{background:var(--mustard);background-image:linear-gradient(135deg,#FFDB6E 0%,#F6BC3C 55%,#EC9F1E 100%)}
 header .wrap{padding-top:10px}
 /* painel de ajustes */
-.setp{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:12px 14px 4px;margin:0 0 16px;box-shadow:0 8px 24px rgba(22,48,92,.10)}
+.setp{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:12px 14px 4px;margin:0 0 16px;box-shadow:0 8px 24px rgba(19,75,112,.10)}
 .setp[hidden]{display:none}
 .seth{display:flex;align-items:center;justify-content:space-between;margin:0 0 10px}
 .seth b{font:800 1.05rem var(--f-display)}
@@ -361,15 +361,15 @@ nav[role=tablist],.subnav{-webkit-mask-image:linear-gradient(90deg,#000 88%,tran
   main .wrow span{padding:0;background:none!important;border:0!important;text-transform:none;overflow-wrap:break-word}
   main .wrow span:nth-child(2){order:1;font:800 1.15rem/1.25 var(--f-display);color:var(--ink)}
   main .wrow span:nth-child(1){order:2;font:400 .95rem/1.3 var(--f-body);color:var(--muted);margin-top:2px}
-  main .wrow span:nth-child(3){order:3;font:800 .82rem/1.3 var(--f-body);color:#2B7FD4;margin-top:4px;letter-spacing:.02em}
+  main .wrow span:nth-child(3){order:3;font:800 .82rem/1.3 var(--f-body);color:#2389C4;margin-top:4px;letter-spacing:.02em}
   main .wrow span:nth-child(3)::before{content:"🗣️ "}
-  main .wrow:active,main .wrow.on{border-left-color:#2B7FD4}
+  main .wrow:active,main .wrow.on{border-left-color:#2389C4}
   main .wrow:active span,main .wrow.on span{filter:none}
 }
 
 .mtools{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 12px}
 .mtools .btn{flex:1 1 140px}
-.mtools .btn[aria-pressed="true"]{background:var(--mustard);color:var(--mustard-ink);border-color:var(--mustard)}
+.mtools .btn[aria-pressed="true"]{background:var(--mustard);background-image:linear-gradient(135deg,#FFDB6E 0%,#F6BC3C 55%,#EC9F1E 100%);color:var(--mustard-ink);border-color:var(--mustard)}
 .madd{background:var(--paper);border:1.5px solid var(--line);border-radius:16px;padding:14px;margin:0 0 14px;display:grid;gap:10px}
 .madd[hidden]{display:none}
 .madd h3{margin:0;font:800 1.05rem var(--f-display)}
@@ -378,16 +378,16 @@ nav[role=tablist],.subnav{-webkit-mask-image:linear-gradient(90deg,#000 88%,tran
 .mferr{margin:0;color:#C2352B;font-weight:700;min-height:1em}
 .mbtns2{display:flex;gap:8px;flex-wrap:wrap}
 .mus .mrm{border:1.5px solid #C2352B;color:#C2352B;background:none;border-radius:10px;padding:6px 10px;font:700 .85rem var(--f-body);cursor:pointer}
-.mus .mine{background:#2B7FD4;color:#fff;font:800 .7rem var(--f-body);padding:2px 7px;border-radius:7px;margin-left:4px}
+.mus .mine{background:#2389C4;color:#fff;font:800 .7rem var(--f-body);padding:2px 7px;border-radius:7px;margin-left:4px}
 .mhid{margin-top:14px;background:var(--paper);border:1.5px dashed var(--line);border-radius:14px;padding:4px 12px}
 .mhid summary{cursor:pointer;font-weight:800;padding:8px 0}
 .mhrow{display:flex;align-items:center;gap:8px;justify-content:space-between;border-top:1px solid var(--line);padding:8px 0}
 .mhrow span{min-width:0}
-.mhrow .bk{border:0;background:var(--navy);color:#fff;border-radius:10px;padding:6px 10px;font:700 .85rem var(--f-body);cursor:pointer;white-space:nowrap}
+.mhrow .bk{border:0;background:var(--navy);background-image:linear-gradient(135deg,#0B3350 0%,#134B70 48%,#1E6E9C 100%);color:#fff;border-radius:10px;padding:6px 10px;font:700 .85rem var(--f-body);cursor:pointer;white-space:nowrap}
 .mhrow .del{border:0;background:none;color:#C2352B;font:700 .85rem var(--f-body);cursor:pointer;white-space:nowrap}
 .mlinks{display:flex;flex-direction:column;gap:6px}
 .mlb{border:1.5px solid var(--navy);background:none;color:var(--navy);border-radius:10px;padding:6px 10px;font:700 .88rem var(--f-body);cursor:pointer;text-align:left}
-.mlb[aria-expanded="true"]{background:var(--navy);color:#fff}
+.mlb[aria-expanded="true"]{background:var(--navy);background-image:linear-gradient(135deg,#0B3350 0%,#134B70 48%,#1E6E9C 100%);color:#fff}
 .mlyr{margin-top:10px;border-top:1px dashed var(--line);padding-top:10px;display:grid;gap:6px}
 .mlyr label{display:grid;gap:4px;font:700 .88rem var(--f-body);color:var(--muted)}
 .mlta{border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;padding:10px;font:500 1rem/1.4 var(--f-body);width:100%;box-sizing:border-box;resize:vertical}
@@ -396,45 +396,45 @@ nav[role=tablist],.subnav{-webkit-mask-image:linear-gradient(90deg,#000 88%,tran
 .mll span{font:700 1rem/1.3 var(--f-body)}.mll small{color:var(--muted);font-size:.88rem;margin-top:2px}
 
 img.emo{height:1.2em;width:1.2em;object-fit:contain;vertical-align:-0.24em;display:inline-block;pointer-events:none;-webkit-user-drag:none}
-.zpic img.emo,.zo img.emo,.zmatch .em img.emo{height:1em;width:1em;vertical-align:middle;filter:drop-shadow(0 6px 10px rgba(22,48,92,.18))}
+.zpic img.emo,.zo img.emo,.zmatch .em img.emo{height:1em;width:1em;vertical-align:middle;filter:drop-shadow(0 6px 10px rgba(19,75,112,.18))}
 .htile .ti img.emo,.acard .ae img.emo,.zc img.emo,.dcard .de img.emo{filter:drop-shadow(0 3px 6px rgba(0,0,0,.18))}
 
 .abch{font:800 1.12rem/1.2 var(--f-display);margin:18px 0 6px}
 .abcx{margin:0 0 10px;color:var(--muted);font-size:.93rem}
 .abcg{display:grid;grid-template-columns:repeat(auto-fill,minmax(66px,1fr));gap:8px;margin:0 0 10px}
-.abcl{border:1.5px solid var(--line);background:var(--paper);color:var(--ink);border-radius:14px;padding:8px 2px 7px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;box-shadow:0 2px 0 rgba(22,48,92,.10);min-height:64px}
+.abcl{border:1.5px solid var(--line);background:var(--paper);color:var(--ink);border-radius:14px;padding:8px 2px 7px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;box-shadow:0 2px 0 rgba(19,75,112,.10);min-height:64px}
 .abcl b{font:800 1.75rem/1 var(--f-display)}
-.abcl small{font:800 .76rem/1.1 var(--f-body);color:#2C5DA8;text-align:center}
+.abcl small{font:800 .76rem/1.1 var(--f-body);color:#1F6FA3;text-align:center}
 .abcl.vg{background:rgba(242,194,48,.22);border-color:rgba(242,194,48,.75)}
-.abcl.on{background:#16305C;border-color:#16305C;color:#fff}.abcl.on small{color:#F2C230}
+.abcl.on{background:#134B70;background-image:linear-gradient(135deg,#0B3350 0%,#134B70 48%,#1E6E9C 100%);border-color:#134B70;color:#fff}.abcl.on small{color:#F2C230}
 .abcleg{font-size:.84rem;color:var(--muted);margin:0 0 6px}
 .abcleg i{display:inline-block;width:12px;height:12px;border-radius:3px;background:rgba(242,194,48,.6);vertical-align:-1px;margin-right:4px}
 .abcrow{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 6px}
 .abcrow .btn{flex:1 1 150px}
 .abcas{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:0 0 6px}
 .abcas button{border:1.5px solid var(--line);background:var(--paper);color:var(--ink);border-radius:12px;padding:8px 10px;text-align:left;font:600 .92rem var(--f-body);cursor:pointer}
-.abcas b{font:800 1rem var(--f-display);color:#16305C}
+.abcas b{font:800 1rem var(--f-display);color:#134B70}
 .abcpr{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 2px}
-.abcpr button{border:0;background:#16305C;color:#fff;border-radius:12px;padding:7px 12px;font:800 1rem var(--f-display);cursor:pointer;display:flex;gap:6px;align-items:baseline}
+.abcpr button{border:0;background:#134B70;background-image:linear-gradient(135deg,#0B3350 0%,#134B70 48%,#1E6E9C 100%);color:#fff;border-radius:12px;padding:7px 12px;font:800 1rem var(--f-display);cursor:pointer;display:flex;gap:6px;align-items:baseline}
 .abcpr button small{font:700 .78rem var(--f-body);color:#F2C230}
 .abcsp{display:flex;gap:8px;margin:4px 0 8px}
 .abcsp input{flex:1;min-width:0;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:12px;padding:10px;font:600 1rem var(--f-body)}
 .abcout{display:flex;flex-wrap:wrap;gap:6px;min-height:8px}
 .abcout span{display:flex;flex-direction:column;align-items:center;background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:5px 8px;min-width:40px}
-.abcout b{font:800 1.2rem var(--f-display)}.abcout small{font:700 .72rem var(--f-body);color:#2C5DA8}
+.abcout b{font:800 1.2rem var(--f-display)}.abcout small{font:700 .72rem var(--f-body);color:#1F6FA3}
 .abcout .sp{border:0;background:none;min-width:12px}
 .abcq{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:10px 0}
 .abcq button{border:1.5px solid var(--line);background:var(--paper);color:var(--ink);border-radius:14px;padding:14px 0;font:800 1.6rem var(--f-display);cursor:pointer}
 .abcq button.ok{background:#1E8E4A;border-color:#1E8E4A;color:#fff}
 .abcq button.no{background:#C2352B;border-color:#C2352B;color:#fff}
 
-.rtop{background:linear-gradient(150deg,#1F3F75,#16305C 60%,#0E2142);color:#fff;border-radius:20px;padding:16px;margin:0 0 18px;box-shadow:0 10px 26px rgba(22,48,92,.22)}
+.rtop{background:linear-gradient(135deg,#0B3350 0%,#134B70 48%,#1E6E9C 100%);color:#fff;border-radius:20px;padding:16px;margin:0 0 18px;box-shadow:0 10px 26px rgba(19,75,112,.22)}
 .rtop .rk{font:700 .85rem var(--f-body);color:#F2C230;margin:0 0 2px}
 .rtop .rt{font:800 1.5rem/1.15 var(--f-display);margin:0 0 10px}
 .rbar{height:10px;border-radius:99px;background:rgba(255,255,255,.18);overflow:hidden}
-.rbar i{display:block;height:100%;background:#F2C230;border-radius:99px;transition:width .4s}
+.rbar i{display:block;height:100%;background:#F2C230;background-image:linear-gradient(135deg,#FFDB6E 0%,#F6BC3C 55%,#EC9F1E 100%);border-radius:99px;transition:width .4s}
 .rtop .rpct{display:flex;justify-content:space-between;font:700 .82rem var(--f-body);opacity:.9;margin:6px 0 14px}
-.rgo{display:flex;align-items:center;gap:12px;width:100%;border:0;background:#F2C230;color:#2A2100;border-radius:16px;padding:12px 14px;text-align:left;cursor:pointer;box-shadow:0 4px 0 #B08A00}
+.rgo{display:flex;align-items:center;gap:12px;width:100%;border:0;background:#F2C230;background-image:linear-gradient(135deg,#FFDB6E 0%,#F6BC3C 55%,#EC9F1E 100%);color:#2A2100;border-radius:16px;padding:12px 14px;text-align:left;cursor:pointer;box-shadow:0 4px 0 #B08A00}
 .rgo:active{transform:translateY(2px);box-shadow:0 2px 0 #B08A00}
 .rgo .ri{font-size:2rem;line-height:1}
 .rgo b{display:block;font:800 1.05rem/1.2 var(--f-display)}.rgo small{display:block;font:600 .85rem/1.25 var(--f-body);opacity:.85}
@@ -442,16 +442,16 @@ img.emo{height:1.2em;width:1.2em;object-fit:contain;vertical-align:-0.24em;displ
 .rpath{list-style:none;margin:0;padding:0 0 0 22px;position:relative}
 .rpath:before{content:"";position:absolute;left:9px;top:8px;bottom:8px;width:4px;border-radius:4px;background:var(--line)}
 .rst{position:relative;margin:0 0 14px}
-.rst:before{content:"";position:absolute;left:-19px;top:16px;width:16px;height:16px;border-radius:50%;background:var(--paper);border:4px solid var(--lc,#16305C);box-sizing:border-box}
-.rst.full:before{background:var(--lc,#16305C)}
+.rst:before{content:"";position:absolute;left:-19px;top:16px;width:16px;height:16px;border-radius:50%;background:var(--paper);border:4px solid var(--lc,#134B70);box-sizing:border-box}
+.rst.full:before{background:var(--lc,#134B70)}
 .rst.here:before{box-shadow:0 0 0 5px rgba(242,194,48,.55)}
 .rcard{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;overflow:hidden}
-.rst.here .rcard{border-color:var(--lc);box-shadow:0 6px 18px rgba(22,48,92,.10)}
+.rst.here .rcard{border-color:var(--lc);box-shadow:0 6px 18px rgba(19,75,112,.10)}
 .rhead{display:flex;align-items:center;gap:10px;width:100%;border:0;background:none;color:var(--ink);padding:12px 14px;text-align:left;cursor:pointer}
 .rlv{flex:0 0 auto;min-width:44px;height:44px;border-radius:12px;background:var(--lc);color:#fff;display:flex;align-items:center;justify-content:center;font:800 1.05rem var(--f-display)}
 .rhead b{display:block;font:800 1.05rem/1.2 var(--f-display)}.rhead small{display:block;color:var(--muted);font-size:.84rem;line-height:1.3}
 .rhead .rp{margin-left:auto;font:800 .9rem var(--f-body);color:var(--lc);white-space:nowrap}
-.rhere{display:inline-block;background:#F2C230;color:#2A2100;border-radius:99px;padding:1px 8px;font:800 .7rem var(--f-body);margin-left:6px;vertical-align:2px}
+.rhere{display:inline-block;background:#F2C230;background-image:linear-gradient(135deg,#FFDB6E 0%,#F6BC3C 55%,#EC9F1E 100%);color:#2A2100;border-radius:99px;padding:1px 8px;font:800 .7rem var(--f-body);margin-left:6px;vertical-align:2px}
 .rbody{padding:0 14px 10px}.rbody[hidden]{display:none}
 .rbody .rbar{background:var(--bg);height:8px;margin:0 0 8px}.rbody .rbar i{background:var(--lc)}
 .ract{display:flex;align-items:center;gap:10px;width:100%;border:0;border-top:1px dashed var(--line);background:none;color:var(--ink);padding:10px 0;text-align:left;cursor:pointer}
@@ -461,19 +461,19 @@ img.emo{height:1.2em;width:1.2em;object-fit:contain;vertical-align:-0.24em;displ
 .ract .ac.ok{color:#1E8E4A}
 .rskip{border:0;background:none;color:var(--muted);font:700 .82rem var(--f-body);text-decoration:underline;cursor:pointer;padding:6px 0 2px}
 
-.scn{position:relative;border-radius:18px;overflow:hidden;line-height:0;margin:12px 0 16px;box-shadow:0 8px 22px rgba(22,48,92,.14);background:#E9EEF5}
+.scn{position:relative;border-radius:18px;overflow:hidden;line-height:0;margin:12px 0 16px;box-shadow:0 8px 22px rgba(19,75,112,.14);background:#E9EEF5}
 .scn svg{display:block;width:100%;height:auto;aspect-ratio:400/230}
 .ascn{margin:0 0 10px;border-radius:14px;flex:0 0 auto}
 .ascn svg{aspect-ratio:400/172}
-.sbub{position:absolute;bottom:10px;max-width:60%;background:#fff;color:#16305C;border-radius:16px;padding:8px 12px 9px;line-height:1.25;font:800 1rem/1.25 var(--f-display);box-shadow:0 6px 16px rgba(0,0,0,.22);text-align:left}
+.sbub{position:absolute;bottom:10px;max-width:60%;background:#fff;color:#134B70;border-radius:16px;padding:8px 12px 9px;line-height:1.25;font:800 1rem/1.25 var(--f-display);box-shadow:0 6px 16px rgba(0,0,0,.22);text-align:left}
 .sbub[hidden]{display:none}
-.sbub small{display:block;font:800 .7rem var(--f-body);color:#2C5DA8;margin:0 0 2px}
+.sbub small{display:block;font:800 .7rem var(--f-body);color:#1F6FA3;margin:0 0 2px}
 .sbub small[hidden]{display:none}
 .sbub:after{content:"";position:absolute;top:-10px;border:10px solid transparent;border-bottom-color:#fff;border-top:0}
 .sbub.L{left:4%}.sbub.L:after{left:28px}
 .sbub.R{right:4%}.sbub.R:after{right:28px}
 .sbub.C{left:50%;transform:translateX(-50%)}.sbub.C:after{left:50%;margin-left:-10px}
-.sbub.N{left:8px;right:8px;max-width:none;background:rgba(14,33,66,.86);color:#fff;font:600 .92rem/1.3 var(--f-body);text-align:center;border-radius:12px}
+.sbub.N{left:8px;right:8px;max-width:none;background:rgba(11,51,80,.86);color:#fff;font:600 .92rem/1.3 var(--f-body);text-align:center;border-radius:12px}
 .sbub.N:after{display:none}
 .ascn .sbub{font-size:.92rem;bottom:8px}
 @media (prefers-reduced-motion:no-preference){.sbub.pop{animation:sbpop .28s cubic-bezier(.2,1.4,.4,1)}.sbub.C.pop{animation:sbpopc .28s cubic-bezier(.2,1.4,.4,1)}}
@@ -483,16 +483,17 @@ img.emo{height:1.2em;width:1.2em;object-fit:contain;vertical-align:-0.24em;displ
 
 #inicio #hGrid,#inicio #hMore,#inicio #hLv,#inicio #hCont{display:none!important}
 .htrail{margin:14px 0 6px}
-.htrail .rtop{background:#F2C230;color:#2A2100;box-shadow:none;margin:0 0 16px}
-.htrail .rtop .rk{color:#6B5200}.htrail .rbar{background:rgba(42,33,0,.15)}.htrail .rtop .rbar i{background:#16305C}
-.htrail .rgo{background:#16305C;color:#fff;box-shadow:0 4px 0 #0A1A36}.htrail .rgo:active{box-shadow:0 2px 0 #0A1A36}
+.htrail .rtop{background:#F2C230;background-image:linear-gradient(135deg,#FFDB6E 0%,#F6BC3C 55%,#EC9F1E 100%);color:#2A2100;box-shadow:none;margin:0 0 16px}
+.htrail .rtop .rk{color:#6B5200}.htrail .rbar{background:rgba(42,33,0,.15)}.htrail .rtop .rbar i{background:#134B70;background-image:linear-gradient(135deg,#0B3350 0%,#134B70 48%,#1E6E9C 100%)}
+.htrail .rgo{background:#134B70;background-image:linear-gradient(135deg,#0B3350 0%,#134B70 48%,#1E6E9C 100%);color:#fff;box-shadow:0 4px 0 #0B2A40}.htrail .rgo:active{box-shadow:0 2px 0 #0B2A40}
 .htrail .rpath:before{background:rgba(255,255,255,.25)}
-.htrail .rst:before{background:#16305C;border-color:#F2C230}.htrail .rst.full:before{background:#F2C230}
+.htrail .rst:before{background:#134B70;background-image:linear-gradient(135deg,#0B3350 0%,#134B70 48%,#1E6E9C 100%);border-color:#F2C230}.htrail .rst.full:before{background:#F2C230;background-image:linear-gradient(135deg,#FFDB6E 0%,#F6BC3C 55%,#EC9F1E 100%)}
 .htrail .rcard{color:var(--ink)}
 .htt{color:#fff;font:800 1.05rem var(--f-display);margin:18px 0 8px}
 .htools .htile{min-height:0}
 .ract .ac.info{color:var(--muted);font-weight:700}
 .rsub{font:800 .74rem var(--f-body);color:var(--muted);letter-spacing:.02em;margin:10px 0 0;padding-top:8px;border-top:1px solid var(--line)}
+:root{--gnavy:linear-gradient(135deg,#0B3350 0%,#134B70 48%,#1E6E9C 100%);--gmust:linear-gradient(135deg,#FFDB6E 0%,#F6BC3C 55%,#EC9F1E 100%)}
 </style>
 <title>Inglês Prático</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -501,38 +502,38 @@ img.emo{height:1.2em;width:1.2em;object-fit:contain;vertical-align:-0.24em;displ
 <style>
 /* Layout: caderno de estudo no celular. Cabeçalho azul-marinho fixo, abas grandes, cartões tipo caderno desenhado à mão para os mapas. */
 :root{
-  --bg:#F3F5F8; --paper:#FFFFFF; --ink:#152238; --muted:#5A6577; --line:#D9DEE6;
-  --navy:#16305C; --navy-ink:#FFFFFF; --mustard:#F2C230; --mustard-ink:#2A2100; --red:#C2352B;
-  --m1:#2E7D4F; --m2:#2C5DA8; --m3:#6B3FA0; --m4:#C2352B; --m5:#C9681C; --m6:#1F7A7A;
-  --soft:#EEF2F8;
+  --bg:#F3F6F7; --paper:#FFFFFF; --ink:#13232E; --muted:#56656F; --line:#D5DEE3;
+  --navy:#134B70; --navy-ink:#FFFFFF; --mustard:#F6BC3C; --mustard-ink:#2A2100; --red:#C2352B;
+  --m1:#2E7D4F; --m2:#1F6FA3; --m3:#6B3FA0; --m4:#C2352B; --m5:#C9681C; --m6:#1F7A7A;
+  --soft:#E8F0F4;
   --f-display:"Bricolage Grotesque",system-ui,sans-serif;
   --f-body:"Source Sans 3",system-ui,-apple-system,sans-serif;
   --f-hand:"Patrick Hand","Comic Sans MS",cursive;
   --f-mono:"IBM Plex Mono",ui-monospace,monospace;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0E1420; --paper:#172133; --ink:#E8EDF5; --muted:#9AA6B8; --line:#2A3650;
-  --navy:#0A1A36; --navy-ink:#FFFFFF; --mustard:#F2C230; --mustard-ink:#2A2100; --red:#F07368;
+  --bg:#0B141A; --paper:#132029; --ink:#E6EEF2; --muted:#98AAB6; --line:#253845;
+  --navy:#0B2A40; --navy-ink:#FFFFFF; --mustard:#F6BC3C; --mustard-ink:#2A2100; --red:#F07368;
   --m1:#5FC48A; --m2:#7AA7F0; --m3:#B48AE8; --m4:#F07368; --m5:#F0A15E; --m6:#5CC4C4;
-  --soft:#1D2940; color-scheme:dark}}
+  --soft:#192A35; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#0E1420; --paper:#172133; --ink:#E8EDF5; --muted:#9AA6B8; --line:#2A3650;
-  --navy:#0A1A36; --navy-ink:#FFFFFF; --mustard:#F2C230; --mustard-ink:#2A2100; --red:#F07368;
+  --bg:#0B141A; --paper:#132029; --ink:#E6EEF2; --muted:#98AAB6; --line:#253845;
+  --navy:#0B2A40; --navy-ink:#FFFFFF; --mustard:#F6BC3C; --mustard-ink:#2A2100; --red:#F07368;
   --m1:#5FC48A; --m2:#7AA7F0; --m3:#B48AE8; --m4:#F07368; --m5:#F0A15E; --m6:#5CC4C4;
-  --soft:#1D2940; color-scheme:dark}
+  --soft:#192A35; color-scheme:dark}
 html,body{background:var(--bg)}
 body{color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.5}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--navy)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--navy);background-image:linear-gradient(135deg,#0B3350 0%,#134B70 48%,#1E6E9C 100%)}
 .wrap{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--navy);color:var(--navy-ink)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--navy);background-image:linear-gradient(135deg,#0B3350 0%,#134B70 48%,#1E6E9C 100%);color:var(--navy-ink)}
 header .wrap{padding-block:14px 0}
 .brand{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
 h1{font-family:var(--f-display);font-weight:800;font-size:1.55rem;margin:0;letter-spacing:-.01em}
-h1 span{background:var(--mustard);color:var(--mustard-ink);padding:0 .25em;border-radius:4px}
+h1 span{background:var(--mustard);background-image:linear-gradient(135deg,#FFDB6E 0%,#F6BC3C 55%,#EC9F1E 100%);color:var(--mustard-ink);padding:0 .25em;border-radius:4px}
 .day{font-family:var(--f-mono);font-size:.8rem;opacity:.9;font-variant-numeric:tabular-nums}
 .ver{display:inline-block;margin-top:8px;font:700 .78rem var(--f-mono);background:rgba(255,255,255,.14);color:#fff;padding:3px 10px;border-radius:999px;font-variant-numeric:tabular-nums}
 .bar{height:6px;background:rgba(255,255,255,.18);border-radius:3px;margin:10px 0 0;overflow:hidden}
-.bar i{display:block;height:100%;background:var(--mustard)}
+.bar i{display:block;height:100%;background:var(--mustard);background-image:linear-gradient(135deg,#FFDB6E 0%,#F6BC3C 55%,#EC9F1E 100%)}
 nav{display:flex;gap:4px;overflow-x:auto;margin-top:10px;scrollbar-width:none}
 nav button{flex:1 0 auto;background:none;border:0;color:var(--navy-ink);opacity:.7;font:600 .95rem var(--f-body);padding:10px 12px 12px;border-bottom:3px solid transparent;cursor:pointer}
 nav button[aria-selected="true"]{opacity:1;border-bottom-color:var(--mustard)}
@@ -547,7 +548,7 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
 /* Aula */
 .lesson-pick{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:14px}
 .lesson-pick button{flex:0 0 auto;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:10px;padding:8px 12px;font:600 .9rem var(--f-body);cursor:pointer}
-.lesson-pick button[aria-current="true"]{background:var(--mustard);color:var(--mustard-ink);border-color:var(--mustard)}
+.lesson-pick button[aria-current="true"]{background:var(--mustard);background-image:linear-gradient(135deg,#FFDB6E 0%,#F6BC3C 55%,#EC9F1E 100%);color:var(--mustard-ink);border-color:var(--mustard)}
 .lesson-pick button.done::after{content:" ✓"}
 .phrase{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 14px 14px 16px;display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center}
 .phrase+.phrase{margin-top:10px}
@@ -555,7 +556,7 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
 .phrase .pt{color:var(--muted);font-size:.98rem}
 .phrase .pr{font-family:var(--f-mono);font-weight:600;font-size:.9rem;color:var(--m2);letter-spacing:.02em}
 .phrase .play{grid-row:1/4;grid-column:2}
-.play{width:52px;height:52px;border-radius:50%;border:0;background:var(--navy);color:#fff;cursor:pointer;display:grid;place-items:center;flex:0 0 auto}
+.play{width:52px;height:52px;border-radius:50%;border:0;background:var(--navy);background-image:linear-gradient(135deg,#0B3350 0%,#134B70 48%,#1E6E9C 100%);color:#fff;cursor:pointer;display:grid;place-items:center;flex:0 0 auto}
 .play svg{width:22px;height:22px;fill:currentColor}
 .play.sm{width:38px;height:38px}.play.sm svg{width:16px;height:16px}
 .steps{margin:20px 0 0;padding:16px;background:var(--soft);border-radius:12px}
@@ -563,7 +564,7 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
 .steps ol{margin:0;padding-left:1.2em}
 .steps li+li{margin-top:6px}
 .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
-.btn{border:0;border-radius:10px;padding:12px 16px;font:700 1rem var(--f-body);cursor:pointer;background:var(--mustard);color:var(--mustard-ink)}
+.btn{border:0;border-radius:10px;padding:12px 16px;font:700 1rem var(--f-body);cursor:pointer;background:var(--mustard);background-image:linear-gradient(135deg,#FFDB6E 0%,#F6BC3C 55%,#EC9F1E 100%);color:var(--mustard-ink)}
 .btn.ghost{background:var(--paper);color:var(--ink);border:1px solid var(--line)}
 .tip{margin-top:14px;font-size:.92rem;color:var(--muted)}
 /* Mapas */
@@ -584,7 +585,7 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
 /* Palavras */
 .wtools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
 .wtools button{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:7px 12px;font:600 .9rem var(--f-body);cursor:pointer}
-.wtools button[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.wtools button[aria-pressed="true"]{background:var(--navy);background-image:linear-gradient(135deg,#0B3350 0%,#134B70 48%,#1E6E9C 100%);color:#fff;border-color:var(--navy)}
 .card{background:var(--paper);border:1px solid var(--line);border-radius:18px;min-height:250px;display:grid;place-items:center;text-align:center;padding:24px 16px;cursor:pointer;user-select:none}
 .card .big{font-family:var(--f-display);font-weight:800;font-size:2.4rem;line-height:1.1;word-break:break-word}
 .card .back{margin-top:12px}
@@ -597,22 +598,22 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
 .wbtns .rev{background:var(--paper);color:var(--ink);border:1px solid var(--line)}
 .wmode{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:12px}
 .wmode button{border:0;background:var(--paper);color:var(--ink);padding:11px;font:700 .98rem var(--f-body);cursor:pointer}
-.wmode button[aria-pressed="true"]{background:var(--navy);color:#fff}
+.wmode button[aria-pressed="true"]{background:var(--navy);background-image:linear-gradient(135deg,#0B3350 0%,#134B70 48%,#1E6E9C 100%);color:#fff}
 #wsearch{width:100%;box-sizing:border-box;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:10px;padding:11px 12px;font:600 1rem var(--f-body);margin-bottom:12px}
 .wl-head,.wrow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
 .wl-head span{font:800 .82rem var(--f-display);text-transform:uppercase;letter-spacing:.04em;padding:8px 8px;border-radius:8px 8px 0 0;text-align:left}
 .wl-head span:nth-child(1){background:var(--paper);color:var(--ink);border:1px solid var(--line);border-bottom:0}
-.wl-head span:nth-child(2){background:var(--mustard);color:var(--mustard-ink)}
-.wl-head span:nth-child(3){background:#2B7FD4;color:#fff}
+.wl-head span:nth-child(2){background:var(--mustard);background-image:linear-gradient(135deg,#FFDB6E 0%,#F6BC3C 55%,#EC9F1E 100%);color:var(--mustard-ink)}
+.wl-head span:nth-child(3){background:#2389C4;color:#fff}
 .wrow{border:0;background:none;padding:0;width:100%;cursor:pointer;text-align:left;font:inherit}
 .wrow span{font:700 1rem/1.2 var(--f-display);text-transform:uppercase;padding:7px 8px;min-width:0;overflow-wrap:anywhere}
 .wrow span:nth-child(1){background:var(--paper);color:var(--ink);border-left:1px solid var(--line);border-right:1px solid var(--line)}
-.wrow span:nth-child(2){background:var(--mustard);color:var(--mustard-ink)}
-.wrow span:nth-child(3){background:#2B7FD4;color:#fff}
+.wrow span:nth-child(2){background:var(--mustard);background-image:linear-gradient(135deg,#FFDB6E 0%,#F6BC3C 55%,#EC9F1E 100%);color:var(--mustard-ink)}
+.wrow span:nth-child(3){background:#2389C4;color:#fff}
 .wrow:active span,.wrow.on span{filter:brightness(.9)}
 .wcat{font:800 .8rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:14px 2px 6px}
 .ngroup{margin-top:22px}.ngroup:first-child{margin-top:0}.ngroup h3{font-family:var(--f-display);font-weight:800;font-size:1.12rem;margin:0 0 2px}.ngroup p{margin:0 0 10px;color:var(--muted);font-size:.95rem}
-.lvh{font-family:var(--f-display);font-weight:800;font-size:1.15rem;margin:26px 0 0;padding:8px 12px;background:var(--navy);color:#fff;border-radius:10px}.lvh:first-child{margin-top:4px}
+.lvh{font-family:var(--f-display);font-weight:800;font-size:1.15rem;margin:26px 0 0;padding:8px 12px;background:var(--navy);background-image:linear-gradient(135deg,#0B3350 0%,#134B70 48%,#1E6E9C 100%);color:#fff;border-radius:10px}.lvh:first-child{margin-top:4px}
 .mlv{margin-left:auto;font:700 .75rem var(--f-mono);background:var(--c);color:var(--paper);padding:2px 8px;border-radius:999px}
 .wempty{padding:16px;color:var(--muted)}
 .sech{font-family:var(--f-display);font-weight:800;font-size:1.05rem;margin:18px 0 10px}.ag{margin:8px 0 0;font:700 .95rem var(--f-body);color:var(--m2)}
@@ -620,7 +621,7 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
 .unit{background:var(--paper);border:1px solid var(--line);border-radius:12px;margin-bottom:10px;overflow:hidden}
 .unit>summary{list-style:none;display:grid;grid-template-columns:44px 1fr auto;gap:10px;align-items:center;padding:12px 14px;cursor:pointer}
 .unit>summary::-webkit-details-marker{display:none}
-.unit .num{display:grid;place-items:center;width:40px;height:40px;font-size:.9rem!important;border-radius:10px;background:var(--navy);color:#fff;font:800 1rem var(--f-display)}
+.unit .num{display:grid;place-items:center;width:40px;height:40px;font-size:.9rem!important;border-radius:10px;background:var(--navy);background-image:linear-gradient(135deg,#0B3350 0%,#134B70 48%,#1E6E9C 100%);color:#fff;font:800 1rem var(--f-display)}
 .unit.ok .num{background:var(--m1)}
 .unit .ut{min-width:0}.unit .ut b{display:block;font-size:1.02rem}.unit .ut span{color:var(--muted);font-size:.9rem}
 .unit .chev{color:var(--muted);font-size:1.2rem}
@@ -674,7 +675,7 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
 .exr .t{min-width:0}.exr .t b{display:block}.exr .t span{color:var(--muted);font-size:.92rem}
 .err{display:grid;gap:4px;padding:6px 0;border-top:1px dashed var(--line);font-size:.95rem}
 .err .no{color:var(--red);font-weight:700}.err .ok{color:var(--m1);font-weight:700}
-.nxt{margin-top:8px;border:0;border-radius:999px;background:var(--navy);color:#fff;font:700 .85rem var(--f-body);padding:7px 12px;cursor:pointer}
+.nxt{margin-top:8px;border:0;border-radius:999px;background:var(--navy);background-image:linear-gradient(135deg,#0B3350 0%,#134B70 48%,#1E6E9C 100%);color:#fff;font:700 .85rem var(--f-body);padding:7px 12px;cursor:pointer}
 .mus{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px;display:grid;gap:6px}
 .mus .mh{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}.mus .mh b{font:800 1.08rem var(--f-display)}.mus .mh span{color:var(--muted)}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
@@ -706,7 +707,7 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
 .week .t{min-width:0}
 .week .t b{display:block}
 .week .t span{color:var(--muted);font-size:.9rem}
-.tgo{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.tgb{border:0;border-radius:999px;background:var(--navy);color:#fff;font:700 .85rem var(--f-body);padding:7px 12px;cursor:pointer;text-align:left}
+.tgo{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.tgb{border:0;border-radius:999px;background:var(--navy);background-image:linear-gradient(135deg,#0B3350 0%,#134B70 48%,#1E6E9C 100%);color:#fff;font:700 .85rem var(--f-body);padding:7px 12px;cursor:pointer;text-align:left}
 .wkc{display:grid;place-items:center;padding:6px;cursor:pointer}
 .week input{width:24px;height:24px;accent-color:var(--m1)}
 .week.now{border-color:var(--mustard);box-shadow:0 0 0 2px var(--mustard)}
@@ -723,7 +724,7 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
       <h1>Inglês <span>Prático</span></h1>
       <div class="day" id="day"></div>
       <div class="hdr-right"><span class="hchip" id="hChip" aria-label="Sequência e pontos"></span><button type="button" class="hset" id="hSet" aria-label="Abrir ajustes" aria-expanded="false" aria-controls="setPanel">⚙️</button></div>
-      <button id="installBtn" hidden style="border:0;border-radius:999px;background:var(--mustard);color:var(--mustard-ink);font:700 .9rem var(--f-body);padding:7px 14px;cursor:pointer">Instalar app</button>
+      <button id="installBtn" hidden style="border:0;border-radius:999px;background:var(--mustard);background-image:linear-gradient(135deg,#FFDB6E 0%,#F6BC3C 55%,#EC9F1E 100%);color:var(--mustard-ink);font:700 .9rem var(--f-body);padding:7px 14px;cursor:pointer">Instalar app</button>
     </div>
     <div class="ver" id="ver"></div>
     <div class="bar" aria-hidden="true"><i id="barfill"></i></div>
@@ -1299,7 +1300,7 @@ function pos(k){const box='<rect x="13" y="9" width="16" height="16" rx="2" fill
  const m={in:box+ball(21,18),on:box+ball(21,4),under:box+ball(21,29),next:box+ball(36,20),between:'<rect x="2" y="11" width="12" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><rect x="26" y="11" width="12" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>'+ball(20,19),behind:ball(27,13)+'<rect x="13" y="9" width="16" height="16" rx="2" fill="var(--paper)" stroke="currentColor" stroke-width="2"/>'};
  return `<svg class="ic" viewBox="0 0 40 34" aria-hidden="true">${m[k]}</svg>`}
 const M=[
-{c:'--m4',lv:'A1',t:'Cores',w:'Para roupas, carros e frutas.',col:true,i:[['red','vermelho','#D33B2F'],['blue','azul','#2C5DA8'],['green','verde','#2E7D4F'],['yellow','amarelo','#F2C230'],['black','preto','#111111'],['white','branco','#FFFFFF']]},
+{c:'--m4',lv:'A1',t:'Cores',w:'Para roupas, carros e frutas.',col:true,i:[['red','vermelho','#D33B2F'],['blue','azul','#1F6FA3'],['green','verde','#2E7D4F'],['yellow','amarelo','#F2C230'],['black','preto','#111111'],['white','branco','#FFFFFF']]},
 {c:'--m1',lv:'A1',t:'Números',w:'Preços, horários e endereços.',i:[['one, two, three','1, 2, 3'],['four, five, six','4, 5, 6'],['seven, eight, nine, ten','7, 8, 9, 10'],['twenty','20'],['fifty','50'],['a hundred','100']]},
 {c:'--m4',lv:'A1',t:'Família',w:'Para falar de quem mora com você.',i:[['my wife','minha esposa'],['my son','meu filho'],['my daughter','minha filha'],['my mom and dad','minha mãe e meu pai'],['my brother','meu irmão'],['my sister','minha irmã']]},
 {c:'--m6',lv:'A1',t:'Dias da semana',w:'Diga sempre com "on": on Monday.',i:[['Monday','segunda'],['Tuesday','terça'],['Wednesday','quarta'],['Thursday','quinta'],['Friday','sexta'],['Saturday, Sunday','sábado, domingo']]},
@@ -2366,7 +2367,7 @@ const NV=[
 ['Compras',[['Do you have this in a larger size?','Tem este num tamanho maior?','DU IU RRÉV DIS IN A LÁRDJER SÁIZ?'],['Can I try it on?','Posso provar?','KÉN AI TRÁI IT ÓN?'],["It's too expensive.",'Está caro demais.','ITS TÚ IKSPÉNSIV.'],["I'll take it.",'Vou levar.','AIL TÊIK IT.'],['Can I pay in cash?','Posso pagar em dinheiro?','KÉN AI PÊI IN KÉCH?']]],
 ['Na rua',[['How do I get to the station?','Como chego na estação?','RRÁU DU AI GUÉT TU DÂ STÊIXAN?'],['Go straight and turn left.','Siga reto e vire à esquerda.','GÔU STRÊIT ÉND TÂRN LÉFT.'],["It's next to the bank.",'Fica ao lado do banco.','ITS NÉKST TU DÂ BÉNK.'],['Is it far from here?','É longe daqui?','IZ IT FÁR FRÂM RRÍR?'],["It's a five-minute walk.",'São cinco minutos a pé.','ITS A FÁIV MÍNIT UÓK.']]]
 ]},
-{k:'B1',n:'Independente',c:'#2C5DA8',d:'Falar de experiências, dar opinião e resolver problemas sozinho.',chave:['I have worked = Tenho trabalhado / Já trabalhei','Você conta o que já viveu e desde quando.'],l:[
+{k:'B1',n:'Independente',c:'#1F6FA3',d:'Falar de experiências, dar opinião e resolver problemas sozinho.',chave:['I have worked = Tenho trabalhado / Já trabalhei','Você conta o que já viveu e desde quando.'],l:[
 ['Experiências',[["I've been to New York twice.",'Já fui a Nova York duas vezes.','AIV BÍN TU NÚ IÓRK TUÁIS.'],["Have you ever eaten sushi?",'Você já comeu sushi?','RRÉV IU ÉVER ÍTEN SÚXI?'],["I've worked here for ten years.",'Trabalho aqui há dez anos.','AIV UÂRKT RRÍR FOR TÉN ÍARZ.'],["I've never seen snow.",'Nunca vi neve.','AIV NÉVER SÍN SNÔU.'],["I haven't finished yet.",'Ainda não terminei.','AI RRÉVNT FÍNICHT IÉT.']]],
 ['Dar opinião',[['In my opinion, it\'s a good idea.','Na minha opinião, é uma boa ideia.','IN MAI OPÍNIAN, ITS A GUD AIDÍA.'],["I think you're right.",'Acho que você tem razão.','AI THÍNK IÓR RÁIT.'],["I'm not sure about that.",'Não tenho certeza disso.','AIM NÓT XUR ABÁUT DÉT.'],["I agree with you.",'Concordo com você.','AI AGRÍ UÍF IU.'],["I see your point, but...",'Entendo seu ponto, mas...','AI SÍ IÓR PÓINT, BÂT...']]],
 ['Resolver problemas',[["There's a problem with my room.",'Tem um problema no meu quarto.','DÉRZ A PRÓBLEM UÍF MAI RÚM.'],["The air conditioning isn't working.",'O ar-condicionado não está funcionando.','DÂ ÉR CONDÍXANIN ÍZNT UÂRKIN.'],["Could you send someone, please?",'Poderia mandar alguém, por favor?','CÚDJU SÉND SÂMUAN, PLIZ?'],["I'd like to speak to the manager.",'Gostaria de falar com o gerente.','AID LÁIK TU SPÍK TU DÂ MÉNEDJER.'],["Thanks for fixing it so fast.",'Obrigado por resolver tão rápido.','THÉNKS FOR FÍKSIN IT SÔU FÉST.']]],
@@ -2384,7 +2385,7 @@ const NV=[
 ['Reuniões',[["Let's get down to business.",'Vamos direto ao assunto.','LÉTS GUÉT DÁUN TU BÍZNES.'],["Can we circle back to that later?",'Podemos voltar a isso depois?','KÉN UÍ SÂRKOL BÉK TU DÉT LÊIRER?'],["Just to make sure we're on the same page...",'Só para garantir que estamos alinhados...','DJÂST TU MÊIK XUR UÍR ÓN DÂ SÊIM PÊIDJ...'],["The bottom line is, we need more time.",'Resumindo, precisamos de mais tempo.','DÂ BÓROM LÁIN IZ, UÍ NÍD MÓR TÁIM.'],["Let's touch base next week.",'Vamos conversar de novo semana que vem.','LÉTS TÂTCH BÊIS NÉKST UÍK.']]],
 ['Expressões do americano',[["It's a piece of cake.",'É moleza.','ITS A PÍS ÓV KÊIK.'],["I'm on the fence.",'Estou em cima do muro.','AIM ÓN DÂ FÉNS.'],["Let's call it a day.",'Vamos encerrar por hoje.','LÉTS CÓL IT A DÊI.'],["Break a leg!",'Boa sorte! (antes de apresentação)','BRÊIK A LÉG!'],["It's not my cup of tea.",'Não é a minha praia.','ITS NÓT MAI CÂP ÓV TÍ.']]]
 ]},
-{k:'C2',n:'Domínio',c:'#16305C',d:'Falar com precisão, elegância e humor, como um nativo culto.',chave:['Had I known... = Se eu soubesse...','Você escolhe a palavra exata para cada situação.'],l:[
+{k:'C2',n:'Domínio',c:'#134B70',d:'Falar com precisão, elegância e humor, como um nativo culto.',chave:['Had I known... = Se eu soubesse...','Você escolhe a palavra exata para cada situação.'],l:[
 ['Formas elegantes',[["Had I known, I would have come earlier.",'Se eu soubesse, teria vindo mais cedo.','RRÉD AI NÔUN, AI UÚDAV CÂM ÂRLIER.'],["Never have I seen such a mess.",'Nunca vi tamanha bagunça.','NÉVER RRÉV AI SÍN SÂTCH A MÉS.'],["Should you need anything, let me know.",'Caso precise de algo, me avise.','XUD IU NÍD ÉNITHIN, LÉMI NÔU.'],["Not only is it cheap, but it's also good.",'Não só é barato, como também é bom.','NÓT ÔUNLI IZ IT TCHÍP, BÂT ITS ÓUSOU GUD.'],["Little did I know what was coming.",'Mal sabia eu o que estava por vir.','LÍROL DÍD AI NÔU UÓT UÓZ CÂMIN.']]],
 ['Precisão',[["It's not so much the price as the quality.",'Não é tanto o preço, é a qualidade.','ITS NÓT SÔU MÂTCH DÂ PRÁIS ÉZ DÂ KUÓLIRI.'],["That's beside the point.",'Isso não vem ao caso.','DÉTS BISÁID DÂ PÓINT.'],["By and large, it went well.",'De modo geral, foi bem.','BÁI ÉND LÁRDJ, IT UÉNT UÉL.'],["It goes without saying.",'Nem precisa dizer.','IT GÔUZ UIDÁUT SÊIIN.'],["For what it's worth, I think you did great.",'Se serve de algo, acho que você foi ótimo.','FOR UÓT ITS UÂRTH, AI THÍNK IU DÍD GRÊIT.']]],
 ['Debater com classe',[["I take your point, but I'd argue otherwise.",'Entendo seu ponto, mas eu argumentaria o contrário.','AI TÊIK IÓR PÓINT, BÂT AID ÁRGUIU ÂDERUAIZ.'],["Let me play devil's advocate.",'Deixa eu fazer o advogado do diabo.','LÉMI PLÊI DÉVOLZ ÉDVOKET.'],["That's a fair point, I'll give you that.",'É um ponto justo, isso eu admito.','DÉTS A FÉR PÓINT, AIL GUÍV IU DÉT.'],["We'll have to agree to disagree.",'Vamos ter que concordar em discordar.','UÍL RRÉV TU AGRÍ TU DISAGRÍ.'],["Point taken.",'Entendido.','PÓINT TÊIKEN.']]],
@@ -2603,7 +2604,7 @@ const LEIT2=[{"t": "Check-in no hotel", "m": "Conversa · hotel em Orlando", "lv
 S.push(...LEIT2);
 {const OLV={"Morning Coffee": "A1", "The New Neighbor": "A1", "Dinner in Texas": "A1", "Imigração em 5 atos": "A2", "Consulta médica": "A2", "Alice no País das Maravilhas": "A2", "Um Conto de Natal": "B1", "As Aventuras de Tom Sawyer": "A2", "O Jardim Secreto": "A2", "Orgulho e Preconceito": "B1", "O Chamado da Floresta": "B1", "Peter Pan": "A2"};S.forEach(x=>{if(!x.lv)x.lv=OLV[x.t]||"A2"})}
 let stLv=store.get('stLv','Todas');
-function renderStories(){document.querySelectorAll('#stLv button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.l===stLv)));document.getElementById('stories').innerHTML=S.map((s,si)=>`<article class="story" data-lv="${s.lv}"${stLv!=='Todas'&&s.lv!==stLv?' hidden':''}><h3>${s.t}</h3><div class="meta"><span class="slv" style="background:${({A1:'#2E7D4F',A2:'#B08A00',B1:'#2C5DA8'})[s.lv]||'#16305C'}">${s.lv}</span>${s.m}</div>${s.l.map((l,li)=>`<div class="line"><button class="play sm" data-s="${si}" data-l="${li}" aria-label="Ouvir frase">${PLAY}</button><div class="txt"><div class="en">${nm(l[0])}</div><div class="pt">${nm(l[1])}</div></div></div>`).join('')}<div class="cta"><button class="btn ghost" data-all="${si}">Ouvir a história toda</button></div></article>`).join('');
+function renderStories(){document.querySelectorAll('#stLv button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.l===stLv)));document.getElementById('stories').innerHTML=S.map((s,si)=>`<article class="story" data-lv="${s.lv}"${stLv!=='Todas'&&s.lv!==stLv?' hidden':''}><h3>${s.t}</h3><div class="meta"><span class="slv" style="background:${({A1:'#2E7D4F',A2:'#B08A00',B1:'#1F6FA3'})[s.lv]||'#134B70'}">${s.lv}</span>${s.m}</div>${s.l.map((l,li)=>`<div class="line"><button class="play sm" data-s="${si}" data-l="${li}" aria-label="Ouvir frase">${PLAY}</button><div class="txt"><div class="en">${nm(l[0])}</div><div class="pt">${nm(l[1])}</div></div></div>`).join('')}<div class="cta"><button class="btn ghost" data-all="${si}">Ouvir a história toda</button></div></article>`).join('');
 document.querySelectorAll('#stories .play').forEach(b=>b.onclick=()=>say(nm(S[+b.dataset.s].l[+b.dataset.l][0])));
 document.querySelectorAll('#stories [data-all]').forEach(b=>b.onclick=()=>sayQueue(S[+b.dataset.all].l.map(x=>nm(x[0]))));}
 document.getElementById('stLv').innerHTML=['Todas','A1','A2','B1'].map(l=>`<button data-l="${l}">${l==='Todas'?'Todas ('+S.length+')':l+' ('+S.filter(x=>x.lv===l).length+')'}</button>`).join('');
@@ -6666,7 +6667,7 @@ N: Revisão geral
 const MMC={C:'Conceito central',R:'Estrutura / regra',E:'Exemplos com tradução',X:'Erro comum de brasileiros',D:'Dica visual e conexão'};
 const MMS=MMT.split('\n@').map(b=>b.replace(/^@/,'').trim()).filter(Boolean).map(b=>{const ls=b.split('\n');const h=ls[0].split('|');const o={lv:h[0],t:h[1],sub:h[2],k:h[3]==='sit'?'sit':'gram',C:[],P:'',R:[],E:[],X:[],D:'',N:'',I:'🧠'};ls.slice(1).forEach(l=>{const m=l.match(/^([CPREXDNI]): (.*)$/);if(!m)return;const k=m[1],v=m[2];if(k==='C')o.C.push(v);else if(k==='P')o.P=v;else if(k==='D')o.D=v;else if(k==='N')o.N=v;else if(k==='I')o.I=v;else o[k].push(v.split('|'))});return o});
 MMS.sort((a,b)=>['A1','A2','B1','B2','C1','C2'].indexOf(a.lv)-['A1','A2','B1','B2','C1','C2'].indexOf(b.lv)||(a.k===b.k?0:a.k==='sit'?-1:1));
-const LVC={A1:'#2E7D4F',A2:'#B08A00',B1:'#2C5DA8',B2:'#6B3FA0',C1:'#C2352B',C2:'#16305C'};
+const LVC={A1:'#2E7D4F',A2:'#B08A00',B1:'#1F6FA3',B2:'#6B3FA0',C1:'#C2352B',C2:'#134B70'};
 let mmMode=store.get('mmMode','full');
 let mmType=store.get('mmType','all');
 const MMTY=[['all','Todos os temas'],['sit','Situações do dia a dia'],['gram','Gramática e pronúncia']];
@@ -6711,7 +6712,7 @@ function renderMus(){
   document.getElementById('musCount').textContent=vis.length;
   const list=vis.filter(m=>musLv==='Todos'||m.l===musLv);
   const words=w=>(w||'').split(',').map(x=>x.trim()).filter(Boolean);
-  document.getElementById('musList').innerHTML=(list.length?list.map(m=>`<div class="mus" data-k="${m.k}"><div class="mh"><span class="mlvb" style="background:${LVC[m.l]||'#16305C'};color:#fff;font:800 .8rem var(--f-mono);padding:3px 7px;border-radius:7px">${mEsc(m.l)}</span><b>${mEsc(m.t)}</b><span>${mEsc(m.a)}${m.p?' · '+mEsc(m.p):''}${m.mine?'<i class="mine">Sua</i>':''}</span></div>${m.c?`<div><b>Tema:</b> ${mEsc(m.c)}</div>`:''}${words(m.w).length?`<div class="chips">${words(m.w).map(w=>`<button class="chip" data-w="${mEsc(w)}">${mEsc(w)} 🔊</button>`).join('')}</div>`:''}<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><span class="mlinks"><a class="yt" href="https://www.youtube.com/results?search_query=${encodeURIComponent(m.t+' '+m.a+' lyrics')}" target="_blank" rel="noopener">▶ Ouvir no YouTube</a><a class="yt" href="https://www.google.com/search?q=${encodeURIComponent(m.t+' '+m.a+' letra tradução site:letras.mus.br')}" target="_blank" rel="noopener">📝 Letra e tradução</a><a class="yt" href="https://genius.com/search?q=${encodeURIComponent(m.t+' '+m.a)}" target="_blank" rel="noopener">📄 Letra no Genius</a><button type="button" class="mlb" data-k="${m.k}" aria-expanded="${musOpen.has(m.k)}">📝 Minha letra${musLyr[m.k]?' ✓':''}</button></span>${musEditing?`<button type="button" class="mrm" data-k="${m.k}">🗑️ Tirar da lista</button>`:`<label style="display:flex;gap:6px;align-items:center"><input type="checkbox" data-k="${m.k}" ${m.done?'checked':''} style="width:22px;height:22px;accent-color:var(--m1)">Ouvi e treinei</label>`}</div>${musOpen.has(m.k)?lyrHtml(m):''}</div>`).join(''):'<p class="wempty">Nenhuma música neste nível. Toque em ➕ Incluir música para colocar uma.</p>')
+  document.getElementById('musList').innerHTML=(list.length?list.map(m=>`<div class="mus" data-k="${m.k}"><div class="mh"><span class="mlvb" style="background:${LVC[m.l]||'#134B70'};color:#fff;font:800 .8rem var(--f-mono);padding:3px 7px;border-radius:7px">${mEsc(m.l)}</span><b>${mEsc(m.t)}</b><span>${mEsc(m.a)}${m.p?' · '+mEsc(m.p):''}${m.mine?'<i class="mine">Sua</i>':''}</span></div>${m.c?`<div><b>Tema:</b> ${mEsc(m.c)}</div>`:''}${words(m.w).length?`<div class="chips">${words(m.w).map(w=>`<button class="chip" data-w="${mEsc(w)}">${mEsc(w)} 🔊</button>`).join('')}</div>`:''}<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><span class="mlinks"><a class="yt" href="https://www.youtube.com/results?search_query=${encodeURIComponent(m.t+' '+m.a+' lyrics')}" target="_blank" rel="noopener">▶ Ouvir no YouTube</a><a class="yt" href="https://www.google.com/search?q=${encodeURIComponent(m.t+' '+m.a+' letra tradução site:letras.mus.br')}" target="_blank" rel="noopener">📝 Letra e tradução</a><a class="yt" href="https://genius.com/search?q=${encodeURIComponent(m.t+' '+m.a)}" target="_blank" rel="noopener">📄 Letra no Genius</a><button type="button" class="mlb" data-k="${m.k}" aria-expanded="${musOpen.has(m.k)}">📝 Minha letra${musLyr[m.k]?' ✓':''}</button></span>${musEditing?`<button type="button" class="mrm" data-k="${m.k}">🗑️ Tirar da lista</button>`:`<label style="display:flex;gap:6px;align-items:center"><input type="checkbox" data-k="${m.k}" ${m.done?'checked':''} style="width:22px;height:22px;accent-color:var(--m1)">Ouvi e treinei</label>`}</div>${musOpen.has(m.k)?lyrHtml(m):''}</div>`).join(''):'<p class="wempty">Nenhuma música neste nível. Toque em ➕ Incluir música para colocar uma.</p>')
    +(items.some(m=>m.hid)?`<details class="mhid" ${musEditing?'open':''}><summary>Músicas que você tirou (${items.filter(m=>m.hid).length})</summary>${items.filter(m=>m.hid).map(m=>`<div class="mhrow"><span><b>${mEsc(m.t)}</b> · ${mEsc(m.a)}</span><span style="display:flex;gap:6px">${m.mine?`<button type="button" class="del" data-k="${m.k}">Apagar</button>`:''}<button type="button" class="bk" data-k="${m.k}">↩ Trazer de volta</button></span></div>`).join('')}</details>`:'');
   const box=document.getElementById('musList');
   box.querySelectorAll('.chip').forEach(b=>b.onclick=()=>say(b.dataset.w));
@@ -7394,7 +7395,7 @@ L: said (sem pessoa) / told me (com pessoa) ; o tempo volta um passo: is → was
 const FICHAS=FT.split('\n\n').map(b=>{const ls=b.trim().split('\n');const h=ls[0].slice(1).split('|');const g=k=>ls.filter(l=>l.startsWith(k+': ')).map(l=>l.slice(3));
  return {lv:h[0],t:h[1],sub:h[2],e:h[3],L:g('L')[0].split(' ; '),c:g('1').map(x=>{const p=x.split('|');return {em:p[0],q:p[1],a:p[2],w:p[3].split(',')}}),m:g('2').map(x=>x.split('|')),s:g('3').map(x=>{const p=x.split('|');return {q:p[0],a:p[1],w:[p[2]]}}),x:g('4').map(x=>x.split('|'))}});
 window.FICHAS=FICHAS;
-const LVCX={A1:'#2E7D4F',A2:'#B08A00',B1:'#2C5DA8',B2:'#6B3FA0',C1:'#C2352B',C2:'#16305C'};
+const LVCX={A1:'#2E7D4F',A2:'#B08A00',B1:'#1F6FA3',B2:'#6B3FA0',C1:'#C2352B',C2:'#134B70'};
 const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
 const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const fill=(q,a)=>{q=q.includes('→')?q.split('→').pop().trim():q;return q.replace('___',a).replace(/ '/g,"'").replace(/\s*\(.*?\)/g,'').trim()};
@@ -7749,7 +7750,7 @@ const T=[
  ['desaf','🏆','Desafios e conquistas','Desafio do dia, corrida de 60 s, pronúncia e ranking',1],
  ['apost','📄','Apostila completa em PDF','Para imprimir e estudar sem o celular',1],
 ];
-const LV=[['A1','#2E7D4F'],['A2','#B08A00'],['B1','#2C5DA8'],['B2','#6B3FA0'],['C1','#C2352B'],['C2','#16305C']];
+const LV=[['A1','#2E7D4F'],['A2','#B08A00'],['B1','#1F6FA3'],['B2','#6B3FA0'],['C1','#C2352B'],['C2','#134B70']];
 const g=document.getElementById('hGrid');
 g.innerHTML=T.map(([id,e,t,d,big])=>`<button class="htile${big?' big':''}" data-go="${id}" role="listitem"><span class="ti" aria-hidden="true">${e}</span><span><b>${t}</b><small>${d}</small></span></button>`).join('');
 g.querySelectorAll('.htile').forEach(b=>b.onclick=()=>show(b.dataset.go));
@@ -7839,7 +7840,7 @@ const ZT=`@1|Primeiras palavras|🌱|#2E7D4F
 😋|I'm hungry|estou com fome|ÁIM RRÂNGRI
 🥤|I'm thirsty|estou com sede|ÁIM THÂRSTI
 👍|it's good|está bom|ITS GUD
-@3|Casa e coisas|🏠|#2C5DA8
+@3|Casa e coisas|🏠|#1F6FA3
 #Em casa|🏠
 🏠|house|casa|RRÁUS
 🚪|door|porta|DÓR
@@ -7932,7 +7933,7 @@ const ZT=`@1|Primeiras palavras|🌱|#2E7D4F
 🥱|tired|cansado|TÁIRD
 😡|angry|bravo|ÉNGRI
 😎|cool|legal|KÚL
-@6|Primeiras frases|💬|#16305C
+@6|Primeiras frases|💬|#134B70
 #Como vai?|🙂
 🙂|how are you?|como vai?|RRÁU ÁR IÚ
 👍|I'm fine|estou bem|ÁIM FÁIN
@@ -8425,7 +8426,7 @@ renderList();window.__aready=1;window.__aud={get P(){return P},EP,au,durOf,openE
 
 /* ---------- Montar frases e Guia de pronúncia ---------- */
 {
-const MF={"R":{"S":["Quem","sujeito: de quem se fala?","#2C5DA8"],"V":["Faz o quê","verbo: a ação","#D9692B"],"O":["O quê","objeto: o que recebe a ação","#2E7D4F"],"F":["Quando","frequência ou tempo","#C2357B"],"L":["Onde","lugar","#14817F"],"D":["Como está","descrição de quem fala","#7B3FA0"],"B":["am / is / are","o verbo to be: ser ou estar","#B5651D"],"A":["Ajudante","do / does: ajuda a perguntar","#C2352B"],"N":["Negação","don't / doesn't: faz a negativa","#8E1B1B"],"W":["Pergunta","what, where, when...","#0F5E8C"],"Q":["Quantas vezes","always, never...","#B08A00"]},"C":[{"n":"1","e":"🧱","t":"A ordem das palavras","x":"Em inglês a ordem é quase sempre a mesma: primeiro QUEM, depois o que FAZ, depois O QUÊ e, no fim, QUANDO. Pense em blocos de montar.","f":[["S","V","O","F"]],"ex":[[[["I","S"],["drink","V"],["coffee","O"],["every morning","F"]],"Eu bebo café toda manhã."],[[["My son","S"],["plays","V"],["soccer","O"],["after school","F"]],"Meu filho joga futebol depois da escola."],[[["We","S"],["watch","V"],["movies","O"],["on Fridays","F"]],"Nós vemos filmes às sextas."],[[["Carlos","S"],["reads","V"],["the news","O"],["at lunch","F"]],"O Carlos lê as notícias no almoço."]],"tip":"O QUANDO vai no fim da frase. Em português dá para mudar a ordem; em inglês é melhor seguir os blocos."},{"n":"2","e":"🔎","t":"Nem tudo depois do verbo é a mesma coisa","x":"Depois do verbo pode vir O QUÊ (uma coisa), COMO ESTÁ (com am, is, are) ou ONDE (um lugar). Cada um responde a uma pergunta diferente.","f":[["S","V","O"],["S","B","D"],["S","V","L"]],"ex":[[[["My wife","S"],["buys","V"],["flowers","O"]],"Minha esposa compra flores. (o quê?)"],[[["My wife","S"],["is","B"],["happy","D"]],"Minha esposa está feliz. (como está?)"],[[["My wife","S"],["works","V"],["downtown","L"]],"Minha esposa trabalha no centro. (onde?)"],[[["The kids","S"],["are","B"],["hungry","D"]],"As crianças estão com fome. (como estão?)"],[[["Paul","S"],["lives","V"],["in Texas","L"]],"O Paul mora no Texas. (onde?)"]],"tip":"Depois de am, is, are vem como a pessoa está ou o que ela é: I am tired, She is a nurse."},{"n":"3","e":"🚫","t":"Como fazer a negativa","x":"Para dizer que NÃO, coloque don't ou doesn't antes do verbo. Com he, she e it use doesn't e tire o -s do verbo.","f":[["S","N","V","O","F"]],"ex":[[[["I","S"],["don't","N"],["eat","V"],["meat","O"]],"Eu não como carne."],[[["He","S"],["doesn't","N"],["drive","V"],["to work","L"]],"Ele não vai de carro para o trabalho."],[[["She","S"],["doesn't","N"],["drink","V"],["coffee","O"],["at night","F"]],"Ela não toma café à noite."],[[["They","S"],["don't","N"],["live","V"],["here","L"]],"Eles não moram aqui."],[[["I","S"],["'m not","N"],["tired","D"]],"Eu não estou cansado. (com am, is, are, basta usar not)"]],"tip":"He works → He doesn't work. O -s mudou de lugar: foi para o doesn't. Nunca diga he doesn't works."},{"n":"4","e":"❓","t":"Como fazer perguntas","x":"Para perguntar, comece com a palavra de pergunta (se tiver), depois do ou does, depois QUEM e o verbo sem -s.","f":[["W","A","S","V"],["A","S","V","O"]],"ex":[[[["Where","W"],["do","A"],["you","S"],["work","V"]],"Onde você trabalha?"],[[["What","W"],["does","A"],["he","S"],["eat","V"],["for breakfast","F"]],"O que ele come no café da manhã?"],[[["When","W"],["do","A"],["they","S"],["travel","V"]],"Quando eles viajam?"],[[["Do","A"],["you","S"],["like","V"],["pizza","O"]],"Você gosta de pizza?"],[[["Does","A"],["she","S"],["speak","V"],["English","O"]],"Ela fala inglês?"]],"tip":"Com am, is, are NÃO use do nem does: Where are you? Is he at home? Are you OK?"},{"n":"5","e":"🔁","t":"Sempre, às vezes, nunca","x":"As palavras de QUANTAS VEZES (always, usually, sometimes, never) ficam antes do verbo, mas depois de am, is, are.","f":[["S","Q","V","O"],["S","B","Q","D"]],"ex":[[[["I","S"],["always","Q"],["drink","V"],["water","O"]],"Eu sempre bebo água."],[[["She","S"],["never","Q"],["eats","V"],["fast food","O"]],"Ela nunca come fast food."],[[["We","S"],["sometimes","Q"],["cook","V"],["pasta","O"]],"Às vezes a gente faz macarrão."],[[["He","S"],["is","B"],["always","Q"],["late","D"]],"Ele está sempre atrasado."]],"tip":"Com am, is, are a ordem muda: He is always late, e não He always is late."},{"n":"6","e":"📍","t":"Onde e quando juntos","x":"Quando a frase tem ONDE e QUANDO, o lugar vem primeiro e o tempo depois.","f":[["S","V","L","F"]],"ex":[[[["I","S"],["work","V"],["at the office","L"],["on Mondays","F"]],"Eu trabalho no escritório às segundas."],[[["We","S"],["have dinner","V"],["at home","L"],["every night","F"]],"Nós jantamos em casa toda noite."],[[["They","S"],["go","V"],["to the beach","L"],["in January","F"]],"Eles vão à praia em janeiro."]],"tip":"Uma dica para lembrar: primeiro ONDE, depois QUANDO."}],"E":[[[["I","S"],["eat","V"],["bread","O"],["every day","F"]],"Eu como pão todo dia."],[[["She","S"],["likes","V"],["music","O"]],"Ela gosta de música."],[[["We","S"],["study","V"],["English","O"],["at lunch","F"]],"Nós estudamos inglês no almoço."],[[["My father","S"],["reads","V"],["books","O"]],"Meu pai lê livros."],[[["The baby","S"],["is","B"],["tired","D"]],"O bebê está cansado."],[[["Tom","S"],["works","V"],["at home","L"]],"O Tom trabalha em casa."],[[["I","S"],["am","B"],["happy","D"],["today","F"]],"Eu estou feliz hoje."],[[["They","S"],["play","V"],["tennis","O"],["on Sundays","F"]],"Eles jogam tênis aos domingos."],[[["I","S"],["don't","N"],["like","V"],["rain","O"]],"Eu não gosto de chuva."],[[["He","S"],["doesn't","N"],["watch","V"],["TV","O"]],"Ele não vê TV."],[[["We","S"],["don't","N"],["work","V"],["on Saturdays","F"]],"Nós não trabalhamos aos sábados."],[[["She","S"],["doesn't","N"],["eat","V"],["sugar","O"]],"Ela não come açúcar."],[[["Do","A"],["you","S"],["speak","V"],["Spanish","O"]],"Você fala espanhol?"],[[["Does","A"],["he","S"],["have","V"],["a car","O"]],"Ele tem carro?"],[[["Where","W"],["do","A"],["you","S"],["live","V"]],"Onde você mora?"],[[["What","W"],["does","A"],["she","S"],["do","V"]],"O que ela faz?"],[[["When","W"],["do","A"],["you","S"],["wake up","V"]],"Quando você acorda?"],[[["I","S"],["always","Q"],["walk","V"],["to work","L"]],"Eu sempre vou a pé para o trabalho."],[[["He","S"],["never","Q"],["drinks","V"],["soda","O"]],"Ele nunca toma refrigerante."],[[["She","S"],["is","B"],["always","Q"],["busy","D"]],"Ela está sempre ocupada."],[[["We","S"],["eat","V"],["at a restaurant","L"],["on Fridays","F"]],"Nós comemos num restaurante às sextas."],[[["My kids","S"],["play","V"],["in the park","L"],["every afternoon","F"]],"Meus filhos brincam no parque toda tarde."],[[["Where","W"],["is","B"],["the bathroom","S"]],"Onde fica o banheiro?"],[[["I","S"],["need","V"],["a new phone","O"]],"Eu preciso de um celular novo."]],"P":[{"e":"👅","t":"O TH soprado","x":"Coloque a ponta da língua entre os dentes e solte o ar, sem voz. Não é T nem F.","w":[["think","pensar","THÍNK"],["three","três","THRÍ"],["thank you","obrigado","THÉNK IU"],["Thursday","quinta-feira","THÂRZDEI"]]},{"e":"🐝","t":"O TH vibrado","x":"A mesma posição da língua, mas agora com voz, como se fosse um D vibrando. Aparece em palavras muito comuns.","w":[["this","isto","DIS"],["the","o, a","DÂ"],["mother","mãe","MÂDER"],["together","juntos","TUGUÉDER"]]},{"e":"💨","t":"O H com ar","x":"O H do inglês é um sopro leve, como o R de \"rato\". Ele nunca é mudo nessas palavras.","w":[["house","casa","RRÁUS"],["hello","olá","RRELÔU"],["hotel","hotel","RROTÉL"],["happy","feliz","RRÉPI"]]},{"e":"🔄","t":"O R americano","x":"Enrole a ponta da língua para trás sem encostar no céu da boca. Nunca é o R forte de \"rato\".","w":[["red","vermelho","RÉD"],["right","certo","RÁIT"],["car","carro","KÁR"],["world","mundo","UÂRLD"]]},{"e":"🐑","t":"Vogal curta e vogal longa","x":"Às vezes só o tamanho da vogal muda a palavra. Curta e rápida, ou longa e esticada.","w":[["ship · sheep","navio · ovelha","XÍP · XÍÍP"],["live · leave","morar · sair","LÍV · LÍÍV"],["full · fool","cheio · bobo","FÚL · FÚÚL"]]},{"e":"😺","t":"O A bem aberto","x":"Abra bem a boca, entre o A e o É. É o som de cat e man, diferente do E fechado de bed.","w":[["cat","gato","KÉT"],["man · men","homem · homens","MÉN · MÉN"],["bad · bed","ruim · cama","BÉD · BÉD"],["apple","maçã","ÉPOL"]]},{"e":"✋","t":"Sem I no final","x":"O brasileiro costuma colocar um I depois da consoante. Em inglês a palavra termina seca.","w":[["big","grande","BÍG (não \"bíghi\")"],["book","livro","BÚK (não \"búki\")"],["dog","cachorro","DÓG (não \"dóghi\")"],["Facebook","Facebook","FÊISBUK (não \"fêisbuki\")"]]},{"e":"🏫","t":"Sem I no começo","x":"Palavras que começam com S seguido de consoante não ganham um I antes.","w":[["school","escola","SKÚL (não \"iskúl\")"],["Spanish","espanhol","SPÉNICH"],["study","estudar","STÂDI"],["street","rua","STRÍT"]]},{"e":"⏪","t":"O final -ed","x":"O passado com -ed tem três sons: T depois de sons como k, p, s; D depois da maioria; e ID só depois de T ou D.","w":[["worked","trabalhei","UÂRKT"],["played","joguei","PLÊID"],["wanted","quis","UÓNTID"],["needed","precisei","NÍDID"]]},{"e":"🤫","t":"Letras mudas","x":"Algumas letras estão escritas, mas não se falam.","w":[["know","saber","NÔU"],["write","escrever","RÁIT"],["walk","andar","UÓK"],["listen","ouvir","LÍSSEN"],["hour","hora","ÁUER"]]},{"e":"💧","t":"O T que vira R","x":"No inglês americano, o T entre duas vogais fica rápido e suave, parecido com o R de \"caro\".","w":[["water","água","UÓRER"],["better","melhor","BÉRER"],["little","pequeno","LÍROL"],["get up","levantar","GUÉRÂP"]]},{"e":"👄","t":"O M final de boca fechada","x":"No final da palavra o M fecha os lábios. Não vira \"ão\" nem some.","w":[["time","tempo","TÁIM"],["room","quarto","RÚM"],["home","casa","RRÔUM"],["I'm","eu sou","ÁIM"]]},{"e":"🔗","t":"As palavras grudam","x":"Na fala rápida, as palavras se juntam. Entender isso ajuda muito a ouvir.","w":[["What do you want?","O que você quer?","UÓDJA UÓNT?"],["I'm going to eat.","Vou comer.","AIM GÓNA ÍT."],["I want to sleep.","Quero dormir.","AI UÓNA SLÍP."],["Let me see.","Deixa eu ver.","LÉMI SÍ."]]},{"e":"⚖️","t":"Can ou can't?","x":"No can, a voz fica fraca e rápida. No can't, a voz é forte e o A é bem aberto.","w":[["I can swim.","Eu sei nadar.","AI KÂN SUÍM."],["I can't swim.","Eu não sei nadar.","AI KÉNT SUÍM."]]}]};
+const MF={"R":{"S":["Quem","sujeito: de quem se fala?","#1F6FA3"],"V":["Faz o quê","verbo: a ação","#D9692B"],"O":["O quê","objeto: o que recebe a ação","#2E7D4F"],"F":["Quando","frequência ou tempo","#C2357B"],"L":["Onde","lugar","#14817F"],"D":["Como está","descrição de quem fala","#7B3FA0"],"B":["am / is / are","o verbo to be: ser ou estar","#B5651D"],"A":["Ajudante","do / does: ajuda a perguntar","#C2352B"],"N":["Negação","don't / doesn't: faz a negativa","#8E1B1B"],"W":["Pergunta","what, where, when...","#0F5E8C"],"Q":["Quantas vezes","always, never...","#B08A00"]},"C":[{"n":"1","e":"🧱","t":"A ordem das palavras","x":"Em inglês a ordem é quase sempre a mesma: primeiro QUEM, depois o que FAZ, depois O QUÊ e, no fim, QUANDO. Pense em blocos de montar.","f":[["S","V","O","F"]],"ex":[[[["I","S"],["drink","V"],["coffee","O"],["every morning","F"]],"Eu bebo café toda manhã."],[[["My son","S"],["plays","V"],["soccer","O"],["after school","F"]],"Meu filho joga futebol depois da escola."],[[["We","S"],["watch","V"],["movies","O"],["on Fridays","F"]],"Nós vemos filmes às sextas."],[[["Carlos","S"],["reads","V"],["the news","O"],["at lunch","F"]],"O Carlos lê as notícias no almoço."]],"tip":"O QUANDO vai no fim da frase. Em português dá para mudar a ordem; em inglês é melhor seguir os blocos."},{"n":"2","e":"🔎","t":"Nem tudo depois do verbo é a mesma coisa","x":"Depois do verbo pode vir O QUÊ (uma coisa), COMO ESTÁ (com am, is, are) ou ONDE (um lugar). Cada um responde a uma pergunta diferente.","f":[["S","V","O"],["S","B","D"],["S","V","L"]],"ex":[[[["My wife","S"],["buys","V"],["flowers","O"]],"Minha esposa compra flores. (o quê?)"],[[["My wife","S"],["is","B"],["happy","D"]],"Minha esposa está feliz. (como está?)"],[[["My wife","S"],["works","V"],["downtown","L"]],"Minha esposa trabalha no centro. (onde?)"],[[["The kids","S"],["are","B"],["hungry","D"]],"As crianças estão com fome. (como estão?)"],[[["Paul","S"],["lives","V"],["in Texas","L"]],"O Paul mora no Texas. (onde?)"]],"tip":"Depois de am, is, are vem como a pessoa está ou o que ela é: I am tired, She is a nurse."},{"n":"3","e":"🚫","t":"Como fazer a negativa","x":"Para dizer que NÃO, coloque don't ou doesn't antes do verbo. Com he, she e it use doesn't e tire o -s do verbo.","f":[["S","N","V","O","F"]],"ex":[[[["I","S"],["don't","N"],["eat","V"],["meat","O"]],"Eu não como carne."],[[["He","S"],["doesn't","N"],["drive","V"],["to work","L"]],"Ele não vai de carro para o trabalho."],[[["She","S"],["doesn't","N"],["drink","V"],["coffee","O"],["at night","F"]],"Ela não toma café à noite."],[[["They","S"],["don't","N"],["live","V"],["here","L"]],"Eles não moram aqui."],[[["I","S"],["'m not","N"],["tired","D"]],"Eu não estou cansado. (com am, is, are, basta usar not)"]],"tip":"He works → He doesn't work. O -s mudou de lugar: foi para o doesn't. Nunca diga he doesn't works."},{"n":"4","e":"❓","t":"Como fazer perguntas","x":"Para perguntar, comece com a palavra de pergunta (se tiver), depois do ou does, depois QUEM e o verbo sem -s.","f":[["W","A","S","V"],["A","S","V","O"]],"ex":[[[["Where","W"],["do","A"],["you","S"],["work","V"]],"Onde você trabalha?"],[[["What","W"],["does","A"],["he","S"],["eat","V"],["for breakfast","F"]],"O que ele come no café da manhã?"],[[["When","W"],["do","A"],["they","S"],["travel","V"]],"Quando eles viajam?"],[[["Do","A"],["you","S"],["like","V"],["pizza","O"]],"Você gosta de pizza?"],[[["Does","A"],["she","S"],["speak","V"],["English","O"]],"Ela fala inglês?"]],"tip":"Com am, is, are NÃO use do nem does: Where are you? Is he at home? Are you OK?"},{"n":"5","e":"🔁","t":"Sempre, às vezes, nunca","x":"As palavras de QUANTAS VEZES (always, usually, sometimes, never) ficam antes do verbo, mas depois de am, is, are.","f":[["S","Q","V","O"],["S","B","Q","D"]],"ex":[[[["I","S"],["always","Q"],["drink","V"],["water","O"]],"Eu sempre bebo água."],[[["She","S"],["never","Q"],["eats","V"],["fast food","O"]],"Ela nunca come fast food."],[[["We","S"],["sometimes","Q"],["cook","V"],["pasta","O"]],"Às vezes a gente faz macarrão."],[[["He","S"],["is","B"],["always","Q"],["late","D"]],"Ele está sempre atrasado."]],"tip":"Com am, is, are a ordem muda: He is always late, e não He always is late."},{"n":"6","e":"📍","t":"Onde e quando juntos","x":"Quando a frase tem ONDE e QUANDO, o lugar vem primeiro e o tempo depois.","f":[["S","V","L","F"]],"ex":[[[["I","S"],["work","V"],["at the office","L"],["on Mondays","F"]],"Eu trabalho no escritório às segundas."],[[["We","S"],["have dinner","V"],["at home","L"],["every night","F"]],"Nós jantamos em casa toda noite."],[[["They","S"],["go","V"],["to the beach","L"],["in January","F"]],"Eles vão à praia em janeiro."]],"tip":"Uma dica para lembrar: primeiro ONDE, depois QUANDO."}],"E":[[[["I","S"],["eat","V"],["bread","O"],["every day","F"]],"Eu como pão todo dia."],[[["She","S"],["likes","V"],["music","O"]],"Ela gosta de música."],[[["We","S"],["study","V"],["English","O"],["at lunch","F"]],"Nós estudamos inglês no almoço."],[[["My father","S"],["reads","V"],["books","O"]],"Meu pai lê livros."],[[["The baby","S"],["is","B"],["tired","D"]],"O bebê está cansado."],[[["Tom","S"],["works","V"],["at home","L"]],"O Tom trabalha em casa."],[[["I","S"],["am","B"],["happy","D"],["today","F"]],"Eu estou feliz hoje."],[[["They","S"],["play","V"],["tennis","O"],["on Sundays","F"]],"Eles jogam tênis aos domingos."],[[["I","S"],["don't","N"],["like","V"],["rain","O"]],"Eu não gosto de chuva."],[[["He","S"],["doesn't","N"],["watch","V"],["TV","O"]],"Ele não vê TV."],[[["We","S"],["don't","N"],["work","V"],["on Saturdays","F"]],"Nós não trabalhamos aos sábados."],[[["She","S"],["doesn't","N"],["eat","V"],["sugar","O"]],"Ela não come açúcar."],[[["Do","A"],["you","S"],["speak","V"],["Spanish","O"]],"Você fala espanhol?"],[[["Does","A"],["he","S"],["have","V"],["a car","O"]],"Ele tem carro?"],[[["Where","W"],["do","A"],["you","S"],["live","V"]],"Onde você mora?"],[[["What","W"],["does","A"],["she","S"],["do","V"]],"O que ela faz?"],[[["When","W"],["do","A"],["you","S"],["wake up","V"]],"Quando você acorda?"],[[["I","S"],["always","Q"],["walk","V"],["to work","L"]],"Eu sempre vou a pé para o trabalho."],[[["He","S"],["never","Q"],["drinks","V"],["soda","O"]],"Ele nunca toma refrigerante."],[[["She","S"],["is","B"],["always","Q"],["busy","D"]],"Ela está sempre ocupada."],[[["We","S"],["eat","V"],["at a restaurant","L"],["on Fridays","F"]],"Nós comemos num restaurante às sextas."],[[["My kids","S"],["play","V"],["in the park","L"],["every afternoon","F"]],"Meus filhos brincam no parque toda tarde."],[[["Where","W"],["is","B"],["the bathroom","S"]],"Onde fica o banheiro?"],[[["I","S"],["need","V"],["a new phone","O"]],"Eu preciso de um celular novo."]],"P":[{"e":"👅","t":"O TH soprado","x":"Coloque a ponta da língua entre os dentes e solte o ar, sem voz. Não é T nem F.","w":[["think","pensar","THÍNK"],["three","três","THRÍ"],["thank you","obrigado","THÉNK IU"],["Thursday","quinta-feira","THÂRZDEI"]]},{"e":"🐝","t":"O TH vibrado","x":"A mesma posição da língua, mas agora com voz, como se fosse um D vibrando. Aparece em palavras muito comuns.","w":[["this","isto","DIS"],["the","o, a","DÂ"],["mother","mãe","MÂDER"],["together","juntos","TUGUÉDER"]]},{"e":"💨","t":"O H com ar","x":"O H do inglês é um sopro leve, como o R de \"rato\". Ele nunca é mudo nessas palavras.","w":[["house","casa","RRÁUS"],["hello","olá","RRELÔU"],["hotel","hotel","RROTÉL"],["happy","feliz","RRÉPI"]]},{"e":"🔄","t":"O R americano","x":"Enrole a ponta da língua para trás sem encostar no céu da boca. Nunca é o R forte de \"rato\".","w":[["red","vermelho","RÉD"],["right","certo","RÁIT"],["car","carro","KÁR"],["world","mundo","UÂRLD"]]},{"e":"🐑","t":"Vogal curta e vogal longa","x":"Às vezes só o tamanho da vogal muda a palavra. Curta e rápida, ou longa e esticada.","w":[["ship · sheep","navio · ovelha","XÍP · XÍÍP"],["live · leave","morar · sair","LÍV · LÍÍV"],["full · fool","cheio · bobo","FÚL · FÚÚL"]]},{"e":"😺","t":"O A bem aberto","x":"Abra bem a boca, entre o A e o É. É o som de cat e man, diferente do E fechado de bed.","w":[["cat","gato","KÉT"],["man · men","homem · homens","MÉN · MÉN"],["bad · bed","ruim · cama","BÉD · BÉD"],["apple","maçã","ÉPOL"]]},{"e":"✋","t":"Sem I no final","x":"O brasileiro costuma colocar um I depois da consoante. Em inglês a palavra termina seca.","w":[["big","grande","BÍG (não \"bíghi\")"],["book","livro","BÚK (não \"búki\")"],["dog","cachorro","DÓG (não \"dóghi\")"],["Facebook","Facebook","FÊISBUK (não \"fêisbuki\")"]]},{"e":"🏫","t":"Sem I no começo","x":"Palavras que começam com S seguido de consoante não ganham um I antes.","w":[["school","escola","SKÚL (não \"iskúl\")"],["Spanish","espanhol","SPÉNICH"],["study","estudar","STÂDI"],["street","rua","STRÍT"]]},{"e":"⏪","t":"O final -ed","x":"O passado com -ed tem três sons: T depois de sons como k, p, s; D depois da maioria; e ID só depois de T ou D.","w":[["worked","trabalhei","UÂRKT"],["played","joguei","PLÊID"],["wanted","quis","UÓNTID"],["needed","precisei","NÍDID"]]},{"e":"🤫","t":"Letras mudas","x":"Algumas letras estão escritas, mas não se falam.","w":[["know","saber","NÔU"],["write","escrever","RÁIT"],["walk","andar","UÓK"],["listen","ouvir","LÍSSEN"],["hour","hora","ÁUER"]]},{"e":"💧","t":"O T que vira R","x":"No inglês americano, o T entre duas vogais fica rápido e suave, parecido com o R de \"caro\".","w":[["water","água","UÓRER"],["better","melhor","BÉRER"],["little","pequeno","LÍROL"],["get up","levantar","GUÉRÂP"]]},{"e":"👄","t":"O M final de boca fechada","x":"No final da palavra o M fecha os lábios. Não vira \"ão\" nem some.","w":[["time","tempo","TÁIM"],["room","quarto","RÚM"],["home","casa","RRÔUM"],["I'm","eu sou","ÁIM"]]},{"e":"🔗","t":"As palavras grudam","x":"Na fala rápida, as palavras se juntam. Entender isso ajuda muito a ouvir.","w":[["What do you want?","O que você quer?","UÓDJA UÓNT?"],["I'm going to eat.","Vou comer.","AIM GÓNA ÍT."],["I want to sleep.","Quero dormir.","AI UÓNA SLÍP."],["Let me see.","Deixa eu ver.","LÉMI SÍ."]]},{"e":"⚖️","t":"Can ou can't?","x":"No can, a voz fica fraca e rápida. No can't, a voz é forte e o A é bem aberto.","w":[["I can swim.","Eu sei nadar.","AI KÂN SUÍM."],["I can't swim.","Eu não sei nadar.","AI KÉNT SUÍM."]]}]};
 const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const sent=b=>{const t=b.map(x=>x[0]).join(' ').replace(/ 'm/g,"'m");return t+(['W','A'].includes(b[0][1])?'?':'.')};
 const blk=(x,lab)=>{const r=MF.R[x[1]];return `<span class="mb" style="background:${r[2]}"><b>${esc(x[0])}</b>${lab?`<small>${esc(r[0])}</small>`:''}</span>`};
@@ -8602,7 +8603,7 @@ const stages=()=>{
     {e:'🔤',t:'Alfabeto',s:'As 26 letras e como soletrar',n:1,k:g('abcBest',0)>0?1:0,go:()=>open.abc(),next:'Alfabeto: jogo das letras'}]}];
   /* fases dos temas: número da 1ª semana de cada fase */
   const PS=[];let wn=0;(typeof P!=='undefined'?P:[]).forEach(m=>{PS.push([wn+1,wn+m.w.length]);wn+=m.w.length});
-  LVK.forEach((lv,li)=>{const v=(typeof NV!=='undefined'&&NV[li])||{k:lv,n:'',d:'',c:'#16305C',l:[]};const acts=[];const num=li+1;
+  LVK.forEach((lv,li)=>{const v=(typeof NV!=='undefined'&&NV[li])||{k:lv,n:'',d:'',c:'#134B70',l:[]};const acts=[];const num=li+1;
     const add=a=>acts.push(a);
     /* 1. aprender: situações e lições */
     const ai=L.map((x,i)=>[x,i]).filter(([x])=>(LNUM[x.lv]||x.lv)===lv);
@@ -8633,7 +8634,7 @@ const stages=()=>{
       add({sec:'Treinar e revisar',e:'🗺️',t:'Temas: '+P[pi].t,s:P[pi].w.map(w=>w[0]).slice(0,3).join(', '),n,k,go:()=>open.plano(pi),next:'Temas: '+P[pi].t})});
     const nm=(typeof MMS!=='undefined'?MMS:[]).filter(m=>m.lv===lv).length+(typeof M!=='undefined'?M:[]).filter(m=>m.lv===lv).length;
     if(nm)add({sec:'Treinar e revisar',e:'🧠',t:'Mapas mentais',s:'Para revisar e consultar',info:1,n:nm,go:()=>open.map(lv)});
-    out.push({k:lv,lv,t:lv+(v.n?' · '+v.n:''),d:v.d||'',c:v.c||'#16305C',acts});
+    out.push({k:lv,lv,t:lv+(v.n?' · '+v.n:''),d:v.d||'',c:v.c||'#134B70',acts});
   });
   const skip=g('rotaSkip',[]);
   out.forEach(st=>{const tr=st.acts.filter(a=>!a.info);st.n=tr.reduce((a,b)=>a+b.n,0);st.kk=tr.reduce((a,b)=>a+b.k,0);st.skip=skip.includes(st.k);st.full=st.skip||(st.n>0&&st.kk>=st.n)});
@@ -8926,14 +8927,15 @@ window.addEventListener('hashchange',()=>{if(wants())window.openAbc()});
 {
 const EM={"🗣":"1f5e3","⚙":"2699","🌱":"1f331","📚":"1f4da","🧑‍🏫":"1f9d1-200d-1f3eb","📖":"1f4d6","🧠":"1f9e0","🎧":"1f3a7","🏆":"1f3c6","🎙":"1f399","▶":"25b6","📲":"1f4f2","📤":"1f4e4","🔥":"1f525","⭐":"2b50","🎯":"1f3af","🏅":"1f3c5","🧩":"1f9e9","🔊":"1f50a","🎤":"1f3a4","📥":"1f4e5","🖨":"1f5a8","📄":"1f4c4","🔁":"1f501","💯":"1f4af","📎":"1f4ce","⬜":"2b1c","🧭":"1f9ed","☕":"2615","🪜":"1fa9c","📘":"1f4d8","🧲":"1f9f2","💬":"1f4ac","🎵":"1f3b5","🆘":"1f198","✏":"270f","🗺":"1f5fa","✅":"2705","✍":"270d","📝":"1f4dd","📂":"1f4c2","🔎":"1f50e","➕":"2795","⏰":"23f0","🛏":"1f6cf","😴":"1f634","🥱":"1f971","💤":"1f4a4","🌙":"1f319","👔":"1f454","🧥":"1f9e5","🚿":"1f6bf","🏃":"1f3c3","🚪":"1f6aa","🏃‍♀":"1f3c3-200d-2640","🔙":"1f519","💡":"1f4a1","🔌":"1f50c","🧹":"1f9f9","🧺":"1f9fa","🗑":"1f5d1","🚮":"1f6ae","👕":"1f455","🍽":"1f37d","🧽":"1f9fd","🔧":"1f527","🪑":"1fa91","🔩":"1f529","📦":"1f4e6","🚚":"1f69a","🧼":"1f9fc","🛍":"1f6cd","🧦":"1f9e6","👖":"1f456","🧢":"1f9e2","👟":"1f45f","🏷":"1f3f7","🧾":"1f9fe","🛒":"1f6d2","💳":"1f4b3","↩":"21a9","🤏":"1f90f","🍔":"1f354","🍕":"1f355","🔪":"1f52a","😋":"1f60b","🥛":"1f95b","🥗":"1f957","🍰":"1f370","🧂":"1f9c2","🍳":"1f373","🚌":"1f68c","🚏":"1f68f","🚗":"1f697","🚙":"1f699","🧍":"1f9cd","👋":"1f44b","🛑":"1f6d1","🐢":"1f422","🏎":"1f3ce","🛠":"1f6e0","⛽":"26fd","↪":"21aa","🚧":"1f6a7","💥":"1f4a5","🚦":"1f6a6","🛣":"1f6e3","🛫":"1f6eb","🛬":"1f6ec","🏨":"1f3e8","🧳":"1f9f3","🏝":"1f3dd","👀":"1f440","📸":"1f4f8","⏳":"23f3","🙋":"1f64b","🏡":"1f3e1","🎒":"1f392","🚶":"1f6b6","📅":"1f4c5","📧":"1f4e7","⏭":"23ed","❌":"274c","👑":"1f451","🤝":"1f91d","🔍":"1f50d","📑":"1f4d1","👉":"1f449","🏁":"1f3c1","📉":"1f4c9","🚀":"1f680","🙅":"1f645","📈":"1f4c8","🗂":"1f5c2","⏱":"23f1","📣":"1f4e3","🧑‍💼":"1f9d1-200d-1f4bc","📞":"1f4de","🎓":"1f393","🖊":"1f58a","🔤":"1f524","🧮":"1f9ee","🗒":"1f5d2","🧐":"1f9d0","📵":"1f4f5","☎":"260e","🔐":"1f510","💾":"1f4be","🔉":"1f509","📶":"1f4f6","🔋":"1f50b","⬇":"2b07","🍻":"1f37b","💔":"1f494","💞":"1f49e","🌹":"1f339","🥂":"1f942","😍":"1f60d","🏠":"1f3e0","😤":"1f624","😞":"1f61e","🫂":"1fac2","🙃":"1f643","🎉":"1f389","😮":"1f62e","🙌":"1f64c","😠":"1f620","🍿":"1f37f","🫶":"1faf6","🧸":"1f9f8","👵":"1f475","👶":"1f476","🤗":"1f917","🙊":"1f64a","🎮":"1f3ae","🛌":"1f6cc","🧒":"1f9d2","🏋":"1f3cb","🤸":"1f938","🤢":"1f922","😵":"1f635","🤧":"1f927","💪":"1f4aa","🛋":"1f6cb","🩹":"1fa79","🚭":"1f6ad","😮‍💨":"1f62e-200d-1f4a8","🛡":"1f6e1","🏥":"1f3e5","🏳":"1f3f3","😱":"1f631","😎":"1f60e","😌":"1f60c","🙄":"1f644","😢":"1f622","🫣":"1fae3","🙇":"1f647","🥲":"1f972","🌫":"1f32b","👎":"1f44e","❓":"2753","💭":"1f4ad","🤥":"1f925","🤐":"1f910","📢":"1f4e2","🗨":"1f5e8","📷":"1f4f7","✂":"2702","😬":"1f62c","💵":"1f4b5","🏦":"1f3e6","🐷":"1f437","🤑":"1f911","🤲":"1f932","💸":"1f4b8","🏧":"1f3e7","🧯":"1f9ef","🤦":"1f926","🧱":"1f9f1","🔚":"1f51a","⏩":"23e9","🔄":"1f504","🧰":"1f9f0","⚖":"2696","🎨":"1f3a8","🎳":"1f3b3","🎬":"1f3ac","🏖":"1f3d6","📺":"1f4fa","⚽":"26bd","🎟":"1f39f","🎈":"1f388","🗓":"1f5d3","⚠":"26a0","🚸":"1f6b8","🏃‍♂":"1f3c3-200d-2642","🚓":"1f693","🚨":"1f6a8","🧍‍♂":"1f9cd-200d-2642","🏚":"1f3da","🦺":"1f9ba","☀":"2600","🍝":"1f35d","⬅":"2b05","🚕":"1f695","🌤":"1f324","📱":"1f4f1","💊":"1f48a","🙏":"1f64f","💌":"1f48c","📆":"1f4c6","🪪":"1faaa","🕒":"1f552","📋":"1f4cb","🩺":"1fa7a","🛂":"1f6c2","🛵":"1f6f5","🗯":"1f5ef","👥":"1f465","💈":"1f488","😊":"1f60a","🏢":"1f3e2","📮":"1f4ee","🌬":"1f32c","👅":"1f445","📍":"1f4cd","🌡":"1f321","⏮":"23ee","🍪":"1f36a","🕰":"1f570","🔮":"1f52e","❗":"2757","📼":"1f4fc","📐":"1f4d0","🌠":"1f320","🎁":"1f381","😕":"1f615","🌓":"1f313","🪶":"1fab6","📌":"1f4cc","🎭":"1f3ad","🌀":"1f300","🎩":"1f3a9","🔃":"1f503","🤜":"1f91c","🥁":"1f941","😏":"1f60f","🧷":"1f9f7","💼":"1f4bc","🏭":"1f3ed","🏫":"1f3eb","🦷":"1f9b7","🚑":"1f691","✈":"2708","🔑":"1f511","🍖":"1f356","🦃":"1f983","🎂":"1f382","🚰":"1f6b0","🏈":"1f3c8","💻":"1f4bb","📊":"1f4ca","🖥":"1f5a5","😔":"1f614","📰":"1f4f0","💚":"1f49a","🕊":"1f54a","😂":"1f602","🕯":"1f56f","🍷":"1f377","⚾":"26be","🗽":"1f5fd","🍎":"1f34e","🏊":"1f3ca","🧪":"1f9ea","🔢":"1f522","🥇":"1f947","🔖":"1f516","🌧":"1f327","🔀":"1f500","🔗":"1f517","🌦":"1f326","✨":"2728","✌":"270c","⏪":"23ea","🕵":"1f575","🌉":"1f309","♾":"267e","🧬":"1f9ec","✒":"2712","📜":"1f4dc","🗞":"1f5de","🏛":"1f3db","📏":"1f4cf","👯":"1f46f","🌸":"1f338","🐦":"1f426","↔":"2194","🎲":"1f3b2","🌐":"1f310","👏":"1f44f","👩":"1f469","🥚":"1f95a","👨":"1f468","👩‍🦰":"1f469-200d-1f9b0","🐶":"1f436","🏔":"1f3d4","🚻":"1f6bb","🐟":"1f41f","👂":"1f442","🧑‍🍳":"1f9d1-200d-1f373","👩‍⚕":"1f469-200d-2695","🏙":"1f3d9","🐕":"1f415","🥩":"1f969","🤷":"1f937","🍞":"1f35e","💧":"1f4a7","💎":"1f48e","🍬":"1f36c","☔":"2614","🍣":"1f363","✉":"2709","🚬":"1f6ac","🥦":"1f966","🎸":"1f3b8","💰":"1f4b0","🧑‍🔧":"1f9d1-200d-1f527","🚫":"1f6ab","🤯":"1f92f","🤔":"1f914","👍":"1f44d","👌":"1f44c","🙂":"1f642","😅":"1f605","🫡":"1fae1","🥵":"1f975","🥶":"1f976","😲":"1f632","🫢":"1fae2","🤞":"1f91e","🙆":"1f646","🤨":"1f928","😐":"1f610","🥰":"1f970","😡":"1f621","😓":"1f613","🍀":"1f340","🥡":"1f961","🍴":"1f374","👗":"1f457","😷":"1f637","🤕":"1f915","🤫":"1f92b","🤙":"1f919","🙈":"1f648","🤷‍♂":"1f937-200d-2642","🫠":"1fae0","🤓":"1f913","⌛":"231b","🎶":"1f3b6","🥤":"1f964","😇":"1f607","🔜":"1f51c","🧊":"1f9ca","⚡":"26a1","🐌":"1f40c","🥳":"1f973","🧃":"1f9c3","🫤":"1fae4","🗳":"1f5f3","🚷":"1f6b7","🤹":"1f939","🧘":"1f9d8","😜":"1f61c","😑":"1f611","🫵":"1faf5","⏸":"23f8","🌎":"1f30e","💛":"1f49b","🃏":"1f0cf","💝":"1f49d","👦":"1f466","👧":"1f467","🧔":"1f9d4","🙋‍♂":"1f64b-200d-2642","📛":"1f4db","🍺":"1f37a","🍓":"1f353","🍌":"1f34c","🍊":"1f34a","🍇":"1f347","🍚":"1f35a","🍗":"1f357","🧀":"1f9c0","🍦":"1f366","🪟":"1fa9f","👜":"1f45c","🔴":"1f534","🔵":"1f535","🟢":"1f7e2","🟡":"1f7e1","⚫":"26ab","1⃣":"31-20e3","2⃣":"32-20e3","3⃣":"33-20e3","4⃣":"34-20e3","5⃣":"35-20e3","🐱":"1f431","🐴":"1f434","🔟":"1f51f","6⃣":"36-20e3","7⃣":"37-20e3","8⃣":"38-20e3","9⃣":"39-20e3","❄":"2744","☁":"2601","🏪":"1f3ea","🚲":"1f6b2","🖐":"1f590","👁":"1f441","👃":"1f443","👄":"1f444","✋":"270b","🦶":"1f9b6","😀":"1f600","🧑":"1f9d1","💲":"1f4b2","🚉":"1f689","➡":"27a1","❤":"2764","🎊":"1f38a","🐣":"1f423","🦅":"1f985","🌟":"1f31f","💫":"1f4ab","➖":"2796","⏺":"23fa","⏹":"23f9","🌳":"1f333","📒":"1f4d2","🐝":"1f41d","💨":"1f4a8","🐑":"1f411","😺":"1f63a"};
 const RE=/(?:[\u{1F1E6}-\u{1F1FF}]{2})|(?:[0-9#*]️⃣)|(?:[©®‼-㊙\u{1F000}-\u{1FAFF}]️?(?:‍[☀-➿\u{1F000}-\u{1FAFF}]️?)*)/gu;
-const key=e=>EM[e.replace(/️/g,'')];
+const BAD=new Set(),OFF=location.protocol==='file:';
+const key=e=>{const k=EM[e.replace(/️/g,'')];return (OFF||!k||BAD.has(k))?null:k};
 const SKIP=new Set(['SCRIPT','STYLE','TEXTAREA','INPUT','OPTION','SELECT','TITLE','NOSCRIPT']);
 const fix=t=>{const v=t.nodeValue;if(!v||!RE.test(v))return;RE.lastIndex=0;
   let last=0,m,frag=null;
   while((m=RE.exec(v))){const k=key(m[0]);if(!k)continue;frag=frag||document.createDocumentFragment();
     if(m.index>last)frag.appendChild(document.createTextNode(v.slice(last,m.index)));
     const im=document.createElement('img');im.className='emo';im.src='em/'+k+'.webp';im.alt=m[0];im.draggable=false;im.decoding='async';im.loading='lazy';
-    im.onerror=()=>{im.replaceWith(document.createTextNode(m0))};const m0=m[0];
+    const m0=m[0],k0=k;im.onerror=()=>{BAD.add(k0);const sp=document.createElement('span');sp.className='noem';sp.textContent=m0;if(im.parentNode)im.replaceWith(sp)};
     frag.appendChild(im);last=m.index+m[0].length}
   RE.lastIndex=0;
   if(!frag)return;if(last<v.length)frag.appendChild(document.createTextNode(v.slice(last)));t.parentNode.replaceChild(frag,t)};

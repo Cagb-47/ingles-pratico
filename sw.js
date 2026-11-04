@@ -1,6 +1,6 @@
-const CACHE='ingles-v36';
+const CACHE='ingles-v37';
 const VOZ='voz-ingles-2'; /* gravações (vz/ e aud/): nunca mudam, ficam guardadas entre versões */
-const FILES=['./','index.html','manifest.webmanifest','icon-ip-192.png','icon-ip-512.png','icon-ip-maskable.png','apple-touch-icon.png','favicon-48.png'];
+const FILES=['./','index.html','manifest.webmanifest','icon-v4-192.png','icon-v4-512.png','icon-v4-maskable.png','apple-touch-icon.png','favicon-48.png'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)));self.skipWaiting()});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>(k.startsWith('ingles-')&&k!==CACHE)||(k.startsWith('voz-ingles-')&&k!==VOZ)).map(k=>caches.delete(k)))));self.clients.claim()});
 self.addEventListener('fetch',e=>{
