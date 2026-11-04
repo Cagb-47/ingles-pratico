@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#16305C">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="favicon-48.png" sizes="48x48">
-<link rel="icon" href="icon-192.png" sizes="192x192">
+<link rel="icon" href="icon-ip-192.png" sizes="192x192">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Inglês Prático">
@@ -480,6 +480,19 @@ img.emo{height:1.2em;width:1.2em;object-fit:contain;vertical-align:-0.24em;displ
 @keyframes sbpop{from{opacity:0;transform:translateY(8px) scale(.92)}to{opacity:1;transform:none}}
 @keyframes sbpopc{from{opacity:0;transform:translate(-50%,8px) scale(.92)}to{opacity:1;transform:translateX(-50%)}}
 @media (max-width:420px){.sbub{font-size:.9rem;padding:7px 10px 8px;max-width:66%}}
+
+#inicio #hGrid,#inicio #hMore,#inicio #hLv,#inicio #hCont{display:none!important}
+.htrail{margin:14px 0 6px}
+.htrail .rtop{background:#F2C230;color:#2A2100;box-shadow:none;margin:0 0 16px}
+.htrail .rtop .rk{color:#6B5200}.htrail .rbar{background:rgba(42,33,0,.15)}.htrail .rtop .rbar i{background:#16305C}
+.htrail .rgo{background:#16305C;color:#fff;box-shadow:0 4px 0 #0A1A36}.htrail .rgo:active{box-shadow:0 2px 0 #0A1A36}
+.htrail .rpath:before{background:rgba(255,255,255,.25)}
+.htrail .rst:before{background:#16305C;border-color:#F2C230}.htrail .rst.full:before{background:#F2C230}
+.htrail .rcard{color:var(--ink)}
+.htt{color:#fff;font:800 1.05rem var(--f-display);margin:18px 0 8px}
+.htools .htile{min-height:0}
+.ract .ac.info{color:var(--muted);font-weight:700}
+.rsub{font:800 .74rem var(--f-body);color:var(--muted);letter-spacing:.02em;margin:10px 0 0;padding-top:8px;border-top:1px solid var(--line)}
 </style>
 <title>Inglês Prático</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -772,6 +785,9 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
       <div class="hs">Inglês americano do zero ao avançado</div>
       <p class="hd" id="hGreet">Para a vida pessoal, o trabalho e a escola. Escolha por onde começar.</p>
       <div class="hprog"><span id="hDay"></span><span class="hzs" id="hZs" hidden></span><button class="hcont" id="hCont" hidden></button></div>
+      <div id="hTrail" class="htrail" aria-label="Sua trilha"><div class="rtopbox"></div><ol class="rpath"></ol></div>
+      <h3 class="htt">Para qualquer nível</h3>
+      <div class="hgrid htools" id="hTools" role="list"></div>
       <div class="hgrid" id="hGrid" role="list"></div>
       <button class="hmore" id="hMore" aria-expanded="false"></button>
       <div class="hlv" id="hLv" aria-label="Níveis"></div>
@@ -784,7 +800,7 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
   <section id="rota" data-panel hidden>
     <h2>🧭 Sua trilha</h2>
     <p class="sub">Do zero ao avançado, um passo de cada vez. Cada nível junta tudo o que é daquele nível: situações, lições, áudios, exercícios e músicas. Toque em <b>Continuar</b> e o app leva você ao próximo passo.</p>
-    <div id="rotaTop"></div>
+    <div id="rotaTop" class="rtopbox"></div>
     <ol class="rpath" id="rotaPath"></ol>
   </section>
 
@@ -8550,74 +8566,109 @@ setPr(store.get('prV','abc')==='sons'?'sons':'abc');
 window.__abc={AB,setPr,toLetters};
 }
 
-/* ---------- 🧭 Meu caminho: do zero ao avançado ---------- */
+/* ---------- 🧭 Trilha: do zero ao avançado (Início e aba Trilha) ---------- */
 {
 const LVK=['A1','A2','B1','B2','C1','C2'];
 const LNUM={1:'A1',2:'A2',3:'B1',4:'B2'};
 const esc=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const g=(k,d)=>{try{return store.get(k,d)}catch(e){return d}};
 const click=sel=>{const b=document.querySelector(sel);if(b)b.click();return !!b};
+const scrollTo=sel=>setTimeout(()=>{const e=document.querySelector(sel);if(e)try{const y=e.getBoundingClientRect().top+scrollY-130;window.scrollTo(0,Math.max(0,y))}catch(x){}},60);
+const PH_LV=['A1','A1','A2','A2','B1','B1','B2'];/* fases dos Temas para marcar */
 const open={
   zero:()=>show('zero'),
+  abc:()=>{if(window.openAbc)window.openAbc();else show('pron')},
   aula:i=>{try{cur=i}catch(e){}store.set('cur',i);try{renderLesson()}catch(e){}show('aula')},
   nv:i=>{try{nvSel=i}catch(e){}store.set('nvSel',i);try{renderNiveis()}catch(e){}show('niveis')},
+  livro:()=>show('livro'),
+  pal:k=>{show('palavras');click('#wtools button[data-k="'+k+'"]')},
+  nat:i=>{show('nativo');scrollTo('#nativeList .ngroup:nth-of-type('+(i+1)+')')},
+  montar:()=>show('montar'),
+  sons:()=>{show('pron');if(window.__abc)window.__abc.setPr('sons')},
+  phrasal:()=>show('phrasal'),
   aud:lv=>{show('audios');const ep=(window.__aud&&__aud.EP||[]).find(e=>e.lv===lv&&!g('audDone',[]).includes(e.id));if(ep)click('[data-s="'+ep.sec+'"]')},
   fic:lv=>{show('exerc');click('#exModeF');click('#fLvB button[data-l="'+lv+'"]')},
   mus:lv=>{show('musicas');click('#musFilter button[data-l="'+lv+'"]')},
   map:lv=>{show('mapas');click('#mapFilter button[data-l="'+lv+'"]')},
   leit:lv=>{show('historias');click('#stLv button[data-l="'+lv+'"]')},
+  plano:i=>{show('plano');scrollTo('#plan .month:nth-of-type('+(i+1)+')')},
 };
-/* monta as etapas com o progresso que o app já guarda */
 const stages=()=>{
   const zD=Object.keys(g('zDone',{})).length,zN=(window.ZL||[]).length;
-  const done=g('done',[]),nvD=g('nvDone',{}),audD=g('audDone',[]),fB=g('fBest',{}),muD=g('musDone',[]);
+  const done=g('done',[]),nvD=g('nvDone',{}),audD=g('audDone',[]),fB=g('fBest',{}),muD=g('musDone',[]),wk=g('weeks',[]);
   const EP=(window.__aud&&__aud.EP)||[];
-  const out=[{k:'zero',lv:'🌱',t:'Do zero',d:'Primeiras palavras com figuras, como um bebê aprendendo a falar.',c:'#2E7D4F',acts:[
-    {e:'🌱',t:'Lições do zero',s:'5 palavras por lição, uns 3 minutos cada',n:zN,k:Math.min(zD,zN),go:()=>open.zero(),next:'Lição '+Math.min(zD+1,zN)+' do zero'}]}];
-  LVK.forEach((lv,li)=>{const v=(typeof NV!=='undefined'&&NV[li])||{k:lv,n:'',d:'',c:'#16305C',l:[]};const acts=[];
+  const out=[{k:'zero',lv:'🌱',t:'Do zero',d:'Primeiras palavras com figuras e o alfabeto.',c:'#2E7D4F',acts:[
+    {e:'🌱',t:'Lições do zero',s:'5 palavras por lição, uns 3 minutos cada',n:zN,k:Math.min(zD,zN),go:()=>open.zero(),next:'Lição '+Math.min(zD+1,zN)+' do zero'},
+    {e:'🔤',t:'Alfabeto',s:'As 26 letras e como soletrar',n:1,k:g('abcBest',0)>0?1:0,go:()=>open.abc(),next:'Alfabeto: jogo das letras'}]}];
+  /* fases dos temas: número da 1ª semana de cada fase */
+  const PS=[];let wn=0;(typeof P!=='undefined'?P:[]).forEach(m=>{PS.push([wn+1,wn+m.w.length]);wn+=m.w.length});
+  LVK.forEach((lv,li)=>{const v=(typeof NV!=='undefined'&&NV[li])||{k:lv,n:'',d:'',c:'#16305C',l:[]};const acts=[];const num=li+1;
+    const add=a=>acts.push(a);
+    /* 1. aprender: situações e lições */
     const ai=L.map((x,i)=>[x,i]).filter(([x])=>(LNUM[x.lv]||x.lv)===lv);
-    if(ai.length){const nd=ai.filter(([,i])=>done.includes(i));const nx=ai.find(([,i])=>!done.includes(i));
-      acts.push({e:'☕',t:'Situações do dia a dia',s:ai.map(([x])=>x.t).slice(0,3).join(', ')+(ai.length>3?'…':''),n:ai.length,k:nd.length,go:()=>open.aula((nx||ai[0])[1]),next:nx?('Situação: '+nx[0].t):''})}
+    if(ai.length){const nd=ai.filter(([,i])=>done.includes(i)).length;const nx=ai.find(([,i])=>!done.includes(i));
+      add({sec:'Aprender',e:'☕',t:'Situações do dia a dia',s:ai.map(([x])=>x.t).slice(0,3).join(', ')+(ai.length>3?'…':''),n:ai.length,k:nd,go:()=>open.aula((nx||ai[0])[1]),next:nx?('Situação: '+nx[0].t):''})}
     if(v.l&&v.l.length){const n=v.l.length;let k=0,first=-1;v.l.forEach((x,j)=>{if(nvD[v.k+j])k++;else if(first<0)first=j});
-      acts.push({e:'🪜',t:'Lições do nível '+lv,s:v.l.map(x=>x[0]).slice(0,3).join(', '),n,k,go:()=>open.nv(li),next:first>=0?('Lição do '+lv+': '+v.l[first][0]):''})}
+      add({sec:'Aprender',e:'🪜',t:'Lições do nível '+lv,s:v.l.map(x=>x[0]).slice(0,3).join(', '),n,k,go:()=>open.nv(li),next:first>=0?('Lição do '+lv+': '+v.l[first][0]):''})}
+    if(lv==='A1'&&typeof U!=='undefined')add({sec:'Aprender',e:'📘',t:'Livro e aulas da professora',s:'Interchange Intro: '+U.length+' unidades',info:1,n:U.length,go:()=>open.livro()});
+    /* 2. vocabulário e fala */
+    const LV=(typeof LEVELS!=='undefined'?LEVELS:[])[li];
+    if(LV&&li<4)add({sec:'Palavras e frases',e:'📚',t:'Palavras: '+LV[0].replace(/^Nível \d+ · /,''),s:LV[1].join(', '),info:1,n:LV[1].length+' temas',go:()=>open.pal(LV[1][0])});
+    const NG=(typeof N!=='undefined'?N:[]).map((x,i)=>[x,i]).filter(([x])=>x.t.startsWith('Nível '+num+' ')||(num===2&&x.t.startsWith('Frases essenciais')));
+    NG.forEach(([x,i])=>add({sec:'Palavras e frases',e:'💬',t:x.t.replace(/^Nível \d+ · /,'').replace(/^Frases essenciais · /,'Frases: '),s:x.d.slice(0,70)+(x.d.length>70?'…':''),info:1,n:'',go:()=>open.nat(i)}));
+    if(lv==='A1'){add({sec:'Palavras e frases',e:'🧩',t:'Montar frases',s:'A ordem das palavras, com cores',n:1,k:g('mfBest',0)>0?1:0,go:()=>open.montar(),next:'Montar frases: treino'});
+      add({sec:'Palavras e frases',e:'👄',t:'Sons que confundem',s:'TH, R, vogais curtas e longas…',info:1,n:'14 sons',go:()=>open.sons()})}
+    if(lv==='B1'&&typeof PVL!=='undefined')add({sec:'Palavras e frases',e:'🧲',t:'Phrasal verbs com imagens',s:'wake up, pick up, look for…',info:1,n:PVL.length,go:()=>open.phrasal()});
+    /* 3. ouvir e ler */
     const eps=EP.filter(e=>e.lv===lv);if(eps.length){const k=eps.filter(e=>audD.includes(e.id)).length;const nx=eps.find(e=>!audD.includes(e.id));
-      acts.push({e:'🎧',t:'Áudios para ouvir',s:'Histórias e diálogos com voz natural',n:eps.length,k,go:()=>open.aud(lv),next:nx?('Áudio: '+nx.t):''})}
-    const fi=(window.FICHAS||[]).filter(f=>f.lv===lv);if(fi.length){const k=fi.filter(f=>fB[f.t]!=null).length;const nx=fi.find(f=>fB[f.t]==null);
-      acts.push({e:'✏️',t:'Fichas de exercícios',s:fi.map(f=>f.t).slice(0,3).join(', ')+(fi.length>3?'…':''),n:fi.length,k,go:()=>open.fic(lv),next:nx?('Ficha: '+nx.t):''})}
+      add({sec:'Ouvir e ler',e:'🎧',t:'Áudios para ouvir',s:'Histórias e diálogos com voz natural',n:eps.length,k,go:()=>open.aud(lv),next:nx?('Áudio: '+nx.t):''})}
     const mu=(typeof MU!=='undefined'?MU:[]).map((m,i)=>[m,i]).filter(([m])=>m[0]===lv);if(mu.length){const k=mu.filter(([,i])=>muD.includes(i)).length;const nx=mu.find(([,i])=>!muD.includes(i));
-      acts.push({e:'🎵',t:'Músicas do nível',s:mu.map(([m])=>m[1]).slice(0,3).join(', ')+(mu.length>3?'…':''),n:mu.length,k,go:()=>open.mus(lv),next:nx?('Música: '+nx[0][1]):''})}
-    const nm=(typeof MMS!=='undefined'?MMS:[]).filter(m=>m.lv===lv).length+(typeof M!=='undefined'?M:[]).filter(m=>m.lv===lv).length;
-    if(nm)acts.push({e:'🧠',t:'Mapas mentais',s:'Para revisar e consultar',n:nm,info:1,go:()=>open.map(lv)});
+      add({sec:'Ouvir e ler',e:'🎵',t:'Músicas do nível',s:mu.map(([m])=>m[1]).slice(0,3).join(', ')+(mu.length>3?'…':''),n:mu.length,k,go:()=>open.mus(lv),next:nx?('Música: '+nx[0][1]):''})}
     const ns=(typeof S!=='undefined'?S:[]).filter(x=>x.lv===lv).length;
-    if(ns)acts.push({e:'📖',t:'Leituras bilíngues',s:'Histórias curtas com áudio',n:ns,info:1,go:()=>open.leit(lv)});
+    if(ns)add({sec:'Ouvir e ler',e:'📖',t:'Leituras bilíngues',s:'Histórias curtas com áudio',info:1,n:ns,go:()=>open.leit(lv)});
+    /* 4. treinar e revisar */
+    const fi=(window.FICHAS||[]).filter(f=>f.lv===lv);if(fi.length){const k=fi.filter(f=>fB[f.t]!=null).length;const nx=fi.find(f=>fB[f.t]==null);
+      add({sec:'Treinar e revisar',e:'✏️',t:'Fichas de exercícios',s:fi.map(f=>f.t).slice(0,3).join(', ')+(fi.length>3?'…':''),n:fi.length,k,go:()=>open.fic(lv),next:nx?('Ficha: '+nx.t):''})}
+    PH_LV.forEach((pl,pi)=>{if(pl!==lv||!PS[pi])return;const [a,b]=PS[pi];const n=b-a+1;let k=0;for(let w=a;w<=b;w++)if(wk.includes(w))k++;
+      add({sec:'Treinar e revisar',e:'🗺️',t:'Temas: '+P[pi].t,s:P[pi].w.map(w=>w[0]).slice(0,3).join(', '),n,k,go:()=>open.plano(pi),next:'Temas: '+P[pi].t})});
+    const nm=(typeof MMS!=='undefined'?MMS:[]).filter(m=>m.lv===lv).length+(typeof M!=='undefined'?M:[]).filter(m=>m.lv===lv).length;
+    if(nm)add({sec:'Treinar e revisar',e:'🧠',t:'Mapas mentais',s:'Para revisar e consultar',info:1,n:nm,go:()=>open.map(lv)});
     out.push({k:lv,lv,t:lv+(v.n?' · '+v.n:''),d:v.d||'',c:v.c||'#16305C',acts});
   });
   const skip=g('rotaSkip',[]);
   out.forEach(st=>{const tr=st.acts.filter(a=>!a.info);st.n=tr.reduce((a,b)=>a+b.n,0);st.kk=tr.reduce((a,b)=>a+b.k,0);st.skip=skip.includes(st.k);st.full=st.skip||(st.n>0&&st.kk>=st.n)});
   return out};
 const nextStep=S0=>{const st=S0.find(x=>!x.full&&x.n>0);if(!st)return null;const a=st.acts.find(a=>!a.info&&a.k<a.n);return a?{st,a}:null};
-let openSt=null;
-const render=()=>{
+const inst={};/* uma trilha no Início e outra na aba Trilha */
+const render=(key)=>{
+  const root=key==='home'?document.getElementById('hTrail'):document.getElementById('rota');if(!root)return;
+  const topEl=root.querySelector('.rtopbox'),P0=root.querySelector('.rpath');const I=inst[key]=inst[key]||{open:null};
   const S0=stages(),ns=nextStep(S0),cur=ns?ns.st:S0[S0.length-1];
   const tot=S0.reduce((a,b)=>a+b.n,0),kk=S0.reduce((a,b)=>a+(b.skip?b.n:b.kk),0),pct=tot?Math.round(kk*100/tot):0;
-  if(openSt==null)openSt=cur.k;
-  document.getElementById('rotaTop').innerHTML=`<div class="rtop"><p class="rk">Você está em</p><p class="rt">${cur.k==='zero'?'🌱 Do zero':esc(cur.t)}</p><div class="rbar" aria-hidden="true"><i style="width:${pct}%"></i></div><div class="rpct"><span>Trilha completa: ${pct}%</span><span>${kk} de ${tot} passos</span></div>`+
-    (ns?`<button type="button" class="rgo" id="rotaGo"><span class="ri" aria-hidden="true">${ns.a.e}</span><span><b>Continuar</b><small>${esc(ns.a.next||ns.a.t)}</small></span><span class="ra" aria-hidden="true">›</span></button>`:`<p style="margin:0;font-weight:800">🎉 Você completou a trilha inteira!</p>`)+`</div>`;
-  if(ns)document.getElementById('rotaGo').onclick=()=>ns.a.go();
-  const P=document.getElementById('rotaPath');
-  P.innerHTML=S0.map((st,si)=>{const pc=st.n?Math.round((st.skip?st.n:st.kk)*100/st.n):0,here=st===cur,op=openSt===st.k;
-    return `<li class="rst${st.full?' full':''}${here?' here':''}" style="--lc:${st.c}"><div class="rcard"><button type="button" class="rhead" data-st="${st.k}" aria-expanded="${op}"><span class="rlv">${st.k==='zero'?'🌱':esc(st.lv)}</span><span><b>${esc(st.k==='zero'?st.t:st.t)}${here?'<span class="rhere">você está aqui</span>':''}</b><small>${esc(st.d)}</small></span><span class="rp">${st.skip?'pulado':st.full?'✓':pc+'%'}</span></button>
-      <div class="rbody"${op?'':' hidden'}><div class="rbar" aria-hidden="true"><i style="width:${pc}%"></i></div>${st.acts.map((a,ai)=>`<button type="button" class="ract" data-st="${si}" data-a="${ai}"><span class="ai" aria-hidden="true">${a.e}</span><span><b>${esc(a.t)}</b><small>${esc(a.s)}</small></span><span class="ac${!a.info&&a.k>=a.n?' ok':''}">${a.info?a.n+' para ver':(a.k>=a.n?'✓ '+a.n+' de '+a.n:a.k+' de '+a.n)}</span></button>`).join('')}
+  if(I.open==null)I.open=cur.k;
+  const goId=key==='home'?'hGo':'rotaGo';
+  topEl.innerHTML=`<div class="rtop"><p class="rk">Você está em</p><p class="rt">${cur.k==='zero'?'🌱 Do zero':esc(cur.t)}</p><div class="rbar" aria-hidden="true"><i style="width:${pct}%"></i></div><div class="rpct"><span>Trilha completa: ${pct}%</span><span>${kk} de ${tot} passos</span></div>`+
+    (ns?`<button type="button" class="rgo" id="${goId}"><span class="ri" aria-hidden="true">${ns.a.e}</span><span><b>Continuar</b><small>${esc(ns.a.next||ns.a.t)}</small></span><span class="ra" aria-hidden="true">›</span></button>`:`<p style="margin:0;font-weight:800">🎉 Você completou a trilha inteira!</p>`)+`</div>`;
+  if(ns)document.getElementById(goId).onclick=()=>ns.a.go();
+  P0.innerHTML=S0.map((st,si)=>{const pc=st.n?Math.round((st.skip?st.n:st.kk)*100/st.n):0,here=st===cur,op=I.open===st.k;let lastSec='';
+    return `<li class="rst${st.full?' full':''}${here?' here':''}" style="--lc:${st.c}"><div class="rcard"><button type="button" class="rhead" data-st="${st.k}" aria-expanded="${op}"><span class="rlv">${st.k==='zero'?'🌱':esc(st.lv)}</span><span><b>${esc(st.t)}${here?'<span class="rhere">você está aqui</span>':''}</b><small>${esc(st.d)}</small></span><span class="rp">${st.skip?'pulado':st.full?'✓':pc+'%'}</span></button>
+      <div class="rbody"${op?'':' hidden'}><div class="rbar" aria-hidden="true"><i style="width:${pc}%"></i></div>${st.acts.map((a,ai)=>{const sec=a.sec&&a.sec!==lastSec?`<p class="rsub">${esc(a.sec)}</p>`:'';lastSec=a.sec||lastSec;
+        return sec+`<button type="button" class="ract" data-st="${si}" data-a="${ai}"><span class="ai" aria-hidden="true">${a.e}</span><span><b>${esc(a.t)}</b><small>${esc(a.s)}</small></span><span class="ac${a.info?' info':(a.k>=a.n?' ok':'')}">${a.info?(a.n===''?'ver':a.n+(typeof a.n==='number'?' para ver':'')):(a.k>=a.n?'✓ '+a.n+' de '+a.n:a.k+' de '+a.n)}</span></button>`}).join('')}
       ${st.full&&!st.skip?'':`<button type="button" class="rskip" data-skip="${st.k}">${st.skip?'Voltar a contar esta etapa':'Já sei isso: pular esta etapa'}</button>`}</div></div></li>`}).join('');
-  P.querySelectorAll('.rhead').forEach(b=>b.onclick=()=>{openSt=openSt===b.dataset.st?'':b.dataset.st;render()});
-  P.querySelectorAll('.ract').forEach(b=>b.onclick=()=>S0[+b.dataset.st].acts[+b.dataset.a].go());
-  P.querySelectorAll('[data-skip]').forEach(b=>b.onclick=()=>{const k=b.dataset.skip;let sk=g('rotaSkip',[]);sk=sk.includes(k)?sk.filter(x=>x!==k):[...sk,k];store.set('rotaSkip',sk);openSt=null;render();if(typeof window.renderHome==='function')try{window.renderHome()}catch(e){}});
+  P0.querySelectorAll('.rhead').forEach(b=>b.onclick=()=>{I.open=I.open===b.dataset.st?'':b.dataset.st;render(key)});
+  P0.querySelectorAll('.ract').forEach(b=>b.onclick=()=>S0[+b.dataset.st].acts[+b.dataset.a].go());
+  P0.querySelectorAll('[data-skip]').forEach(b=>b.onclick=()=>{const k=b.dataset.skip;let sk=g('rotaSkip',[]);sk=sk.includes(k)?sk.filter(x=>x!==k):[...sk,k];store.set('rotaSkip',sk);inst.home&&(inst.home.open=null);inst.rota&&(inst.rota.open=null);render(key)});
 };
+/* ferramentas para qualquer nível */
+const TOOLS=[['tradutor','🎙️','Tradutor de voz','Fale e ouça na hora'],['desaf','🏆','Desafios','Desafio do dia e ranking'],['flash','🃏','Flashcards','Revisar palavras'],['sos','🆘','SOS','Emergências'],['rotina','🗓️','Rotina','Dicas da professora'],['apost','📄','Apostila em PDF','Para imprimir']];
+const tl=document.getElementById('hTools');
+tl.innerHTML=TOOLS.map(([id,e,t,d])=>`<button class="htile" data-go="${id}" role="listitem"><span class="ti" aria-hidden="true">${e}</span><span><b>${t}</b><small>${d}</small></span></button>`).join('');
+tl.querySelectorAll('.htile').forEach(b=>b.onclick=()=>show(b.dataset.go));
 const homeTile=()=>{const t=document.querySelector('#hGrid [data-go=rota] small');if(!t)return;const ns=nextStep(stages());t.textContent=ns?('Próximo passo: '+(ns.a.next||ns.a.t)):'Trilha completa! 🎉'};
-const _showR=show;show=function(id){_showR.apply(this,arguments);if(!document.getElementById('rota').hidden){openSt=null;render()}};
-const _rhR=window.renderHome;window.renderHome=function(){_rhR&&_rhR.apply(this,arguments);homeTile()};
-homeTile();
-window.__rota={stages,nextStep,render,open};
+const _showR=show;show=function(id){_showR.apply(this,arguments);if(!document.getElementById('rota').hidden){inst.rota&&(inst.rota.open=null);render('rota')}};
+const _rhR=window.renderHome;window.renderHome=function(){_rhR&&_rhR.apply(this,arguments);homeTile();inst.home&&(inst.home.open=null);render('home')};
+homeTile();render('home');
+window.__rota={stages,nextStep,render:()=>render('rota'),renderHome:()=>render('home'),open};
 }
 
 /* ---------- Cenas ilustradas (vetor original + objetos 3D) ---------- */
