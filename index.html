@@ -524,6 +524,27 @@ img.emo{height:1.2em;width:1.2em;object-fit:contain;vertical-align:-0.24em;displ
 .dvfb{margin:10px 0 0;font-weight:700}.dvfb.ok{color:#1E8E4A}.dvfb.no{color:#C2352B}
 .dvend{text-align:center}.dvend .dvpic{margin:4px 0}
 .dvend ul{text-align:left;margin:10px auto;max-width:340px;padding-left:18px}
+
+.dvtime{display:flex;gap:8px;margin:4px 0 12px}
+.dvtime button{flex:1;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:12px;padding:10px 4px;font:800 .95rem var(--f-body);cursor:pointer}
+.dvtime button[aria-pressed="true"]{background:#F6BC3C;background-image:var(--gmust);border-color:transparent;color:#2A2100}
+.dvcoach{display:flex;gap:10px;align-items:flex-start;background:var(--soft);border-radius:14px;padding:10px 12px;margin:0 0 12px}
+.dvcoach .ce{font-size:1.8rem;line-height:1}
+.dvcoach p{margin:0;font-size:.95rem;line-height:1.35}
+.dvsk{display:grid;gap:6px;margin:0 0 12px}
+.dvsk div{display:grid;grid-template-columns:86px 1fr 44px;gap:8px;align-items:center;font:700 .84rem var(--f-body)}
+.dvsk i{display:block;height:9px;border-radius:9px;background:var(--line);overflow:hidden}
+.dvsk i b{display:block;height:100%;border-radius:9px;background:#1F6FA3}
+.dvsk i b.lo{background:#E0892B}.dvsk i b.hi{background:#1E8E4A}
+.dvsk span{text-align:right;color:var(--muted)}
+.dvprof{display:flex;align-items:center;gap:12px;width:100%;box-sizing:border-box;border-radius:18px;padding:14px;margin:14px 0 0;text-decoration:none;color:#2A2100;background:#F6BC3C;background-image:var(--gmust)}
+.dvprof .de{font-size:2.1rem;line-height:1}
+.dvprof b{display:block;font:800 1.05rem/1.2 var(--f-display)}.dvprof small{display:block;font:600 .84rem/1.3 var(--f-body);opacity:.85}
+.dvprof .dg{margin-left:auto;font:800 1.3rem var(--f-display)}
+.dvcard .de img.emo,.dvprof .de img.emo{width:2.3rem!important;height:2.3rem!important;vertical-align:middle}
+.dvcoach .ce img.emo{width:1.9rem!important;height:1.9rem!important}
+.dvcoach .ce,.dvcard .de,.dvprof .de{flex:0 0 auto}
+.dvlvl{display:inline-block;background:var(--soft);border-radius:99px;padding:2px 9px;font:800 .72rem var(--f-body);color:var(--muted);margin-left:6px;vertical-align:2px}
 </style>
 <title>Inglês Prático</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -8950,83 +8971,138 @@ if(ov)new MutationObserver(sync).observe(ov,{subtree:true,childList:true,attribu
 window.__scn={SCN_L,SCN_EP,bub};
 }
 
-/* ---------- 🧠 Destravar: 10 minutos por dia ---------- */
+/* ---------- 🧠 Destravar (adaptativo): presta atenção em você ---------- */
 {
 const box=document.getElementById('dvBox');
 const esc=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const day=(n=0)=>{const d=new Date();d.setDate(d.getDate()+n);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
 const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
 const IV=[1,3,7,16,35,90];
-/* frases que a pessoa já estudou (situações feitas + a atual); se ainda for pouco, as primeiras do A1 */
+const SK={lem:'🔁 Lembrar',ouv:'👂 Ouvir',fal:'🗣️ Falar',pen:'💭 Pensar'};
+const NAMEP={lem:'lembrar',ouv:'entender ouvindo',fal:'falar',pen:'pensar em inglês'};
+const BASE={lem:5,ouv:3,fal:3,pen:5};
+/* histórico por trava: últimos 30 resultados (1 = foi bem, 0 = travou) */
+const hist=()=>store.get('dvStat',{lem:[],ouv:[],fal:[],pen:[]});
+const rec=(k,ok)=>{const h=hist();h[k]=(h[k]||[]).concat(ok?1:0).slice(-30);store.set('dvStat',h)};
+const acc=k=>{const a=(hist()[k]||[]).slice(-15);return a.length>=4?a.reduce((x,y)=>x+y,0)/a.length:null};
+/* dificuldade por trava: 1 (leve) a 3 (puxado), conforme os últimos resultados */
+const lvl=k=>{const v=acc(k);return v==null?2:v>=.85?3:v<.55?1:2};
+/* itens que deram trabalho: peso maior volta mais vezes */
+const errs=()=>store.get('dvErr',{});
+const bump=(k,key,d)=>{const E=errs();E[k]=E[k]||{};const v=Math.max(0,(E[k][key]||0)+d);if(v)E[k][key]=v;else delete E[k][key];store.set('dvErr',E)};
+const wOf=(k,key)=>((errs()[k]||{})[key]||0);
 const pool=()=>{const done=store.get('done',[]);const ids=[...new Set([...done,cur])].filter(i=>L[i]);let P=[];ids.forEach(i=>L[i].p.forEach(p=>P.push({en:nm(p[0]),pt:nm(p[1]),pr:p[2]})));
   if(P.length<12)for(let i=0;i<L.length&&P.length<12;i++)if(!ids.includes(i))L[i].p.forEach(p=>P.push({en:nm(p[0]),pt:nm(p[1]),pr:p[2]}));
   const seen=new Set();return P.filter(x=>!seen.has(x.en)&&seen.add(x.en))};
 const allPt=()=>{const r=[];L.forEach(l=>l.p.forEach(p=>r.push(nm(p[1]))));return [...new Set(r)]};
-/* palavras com figura das lições do zero já feitas (ou as primeiras) */
-const pics=()=>{const zd=Object.keys(store.get('zDone',{})).map(Number);const ls=zd.length?zd:[0,1,2];const r=[];ls.forEach(i=>(ZL[i]&&ZL[i].i||[]).forEach(w=>r.push({e:w[0],en:w[1],pt:w[2],pr:w[3]})));return r};
+const pics=(level)=>{const zd=Object.keys(store.get('zDone',{})).map(Number).sort((a,b)=>a-b);let ls=zd.length?zd.slice():[0,1,2];
+  if(level===3){const nx=[0,1].map(d=>(zd.length?Math.max(...zd):2)+1+d).filter(i=>ZL[i]);ls=ls.concat(nx)}/* indo bem: entram palavras das próximas lições */
+  if(level===1)ls=ls.slice(0,Math.max(2,Math.ceil(ls.length/2)));/* travando: só as primeiras, as mais conhecidas */
+  const r=[];ls.forEach(i=>(ZL[i]&&ZL[i].i||[]).forEach(w=>r.push({e:w[0],en:w[1],pt:w[2],pr:w[3]})));return r};
+const words=t=>t.split(/\s+/).length;
 const doneToday=()=>store.get('dvDays',[]).includes(day());
+/* plano do dia: quanto de cada trava, conforme o tempo e as dificuldades */
+const plan=min=>{const f=min/10,out={};let weak=null,wv=2;
+  Object.keys(BASE).forEach(k=>{const v=acc(k);let m=1;if(v!=null){m=1+Math.max(-.45,Math.min(.8,(.8-v)*1.6));if(v<wv){wv=v;weak=k}}out[k]=Math.max(2,Math.min(8,Math.round(BASE[k]*f*m)))});
+  return {n:out,weak:wv<.8?weak:null}};
+/* escolhe itens priorizando o que deu trabalho */
+const pickW=(arr,k,n,key=x=>x.en)=>{const w=arr.map(x=>[x,wOf(k,key(x))*3+Math.random()]);w.sort((a,b)=>b[1]-a[1]);return w.slice(0,n).map(x=>x[0])};
 let S=null;
 const STEPS=[['🔁','Lembrar'],['👂','Ouvir'],['🗣️','Falar'],['💭','Pensar']];
 const bar=k=>`<div class="dvsteps" aria-hidden="true">${STEPS.map((x,i)=>`<span class="${i<k?'ok':i===k?'on':''}"><i>${x[0]}</i>${x[1]}</span>`).join('')}</div>`;
+const skills=()=>`<div class="dvsk">${Object.keys(SK).map(k=>{const v=acc(k);const p=v==null?0:Math.round(v*100);return `<div><span style="text-align:left;color:var(--ink)">${SK[k]}</span><i><b class="${v==null?'':v<.55?'lo':v>=.85?'hi':''}" style="width:${v==null?0:p}%"></b></i><span>${v==null?'—':p+'%'}</span></div>`}).join('')}</div>`;
+const coachStart=(pl)=>{const h=hist();const n=Object.values(h).reduce((a,b)=>a+b.length,0);
+  if(n<8)return 'Vou observar como você vai em cada passo. Em poucos dias eu ajusto o treino para você: mais do que travar, menos do que já estiver fácil.';
+  if(!pl.weak)return 'Você está indo bem em tudo! Hoje deixei o treino um pouco mais puxado: frases mais longas e opções mais parecidas.';
+  const v=Math.round(acc(pl.weak)*100);return `Hoje vou focar em <b>${NAMEP[pl.weak]}</b>: nas últimas vezes você foi bem em ${v}% dessa parte. Coloquei mais exercícios dela e trouxe de volta o que deu trabalho.`};
 const start=()=>{
-  const P=pool(),srs=store.get('srs',{}),t=day();
+  const min=store.get('dvMin',10),pl=plan(min),P=pool(),srs=store.get('srs',{}),t=day();
+  /* lembrar: vencidas primeiro; frases novas conforme o desempenho */
   const due=P.filter(x=>srs[x.en]&&srs[x.en].d<=t),fresh=P.filter(x=>!srs[x.en]);
-  const rem=shuf(due).concat(fresh).slice(0,5);
-  const rest=shuf(P.filter(x=>!rem.includes(x)));
-  const ouv=(rest.length>=3?rest:shuf(P)).slice(0,3);
-  const fal=shuf(P.filter(x=>x.en.split(' ').length<=7)).slice(0,3);
-  const pi=shuf(pics()).slice(0,5);
-  S={k:0,i:0,rem,ouv,fal,pi,lem:0,ouvOk:0,pens:0};draw()};
+  const nNew=lvl('lem')===3?3:lvl('lem')===1?1:2;
+  let rem=pickW(due,'lem',pl.n.lem);rem=rem.concat(shuf(fresh).slice(0,Math.max(nNew,pl.n.lem-rem.length))).slice(0,pl.n.lem);
+  if(rem.length<pl.n.lem)rem=rem.concat(shuf(P.filter(x=>!rem.includes(x))).slice(0,pl.n.lem-rem.length));
+  /* ouvir: o que você errou ouvindo volta; frases mais curtas ou mais longas conforme o nível */
+  const lo=lvl('ouv');const ouvPool=P.filter(x=>lo===1?words(x.en)<=5:lo===3?words(x.en)>=4:true);
+  const ouv=pickW(ouvPool.length>=pl.n.ouv?ouvPool:P,'ouv',pl.n.ouv);
+  /* falar: frases que travaram + as que você não lembrou */
+  const lf=lvl('fal');const falPool=P.filter(x=>lf===1?words(x.en)<=5:lf===3?words(x.en)>=4:words(x.en)<=8);
+  const E=errs();const fal=pickW(falPool.length>=pl.n.fal?falPool:P,'fal',pl.n.fal,x=>x.en).map(x=>x);
+  fal.sort((a,b)=>((E.lem||{})[b.en]||0)-((E.lem||{})[a.en]||0));
+  /* pensar: figuras; as que não saíram voltam */
+  const pi=pickW(pics(lvl('pen')),'pen',pl.n.pen);
+  S={k:0,i:0,rem,ouv,fal,pi,lem:0,ouvOk:0,falOk:0,pens:0,min,pl,lv:{ouv:lo,fal:lf,pen:lvl('pen')}};draw()};
 const next=()=>{S.i++;const n=[S.rem,S.ouv,S.fal,S.pi][S.k].length;if(S.i>=n){S.k++;S.i=0}draw()};
 const stopRec=()=>{try{if(S&&S.rec&&S.rec.state==='recording')S.rec.stop()}catch(e){}};
+const LV=['','leve','normal','puxado'];
 const draw=()=>{
-  if(!S){const d=doneToday();box.innerHTML=`<div class="dvst"><h3>${d?'✅ Você já destravou hoje!':'Pronto para destravar?'}</h3><p class="dvwhy">${d?'Se quiser, pode treinar de novo. Amanhã tem revisão nova esperando por você.':'Leva uns 10 minutos. Fale em voz alta sempre que puder: é falando que o cérebro destrava.'}</p>${bar(-1)}<ul class="dvwhy" style="padding-left:18px;margin:0 0 6px"><li><b>Lembrar:</b> frases voltam no dia certo, antes de você esquecer.</li><li><b>Ouvir:</b> entender pelo som, sem ler primeiro.</li><li><b>Falar:</b> repetir junto com a voz nativa, sem medo de errar.</li><li><b>Pensar:</b> ver a figura e falar direto em inglês, sem traduzir.</li></ul><div class="dvrow"><button type="button" class="btn" id="dvGo">▶ ${d?'Treinar de novo':'Começar agora'}</button></div></div>`;
+  if(!S){const d=doneToday(),min=store.get('dvMin',10),pl=plan(min);
+    box.innerHTML=`<div class="dvst"><h3>${d?'✅ Você já destravou hoje!':'Pronto para destravar?'}</h3>
+      <div class="dvcoach"><span class="ce" aria-hidden="true">🧑‍🏫</span><p>${coachStart(pl)}</p></div>
+      ${skills()}
+      <p class="dvwhy" style="margin:0 0 4px">Quanto tempo você tem agora?</p>
+      <div class="dvtime" id="dvTime">${[5,10,15].map(m=>`<button type="button" data-m="${m}" aria-pressed="${m===min}">${m} min</button>`).join('')}</div>
+      <p class="dvwhy" id="dvPlan">${Object.keys(SK).map(k=>SK[k].split(' ')[1]+' '+pl.n[k]).join(' · ')}</p>
+      <div class="dvrow"><button type="button" class="btn" id="dvGo">▶ ${d?'Treinar de novo':'Começar agora'}</button></div></div>
+      <a class="dvprof" id="dvProf" href="${'https://claude.ai/project/019f9c8b-8c92-74c0-a382-78646ba41d9f'}" target="_blank" rel="noopener"><span class="de" aria-hidden="true">💬</span><span><b>Conversar com o professor</b><small>Abre o Claude. Use o modo de voz 🎙️ para conversar falando.</small></span><span class="dg" aria-hidden="true">›</span></a>`;
+    box.querySelectorAll('#dvTime button').forEach(b=>b.onclick=()=>{store.set('dvMin',+b.dataset.m);draw()});
     document.getElementById('dvGo').onclick=start;return}
   stopRec();
   const k=S.k;
   if(k===0&&S.rem.length){const x=S.rem[S.i];
     box.innerHTML=bar(0)+`<div class="dvst"><p class="dvcnt">Lembrar · ${S.i+1} de ${S.rem.length}</p><h3>Como se diz em inglês?</h3><p class="dvwhy">Tente lembrar antes de ver. Esse esforço é o que grava a frase na memória.</p><p class="dvpt">${esc(x.pt)}</p><div id="dvA" hidden><p class="dvq" lang="en">${esc(x.en)}</p><p class="dvpr">🗣️ ${esc(x.pr)}</p></div><div class="dvrow" id="dvB1"><button type="button" class="btn" id="dvShow">Mostrar a resposta</button></div><div class="dvrow" id="dvB2" hidden><button type="button" class="btn ghost" id="dvNo">Ainda não lembrei</button><button type="button" class="btn" id="dvYes">✓ Lembrei</button></div></div>`;
     document.getElementById('dvShow').onclick=()=>{document.getElementById('dvA').hidden=false;document.getElementById('dvB1').hidden=true;document.getElementById('dvB2').hidden=false;say(x.en)};
-    const mark=ok=>{const srs=store.get('srs',{});const c=srs[x.en];let iv=ok?(c?IV[Math.min(IV.indexOf(c.i)+1,IV.length-1)]||1:IV[1]):1;srs[x.en]={i:iv,d:day(iv)};store.set('srs',srs);if(ok)S.lem++;next()};
+    const mark=ok=>{const srs=store.get('srs',{});const c=srs[x.en];let iv=ok?(c?IV[Math.min(IV.indexOf(c.i)+1,IV.length-1)]||1:IV[1]):1;srs[x.en]={i:iv,d:day(iv)};store.set('srs',srs);rec('lem',ok);bump('lem',x.en,ok?-1:2);if(ok)S.lem++;next()};
     document.getElementById('dvYes').onclick=()=>mark(true);document.getElementById('dvNo').onclick=()=>mark(false);return}
   if(k===0){S.k=1;S.i=0}
-  if(S.k===1&&S.ouv.length){const x=S.ouv[S.i];const wrong=shuf(allPt().filter(p=>p!==x.pt)).slice(0,2);const opts=shuf([x.pt,...wrong]);
-    box.innerHTML=bar(1)+`<div class="dvst"><p class="dvcnt">Ouvir · ${S.i+1} de ${S.ouv.length}</p><h3>O que você ouviu?</h3><p class="dvwhy">Sem ler primeiro. O ouvido aprende o som inteiro, e não palavra por palavra.</p><div class="dvrow"><button type="button" class="btn" id="dvPlay">🔊 Ouvir</button><button type="button" class="btn ghost" id="dvSlow">🐢 Mais devagar</button></div><div class="dvopts">${opts.map(o=>`<button type="button" data-o="${esc(o)}">${esc(o)}</button>`).join('')}</div><div id="dvA" hidden><p class="dvq" lang="en">${esc(x.en)}</p><p class="dvpr">🗣️ ${esc(x.pr)}</p></div><p class="dvfb" id="dvFb" aria-live="polite"></p><div class="dvrow"><button type="button" class="btn" id="dvNext" hidden>Próxima</button></div></div>`;
-    document.getElementById('dvPlay').onclick=()=>say(x.en);document.getElementById('dvSlow').onclick=()=>say(x.en,.75);
-    let done=false;box.querySelectorAll('.dvopts button').forEach(b=>b.onclick=()=>{if(done)return;done=true;const ok=b.dataset.o===x.pt;if(ok)S.ouvOk++;b.classList.add(ok?'ok':'no');box.querySelectorAll('.dvopts button').forEach(o=>{if(o.dataset.o===x.pt)o.classList.add('ok')});
-      const fb=document.getElementById('dvFb');fb.className='dvfb '+(ok?'ok':'no');fb.textContent=ok?'Isso! Seu ouvido pegou. 👏':'Quase! Ouça de novo olhando o texto.';document.getElementById('dvA').hidden=false;document.getElementById('dvNext').hidden=false;if(!ok)say(x.en,.85)});
-    document.getElementById('dvNext').onclick=next;setTimeout(()=>say(x.en),300);return}
+  if(S.k===1&&S.ouv.length){const x=S.ouv[S.i];const hard=S.lv.ouv===3;const nOpt=hard?4:3;
+    const others=allPt().filter(p=>p!==x.pt);const near=hard?others.filter(p=>p.split(' ').some(w=>w.length>3&&x.pt.includes(w))):[];
+    const wrong=shuf(near).concat(shuf(others)).filter((v,i,a)=>a.indexOf(v)===i).slice(0,nOpt-1);const opts=shuf([x.pt,...wrong]);
+    box.innerHTML=bar(1)+`<div class="dvst"><p class="dvcnt">Ouvir · ${S.i+1} de ${S.ouv.length}<span class="dvlvl">${LV[S.lv.ouv]}</span></p><h3>O que você ouviu?</h3><p class="dvwhy">Sem ler primeiro. O ouvido aprende o som inteiro, e não palavra por palavra.</p><div class="dvrow"><button type="button" class="btn" id="dvPlay">🔊 Ouvir</button><button type="button" class="btn ghost" id="dvSlow">🐢 Mais devagar</button></div><div class="dvopts">${opts.map(o=>`<button type="button" data-o="${esc(o)}">${esc(o)}</button>`).join('')}</div><div id="dvA" hidden><p class="dvq" lang="en">${esc(x.en)}</p><p class="dvpr">🗣️ ${esc(x.pr)}</p></div><p class="dvfb" id="dvFb" aria-live="polite"></p><div class="dvrow"><button type="button" class="btn" id="dvNext" hidden>Próxima</button></div></div>`;
+    document.getElementById('dvPlay').onclick=()=>say(x.en,S.lv.ouv===1?.9:undefined);document.getElementById('dvSlow').onclick=()=>say(x.en,.75);
+    let done=false;box.querySelectorAll('.dvopts button').forEach(b=>b.onclick=()=>{if(done)return;done=true;const ok=b.dataset.o===x.pt;if(ok)S.ouvOk++;rec('ouv',ok);bump('ouv',x.en,ok?-1:2);b.classList.add(ok?'ok':'no');box.querySelectorAll('.dvopts button').forEach(o=>{if(o.dataset.o===x.pt)o.classList.add('ok')});
+      const fb=document.getElementById('dvFb');fb.className='dvfb '+(ok?'ok':'no');fb.textContent=ok?'Isso! Seu ouvido pegou. 👏':'Quase! Ouça de novo olhando o texto. Essa frase vai voltar outro dia.';document.getElementById('dvA').hidden=false;document.getElementById('dvNext').hidden=false;if(!ok)say(x.en,.8)});
+    document.getElementById('dvNext').onclick=next;setTimeout(()=>say(x.en,S.lv.ouv===1?.9:undefined),300);return}
   if(S.k===1){S.k=2;S.i=0}
   if(S.k===2&&S.fal.length){const x=S.fal[S.i];const canRec=!!(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia&&window.MediaRecorder);
-    box.innerHTML=bar(2)+`<div class="dvst"><p class="dvcnt">Falar · ${S.i+1} de ${S.fal.length}</p><h3>Repita junto, em voz alta</h3><p class="dvwhy">Fale junto com a voz, no mesmo ritmo, mesmo errando. Não existe nota aqui: a boca precisa se acostumar.</p><p class="dvq" lang="en">${esc(x.en)}</p><p class="dvpr">🗣️ ${esc(x.pr)}</p><p class="dvpt" style="font-size:.95rem;color:var(--muted)">${esc(x.pt)}</p><div class="dvbig" id="dvCd" aria-live="polite"></div><div class="dvrow"><button type="button" class="btn" id="dvPlay">▶ Ouvir e repetir</button>${canRec?'<button type="button" class="btn ghost" id="dvRec">🎙️ Gravar minha voz</button>':''}</div><div class="dvrow" id="dvCmp" hidden><button type="button" class="btn ghost" id="dvMine">▶ Ouvir a minha</button><button type="button" class="btn ghost" id="dvNat">▶ Ouvir a nativa</button></div><div class="dvrow"><button type="button" class="btn" id="dvNext">Próxima</button></div></div>`;
+    box.innerHTML=bar(2)+`<div class="dvst"><p class="dvcnt">Falar · ${S.i+1} de ${S.fal.length}<span class="dvlvl">${LV[S.lv.fal]}</span></p><h3>Repita junto, em voz alta</h3><p class="dvwhy">Fale junto com a voz, no mesmo ritmo, mesmo errando. Não existe nota aqui: a boca precisa se acostumar.</p><p class="dvq" lang="en">${esc(x.en)}</p><p class="dvpr">🗣️ ${esc(x.pr)}</p><p class="dvpt" style="font-size:.95rem;color:var(--muted)">${esc(x.pt)}</p><div class="dvbig" id="dvCd" aria-live="polite"></div><div class="dvrow"><button type="button" class="btn" id="dvPlay">▶ Ouvir e repetir</button>${canRec?'<button type="button" class="btn ghost" id="dvRec">🎙️ Gravar minha voz</button>':''}</div><div class="dvrow" id="dvCmp" hidden><button type="button" class="btn ghost" id="dvMine">▶ Ouvir a minha</button><button type="button" class="btn ghost" id="dvNat">▶ Ouvir a nativa</button></div><p class="dvwhy" style="margin:12px 0 0">Como foi?</p><div class="dvrow" style="margin-top:6px"><button type="button" class="btn ghost" id="dvHard">😬 Travei</button><button type="button" class="btn" id="dvNext">🙂 Saiu bem</button></div></div>`;
     const cd=document.getElementById('dvCd');
-    document.getElementById('dvPlay').onclick=()=>{say(x.en);let n=3;cd.textContent='';clearInterval(S.t);S.t=setInterval(()=>{if(!document.body.contains(cd)){clearInterval(S.t);return}cd.textContent=n>0?n:'Agora você! 🗣️';if(n-->0)return;clearInterval(S.t)},700)};
+    document.getElementById('dvPlay').onclick=()=>{say(x.en,S.lv.fal===1?.85:undefined);let n=3;cd.textContent='';clearInterval(S.t);S.t=setInterval(()=>{if(!document.body.contains(cd)){clearInterval(S.t);return}cd.textContent=n>0?n:'Agora você! 🗣️';if(n-->0)return;clearInterval(S.t)},700)};
     document.getElementById('dvNat').onclick=()=>say(x.en);
     if(canRec){const rb=document.getElementById('dvRec');rb.onclick=async()=>{if(S.rec&&S.rec.state==='recording'){S.rec.stop();return}
       try{const st=await navigator.mediaDevices.getUserMedia({audio:true});const ch=[];const r=new MediaRecorder(st);S.rec=r;r.ondataavailable=e=>ch.push(e.data);
         r.onstop=()=>{st.getTracks().forEach(t=>t.stop());const url=URL.createObjectURL(new Blob(ch,{type:r.mimeType||'audio/webm'}));S.mine=url;rb.textContent='🎙️ Gravar de novo';const c=document.getElementById('dvCmp');if(c)c.hidden=false};
         r.start();rb.textContent='⏹ Parar';setTimeout(()=>{if(r.state==='recording')r.stop()},7000)}catch(e){rb.textContent='Microfone não liberado';rb.disabled=true}};
       document.getElementById('dvMine').onclick=()=>{if(S.mine){const a=new Audio(S.mine);a.play().catch(()=>{})}}}
-    document.getElementById('dvNext').onclick=()=>{clearInterval(S.t);S.mine=null;next()};return}
+    const fin=ok=>{clearInterval(S.t);S.mine=null;rec('fal',ok);bump('fal',x.en,ok?-1:2);if(ok)S.falOk++;next()};
+    document.getElementById('dvNext').onclick=()=>fin(true);document.getElementById('dvHard').onclick=()=>fin(false);return}
   if(S.k===2){S.k=3;S.i=0}
   if(S.k===3&&S.pi.length){const x=S.pi[S.i];
-    box.innerHTML=bar(3)+`<div class="dvst"><p class="dvcnt">Pensar em inglês · ${S.i+1} de ${S.pi.length}</p><h3>Diga em inglês, em voz alta</h3><p class="dvwhy">Olhe a figura e fale direto, sem passar pelo português. É assim que o cérebro para de traduzir.</p><div class="dvpic" aria-hidden="true">${x.e}</div><div class="dvans" id="dvA" hidden><p class="dvq" lang="en">${esc(x.en)}</p><p class="dvpr">🗣️ ${esc(x.pr)}</p></div><div class="dvrow" id="dvB1"><button type="button" class="btn" id="dvShow">Já falei, conferir</button></div><div class="dvrow" id="dvB2" hidden><button type="button" class="btn ghost" id="dvNo">Não saiu</button><button type="button" class="btn" id="dvYes">✓ Saiu em inglês</button></div></div>`;
+    box.innerHTML=bar(3)+`<div class="dvst"><p class="dvcnt">Pensar em inglês · ${S.i+1} de ${S.pi.length}<span class="dvlvl">${LV[S.lv.pen]}</span></p><h3>Diga em inglês, em voz alta</h3><p class="dvwhy">Olhe a figura e fale direto, sem passar pelo português. É assim que o cérebro para de traduzir.</p><div class="dvpic" aria-hidden="true">${x.e}</div><div class="dvans" id="dvA" hidden><p class="dvq" lang="en">${esc(x.en)}</p><p class="dvpr">🗣️ ${esc(x.pr)}</p></div><div class="dvrow" id="dvB1"><button type="button" class="btn" id="dvShow">Já falei, conferir</button></div><div class="dvrow" id="dvB2" hidden><button type="button" class="btn ghost" id="dvNo">Não saiu</button><button type="button" class="btn" id="dvYes">✓ Saiu em inglês</button></div></div>`;
     document.getElementById('dvShow').onclick=()=>{document.getElementById('dvA').hidden=false;document.getElementById('dvB1').hidden=true;document.getElementById('dvB2').hidden=false;say(x.en)};
-    document.getElementById('dvYes').onclick=()=>{S.pens++;next()};document.getElementById('dvNo').onclick=next;return}
-  /* fim */
+    const pm=ok=>{rec('pen',ok);bump('pen',x.en,ok?-1:2);if(ok)S.pens++;next()};
+    document.getElementById('dvYes').onclick=()=>pm(true);document.getElementById('dvNo').onclick=()=>pm(false);return}
+  /* fim: o professor comenta */
   const first=!doneToday();if(first){const dd=store.get('dvDays',[]);dd.push(day());store.set('dvDays',dd.slice(-400));store.set('xp',store.get('xp',0)+20)}
   try{touchDay()}catch(e){}try{updateStats()}catch(e){}
+  const res={lem:[S.lem,S.rem.length],ouv:[S.ouvOk,S.ouv.length],fal:[S.falOk,S.fal.length],pen:[S.pens,S.pi.length]};
+  const r=k=>res[k][1]?res[k][0]/res[k][1]:1;const ks=Object.keys(res).filter(k=>res[k][1]);
+  const best=ks.slice().sort((a,b)=>r(b)-r(a))[0],worst=ks.slice().sort((a,b)=>r(a)-r(b))[0];
   const srs=store.get('srs',{}),tm=Object.values(srs).filter(v=>v.d<=day(1)).length;
-  box.innerHTML=bar(4)+`<div class="dvst dvend"><div class="dvpic" aria-hidden="true">🧠</div><h3>Cérebro destravado hoje!</h3><ul><li>🔁 Lembrou <b>${S.lem} de ${S.rem.length}</b> frases</li><li>👂 Entendeu ouvindo <b>${S.ouvOk} de ${S.ouv.length}</b></li><li>🗣️ Falou em voz alta <b>${S.fal.length}</b> frases</li><li>💭 Pensou em inglês <b>${S.pens} de ${S.pi.length}</b> palavras</li></ul><p class="dvwhy">${tm?'Amanhã '+tm+' frase'+(tm>1?'s voltam':' volta')+' para revisão, bem na hora de não esquecer.':'Volte amanhã: as frases voltam no dia certo.'}${first?' +20 ⭐':''}</p><div class="dvrow"><button type="button" class="btn" id="dvHome">Voltar à trilha</button><button type="button" class="btn ghost" id="dvAgain">Treinar de novo</button></div></div>`;
+  const tip=r(worst)>=.85?'Tudo muito bem hoje! Amanhã eu deixo o treino um pouco mais puxado.':`Para melhorar: <b>${NAMEP[worst]}</b> (${res[worst][0]} de ${res[worst][1]}). Amanhã eu coloco mais disso e trago de volta o que travou.`;
+  box.innerHTML=bar(4)+`<div class="dvst dvend"><div class="dvpic" aria-hidden="true">🧠</div><h3>Cérebro destravado hoje!</h3><ul><li>🔁 Lembrou <b>${S.lem} de ${S.rem.length}</b> frases</li><li>👂 Entendeu ouvindo <b>${S.ouvOk} de ${S.ouv.length}</b></li><li>🗣️ Falou bem <b>${S.falOk} de ${S.fal.length}</b> frases</li><li>💭 Pensou em inglês <b>${S.pens} de ${S.pi.length}</b> palavras</li></ul>
+    <div class="dvcoach" style="text-align:left"><span class="ce" aria-hidden="true">🧑‍🏫</span><p>Seu ponto forte hoje: <b>${NAMEP[best]}</b>. ${tip}</p></div>
+    <p class="dvwhy">${tm?'Amanhã '+tm+' frase'+(tm>1?'s voltam':' volta')+' para revisão, bem na hora de não esquecer.':'Volte amanhã: as frases voltam no dia certo.'}${first?' +20 ⭐':''}</p><div class="dvrow"><button type="button" class="btn" id="dvHome">Voltar à trilha</button><button type="button" class="btn ghost" id="dvAgain">Treinar de novo</button></div></div>`;
   document.getElementById('dvHome').onclick=()=>show('inicio');document.getElementById('dvAgain').onclick=start;S=null;homeCard()};
 /* cartão no Início */
-const homeCard=()=>{const h=document.getElementById('hDv');if(!h)return;const d=doneToday(),srs=store.get('srs',{}),due=Object.values(srs).filter(v=>v.d<=day()).length;
-  h.innerHTML=`<button type="button" class="dvcard${d?' ok':''}" id="hDvGo"><span class="de" aria-hidden="true">🧠</span><span><b>Destravar hoje</b><small>${d?'Feito hoje. Amanhã tem mais.':(due?due+' frase'+(due>1?'s':'')+' para revisar · 10 min':'Lembrar, ouvir, falar e pensar em inglês · 10 min')}</small></span><span class="dg">${d?'✓ Feito':'Começar'}</span></button>`;
+const homeCard=()=>{const h=document.getElementById('hDv');if(!h)return;const d=doneToday(),srs=store.get('srs',{}),due=Object.values(srs).filter(v=>v.d<=day()).length;const pl=plan(store.get('dvMin',10));
+  const sub=d?'Feito hoje. Amanhã tem mais.':(due?due+' frase'+(due>1?'s':'')+' para revisar':'Lembrar, ouvir, falar e pensar em inglês')+(pl.weak&&!d?' · foco: '+NAMEP[pl.weak]:'')+' · '+store.get('dvMin',10)+' min';
+  h.innerHTML=`<button type="button" class="dvcard${d?' ok':''}" id="hDvGo"><span class="de" aria-hidden="true">🧠</span><span><b>Destravar hoje</b><small>${sub}</small></span><span class="dg">${d?'✓ Feito':'Começar'}</span></button>`;
   document.getElementById('hDvGo').onclick=()=>show('destravar')};
 const _showD=show;show=function(id){_showD.apply(this,arguments);if(!document.getElementById('destravar').hidden){if(!S)draw()}else{stopRec()}};
 const _rhD=window.renderHome;window.renderHome=function(){_rhD&&_rhD.apply(this,arguments);homeCard()};
 homeCard();draw();
-window.__dv={start,state:()=>S,pool,pics,homeCard,reset:()=>{stopRec();S=null;draw()}};
+window.__dv={start,state:()=>S,pool,pics,homeCard,reset:()=>{stopRec();S=null;draw()},plan,acc,lvl};
 }
 
 updateStats();
