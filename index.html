@@ -599,6 +599,15 @@ img.emo{height:1.2em;width:1.2em;object-fit:contain;vertical-align:-0.24em;displ
 .bkln button{border:0;background:#134B70;background-image:var(--gnavy);color:#fff;border-radius:10px;padding:6px 10px;font:800 .85rem var(--f-body);cursor:pointer}
 .bkln small{grid-column:1/-1;color:var(--muted);font-size:.9rem}
 .bkall{margin:8px 0 0}
+
+.mbseg{display:flex;gap:8px;margin:0 0 10px}
+.mbseg button{flex:1;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:12px;padding:9px 4px;font:800 .9rem var(--f-body);cursor:pointer}
+.mbseg button[aria-pressed="true"]{background:#134B70;background-image:var(--gnavy);border-color:transparent;color:#fff}
+.mbnav{display:flex;align-items:center;gap:8px;margin:0 0 8px}.mbnav .btn{flex:0 0 56px}.mbnav span{flex:1;text-align:center;font:700 .9rem var(--f-body);color:var(--muted)}
+.mbpage{overflow:auto;border:1.5px solid var(--line);border-radius:12px;background:#fff;max-height:78vh;-webkit-overflow-scrolling:touch}
+.mbpage canvas{display:block;width:100%;height:auto}
+.mbpage.zoom canvas{width:220%}
+.mblink{border:0;background:none;color:#C2352B;font:700 .82rem var(--f-body);text-decoration:underline;cursor:pointer;padding:0}
 </style>
 <title>Inglês Prático</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -1054,6 +1063,19 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
   <section id="livro" data-panel hidden>
     <h2>Junto com o livro</h2>
     <p class="sub">Segue o Interchange Intro (4ª edição), o livro das aulas com a professora. Primeiro vem o que foi visto em cada aula, para revisar com áudio. Depois vêm as 16 unidades do livro, com as páginas e frases extras para treinar o mesmo tema. Os textos, exercícios e áudios do livro continuam no próprio livro. Para acompanhar a aula, fotografe a página: o app transcreve no seu celular.</p>
+    <div class="bkph" id="myBook">
+      <h3>📘 Meu livro no celular</h3>
+      <p>Escolha o PDF do seu livro uma vez. Ele fica guardado só neste celular e abre direto na página de cada unidade.</p>
+      <div class="mbseg" id="mbSeg"><button type="button" data-b="sb" aria-pressed="true">📘 Livro</button><button type="button" data-b="wb" aria-pressed="false">📗 Caderno de exercícios</button></div>
+      <div id="mbEmpty"><label class="btn bkbtn" for="mbFile" id="mbPick">Escolher o PDF</label><input type="file" id="mbFile" accept="application/pdf,.pdf" hidden><p class="bknote" id="mbMsg" aria-live="polite"></p></div>
+      <div id="mbView" hidden>
+        <div class="bkrow"><label>Unidade<select id="mbU"></select></label><label>Página<input id="mbPg" inputmode="numeric" maxlength="4"></label></div>
+        <div class="mbnav"><button type="button" class="btn ghost" id="mbPrev" aria-label="Página anterior">◀</button><span id="mbInfo"></span><button type="button" class="btn ghost" id="mbNext" aria-label="Próxima página">▶</button></div>
+        <div class="mbpage" id="mbPage"><canvas id="mbCv"></canvas></div>
+        <div class="bkrow2"><button type="button" class="btn ghost" id="mbZoom">🔍 Ampliar</button><button type="button" class="btn" id="mbRead">📝 Ler o texto desta página</button></div>
+        <p class="bknote"><span id="mbOk"></span> <button type="button" class="mblink" id="mbDel">Remover do celular</button></p>
+      </div>
+    </div>
     <div class="bkph" id="bookPhoto">
       <h3>📷 Minhas páginas do livro</h3>
       <p>Na aula, fotografe a página do seu livro. O celular transcreve o texto e cada linha vira um botão para <b>ouvir</b> e <b>traduzir</b>.</p>
@@ -9256,6 +9278,49 @@ const render=()=>{const el=$('bkList');if(!pages.length){el.innerHTML='';return}
     d.querySelector('[data-ed]').onclick=()=>{$('bkU').value=p.u;$('bkPg').value=p.pg;$('bkWork').hidden=false;$('bkTxt').hidden=false;$('bkAct').hidden=false;$('bkTxt').value=p.txt;bar(1);msg('Corrija o texto e salve de novo.');pages=pages.filter(x=>x!==p);save();render();try{box.scrollIntoView({block:'start'})}catch(e){}}})};
 render();
 window.__book={render,pages:()=>pages};
+}
+
+/* ---------- 📘 Meu livro no celular (PDF guardado só no aparelho) ---------- */
+{
+const $=id=>document.getElementById(id);
+const PJ=window.__pdfBase||'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/';
+/* número da página impressa -> página do PDF; e onde começa cada unidade */
+const BK={sb:{off:8,unit:n=>{const u=U.find(x=>x[0]===n);const m=u&&u[2].match(/págs?\.\s*(\d+)/);return m?+m[1]:2}},wb:{off:4,unit:n=>1+6*(n-1)}};
+let cur='sb',doc={},pg={sb:store.get('mbPgsb',2),wb:store.get('mbPgwb',1)};
+const db=()=>new Promise((ok,no)=>{const r=indexedDB.open('ip-meulivro',1);r.onupgradeneeded=()=>r.result.createObjectStore('pdf');r.onsuccess=()=>ok(r.result);r.onerror=()=>no(r.error)});
+const dbGet=async k=>{const d=await db();return new Promise((ok,no)=>{const q=d.transaction('pdf').objectStore('pdf').get(k);q.onsuccess=()=>ok(q.result);q.onerror=()=>no(q.error)})};
+const dbPut=async(k,v)=>{const d=await db();return new Promise((ok,no)=>{const t=d.transaction('pdf','readwrite');t.objectStore('pdf').put(v,k);t.oncomplete=()=>ok();t.onerror=()=>no(t.error)})};
+const dbDel=async k=>{const d=await db();return new Promise(ok=>{const t=d.transaction('pdf','readwrite');t.objectStore('pdf').delete(k);t.oncomplete=()=>ok()})};
+const loadLib=()=>new Promise((ok,no)=>{if(window.pdfjsLib)return ok();const sc=document.createElement('script');sc.src=PJ+'pdf.min.js';sc.onload=()=>{pdfjsLib.GlobalWorkerOptions.workerSrc=PJ+'pdf.worker.min.js';ok()};sc.onerror=()=>no(new Error('lib'));document.head.appendChild(sc)});
+const msg=t=>{$('mbMsg').textContent=t};
+const open=async b=>{if(doc[b])return doc[b];const blob=await dbGet(b);if(!blob)return null;await loadLib();const buf=await blob.arrayBuffer();doc[b]=await pdfjsLib.getDocument({data:buf}).promise;return doc[b]};
+let rendering=null;
+const render=async()=>{const d=doc[cur];if(!d)return;const b=BK[cur];let p=Math.max(1,Math.min(d.numPages,(pg[cur]|0)+b.off));pg[cur]=p-b.off;store.set('mbPg'+cur,pg[cur]);
+  $('mbPg').value=pg[cur];$('mbInfo').textContent='pág. '+pg[cur]+' · '+p+' de '+d.numPages;
+  const page=await d.getPage(p);const vp=page.getViewport({scale:2});const cv=$('mbCv');cv.width=vp.width;cv.height=vp.height;
+  if(rendering)try{rendering.cancel()}catch(e){}rendering=page.render({canvasContext:cv.getContext('2d'),viewport:vp});try{await rendering.promise}catch(e){}rendering=null};
+const show2=async()=>{document.querySelectorAll('#mbSeg button').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.b===cur)));
+  $('mbPick').textContent=cur==='sb'?'📘 Escolher o PDF do livro':'📗 Escolher o PDF do caderno';msg('');
+  let d=null;try{d=await open(cur)}catch(e){msg('Não consegui abrir o PDF guardado. Escolha o arquivo de novo.')}
+  $('mbEmpty').hidden=!!d;$('mbView').hidden=!d;if(d){$('mbOk').textContent='✓ Guardado só neste celular ('+d.numPages+' páginas).';render()}};
+document.querySelectorAll('#mbSeg button').forEach(x=>x.onclick=()=>{cur=x.dataset.b;show2()});
+$('mbU').innerHTML=U.map(u=>`<option value="${u[0]}">${u[0]}. ${String(u[1]).replace(/</g,'&lt;')}</option>`).join('');
+$('mbU').onchange=()=>{pg[cur]=BK[cur].unit(+$('mbU').value);render()};
+$('mbPg').onchange=()=>{pg[cur]=+$('mbPg').value||1;render()};
+$('mbPrev').onclick=()=>{pg[cur]--;render()};$('mbNext').onclick=()=>{pg[cur]++;render()};
+$('mbZoom').onclick=()=>{const z=$('mbPage').classList.toggle('zoom');$('mbZoom').textContent=z?'🔍 Tamanho normal':'🔍 Ampliar'};
+$('mbFile').onchange=async()=>{const f=$('mbFile').files[0];if(!f)return;msg('Guardando no celular…');
+  try{if(navigator.storage&&navigator.storage.persist)try{await navigator.storage.persist()}catch(e){}
+    await dbPut(cur,f);doc[cur]=null;$('mbFile').value='';if(cur==='sb'&&!store.get('mbPgsb',0))pg.sb=BK.sb.unit(+$('mbU').value||1);await show2()}
+  catch(e){msg('Não consegui guardar o PDF. Libere espaço no celular e tente de novo.')}};
+$('mbDel').onclick=async()=>{await dbDel(cur);doc[cur]=null;show2()};
+/* ler o texto: manda a página para o leitor de "Minhas páginas" */
+$('mbRead').onclick=()=>{const cv=$('mbCv');cv.toBlob(bl=>{if(!bl)return;const f=new File([bl],'pagina.png',{type:'image/png'});const dt=new DataTransfer();dt.items.add(f);
+  if(cur==='sb'){$('bkU').value=$('mbU').value;store.set('bkU',+$('mbU').value)}$('bkPg').value=(cur==='wb'?'caderno ':'')+pg[cur];
+  const inp=$('bkFile');inp.files=dt.files;inp.dispatchEvent(new Event('change'));try{document.getElementById('bookPhoto').scrollIntoView({block:'start'})}catch(e){}},'image/png')};
+let started=false;
+const _showMB=show;show=function(id){_showMB.apply(this,arguments);if(!started&&!document.getElementById('livro').hidden){started=true;show2()}};
+window.__mb={show2,render,state:()=>({cur,pg:{...pg},n:doc[cur]&&doc[cur].numPages})};
 }
 
 updateStats();
