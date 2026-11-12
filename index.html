@@ -625,6 +625,16 @@ img.emo{height:1.2em;width:1.2em;object-fit:contain;vertical-align:-0.24em;displ
 .xpvb{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 8px}
 .xpvb span{background:#FFF3D1;border-radius:10px;padding:4px 8px;font-size:.85rem;color:#5B4100}
 .xpvb span b{font-weight:800}
+.xpfigw{overflow:auto;border-radius:14px;border:1.5px solid var(--line);margin:0 0 4px;background:#fff;max-height:80vh;-webkit-overflow-scrolling:touch}
+.xpfig{position:relative;cursor:zoom-in;width:100%}
+.xpfig img{display:block;width:100%;height:auto}
+.xpfig.big{width:220%;cursor:zoom-out}
+.xpmk{position:absolute;transform:translate(-100%,-15%);opacity:.92;min-width:20px;height:20px;padding:0 4px;border-radius:10px;background:#F6BC3C;background-image:var(--gmust);color:#3A2600;font:800 .7rem/20px var(--f-body);text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.35);pointer-events:none}
+.xpmk.t{background:#134B70;background-image:var(--gnavy);color:#fff}
+.xpmk.in{position:static;display:inline-block;transform:none;vertical-align:middle;margin:0 4px 0 0;box-shadow:none}
+.xpfn{margin:4px 0 12px}
+.xpcrop{display:block;max-width:100%;border-radius:10px;border:1.5px solid var(--line);margin:4px 0 8px;background:#fff}
+.xpln .xpcrop{grid-column:1/-1;margin:2px 0 2px}
 .xpq{margin:8px 0 2px;font:800 .8rem var(--f-body);color:var(--muted)}
 .xpbigpt{margin:0 0 6px;font:800 1.15rem/1.35 var(--f-display);color:var(--ink)}
 .xpdet{margin:10px 0 0;border-top:1px dashed var(--line);padding:8px 0 0}
@@ -641,6 +651,10 @@ img.emo{height:1.2em;width:1.2em;object-fit:contain;vertical-align:-0.24em;displ
 .xpask .btn{display:block;width:100%}
 html[data-theme="dark"] .xpsec{background:#12324A;color:#DCEBF7}
 html[data-theme="dark"] .xpvb span{background:#3A3018;color:#FBE6AE}
+
+.volrow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:8px 0;font-weight:700}
+.volrow button{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:6px 12px;font:600 .88rem var(--f-body);cursor:pointer}
+.volrow button[aria-pressed="true"]{background:#134B70;background-image:var(--gnavy);color:#fff;border-color:transparent}
 </style>
 <title>Inglês Prático</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -923,6 +937,11 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
     <button data-rate="1" aria-pressed="false">Normal</button>
   </div>
   <div class="speed vpick" id="vPickRow"><label for="vPick">Voz do celular:</label><select id="vPick" aria-label="Escolher a voz do celular"></select><button type="button" id="vTest" aria-label="Ouvir a voz escolhida">▶ Ouvir</button></div>
+  <div class="volrow" id="volRow" role="group" aria-label="Volume das gravações">🔊 Volume:
+    <button type="button" data-vol="normal" aria-pressed="false">Normal</button>
+    <button type="button" data-vol="alto" aria-pressed="true">Alto</button>
+    <button type="button" data-vol="max" aria-pressed="false">Máximo</button>
+  </div>
     <p class="setver" id="setVer"></p>
   </div>
 
@@ -9427,18 +9446,19 @@ const VB=[
 const isVerb=w=>VB.find(v=>v[0].test(w));
 const clean=l=>l.replace(/[|_]{1,}\s*$/,'').replace(/\s+/g,' ').trim();
 /* lê o texto e encontra as partes e os comandos */
-const explain=txt=>{
-  const L=String(txt||'').split(/\n+/).map(clean).filter(x=>x.length>1);
+const explain=inp=>{
+  const IT=Array.isArray(inp)?inp.map(o=>({t:clean(o.t||''),ok:o.ok!==false,box:o.box||null})).filter(o=>o.t.length>1):String(inp||'').split(/\n+/).map(clean).filter(x=>x.length>1).map(t=>({t,ok:true,box:null}));
+  const txt=Array.isArray(inp)?inp.map(o=>o.raw||o.t||'').join('\n'):String(inp||'');
   const secs=[],ins=[],other=[];let last=null;
   const blanks=/_{3,}|\.{4,}|—{2,}/.test(txt);
-  for(let raw of L){
-    let l=raw;
+  for(const o of IT){
+    let l=o.t;
     for(const sc of SEC){if(l.includes(sc[0])){if(!secs.includes(sc))secs.push(sc);l=l.replace(sc[0],' ').replace(/^\s*\d{1,2}\s*/,'').trim()}}
     const lab=l.match(/^\s*([A-H]|\d{1,2})[\s.)]+(?=[A-Za-z])/);const body=lab?l.slice(lab[0].length):l;
     const low=body.toLowerCase().replace(/^[^a-z(]+/,'');
-    if(isVerb(low)&&/^[A-Z]/.test(body.replace(/^[^A-Za-z]+/,''))){last={label:lab?lab[1]:'',en:body};ins.push(last);continue}
-    if(last&&!/[.!?:]$/.test(last.en)&&/^[a-z(]/.test(body)&&body.length<90){last.en+=' '+body;continue}
-    last=null;if(l.length>2&&/[a-z]/i.test(l)&&(l.match(/[A-Za-z]/g)||[]).length/l.length>.6)other.push(l);
+    if(isVerb(low)&&/^[A-Z]/.test(body.replace(/^[^A-Za-z]+/,''))){last={label:lab?lab[1]:'',en:body,boxes:o.box?[o.box]:[]};ins.push(last);continue}
+    if(last&&!/[.!?:]$/.test(last.en)&&/^[a-z(]/.test(body)&&body.length<90){last.en+=' '+body;if(o.box)last.boxes.push(o.box);continue}
+    last=null;if(o.ok&&l.length>2&&/[a-z]/i.test(l)&&(l.match(/[A-Za-z]/g)||[]).length/l.length>.6)other.push({t:l,box:o.box});
   }
   const res=ins.map(it=>{
     const sent=it.en.split(/(?<=[.!?])\s+/);const found=[];
@@ -9450,28 +9470,33 @@ const explain=txt=>{
     if(/true or false|\bt\s*\/\s*f\b|\(t\)|true\b.*false\b/.test(low))steps.unshift('Leia cada frase e marque T (true, verdadeiro) ou F (false, falso).');
     if(blanks&&found.some(v=>v[1]==='complete')===false&&/blank|missing/.test(low))steps.push('Preencha os espaços vazios ( ____ ).');
     const pg=it.en.match(/page\s*(\d{1,3})/i);if(pg)steps.push('Vá até a página '+pg[1]+' do livro.');
-    return {label:it.label,en:it.en,verbs:found.map(v=>({en:v[1],pr:v[2],pt:v[3]})),pt:found.map(v=>v[3]).join(', depois ').replace(/^./,c=>c.toUpperCase()),steps:[...new Set(steps)]}});
-  return {secs:secs.map(x=>({k:x[0],e:x[1],n:x[2],d:x[3]})),ins:res,lines:other.slice(0,15),blanks};
+    return {label:it.label,en:it.en,boxes:it.boxes,verbs:found.map(v=>({en:v[1],pr:v[2],pt:v[3]})),pt:found.map(v=>v[3]).join(', depois ').replace(/^./,c=>c.toUpperCase()),steps:[...new Set(steps)]}});
+  return {secs:secs.map(x=>({k:x[0],e:x[1],n:x[2],d:x[3]})),ins:res,lines:other.slice(0,15).map(x=>x.t),lineBoxes:other.slice(0,15).map(x=>x.box),blanks};
 };
 /* tradução automática (guardada no celular para não gastar o tradutor de novo) */
 let TRC=store.get('xpTr',{});
 const trx=async t=>{if(TRC[t])return TRC[t];const r=await fetch('https://api.mymemory.translated.net/get?q='+encodeURIComponent(t)+'&langpair=en|pt-BR');const j=await r.json();const x=j&&j.responseData&&j.responseData.translatedText;
   if(!x||/MYMEMORY WARNING|QUERY LENGTH/i.test(x))throw new Error('lim');TRC[t]=x;const ks=Object.keys(TRC);if(ks.length>400)delete TRC[ks[0]];store.set('xpTr',TRC);return x};
 const tr=async(t,el)=>{el.textContent='Traduzindo…';try{el.textContent=await trx(t)}catch(e){el.textContent=e&&e.message==='lim'?'O tradutor gratuito chegou ao limite de hoje. Tente amanhã.':'Sem internet para traduzir agora. Toque 🌐 para tentar de novo.'}};
-const render=r=>{const o=$('xpOut');const n=r.ins.length;
-  let h='';
+const crop=(pic,bs)=>{if(!pic||!bs||!bs.length)return '';const p=12;const x0=Math.max(0,Math.min(...bs.map(b=>b.x0))-p),y0=Math.max(0,Math.min(...bs.map(b=>b.y0))-p),x1=Math.min(pic.W,Math.max(...bs.map(b=>b.x1))+p),y1=Math.min(pic.H,Math.max(...bs.map(b=>b.y1))+p);
+  const w=x1-x0,h=y1-y0;if(w<8||h<8)return '';const k=Math.min(1,720/w);const c=document.createElement('canvas');c.width=Math.round(w*k);c.height=Math.round(h*k);c.getContext('2d').drawImage(pic.cc,x0,y0,w,h,0,0,c.width,c.height);return c.toDataURL('image/jpeg',.85)};
+const mk=(pic,b,t,cls)=>b?`<span class="xpmk ${cls}" style="left:${Math.max(b.x0/pic.W*100,cls==='t'?7:5.5).toFixed(2)}%;top:${(b.y0/pic.H*100).toFixed(2)}%">${t}</span>`:'';
+const render=(r,pic)=>{const o=$('xpOut');const n=r.ins.length;
+  let h='';const lb=r.lineBoxes||[];
   if(!n&&!r.secs.length){h+=`<div class="xpintro">Não encontrei as instruções nesta foto. Tudo bem, acontece.<br><br>Tente de novo com a foto mais reta, com mais luz e mostrando a parte de cima do exercício, onde ficam as letras A, B… Ou mande para o Claude logo abaixo.</div>`}
   else h+=`<div class="xpintro">Calma, uma coisa de cada vez. 🙂<br>${n?`Encontrei <b>${n} ${n>1?'tarefas':'tarefa'}</b> nesta foto. Eu explico tudo em português. Faça na ordem, sem pressa.`:'Encontrei a parte do livro, mas não a instrução. Veja o que ela significa:'}</div>`;
+  if(pic)h+=`<div class="xpfigw"><div class="xpfig" id="xpFig" role="button" tabindex="0" aria-label="Ampliar a foto"><img src="${pic.url}" alt="Sua foto">${r.ins.map((it,i)=>mk(pic,it.boxes&&it.boxes[0],'T'+(i+1),'t')).join('')}${r.lines.map((l,i)=>mk(pic,lb[i],i+1,'f')).join('')}</div></div><p class="bknote xpfn">Sua foto: <b>T1, T2…</b> mostram as tarefas e os <b>números</b> mostram as frases. Toque na foto para ampliar.</p>`;
   r.secs.forEach(x=>{h+=`<div class="xpsec"><span aria-hidden="true">${x.e}</span><span><b>${esc(x.n)}</b>${esc(x.d)}<small class="xpbk">No livro: <span lang="en">${esc(x.k)}</span></small></span></div>`});
-  r.ins.forEach((it,i)=>{h+=`<div class="xpstep"><h4>Tarefa ${i+1}${it.label?' · parte '+esc(it.label):''}</h4>
+  r.ins.forEach((it,i)=>{h+=`<div class="xpstep"><h4><span class="xpmk t in">T${i+1}</span> Tarefa ${i+1}${it.label?' · parte '+esc(it.label):''}</h4>${pic&&it.boxes&&it.boxes.length?`<img class="xpcrop" alt="Esta parte na sua foto" src="${crop(pic,it.boxes)}">`:''}
     <p class="xpq">O que o livro pede:</p><p class="xpbigpt" data-ip="${i}">${esc(it.pt)}.</p>
     <p class="xpq">Passo a passo:</p><ol>${it.steps.map(s=>`<li>${esc(s)}</li>`).join('')}</ol>
     <details class="xpdet"><summary>Como está escrito no livro (em inglês)</summary>
     <div class="xpen"><b lang="en">${esc(it.en)}</b><button type="button" data-say="${i}" aria-label="Ouvir">🔊</button></div>
     ${it.verbs.length?`<div class="xpvb">${it.verbs.map(v=>`<span><b lang="en">${esc(v.en)}</b> "${esc(v.pr)}" = ${esc(v.pt)}</span>`).join('')}</div>`:''}</details></div>`});
   if(n)h+=`<p class="xpend">Quando terminar, tire a foto da próxima parte. Você está indo bem. 💪</p>`;
-  if(r.lines.length)h+=`<div class="xpstep"><h4>Frases desta foto, com a tradução</h4>${r.lines.map((l,i)=>`<div class="xpln"><b lang="en">${esc(l)}</b><span><button type="button" data-ls="${i}" aria-label="Ouvir">🔊</button><button type="button" data-lt="${i}" aria-label="Traduzir de novo">🌐</button></span><small data-lo="${i}">Traduzindo…</small></div>`).join('')}</div>`;
+  if(r.lines.length)h+=`<div class="xpstep"><h4>Frases desta foto, com a tradução</h4>${r.lines.map((l,i)=>`<div class="xpln">${pic&&lb[i]?`<img class="xpcrop" alt="Esta frase na sua foto" src="${crop(pic,[lb[i]])}">`:''}<b lang="en"><span class="xpmk f in">${i+1}</span> ${esc(l)}</b><span><button type="button" data-ls="${i}" aria-label="Ouvir">🔊</button><button type="button" data-lt="${i}" aria-label="Traduzir de novo">🌐</button></span><small data-lo="${i}">Traduzindo…</small></div>`).join('')}</div>`;
   o.innerHTML=h;
+  const fg=$('xpFig');if(fg)fg.onclick=()=>{fg.classList.toggle('big');fg.setAttribute('aria-label',fg.classList.contains('big')?'Diminuir a foto':'Ampliar a foto')};
   o.querySelectorAll('[data-say]').forEach(b=>b.onclick=()=>say(r.ins[+b.dataset.say].en,.85));
   o.querySelectorAll('[data-ls]').forEach(b=>b.onclick=()=>say(r.lines[+b.dataset.ls],.85));
   o.querySelectorAll('[data-lt]').forEach(b=>b.onclick=()=>tr(r.lines[+b.dataset.lt],o.querySelector('[data-lo="'+b.dataset.lt+'"]')));
@@ -9480,15 +9505,27 @@ const render=r=>{const o=$('xpOut');const n=r.ins.length;
     for(let i=0;i<r.lines.length;i++){const el=o.querySelector('[data-lo="'+i+'"]');if(!el||!o.contains(el))return;await tr(r.lines[i],el)}})();
   $('xpAsk').hidden=false};
 const loadLib=()=>new Promise((ok,no)=>{if(window.Tesseract)return ok();const sc=document.createElement('script');sc.src=BASE.lib+'tesseract.min.js';sc.onload=()=>ok();sc.onerror=()=>no(new Error('lib'));document.head.appendChild(sc)});
-const prep=file=>new Promise((ok,no)=>{const im=new Image();im.onload=()=>{const k=Math.min(1,2000/Math.max(im.width,im.height));const c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);const x=c.getContext('2d');x.filter='grayscale(1) contrast(1.25)';x.drawImage(im,0,0,c.width,c.height);ok(c)};im.onerror=()=>no(new Error('img'));im.src=URL.createObjectURL(file)});
+const prep=file=>new Promise((ok,no)=>{const im=new Image();im.onload=()=>{const k=Math.min(1.6,2400/Math.max(im.width,im.height));const W=Math.round(im.width*k),H=Math.round(im.height*k);
+  const cc=document.createElement('canvas');cc.width=W;cc.height=H;cc.getContext('2d').drawImage(im,0,0,W,H);
+  const c=document.createElement('canvas');c.width=W;c.height=H;const x=c.getContext('2d');x.filter='grayscale(1) contrast(1.35)';x.drawImage(im,0,0,W,H);ok({cv:c,cc,W,H})};im.onerror=()=>no(new Error('img'));im.src=URL.createObjectURL(file)});
+/* palavras conhecidas (das frases gravadas do app) para descartar linhas lidas errado */
+let VOC=null;const vocab=async()=>{if(VOC)return VOC;VOC=new Set('a an the i you he she it we they is am are was were be to of and or in on at for with my your his her our their this that what where when who how yes no hi hello bye please thank thanks name nice meet good morning afternoon evening night'.split(' '));
+  try{const ix=await (await fetch('vz/index.json')).json();Object.keys(ix).forEach(k=>k.toLowerCase().split(/[^a-z']+/).forEach(w=>{if(w.length>1)VOC.add(w.replace(/'s$/,''))}))}catch(e){}return VOC};
+const qual=async R=>{const V=await vocab();const big=V.size>300;return (R.lines||[]).map(Ln=>{let ws=(Ln.words||[]).filter(w=>w.text&&w.text.trim());while(ws.length&&ws[0].confidence<60)ws.shift();while(ws.length&&ws[ws.length-1].confidence<60)ws.pop();
+  while(ws.length>1&&/^[^A-Za-z]*[B-HJ-Zb-hj-z][^A-Za-z]*$/.test(ws[0].text))ws.shift();
+  const t=ws.map(w=>w.text).join(' ');const aw=ws.map(w=>w.text.replace(/[^A-Za-z']/g,'')).filter(w=>w.length>1);const known=aw.filter(w=>V.has(w.toLowerCase().replace(/'s$/,''))).length;
+  const conf=ws.length?ws.reduce((a,w)=>a+w.confidence,0)/ws.length:0;const ok=aw.length>0&&conf>=(big?70:82)&&(!big||known/aw.length>=.6);
+  const box=ws.length?{x0:Math.min(...ws.map(w=>w.bbox.x0)),y0:Math.min(...ws.map(w=>w.bbox.y0)),x1:Math.max(...ws.map(w=>w.bbox.x1)),y1:Math.max(...ws.map(w=>w.bbox.y1))}:(Ln.bbox||null);
+  return {t,raw:Ln.text,ok,box}})};
 const bar=v=>{$('xpBar').style.width=Math.round(v*100)+'%'};const msg=t=>{$('xpMsg').textContent=t};
 let curFile=null;
 const run=async file=>{if(!file)return;curFile=file;$('xpOut').innerHTML='';$('xpAsk').hidden=true;$('xpCMsg').textContent='';$('xpWork').hidden=false;
   try{const u=$('xpImg').src;if(u&&u.startsWith('blob:'))URL.revokeObjectURL(u)}catch(e){}$('xpImg').src=URL.createObjectURL(file);bar(.05);msg('Preparando a foto…');
-  try{const cv=await prep(file);msg('Carregando o leitor (só na primeira vez demora mais)…');await loadLib();bar(.15);
+  try{const pp=await prep(file);const cv=pp.cv;msg('Carregando o leitor (só na primeira vez demora mais)…');await loadLib();bar(.15);
     const w=await Tesseract.createWorker('eng',1,{workerPath:BASE.lib+'worker.min.js',corePath:BASE.core,langPath:BASE.lang,logger:m=>{if(m.status==='recognizing text'){bar(.2+m.progress*.8);msg('Lendo a foto… '+Math.round(m.progress*100)+'%')}}});
     const r=await w.recognize(cv);await w.terminate();bar(1);msg('');$('xpWork').querySelector('.bkprog').hidden=true;
-    const ex=explain(r.data.text);store.set('xpLast',{t:r.data.text.slice(0,4000)});render(ex);if(typeof touchDay==='function')try{touchDay()}catch(e){}
+    const its=r.data.lines&&r.data.lines.length?await qual(r.data):null;const ex=explain(its||r.data.text);store.set('xpLast',{t:r.data.text.slice(0,4000)});
+    const pic={cc:pp.cc,W:pp.W,H:pp.H,url:pp.cc.toDataURL('image/jpeg',.82)};$('xpWork').hidden=true;render(ex,pic);if(typeof touchDay==='function')try{touchDay()}catch(e){}
     try{$('xpOut').scrollIntoView({block:'start',behavior:'smooth'})}catch(e){}}
   catch(e){bar(0);msg(e&&e.message==='img'?'Não consegui abrir essa foto. Tente de novo.':'Não consegui carregar o leitor. Confira a internet e tente de novo.');$('xpAsk').hidden=false}};
 ['xpCam','xpGal'].forEach(id=>$(id).onchange=()=>{const f=$(id).files[0];$(id).value='';$('xpWork').querySelector('.bkprog').hidden=false;run(f)});
@@ -9500,7 +9537,27 @@ $('xpClaude').onclick=async()=>{const m=$('xpCMsg');
   catch(e){m.textContent='Abra o app do Claude, anexe a foto e peça: "'+PROMPT+'"'}};
 /* do 📘 Meu livro: explicar a página aberta */
 const mbx=$('mbXp');if(mbx)mbx.onclick=()=>{const cv=$('mbCv');cv.toBlob(bl=>{if(!bl)return;show('explicar');$('xpWork').querySelector('.bkprog').hidden=false;run(new File([bl],'pagina.png',{type:'image/png'}));try{window.scrollTo(0,0)}catch(e){}},'image/png')};
-window.__xp={explain,render,run};
+window.__xp={explain,render,run,qual};
+}
+
+/* ---------- 🔊 Volume extra para as gravações (fone de ouvido) ---------- */
+{
+const LV={normal:1,alto:2,max:3},K=3;let lv=store.get('volBoost','alto');if(!LV[lv])lv='alto';
+let ctx=null,sh=null;const els=new Set();
+const mkCtx=()=>{if(ctx)return ctx;const C=window.AudioContext||window.webkitAudioContext;if(!C)return null;try{ctx=new C();sh=ctx.createWaveShaper();const cv=new Float32Array(4097);for(let i=0;i<4097;i++)cv[i]=Math.tanh(K*(i/2048-1));sh.curve=cv;sh.oversample='none';sh.connect(ctx.destination)}catch(e){ctx=null}return ctx};
+const setG=g=>{try{g.disconnect()}catch(e){}const G=LV[lv]||1;if(G===1){g.gain.value=1;g.connect(ctx.destination)}else{g.gain.value=G/K;g.connect(sh)}};
+const P=HTMLMediaElement.prototype,_play=P.play;
+P.play=function(){try{
+  if(this.__vb||(lv!=='normal'&&!(this instanceof HTMLVideoElement))){const c=mkCtx();if(c){if(c.state!=='running')c.resume().catch(()=>{});
+    if(!this.__vb&&c.state==='running'){const so=c.createMediaElementSource(this);const g=c.createGain();so.connect(g);this.__vb=g;els.add(g);setG(g)}}}}catch(e){}
+  return _play.apply(this,arguments)};
+/* liga o reforço no primeiro toque (o celular só libera o som depois de um toque) */
+['pointerdown','touchstart','keydown'].forEach(ev=>document.addEventListener(ev,()=>{if(lv==='normal')return;const c=mkCtx();if(c&&c.state!=='running')c.resume().catch(()=>{})},{capture:true,passive:true}));
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&ctx&&ctx.state!=='running')ctx.resume().catch(()=>{})});
+const row=document.getElementById('volRow');
+const paint=()=>row.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.vol===lv)));paint();
+row.querySelectorAll('button').forEach(b=>b.onclick=()=>{lv=b.dataset.vol;store.set('volBoost',lv);paint();mkCtx();if(ctx&&ctx.state!=='running')ctx.resume().catch(()=>{});els.forEach(setG);say('Hi, how are you?')});
+window.__vol={get:()=>lv,ctx:()=>ctx,n:()=>els.size};
 }
 
 updateStats();
