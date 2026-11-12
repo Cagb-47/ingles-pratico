@@ -656,6 +656,16 @@ html[data-theme="dark"] .xpvb span{background:#3A3018;color:#FBE6AE}
 .volrow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:8px 0;font-weight:700}
 .volrow button{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:6px 12px;font:600 .88rem var(--f-body);cursor:pointer}
 .volrow button[aria-pressed="true"]{background:#134B70;background-image:var(--gnavy);color:#fff;border-color:transparent}
+
+.sybox{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:14px;margin:0 0 14px}
+.sybox h3{margin:0 0 4px;font:800 1.08rem var(--f-display)}.sybox p{margin:0 0 10px;font-size:.95rem;line-height:1.45}
+.sybox .btn{display:block;width:100%;text-align:center;box-sizing:border-box}
+.syqr{display:flex;justify-content:center;margin:12px 0 4px}.syqr svg,.syqr img{width:min(260px,80vw);height:auto;background:#fff;padding:8px;border-radius:12px}
+.syimp{background:#EAF3FA;border:1.5px solid #9DC3E6;border-radius:18px;padding:14px;margin:0 0 14px;color:#0B3350}
+.syimp h3{margin:0 0 6px;font:800 1.1rem var(--f-display)}.syimp p{margin:0 0 10px;line-height:1.45}
+.syimp .btn{display:block;width:100%;margin:0 0 8px}
+.sysetb{display:block;width:100%;margin:10px 0 4px}
+html[data-theme="dark"] .syimp{background:#12324A;color:#DCEBF7;border-color:#1E6E9C}
 </style>
 <title>Inglês Prático</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -943,6 +953,7 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
     <button type="button" data-vol="alto" aria-pressed="true">Alto</button>
     <button type="button" data-vol="max" aria-pressed="false">Máximo</button>
   </div>
+  <button type="button" class="btn ghost sysetb" id="sySet">📲 Mesmo progresso no celular e no computador</button>
     <p class="setver" id="setVer"></p>
   </div>
 
@@ -1113,7 +1124,29 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
     <p class="tip">Os níveis A1 e A2 combinam com o Interchange Intro das aulas com a professora. Os próximos degraus preparam o que vem depois.</p>
   </section>
 
-  <section id="explicar" data-panel hidden>
+  <section id="sync" data-panel hidden>
+    <h2>📲 Celular e computador juntos</h2>
+    <p class="sub">Leve o seu progresso de um aparelho para o outro: estrelas, sequência de dias, lições feitas e revisões.</p>
+    <div class="syimp" id="syImp" hidden></div>
+    <div class="sybox">
+      <h3>1. No aparelho em que você estudou</h3>
+      <p>Toque no botão abaixo. O app cria um link com o seu progresso.</p>
+      <button type="button" class="btn" id="syMake">Criar o link do meu progresso</button>
+      <div id="syOut" hidden>
+        <div class="syqr" id="syQr"></div>
+        <p class="bknote" id="syQrTip"></p>
+        <div class="xpbtns"><a class="btn" id="syWa" target="_blank" rel="noopener">Enviar pelo WhatsApp</a><button type="button" class="btn ghost" id="syCopy">Copiar o link</button></div>
+        <p class="bknote" id="syMsg" aria-live="polite"></p>
+      </div>
+    </div>
+    <div class="sybox">
+      <h3>2. No outro aparelho</h3>
+      <p>Aponte a câmera do celular para o QR code da tela do computador, ou abra o link que você mandou para você mesmo no WhatsApp. O app pergunta se pode juntar o progresso.</p>
+      <p class="bknote">Nada vai para a internet além do link que você mesmo envia. Faça isso sempre que estudar no outro aparelho.</p>
+    </div>
+    <p class="bknote" id="syFile" hidden>Você abriu o arquivo baixado. O progresso dele fica separado do site. Use este link para continuar no site: <a href="https://cagb-47.github.io/ingles-pratico/">cagb-47.github.io/ingles-pratico</a></p>
+  </section>
+<section id="explicar" data-panel hidden>
     <h2>📸 Me explica a lição</h2>
     <p class="sub">Tire uma foto da página do livro ou da lição. O app lê as instruções e explica, com calma, o que você precisa fazer.</p>
     <div class="xpbtns">
@@ -8175,7 +8208,7 @@ const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
 const nz=t=>String(t).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[’'`´]/g,'').replace(/[^a-z0-9ñ ]/g,' ').replace(/\s+/g,' ').trim();
 const lev=(a,b)=>{const m=a.length,n=b.length;const d=Array.from({length:m+1},(_,i)=>[i]);for(let j=1;j<=n;j++)d[0][j]=j;for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[m][n]};
 const sim=(a,b)=>{a=nz(a);b=nz(b);if(!a||!b)return 0;if(a===b||a.includes(b))return 1;return 1-lev(a,b)/Math.max(a.length,b.length)};
-const hear=(cb)=>{if(!SR)return cb(null,'nosr');let r;try{r=new SR()}catch(e){return cb(null,'nosr')}r.lang=TL;r.interimResults=false;r.maxAlternatives=5;let got=null,err='';r.onresult=e=>{got=[...e.results[0]].map(a=>a.transcript)};r.onerror=e=>{err=e.error};r.onend=()=>cb(got,err);try{if('speechSynthesis' in window)speechSynthesis.cancel();r.start()}catch(e){cb(null,'start')}};
+const hear=(cb)=>{if(!SR)return cb(null,'nosr');let r;try{r=new SR()}catch(e){return cb(null,'nosr')}r.lang=TL;r.interimResults=false;r.maxAlternatives=5;let got=null,err='',fin=false;r.onresult=e=>{got=[...e.results[0]].map(a=>a.transcript)};r.onerror=e=>{err=e.error};r.onend=()=>{if(fin)return;fin=true;clearTimeout(tm);cb(got,err)};const tm=setTimeout(()=>{if(!fin){err=err||'timeout';try{r.abort()}catch(e){}setTimeout(()=>{if(!fin){fin=true;cb(got,err)}},600)}},12000);try{if('speechSynthesis' in window)speechSynthesis.cancel();r.start()}catch(e){cb(null,'start')}};
 window.__zhear=hear;
 /* ---------- caminho ---------- */
 const OFF=[0,22,44,22,0];
@@ -8212,7 +8245,7 @@ const bindMic=(target,onOk)=>{const m=document.getElementById('zMic'),fb=documen
     hear((alts,err)=>{m.classList.remove('on');m.textContent='🎤 Falar de novo';
       if(alts&&alts.some(a=>sim(a,target)>=.72)){fb.className='zfb ok';fb.textContent='Muito bem! 👏 Você disse: “'+alts[0]+'”';good();onOk&&onOk()}
       else if(alts){fb.className='zfb no';fb.textContent='Quase! Ouvi “'+alts[0]+'”. Ouça e tente de novo 🙂';bad();zsay(target,true)}
-      else{fb.className='zfb no';fb.textContent=err==='not-allowed'||err==='service-not-allowed'?'Permita o microfone para treinar a fala. Pode continuar sem ele.':'Não ouvi nada. Toque e fale perto do celular 🙂'}})}};
+      else{fb.className='zfb no';fb.textContent=(window.micMsg?window.micMsg(err):'Não ouvi nada. Toque e fale perto do celular 🙂')}})}};
 const draw=()=>{const st=LS.steps[LS.s],it=LS.it;
   if(st.k==='intro'){const x=it[st.i];
     frame(`<div class="zq">Nova palavra</div><div class="zpic">${x[0]}</div><div class="zen">${esc(x[1])}</div><div class="zpr">🗣️ ${esc(x[3].toLowerCase())}</div><div class="zpt">= ${esc(x[2])}</div><div class="zbtns"><button class="zsm" id="zA">🔊 Ouvir</button><button class="zsm" id="zS">🐢 Devagar</button></div>${micBlock(x[1])}`,{t:'Continuar'});
@@ -8657,7 +8690,7 @@ window.__mf={MF,sent,setV};
 
 /* ---------- Abas agrupadas (Aprender, Minhas aulas, Falar, Palavras, Gramática, Ouvir e ler) ---------- */
 {
-const HUBS=[["trilha", "🧭", "Trilha", [["rota", "Meu caminho"], ["zero", "Do zero"], ["aula", "Situações do dia a dia"], ["niveis", "Níveis A1–C2"], ["plano", "Temas para marcar"]]], ["praticar", "💬", "Praticar", [["destravar", "🧠 Destravar"], ["pron", "Alfabeto e pronúncia"], ["nativo", "Frases nativas"], ["montar", "Montar frases"], ["exerc", "Exercícios"], ["desaf", "Desafios"], ["tradutor", "Tradutor"], ["sos", "SOS"]]], ["ouvir", "🎧", "Ouvir e ler", [["audios", "Áudios"], ["historias", "Leituras"], ["musicas", "Músicas"]]], ["biblio", "📚", "Biblioteca", [["palavras", "Palavras"], ["phrasal", "Phrasal verbs"], ["flash", "Flashcards"], ["mapas", "Mapas mentais"]]], ["minhas", "🧑‍🏫", "Minhas aulas", [["livro", "Aulas e livro"], ["explicar", "📸 Me explica"], ["rotina", "Rotina"], ["apost", "Apostila"]]]];
+const HUBS=[["trilha", "🧭", "Trilha", [["rota", "Meu caminho"], ["zero", "Do zero"], ["aula", "Situações do dia a dia"], ["niveis", "Níveis A1–C2"], ["plano", "Temas para marcar"]]], ["praticar", "💬", "Praticar", [["destravar", "🧠 Destravar"], ["pron", "Alfabeto e pronúncia"], ["nativo", "Frases nativas"], ["montar", "Montar frases"], ["exerc", "Exercícios"], ["desaf", "Desafios"], ["tradutor", "Tradutor"], ["sos", "SOS"]]], ["ouvir", "🎧", "Ouvir e ler", [["audios", "Áudios"], ["historias", "Leituras"], ["musicas", "Músicas"]]], ["biblio", "📚", "Biblioteca", [["palavras", "Palavras"], ["phrasal", "Phrasal verbs"], ["flash", "Flashcards"], ["mapas", "Mapas mentais"]]], ["minhas", "🧑‍🏫", "Minhas aulas", [["livro", "Aulas e livro"], ["explicar", "📸 Me explica"], ["sync", "📲 Celular e PC"], ["rotina", "Rotina"], ["apost", "Apostila"]]]];
 const hubOf=id=>{const h=HUBS.find(h=>h[3].some(x=>x[0]===id));return h?h[0]:null};
 window.hubOf=hubOf;window.HUBS=HUBS;
 const subnav=document.getElementById('subnav');
@@ -8851,7 +8884,7 @@ const render=(key)=>{
   P0.querySelectorAll('[data-skip]').forEach(b=>b.onclick=()=>{const k=b.dataset.skip;let sk=g('rotaSkip',[]);sk=sk.includes(k)?sk.filter(x=>x!==k):[...sk,k];store.set('rotaSkip',sk);inst.home&&(inst.home.open=null);inst.rota&&(inst.rota.open=null);render(key)});
 };
 /* ferramentas para qualquer nível */
-const TOOLS=[['explicar','📸','Me explica a lição','Foto do livro → passo a passo'],['musicas','🎵','Suas músicas','Pictures of You, Forever Young…'],['audios','🎧','Áudios','Histórias com voz natural'],['tradutor','🎙️','Tradutor de voz','Fale e ouça na hora'],['desaf','🏆','Desafios','Desafio do dia e ranking'],['flash','🃏','Flashcards','Revisar palavras'],['sos','🆘','SOS','Emergências'],['rotina','🗓️','Rotina','Dicas da professora'],['apost','📄','Apostila em PDF','Para imprimir']];
+const TOOLS=[['sync','📲','Celular e computador','O mesmo progresso nos dois'],['explicar','📸','Me explica a lição','Foto do livro → passo a passo'],['musicas','🎵','Suas músicas','Pictures of You, Forever Young…'],['audios','🎧','Áudios','Histórias com voz natural'],['tradutor','🎙️','Tradutor de voz','Fale e ouça na hora'],['desaf','🏆','Desafios','Desafio do dia e ranking'],['flash','🃏','Flashcards','Revisar palavras'],['sos','🆘','SOS','Emergências'],['rotina','🗓️','Rotina','Dicas da professora'],['apost','📄','Apostila em PDF','Para imprimir']];
 const tl=document.getElementById('hTools');
 tl.innerHTML=TOOLS.map(([id,e,t,d])=>`<button class="htile" data-go="${id}" role="listitem"><span class="ti" aria-hidden="true">${e}</span><span><b>${t}</b><small>${d}</small></span></button>`).join('');
 tl.querySelectorAll('.htile').forEach(b=>b.onclick=()=>show(b.dataset.go));
@@ -9565,6 +9598,67 @@ const row=document.getElementById('volRow');
 const paint=()=>row.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.vol===lv)));paint();
 row.querySelectorAll('button').forEach(b=>b.onclick=()=>{lv=b.dataset.vol;store.set('volBoost',lv);paint();mkCtx();if(ctx&&ctx.state!=='running')ctx.resume().catch(()=>{});els.forEach(setG);say('Hi, how are you?')});
 window.__vol={get:()=>lv,ctx:()=>ctx,n:()=>els.size};
+}
+
+/* ---------- microfone: o que deu errado, em palavras simples ---------- */
+window.micMsg=err=>{const pc=!/Android|iPhone|iPad|Mobile/i.test(navigator.userAgent);const onde=pc?'do microfone do computador':'do celular';
+  let m=err==='not-allowed'||err==='service-not-allowed'?'O microfone está bloqueado. Clique no cadeado ao lado do endereço e permita o microfone. Pode continuar sem ele.'
+   :err==='audio-capture'?'Não encontrei o microfone. '+(pc?'Confira se o fone com microfone está conectado e escolhido no navegador.':'Confira se outro app está usando o microfone.')
+   :err==='network'?'O reconhecimento de voz precisa de internet. Confira a conexão e tente de novo.'
+   :err==='timeout'?'O reconhecimento de voz não respondeu. Toque de novo e fale logo depois do sinal.'
+   :'Não ouvi nada. Toque e fale perto '+onde+' 🙂';
+  if(location.protocol==='file:')m+=' Dica: você abriu o arquivo baixado; no site (cagb-47.github.io/ingles-pratico) o microfone funciona melhor.';return m};
+/* ---------- 📲 o mesmo progresso no celular e no computador ---------- */
+{
+const $=id=>document.getElementById(id);
+const SITE='https://cagb-47.github.io/ingles-pratico/';
+const base=()=>location.protocol==='file:'?SITE:location.origin+location.pathname;
+const SKIP=new Set(['xpTr','xpLast','tab','lastTab','hubLast','voiceName','volBoost','mbPg','mbPgsb','mbPgwb','audSec','fdVer','musVer']);
+const PREF=new Set(['rate','dSpeed','audSpd','audMode','wmode','name','homeSimple','mmType','mmMode','singer','nvSel','pvCat','wcat','prV','units','weeks','dSpeak','audTr','bkU','phone']);
+const dt=v=>typeof v==='string'&&/^\d{4}-\d{2}-\d{2}/.test(v);
+const keyOf=x=>x&&typeof x==='object'&&!Array.isArray(x)&&x.id!=null?'id:'+x.id:JSON.stringify(x);
+const merge=(a,b)=>{if(a===undefined||a===null)return b;if(b===undefined||b===null)return a;
+  if(typeof a==='number'&&typeof b==='number')return Math.max(a,b);
+  if(typeof a==='boolean'&&typeof b==='boolean')return a||b;
+  if(typeof a==='string'&&typeof b==='string')return dt(a)&&dt(b)?(a>b?a:b):b;
+  if(Array.isArray(a)&&Array.isArray(b)){const m=new Map();a.forEach(x=>m.set(keyOf(x),x));b.forEach(x=>{const k=keyOf(x);m.set(k,m.has(k)?merge(m.get(k),x):x)});return [...m.values()]}
+  if(typeof a==='object'&&typeof b==='object'&&!Array.isArray(a)&&!Array.isArray(b)){const o={...a};Object.keys(b).forEach(k=>{o[k]=merge(a[k],b[k])});return o}
+  return b};
+const snap=()=>{const d={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(SKIP.has(k)||k.startsWith('sb-'))continue;try{d[k]=JSON.parse(localStorage.getItem(k))}catch(e){}}return d};
+const b64u=u8=>{let s='';for(let i=0;i<u8.length;i+=8192)s+=String.fromCharCode.apply(null,u8.subarray(i,i+8192));return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')};
+const ub64=t=>{t=t.replace(/-/g,'+').replace(/_/g,'/');while(t.length%4)t+='=';const s=atob(t);const u=new Uint8Array(s.length);for(let i=0;i<s.length;i++)u[i]=s.charCodeAt(i);return u};
+const pipe=async(u8,T)=>new Uint8Array(await new Response(new Blob([u8]).stream().pipeThrough(T)).arrayBuffer());
+const pack=async o=>{const u=new TextEncoder().encode(JSON.stringify(o));if(window.CompressionStream)return 'z'+b64u(await pipe(u,new CompressionStream('deflate-raw')));return 'j'+b64u(u)};
+const unpack=async t=>{const u=ub64(t.slice(1));const raw=t[0]==='z'?await pipe(u,new DecompressionStream('deflate-raw')):u;return JSON.parse(new TextDecoder().decode(raw))};
+const resumo=d=>{const n=v=>Array.isArray(v)?v.length:0;return `⭐ ${d.xp||0} estrelas · 🔥 ${d.maxStreak||d.streak||0} dias seguidos (recorde) · ${n(d.zDone)+n(d.done)} lições feitas`};
+let link='';
+const make=async()=>{const m=$('syMsg');m.textContent='';const d=snap();
+  /* sem caber: tira as coisas maiores e menos importantes (letras de música e páginas transcritas) */
+  let data={v:1,t:Date.now(),d};let p=await pack(data);
+  if(p.length>6000){const d2={...d};['musLyr','musLyrTr','bookPg','trHist','musMine'].forEach(k=>delete d2[k]);data={v:1,t:Date.now(),d:d2};p=await pack(data)}
+  link=base()+'#p='+p;$('syOut').hidden=false;
+  $('syWa').href='https://wa.me/?text='+encodeURIComponent('Meu progresso do Inglês Prático (abra no outro aparelho): '+link);
+  $('syQr').innerHTML='';$('syQrTip').textContent='';
+  if(link.length<=2300){try{await loadQR();const q=qrcode(0,'L');q.addData(link);q.make();$('syQr').innerHTML=q.createSvgTag({cellSize:4,margin:2,scalable:true});$('syQrTip').textContent='No computador: aponte a câmera do celular para este código.'}
+    catch(e){$('syQrTip').textContent='Sem internet para desenhar o QR code. Use o WhatsApp ou copie o link.'}}
+  else $('syQrTip').textContent='O seu progresso ficou grande demais para o QR code. Use o WhatsApp ou copie o link.';
+  m.textContent=resumo(d)};
+const loadQR=()=>new Promise((ok,no)=>{if(window.qrcode)return ok();const sc=document.createElement('script');sc.src=(window.__qrBase||'https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/')+'qrcode.js';sc.onload=()=>ok();sc.onerror=()=>no(new Error('qr'));document.head.appendChild(sc)});
+$('syMake').onclick=make;
+$('syCopy').onclick=async()=>{try{await navigator.clipboard.writeText(link);$('syMsg').textContent='Link copiado. Cole no WhatsApp ou abra no outro aparelho.'}catch(e){window.prompt('Copie o link:',link)}};
+$('sySet').onclick=()=>{try{document.getElementById('setPanel').hidden=true}catch(e){}show('sync');try{window.scrollTo(0,0)}catch(e){}};
+if(location.protocol==='file:')$('syFile').hidden=false;
+/* chegou um link de outro aparelho */
+const incoming=async()=>{const h=location.hash;if(!h.startsWith('#p='))return;let data;
+  try{data=await unpack(h.slice(3))}catch(e){show('sync');$('syImp').hidden=false;$('syImp').innerHTML='<h3>Não consegui ler este link</h3><p>Ele pode ter sido cortado. Crie o link de novo no outro aparelho.</p>';return}
+  const d=data.d||{};show('sync');const box=$('syImp');box.hidden=false;
+  box.innerHTML=`<h3>📲 Progresso do outro aparelho</h3><p>${resumo(d)}</p><p>Quer juntar com o progresso deste aparelho? Nada se perde: fica sempre o maior avanço de cada um.</p><button type="button" class="btn" id="syJoin">Juntar o progresso</button><button type="button" class="btn ghost" id="syNo">Agora não</button>`;
+  const clear=()=>{try{history.replaceState(null,'',location.pathname+location.search)}catch(e){location.hash=''}};
+  $('syNo').onclick=()=>{clear();box.hidden=true};
+  $('syJoin').onclick=()=>{Object.keys(d).forEach(k=>{if(SKIP.has(k))return;const cur=store.get(k,undefined);store.set(k,PREF.has(k)?d[k]:merge(cur,d[k]))});
+    store.set('syncLast',Date.now());clear();box.innerHTML='<h3>Pronto! ✅</h3><p>O progresso foi juntado. Abrindo o app…</p>';setTimeout(()=>{store.set('tab','inicio');location.reload()},900)}};
+setTimeout(incoming,300);window.addEventListener('hashchange',incoming);
+window.__sync={snap,merge,pack,unpack,make,link:()=>link};
 }
 
 updateStats();
