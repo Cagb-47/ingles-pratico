@@ -625,6 +625,12 @@ img.emo{height:1.2em;width:1.2em;object-fit:contain;vertical-align:-0.24em;displ
 .xpvb{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 8px}
 .xpvb span{background:#FFF3D1;border-radius:10px;padding:4px 8px;font-size:.85rem;color:#5B4100}
 .xpvb span b{font-weight:800}
+.xpq{margin:8px 0 2px;font:800 .8rem var(--f-body);color:var(--muted)}
+.xpbigpt{margin:0 0 6px;font:800 1.15rem/1.35 var(--f-display);color:var(--ink)}
+.xpdet{margin:10px 0 0;border-top:1px dashed var(--line);padding:8px 0 0}
+.xpdet summary{cursor:pointer;font:700 .85rem var(--f-body);color:#1F6FA3;margin:0 0 8px}
+.xpbk{display:block;margin:4px 0 0;font-size:.78rem;opacity:.75}
+.xpln small{font-size:.98rem;color:var(--ink)}
 .xpstep ol{margin:0;padding-left:22px}.xpstep li{margin:0 0 6px;line-height:1.45}
 .xpln{display:grid;grid-template-columns:1fr auto;gap:4px 8px;align-items:center;padding:7px 0;border-bottom:1px dashed var(--line)}
 .xpln b{font:700 1rem/1.35 var(--f-body)}.xpln small{grid-column:1/-1;color:var(--muted);font-size:.9rem}
@@ -9447,23 +9453,31 @@ const explain=txt=>{
     return {label:it.label,en:it.en,verbs:found.map(v=>({en:v[1],pr:v[2],pt:v[3]})),pt:found.map(v=>v[3]).join(', depois ').replace(/^./,c=>c.toUpperCase()),steps:[...new Set(steps)]}});
   return {secs:secs.map(x=>({k:x[0],e:x[1],n:x[2],d:x[3]})),ins:res,lines:other.slice(0,15),blanks};
 };
-const tr=async(t,el)=>{el.textContent='Traduzindo…';try{const r=await fetch('https://api.mymemory.translated.net/get?q='+encodeURIComponent(t)+'&langpair=en|pt-BR');const j=await r.json();const x=j&&j.responseData&&j.responseData.translatedText;el.textContent=(!x||/MYMEMORY WARNING/i.test(x))?'O tradutor gratuito chegou ao limite de hoje. Tente amanhã.':x}catch(e){el.textContent='Sem internet para traduzir agora.'}};
+/* tradução automática (guardada no celular para não gastar o tradutor de novo) */
+let TRC=store.get('xpTr',{});
+const trx=async t=>{if(TRC[t])return TRC[t];const r=await fetch('https://api.mymemory.translated.net/get?q='+encodeURIComponent(t)+'&langpair=en|pt-BR');const j=await r.json();const x=j&&j.responseData&&j.responseData.translatedText;
+  if(!x||/MYMEMORY WARNING|QUERY LENGTH/i.test(x))throw new Error('lim');TRC[t]=x;const ks=Object.keys(TRC);if(ks.length>400)delete TRC[ks[0]];store.set('xpTr',TRC);return x};
+const tr=async(t,el)=>{el.textContent='Traduzindo…';try{el.textContent=await trx(t)}catch(e){el.textContent=e&&e.message==='lim'?'O tradutor gratuito chegou ao limite de hoje. Tente amanhã.':'Sem internet para traduzir agora. Toque 🌐 para tentar de novo.'}};
 const render=r=>{const o=$('xpOut');const n=r.ins.length;
   let h='';
-  if(!n&&!r.secs.length){h+=`<div class="xpintro">Não encontrei as instruções nesta foto. Tudo bem, acontece.<br><br>Tente de novo com a foto mais reta, com mais luz e mostrando a parte de cima do exercício (onde fica a letra <b lang="en">A</b>, <b lang="en">B</b>…). Ou mande para o Claude logo abaixo.</div>`}
-  else h+=`<div class="xpintro">Calma, uma coisa de cada vez. 🙂<br>${n?`Encontrei <b>${n} ${n>1?'tarefas':'tarefa'}</b> nesta foto. Faça na ordem, sem pressa.`:'Encontrei a parte do livro, mas não a instrução. Veja o que ela significa:'}</div>`;
-  r.secs.forEach(x=>{h+=`<div class="xpsec"><span aria-hidden="true">${x.e}</span><span><b><span lang="en">${esc(x.k)}</span> · ${esc(x.n)}</b>${esc(x.d)}</span></div>`});
+  if(!n&&!r.secs.length){h+=`<div class="xpintro">Não encontrei as instruções nesta foto. Tudo bem, acontece.<br><br>Tente de novo com a foto mais reta, com mais luz e mostrando a parte de cima do exercício, onde ficam as letras A, B… Ou mande para o Claude logo abaixo.</div>`}
+  else h+=`<div class="xpintro">Calma, uma coisa de cada vez. 🙂<br>${n?`Encontrei <b>${n} ${n>1?'tarefas':'tarefa'}</b> nesta foto. Eu explico tudo em português. Faça na ordem, sem pressa.`:'Encontrei a parte do livro, mas não a instrução. Veja o que ela significa:'}</div>`;
+  r.secs.forEach(x=>{h+=`<div class="xpsec"><span aria-hidden="true">${x.e}</span><span><b>${esc(x.n)}</b>${esc(x.d)}<small class="xpbk">No livro: <span lang="en">${esc(x.k)}</span></small></span></div>`});
   r.ins.forEach((it,i)=>{h+=`<div class="xpstep"><h4>Tarefa ${i+1}${it.label?' · parte '+esc(it.label):''}</h4>
+    <p class="xpq">O que o livro pede:</p><p class="xpbigpt" data-ip="${i}">${esc(it.pt)}.</p>
+    <p class="xpq">Passo a passo:</p><ol>${it.steps.map(s=>`<li>${esc(s)}</li>`).join('')}</ol>
+    <details class="xpdet"><summary>Como está escrito no livro (em inglês)</summary>
     <div class="xpen"><b lang="en">${esc(it.en)}</b><button type="button" data-say="${i}" aria-label="Ouvir">🔊</button></div>
-    <p class="xppt">${esc(it.pt)}.</p>
-    ${it.verbs.length?`<div class="xpvb">${it.verbs.map(v=>`<span><b lang="en">${esc(v.en)}</b> "${esc(v.pr)}" = ${esc(v.pt)}</span>`).join('')}</div>`:''}
-    <ol>${it.steps.map(s=>`<li>${esc(s)}</li>`).join('')}</ol></div>`});
+    ${it.verbs.length?`<div class="xpvb">${it.verbs.map(v=>`<span><b lang="en">${esc(v.en)}</b> "${esc(v.pr)}" = ${esc(v.pt)}</span>`).join('')}</div>`:''}</details></div>`});
   if(n)h+=`<p class="xpend">Quando terminar, tire a foto da próxima parte. Você está indo bem. 💪</p>`;
-  if(r.lines.length)h+=`<div class="xpstep"><h4>Frases desta foto (para ouvir e traduzir)</h4>${r.lines.map((l,i)=>`<div class="xpln"><b lang="en">${esc(l)}</b><span><button type="button" data-ls="${i}" aria-label="Ouvir">🔊</button><button type="button" data-lt="${i}" aria-label="Traduzir">🌐</button></span><small data-lo="${i}"></small></div>`).join('')}</div>`;
+  if(r.lines.length)h+=`<div class="xpstep"><h4>Frases desta foto, com a tradução</h4>${r.lines.map((l,i)=>`<div class="xpln"><b lang="en">${esc(l)}</b><span><button type="button" data-ls="${i}" aria-label="Ouvir">🔊</button><button type="button" data-lt="${i}" aria-label="Traduzir de novo">🌐</button></span><small data-lo="${i}">Traduzindo…</small></div>`).join('')}</div>`;
   o.innerHTML=h;
   o.querySelectorAll('[data-say]').forEach(b=>b.onclick=()=>say(r.ins[+b.dataset.say].en,.85));
   o.querySelectorAll('[data-ls]').forEach(b=>b.onclick=()=>say(r.lines[+b.dataset.ls],.85));
   o.querySelectorAll('[data-lt]').forEach(b=>b.onclick=()=>tr(r.lines[+b.dataset.lt],o.querySelector('[data-lo="'+b.dataset.lt+'"]')));
+  /* tudo traduzido sozinho: primeiro as instruções, depois as frases */
+  (async()=>{for(let i=0;i<r.ins.length;i++){const el=o.querySelector('[data-ip="'+i+'"]');try{const x=await trx(r.ins[i].en);if(el&&o.contains(el))el.textContent=x}catch(e){}}
+    for(let i=0;i<r.lines.length;i++){const el=o.querySelector('[data-lo="'+i+'"]');if(!el||!o.contains(el))return;await tr(r.lines[i],el)}})();
   $('xpAsk').hidden=false};
 const loadLib=()=>new Promise((ok,no)=>{if(window.Tesseract)return ok();const sc=document.createElement('script');sc.src=BASE.lib+'tesseract.min.js';sc.onload=()=>ok();sc.onerror=()=>no(new Error('lib'));document.head.appendChild(sc)});
 const prep=file=>new Promise((ok,no)=>{const im=new Image();im.onload=()=>{const k=Math.min(1,2000/Math.max(im.width,im.height));const c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);const x=c.getContext('2d');x.filter='grayscale(1) contrast(1.25)';x.drawImage(im,0,0,c.width,c.height);ok(c)};im.onerror=()=>no(new Error('img'));im.src=URL.createObjectURL(file)});
