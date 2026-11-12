@@ -7124,7 +7124,8 @@ function listen(btn){
   r.onerror=e=>{err=e.error};
   r.onend=()=>{btn.classList.remove('on');rec=null;
     if(fin.trim()){ta.value=fin.trim();translate(fin,dir)}
-    else st.textContent=(err==='not-allowed'||err==='service-not-allowed')?'O microfone está bloqueado. Toque no cadeado ao lado do endereço do site e permita o microfone.':err==='network'?'Sem internet para reconhecer a voz.':'Não ouvi nada. Toque no botão e fale perto do celular.'};
+    else st.textContent=window.micMsg?window.micMsg(err):'Não ouvi nada. Toque no botão e fale de novo.'};
+  setTimeout(()=>{if(rec===r){err=err||'timeout';try{r.abort()}catch(e){}setTimeout(()=>{if(rec===r){rec=null;btn.classList.remove('on');st.textContent=window.micMsg?window.micMsg('timeout'):'Tente de novo.'}},800)}},15000);
   try{r.start()}catch(e){btn.classList.remove('on');rec=null;st.textContent='Não consegui ligar o microfone. Tente de novo.'}
 }
 document.getElementById('micPt').onclick=e=>listen(e.currentTarget);
@@ -8396,7 +8397,7 @@ const speak=()=>{const p=G.qs[G.i];const SR=window.SpeechRecognition||window.web
   const m=document.getElementById('dMic'),fb=document.getElementById('dFb');
   if(!SR){m.disabled=true;fb.className='zfb no';fb.textContent='Este navegador não reconhece a voz. Use o Chrome no Android ou o Safari no iPhone.';return}
   m.onclick=()=>{m.classList.add('on');m.textContent='🎤 Ouvindo...';(window.__zhear||(()=>{}))((alts,err)=>{m.classList.remove('on');m.textContent='🎤 Falar de novo';
-    if(!alts){fb.className='zfb no';fb.textContent='Não ouvi. Toque e fale perto do celular 🙂';return}
+    if(!alts){fb.className='zfb no';fb.textContent=window.micMsg?window.micMsg(err):'Não ouvi. Toque e fale de novo 🙂';if(nb.disabled){nb.disabled=false;nb.textContent='Pular esta frase'}return}
     const nz=t=>String(t).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[’'`´]/g,'').replace(/[^a-z0-9ñ ]/g,' ').replace(/\s+/g,' ').trim();
     const lev=(a,b)=>{const M=a.length,N2=b.length;const d=Array.from({length:M+1},(_,i)=>[i]);for(let j=1;j<=N2;j++)d[0][j]=j;for(let i=1;i<=M;i++)for(let j=1;j<=N2;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[M][N2]};
     const sc=Math.round(Math.max(...alts.map(a=>{const x=nz(a),y=nz(p[0]);return x&&y?Math.max(0,1-lev(x,y)/Math.max(x.length,y.length)):0}))*100);
@@ -9267,7 +9268,8 @@ const draw=()=>{
     if(canRec){const rb=document.getElementById('dvRec');rb.onclick=async()=>{if(S.rec&&S.rec.state==='recording'){S.rec.stop();return}
       try{const st=await navigator.mediaDevices.getUserMedia({audio:true});const ch=[];const r=new MediaRecorder(st);S.rec=r;r.ondataavailable=e=>ch.push(e.data);
         r.onstop=()=>{st.getTracks().forEach(t=>t.stop());const url=URL.createObjectURL(new Blob(ch,{type:r.mimeType||'audio/webm'}));S.mine=url;rb.textContent='🎙️ Gravar de novo';const c=document.getElementById('dvCmp');if(c)c.hidden=false};
-        r.start();rb.textContent='⏹ Parar';setTimeout(()=>{if(r.state==='recording')r.stop()},7000)}catch(e){rb.textContent='Microfone não liberado';rb.disabled=true}};
+        r.start();rb.textContent='⏹ Parar';setTimeout(()=>{if(r.state==='recording')r.stop()},7000)}catch(e){const n=e&&e.name;rb.textContent='🎙️ Tentar gravar de novo';
+        const c=document.getElementById('dvCd');if(c)c.textContent=window.micMsg?window.micMsg(n==='NotAllowedError'||n==='SecurityError'?'not-allowed':n==='NotFoundError'||n==='NotReadableError'?'audio-capture':'start'):'Não consegui ligar o microfone.'}};
       document.getElementById('dvMine').onclick=()=>{if(S.mine){const a=new Audio(S.mine);a.play().catch(()=>{})}}}
     const fin=ok=>{clearInterval(S.t);S.mine=null;rec('fal',ok);bump('fal',x.en,ok?-1:2);if(ok)S.falOk++;next()};
     document.getElementById('dvNext').onclick=()=>fin(true);document.getElementById('dvHard').onclick=()=>fin(false);return}
@@ -9605,7 +9607,7 @@ window.micMsg=err=>{const pc=!/Android|iPhone|iPad|Mobile/i.test(navigator.userA
   let m=err==='not-allowed'||err==='service-not-allowed'?'O microfone está bloqueado. Clique no cadeado ao lado do endereço e permita o microfone. Pode continuar sem ele.'
    :err==='audio-capture'?'Não encontrei o microfone. '+(pc?'Confira se o fone com microfone está conectado e escolhido no navegador.':'Confira se outro app está usando o microfone.')
    :err==='network'?'O reconhecimento de voz precisa de internet. Confira a conexão e tente de novo.'
-   :err==='timeout'?'O reconhecimento de voz não respondeu. Toque de novo e fale logo depois do sinal.'
+   :err==='start'?'Não consegui ligar o microfone. Feche outros apps ou abas que usam o microfone e tente de novo.':err==='timeout'?'O reconhecimento de voz não respondeu. Toque de novo e fale logo depois do sinal.'
    :'Não ouvi nada. Toque e fale perto '+onde+' 🙂';
   if(location.protocol==='file:')m+=' Dica: você abriu o arquivo baixado; no site (cagb-47.github.io/ingles-pratico) o microfone funciona melhor.';return m};
 /* ---------- 📲 o mesmo progresso no celular e no computador ---------- */
