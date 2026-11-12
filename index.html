@@ -608,6 +608,33 @@ img.emo{height:1.2em;width:1.2em;object-fit:contain;vertical-align:-0.24em;displ
 .mbpage canvas{display:block;width:100%;height:auto}
 .mbpage.zoom canvas{width:220%}
 .mblink{border:0;background:none;color:#C2352B;font:700 .82rem var(--f-body);text-decoration:underline;cursor:pointer;padding:0}
+
+.xpbtns{display:grid;gap:10px;margin:4px 0 6px}
+.xpbig{display:block;text-align:center;cursor:pointer;font-size:1.05rem;padding:14px}
+.xpfrom{display:block;width:100%;margin:8px 0 0}
+#xpImg{display:block;max-width:100%;max-height:220px;margin:12px auto 0;border-radius:12px;border:1.5px solid var(--line)}
+.xpintro{background:var(--paper);border:1.5px solid var(--line);border-radius:16px;padding:12px 14px;margin:14px 0 10px;font-size:1rem;line-height:1.45}
+.xpsec{display:flex;gap:10px;align-items:flex-start;background:#EAF3FA;border-radius:14px;padding:10px 12px;margin:0 0 10px;font-size:.95rem;line-height:1.4;color:#0B3350}
+.xpsec b{display:block}
+.xpstep{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:12px 14px;margin:0 0 12px}
+.xpstep h4{margin:0 0 6px;font:800 .82rem var(--f-body);color:var(--muted)}
+.xpen{display:flex;gap:8px;align-items:flex-start;justify-content:space-between}
+.xpen b{font:800 1.08rem/1.35 var(--f-display)}
+.xpen button,.xpln button{flex:0 0 auto;border:0;background:#134B70;background-image:var(--gnavy);color:#fff;border-radius:10px;padding:6px 10px;font:800 .85rem var(--f-body);cursor:pointer}
+.xppt{margin:4px 0 8px;color:var(--muted);font-size:.95rem}
+.xpvb{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 8px}
+.xpvb span{background:#FFF3D1;border-radius:10px;padding:4px 8px;font-size:.85rem;color:#5B4100}
+.xpvb span b{font-weight:800}
+.xpstep ol{margin:0;padding-left:22px}.xpstep li{margin:0 0 6px;line-height:1.45}
+.xpln{display:grid;grid-template-columns:1fr auto;gap:4px 8px;align-items:center;padding:7px 0;border-bottom:1px dashed var(--line)}
+.xpln b{font:700 1rem/1.35 var(--f-body)}.xpln small{grid-column:1/-1;color:var(--muted);font-size:.9rem}
+.xpln span{display:flex;gap:6px}
+.xpend{margin:4px 0 14px;font-size:1rem;line-height:1.45}
+.xpask{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:14px;margin:6px 0 18px}
+.xpask h3{margin:0 0 4px;font:800 1.1rem var(--f-display)}.xpask p{margin:0 0 10px;font-size:.95rem;line-height:1.4}
+.xpask .btn{display:block;width:100%}
+html[data-theme="dark"] .xpsec{background:#12324A;color:#DCEBF7}
+html[data-theme="dark"] .xpvb span{background:#3A3018;color:#FBE6AE}
 </style>
 <title>Inglês Prático</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -1060,7 +1087,24 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
     <p class="tip">Os níveis A1 e A2 combinam com o Interchange Intro das aulas com a professora. Os próximos degraus preparam o que vem depois.</p>
   </section>
 
-  <section id="livro" data-panel hidden>
+  <section id="explicar" data-panel hidden>
+    <h2>📸 Me explica a lição</h2>
+    <p class="sub">Tire uma foto da página do livro ou da lição. O app lê as instruções e explica, com calma, o que você precisa fazer.</p>
+    <div class="xpbtns">
+      <label class="btn xpbig" for="xpCam">📷 Tirar foto</label><input type="file" id="xpCam" accept="image/*" capture="environment" hidden>
+      <label class="btn ghost xpbig" for="xpGal">🖼️ Escolher da galeria</label><input type="file" id="xpGal" accept="image/*" hidden>
+    </div>
+    <p class="bknote">Dica: foto reta, com boa luz, mostrando só a parte que você quer entender. A foto fica só no seu celular.</p>
+    <div id="xpWork" hidden><img id="xpImg" alt="Sua foto"><div class="bkprog"><i id="xpBar"></i></div><p class="bkmsg" id="xpMsg" aria-live="polite"></p></div>
+    <div id="xpOut" aria-live="polite"></div>
+    <div class="xpask" id="xpAsk" hidden>
+      <h3>💬 Quer uma explicação ainda mais completa?</h3>
+      <p>Mande a mesma foto para o Claude. O pedido já vai escrito: explicar com calma, em português, com a pronúncia.</p>
+      <button type="button" class="btn" id="xpClaude">Mandar a foto para o Claude</button>
+      <p class="bknote" id="xpCMsg" aria-live="polite"></p>
+    </div>
+  </section>
+<section id="livro" data-panel hidden>
     <h2>Junto com o livro</h2>
     <p class="sub">Segue o Interchange Intro (4ª edição), o livro das aulas com a professora. Primeiro vem o que foi visto em cada aula, para revisar com áudio. Depois vêm as 16 unidades do livro, com as páginas e frases extras para treinar o mesmo tema. Os textos, exercícios e áudios do livro continuam no próprio livro. Para acompanhar a aula, fotografe a página: o app transcreve no seu celular.</p>
     <div class="bkph" id="myBook">
@@ -1073,6 +1117,7 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
         <div class="mbnav"><button type="button" class="btn ghost" id="mbPrev" aria-label="Página anterior">◀</button><span id="mbInfo"></span><button type="button" class="btn ghost" id="mbNext" aria-label="Próxima página">▶</button></div>
         <div class="mbpage" id="mbPage"><canvas id="mbCv"></canvas></div>
         <div class="bkrow2"><button type="button" class="btn ghost" id="mbZoom">🔍 Ampliar</button><button type="button" class="btn" id="mbRead">📝 Ler o texto desta página</button></div>
+        <button type="button" class="btn ghost xpfrom" id="mbXp">📸 O que eu faço nesta página?</button>
         <p class="bknote"><span id="mbOk"></span> <button type="button" class="mblink" id="mbDel">Remover do celular</button></p>
       </div>
     </div>
@@ -8586,7 +8631,7 @@ window.__mf={MF,sent,setV};
 
 /* ---------- Abas agrupadas (Aprender, Minhas aulas, Falar, Palavras, Gramática, Ouvir e ler) ---------- */
 {
-const HUBS=[["trilha", "🧭", "Trilha", [["rota", "Meu caminho"], ["zero", "Do zero"], ["aula", "Situações do dia a dia"], ["niveis", "Níveis A1–C2"], ["plano", "Temas para marcar"]]], ["praticar", "💬", "Praticar", [["destravar", "🧠 Destravar"], ["pron", "Alfabeto e pronúncia"], ["nativo", "Frases nativas"], ["montar", "Montar frases"], ["exerc", "Exercícios"], ["desaf", "Desafios"], ["tradutor", "Tradutor"], ["sos", "SOS"]]], ["ouvir", "🎧", "Ouvir e ler", [["audios", "Áudios"], ["historias", "Leituras"], ["musicas", "Músicas"]]], ["biblio", "📚", "Biblioteca", [["palavras", "Palavras"], ["phrasal", "Phrasal verbs"], ["flash", "Flashcards"], ["mapas", "Mapas mentais"]]], ["minhas", "🧑‍🏫", "Minhas aulas", [["livro", "Aulas e livro"], ["rotina", "Rotina"], ["apost", "Apostila"]]]];
+const HUBS=[["trilha", "🧭", "Trilha", [["rota", "Meu caminho"], ["zero", "Do zero"], ["aula", "Situações do dia a dia"], ["niveis", "Níveis A1–C2"], ["plano", "Temas para marcar"]]], ["praticar", "💬", "Praticar", [["destravar", "🧠 Destravar"], ["pron", "Alfabeto e pronúncia"], ["nativo", "Frases nativas"], ["montar", "Montar frases"], ["exerc", "Exercícios"], ["desaf", "Desafios"], ["tradutor", "Tradutor"], ["sos", "SOS"]]], ["ouvir", "🎧", "Ouvir e ler", [["audios", "Áudios"], ["historias", "Leituras"], ["musicas", "Músicas"]]], ["biblio", "📚", "Biblioteca", [["palavras", "Palavras"], ["phrasal", "Phrasal verbs"], ["flash", "Flashcards"], ["mapas", "Mapas mentais"]]], ["minhas", "🧑‍🏫", "Minhas aulas", [["livro", "Aulas e livro"], ["explicar", "📸 Me explica"], ["rotina", "Rotina"], ["apost", "Apostila"]]]];
 const hubOf=id=>{const h=HUBS.find(h=>h[3].some(x=>x[0]===id));return h?h[0]:null};
 window.hubOf=hubOf;window.HUBS=HUBS;
 const subnav=document.getElementById('subnav');
@@ -8780,7 +8825,7 @@ const render=(key)=>{
   P0.querySelectorAll('[data-skip]').forEach(b=>b.onclick=()=>{const k=b.dataset.skip;let sk=g('rotaSkip',[]);sk=sk.includes(k)?sk.filter(x=>x!==k):[...sk,k];store.set('rotaSkip',sk);inst.home&&(inst.home.open=null);inst.rota&&(inst.rota.open=null);render(key)});
 };
 /* ferramentas para qualquer nível */
-const TOOLS=[['musicas','🎵','Suas músicas','Pictures of You, Forever Young…'],['audios','🎧','Áudios','Histórias com voz natural'],['tradutor','🎙️','Tradutor de voz','Fale e ouça na hora'],['desaf','🏆','Desafios','Desafio do dia e ranking'],['flash','🃏','Flashcards','Revisar palavras'],['sos','🆘','SOS','Emergências'],['rotina','🗓️','Rotina','Dicas da professora'],['apost','📄','Apostila em PDF','Para imprimir']];
+const TOOLS=[['explicar','📸','Me explica a lição','Foto do livro → passo a passo'],['musicas','🎵','Suas músicas','Pictures of You, Forever Young…'],['audios','🎧','Áudios','Histórias com voz natural'],['tradutor','🎙️','Tradutor de voz','Fale e ouça na hora'],['desaf','🏆','Desafios','Desafio do dia e ranking'],['flash','🃏','Flashcards','Revisar palavras'],['sos','🆘','SOS','Emergências'],['rotina','🗓️','Rotina','Dicas da professora'],['apost','📄','Apostila em PDF','Para imprimir']];
 const tl=document.getElementById('hTools');
 tl.innerHTML=TOOLS.map(([id,e,t,d])=>`<button class="htile" data-go="${id}" role="listitem"><span class="ti" aria-hidden="true">${e}</span><span><b>${t}</b><small>${d}</small></span></button>`).join('');
 tl.querySelectorAll('.htile').forEach(b=>b.onclick=()=>show(b.dataset.go));
@@ -9322,6 +9367,126 @@ $('mbRead').onclick=()=>{const cv=$('mbCv');cv.toBlob(bl=>{if(!bl)return;const f
 let started=false;
 const _showMB=show;show=function(id){_showMB.apply(this,arguments);if(!started&&!document.getElementById('livro').hidden){started=true;show2()}};
 window.__mb={show2,render,state:()=>({cur,pg:{...pg},n:doc[cur]&&doc[cur].numPages})};
+}
+
+/* ---------- 📸 Me explica a lição (foto -> instruções explicadas com calma) ---------- */
+{
+const $=id=>document.getElementById(id);
+const esc=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const BASE=window.__ocrBase||{lib:'https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/',core:'https://cdn.jsdelivr.net/npm/tesseract.js-core@5.1.1',lang:'https://cdn.jsdelivr.net/npm/@tesseract.js-data/eng@1.0.0/4.0.0_best_int'};
+/* partes do livro (títulos em maiúsculas) */
+const SEC=[['PAIR WORK','👥','Em dupla','Faça com um colega. Sozinho? Faça as duas partes em voz alta.'],['GROUP WORK','👨‍👩‍👧','Em grupo','Faça com colegas. Sozinho? Imagine as respostas e fale em voz alta.'],['CLASS ACTIVITY','🏫','Com a turma','Atividade com a turma toda. Em casa, faça as perguntas para alguém da família ou para você mesmo.'],['GRAMMAR FOCUS','🧩','Quadro de frases','Mostra como a frase se monta. Ouça e leia os exemplos. Não precisa decorar regra.'],['WORD POWER','🔤','Palavras do tema','Palavras novas. Ouça e repita cada uma.'],['CONVERSATION','💬','Conversa','Uma conversa curta com áudio. Ouça primeiro e depois leia junto.'],['SNAPSHOT','🖼️','Quadro rápido','Informações e figuras sobre o tema. Olhe e leia com calma.'],['PRONUNCIATION','👄','Pronúncia','Treino do som. Ouça e repita, imitando.'],['LISTENING','🎧','Escuta','Leia as perguntas antes. Depois ouça o áudio, quantas vezes precisar.'],['SPEAKING','🗣️','Fala','Hora de falar em voz alta.'],['WRITING','✍️','Escrita','Hora de escrever, com frases curtas.'],['READING','📖','Leitura','Um texto para ler. Comece pelo título e pelas figuras.'],['INTERCHANGE','🔁','Atividade extra','Fica no fim do livro. Vá até a página indicada.'],['PERSPECTIVES','🧑‍🤝‍🧑','Opiniões','Frases de pessoas diferentes sobre o tema. Ouça e veja qual combina com você.'],['DISCUSSION','💭','Conversa sobre o tema','Converse e dê a sua opinião, com frases simples.']];
+/* comandos: [regex, palavra, pronúncia, português, o que fazer] */
+const VB=[
+ [/^listen\b/,'listen','líssen','ouça','Toque o áudio dessa parte (o número da faixa fica ao lado do fone 🎧 no livro). Na primeira vez, só escute, sem se preocupar em entender tudo.'],
+ [/^practi[cs]e\b/,'practice','práktis','pratique','Agora leia em voz alta, devagar. Se for uma conversa e você estiver sozinho, faça as duas pessoas.'],
+ [/^repeat\b/,'repeat','ripít','repita','Repita logo depois do áudio, imitando o ritmo. Pode pausar quantas vezes quiser.'],
+ [/^read\b/,'read','ríid','leia','Leia com calma. Não precisa entender cada palavra: pegue a ideia geral.'],
+ [/^write\b/,'write','ráit','escreva','Escreva no livro ou no caderno. Frases curtas já bastam.'],
+ [/^(complete|fill in)\b/,'complete','kâmplít','complete','Preencha os espaços vazios ( ____ ) com a palavra que falta. Se houver um quadro com palavras, escolha de lá.'],
+ [/^match\b/,'match','métch','ligue','Ligue cada item ao seu par: escreva a letra (a, b, c…) ao lado do número certo.'],
+ [/^check\s*(\(|[✓✔v]\s*\))/,'check (✓)','tchék','marque','Marque com um ✓ as opções certas para você.'],
+ [/^check\b/,'check','tchék','confira','Confira suas respostas: ouça o áudio de novo ou veja o gabarito.'],
+ [/^circle\b/,'circle','sârkol','circule','Faça um círculo em volta da resposta certa.'],
+ [/^underline\b/,'underline','ânderlain','sublinhe','Passe um traço embaixo das palavras pedidas.'],
+ [/^number\b/,'number','nâmber','numere','Coloque números (1, 2, 3…) para mostrar a ordem certa.'],
+ [/^(choose|select|pick)\b/,'choose','tchúuz','escolha','Escolha uma das opções.'],
+ [/^compare\b/,'compare','kâmpér','compare','Compare as respostas com um colega. Sozinho? Compare com o gabarito ou ouça o áudio de novo.'],
+ [/^ask\b/,'ask','ésk','pergunte','Faça as perguntas para outra pessoa. Sozinho? Leia cada pergunta em voz alta, como se falasse com alguém.'],
+ [/^answer\b/,'answer','énsser','responda','Responda sobre você, em voz alta ou por escrito.'],
+ [/^(talk|tell|say)\b/,'talk','tók','fale','Fale em voz alta. Pode começar com frases bem curtas.'],
+ [/^look\b/,'look at','lúk ét','olhe','Olhe a figura ou o quadro com atenção antes de começar. Ela dá a pista.'],
+ [/^find\b/,'find','fáind','encontre','Procure no texto ou na figura o que está sendo pedido.'],
+ [/^correct\b/,'correct','korékt','corrija','Corrija o que está errado e escreva do jeito certo.'],
+ [/^spell\b/,'spell','spél','soletre','Soletre a palavra letra por letra, em inglês. O Alfabeto do app ajuda.'],
+ [/^(put|unscramble|order)\b/,'put in order','pút in órder','coloque em ordem','Coloque as palavras ou frases na ordem certa para fazer sentido.'],
+ [/^interview\b/,'interview','ínterviu','entreviste','Faça as perguntas para alguém e anote as respostas.'],
+ [/^(role[- ]?play|act out)\b/,'role-play','rôul plêi','encene','Encene a conversa, como num teatrinho. Sozinho, faça os dois papéis.'],
+ [/^guess\b/,'guess','guéss','adivinhe','Arrisque um palpite. Não tem problema errar.'],
+ [/^draw\b/,'draw','dróo','desenhe','Faça um desenho simples.'],
+ [/^discuss\b/,'discuss','diskâss','converse','Converse sobre o tema e dê a sua opinião.'],
+ [/^label\b/,'label','lêibol','escreva o nome','Escreva o nome de cada coisa na figura.'],
+ [/^add\b/,'add','éd','acrescente','Acrescente mais exemplos seus.'],
+ [/^introduce\b/,'introduce','intrudúss','apresente','Apresente-se ou apresente alguém: diga o nome e algo simples.'],
+ [/^cross out\b/,'cross out','króss áut','risque','Risque o que não combina.'],
+ [/^think\b/,'think','thínk','pense','Pense um pouco antes. Pode anotar as ideias em português primeiro.'],
+ [/^use\b/,'use','iúz','use','Use as palavras ou expressões do quadro nas suas frases.'],
+ [/^share\b/,'share','xér','compartilhe','Mostre suas respostas para a turma ou para um colega.'],
+ [/^describe\b/,'describe','diskráib','descreva','Descreva com frases simples o que você vê.'],
+ [/^greet\b/,'greet','gríit','cumprimente','Cumprimente as pessoas: Hi! Hello!'],
+ [/^(go|walk) around\b/,'go around','gôu araund','circule pela sala','Ande pela sala e converse com vários colegas.'],
+ [/^(go|turn) to\b/,'go to','gôu tchu','vá para','Vá até a parte ou a página indicada.'],
+ [/^imagine\b/,'imagine','iméjin','imagine','Imagine a situação e responda como se estivesse lá.'],
+];
+const isVerb=w=>VB.find(v=>v[0].test(w));
+const clean=l=>l.replace(/[|_]{1,}\s*$/,'').replace(/\s+/g,' ').trim();
+/* lê o texto e encontra as partes e os comandos */
+const explain=txt=>{
+  const L=String(txt||'').split(/\n+/).map(clean).filter(x=>x.length>1);
+  const secs=[],ins=[],other=[];let last=null;
+  const blanks=/_{3,}|\.{4,}|—{2,}/.test(txt);
+  for(let raw of L){
+    let l=raw;
+    for(const sc of SEC){if(l.includes(sc[0])){if(!secs.includes(sc))secs.push(sc);l=l.replace(sc[0],' ').replace(/^\s*\d{1,2}\s*/,'').trim()}}
+    const lab=l.match(/^\s*([A-H]|\d{1,2})[\s.)]+(?=[A-Za-z])/);const body=lab?l.slice(lab[0].length):l;
+    const low=body.toLowerCase().replace(/^[^a-z(]+/,'');
+    if(isVerb(low)&&/^[A-Z]/.test(body.replace(/^[^A-Za-z]+/,''))){last={label:lab?lab[1]:'',en:body};ins.push(last);continue}
+    if(last&&!/[.!?:]$/.test(last.en)&&/^[a-z(]/.test(body)&&body.length<90){last.en+=' '+body;continue}
+    last=null;if(l.length>2&&/[a-z]/i.test(l)&&(l.match(/[A-Za-z]/g)||[]).length/l.length>.6)other.push(l);
+  }
+  const res=ins.map(it=>{
+    const sent=it.en.split(/(?<=[.!?])\s+/);const found=[];
+    sent.forEach(se=>{const tk=se.toLowerCase().replace(/[^a-z()✓✔ '-]/g,' ').replace(/\s+/g,' ').trim();
+      const parts=tk.split(/\b(?:and|then|or)\b|,/).map(x=>x.trim().replace(/^(now|first|also)\s+/,''));
+      parts.forEach(p=>{const v=VB.find(v=>v[0].test(p));if(v&&!found.includes(v))found.push(v)})});
+    const steps=found.map(v=>v[4]);const low=it.en.toLowerCase();
+    if(/partner|classmate|pair/.test(low))steps.push('Faça com um colega. Sozinho? Use o 💬 Praticar do app ou fale as duas partes em voz alta.');
+    if(/true or false|\bt\s*\/\s*f\b|\(t\)|true\b.*false\b/.test(low))steps.unshift('Leia cada frase e marque T (true, verdadeiro) ou F (false, falso).');
+    if(blanks&&found.some(v=>v[1]==='complete')===false&&/blank|missing/.test(low))steps.push('Preencha os espaços vazios ( ____ ).');
+    const pg=it.en.match(/page\s*(\d{1,3})/i);if(pg)steps.push('Vá até a página '+pg[1]+' do livro.');
+    return {label:it.label,en:it.en,verbs:found.map(v=>({en:v[1],pr:v[2],pt:v[3]})),pt:found.map(v=>v[3]).join(', depois ').replace(/^./,c=>c.toUpperCase()),steps:[...new Set(steps)]}});
+  return {secs:secs.map(x=>({k:x[0],e:x[1],n:x[2],d:x[3]})),ins:res,lines:other.slice(0,15),blanks};
+};
+const tr=async(t,el)=>{el.textContent='Traduzindo…';try{const r=await fetch('https://api.mymemory.translated.net/get?q='+encodeURIComponent(t)+'&langpair=en|pt-BR');const j=await r.json();const x=j&&j.responseData&&j.responseData.translatedText;el.textContent=(!x||/MYMEMORY WARNING/i.test(x))?'O tradutor gratuito chegou ao limite de hoje. Tente amanhã.':x}catch(e){el.textContent='Sem internet para traduzir agora.'}};
+const render=r=>{const o=$('xpOut');const n=r.ins.length;
+  let h='';
+  if(!n&&!r.secs.length){h+=`<div class="xpintro">Não encontrei as instruções nesta foto. Tudo bem, acontece.<br><br>Tente de novo com a foto mais reta, com mais luz e mostrando a parte de cima do exercício (onde fica a letra <b lang="en">A</b>, <b lang="en">B</b>…). Ou mande para o Claude logo abaixo.</div>`}
+  else h+=`<div class="xpintro">Calma, uma coisa de cada vez. 🙂<br>${n?`Encontrei <b>${n} ${n>1?'tarefas':'tarefa'}</b> nesta foto. Faça na ordem, sem pressa.`:'Encontrei a parte do livro, mas não a instrução. Veja o que ela significa:'}</div>`;
+  r.secs.forEach(x=>{h+=`<div class="xpsec"><span aria-hidden="true">${x.e}</span><span><b><span lang="en">${esc(x.k)}</span> · ${esc(x.n)}</b>${esc(x.d)}</span></div>`});
+  r.ins.forEach((it,i)=>{h+=`<div class="xpstep"><h4>Tarefa ${i+1}${it.label?' · parte '+esc(it.label):''}</h4>
+    <div class="xpen"><b lang="en">${esc(it.en)}</b><button type="button" data-say="${i}" aria-label="Ouvir">🔊</button></div>
+    <p class="xppt">${esc(it.pt)}.</p>
+    ${it.verbs.length?`<div class="xpvb">${it.verbs.map(v=>`<span><b lang="en">${esc(v.en)}</b> "${esc(v.pr)}" = ${esc(v.pt)}</span>`).join('')}</div>`:''}
+    <ol>${it.steps.map(s=>`<li>${esc(s)}</li>`).join('')}</ol></div>`});
+  if(n)h+=`<p class="xpend">Quando terminar, tire a foto da próxima parte. Você está indo bem. 💪</p>`;
+  if(r.lines.length)h+=`<div class="xpstep"><h4>Frases desta foto (para ouvir e traduzir)</h4>${r.lines.map((l,i)=>`<div class="xpln"><b lang="en">${esc(l)}</b><span><button type="button" data-ls="${i}" aria-label="Ouvir">🔊</button><button type="button" data-lt="${i}" aria-label="Traduzir">🌐</button></span><small data-lo="${i}"></small></div>`).join('')}</div>`;
+  o.innerHTML=h;
+  o.querySelectorAll('[data-say]').forEach(b=>b.onclick=()=>say(r.ins[+b.dataset.say].en,.85));
+  o.querySelectorAll('[data-ls]').forEach(b=>b.onclick=()=>say(r.lines[+b.dataset.ls],.85));
+  o.querySelectorAll('[data-lt]').forEach(b=>b.onclick=()=>tr(r.lines[+b.dataset.lt],o.querySelector('[data-lo="'+b.dataset.lt+'"]')));
+  $('xpAsk').hidden=false};
+const loadLib=()=>new Promise((ok,no)=>{if(window.Tesseract)return ok();const sc=document.createElement('script');sc.src=BASE.lib+'tesseract.min.js';sc.onload=()=>ok();sc.onerror=()=>no(new Error('lib'));document.head.appendChild(sc)});
+const prep=file=>new Promise((ok,no)=>{const im=new Image();im.onload=()=>{const k=Math.min(1,2000/Math.max(im.width,im.height));const c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);const x=c.getContext('2d');x.filter='grayscale(1) contrast(1.25)';x.drawImage(im,0,0,c.width,c.height);ok(c)};im.onerror=()=>no(new Error('img'));im.src=URL.createObjectURL(file)});
+const bar=v=>{$('xpBar').style.width=Math.round(v*100)+'%'};const msg=t=>{$('xpMsg').textContent=t};
+let curFile=null;
+const run=async file=>{if(!file)return;curFile=file;$('xpOut').innerHTML='';$('xpAsk').hidden=true;$('xpCMsg').textContent='';$('xpWork').hidden=false;
+  try{const u=$('xpImg').src;if(u&&u.startsWith('blob:'))URL.revokeObjectURL(u)}catch(e){}$('xpImg').src=URL.createObjectURL(file);bar(.05);msg('Preparando a foto…');
+  try{const cv=await prep(file);msg('Carregando o leitor (só na primeira vez demora mais)…');await loadLib();bar(.15);
+    const w=await Tesseract.createWorker('eng',1,{workerPath:BASE.lib+'worker.min.js',corePath:BASE.core,langPath:BASE.lang,logger:m=>{if(m.status==='recognizing text'){bar(.2+m.progress*.8);msg('Lendo a foto… '+Math.round(m.progress*100)+'%')}}});
+    const r=await w.recognize(cv);await w.terminate();bar(1);msg('');$('xpWork').querySelector('.bkprog').hidden=true;
+    const ex=explain(r.data.text);store.set('xpLast',{t:r.data.text.slice(0,4000)});render(ex);if(typeof touchDay==='function')try{touchDay()}catch(e){}
+    try{$('xpOut').scrollIntoView({block:'start',behavior:'smooth'})}catch(e){}}
+  catch(e){bar(0);msg(e&&e.message==='img'?'Não consegui abrir essa foto. Tente de novo.':'Não consegui carregar o leitor. Confira a internet e tente de novo.');$('xpAsk').hidden=false}};
+['xpCam','xpGal'].forEach(id=>$(id).onchange=()=>{const f=$(id).files[0];$(id).value='';$('xpWork').querySelector('.bkprog').hidden=false;run(f)});
+/* explicação completa pelo app do Claude */
+const PROMPT='Sou aluno iniciante de inglês, tenho 47 anos e estou aprendendo do zero. Esta é uma foto do meu livro (Interchange Intro) ou de uma lição. Explique com calma, em português, passo a passo, o que o exercício pede para eu fazer. Para cada frase em inglês, escreva ao lado a pronúncia de um jeito fácil de ler em português. Não use termos de gramática. Termine com uma pergunta simples para eu treinar.';
+$('xpClaude').onclick=async()=>{const m=$('xpCMsg');
+  if(curFile&&navigator.canShare){try{const f=curFile.name?curFile:new File([curFile],'licao.png',{type:curFile.type||'image/png'});if(navigator.canShare({files:[f]})){await navigator.share({files:[f],text:PROMPT});m.textContent='Escolha o app do Claude na lista. O pedido vai junto com a foto.';return}}catch(e){if(e&&e.name==='AbortError')return}}
+  try{await navigator.clipboard.writeText(PROMPT);m.innerHTML='Copiei o pedido. Abra o app do Claude, cole o texto e anexe a foto. <a href="https://claude.ai/new" target="_blank" rel="noopener">Abrir o Claude</a>'}
+  catch(e){m.textContent='Abra o app do Claude, anexe a foto e peça: "'+PROMPT+'"'}};
+/* do 📘 Meu livro: explicar a página aberta */
+const mbx=$('mbXp');if(mbx)mbx.onclick=()=>{const cv=$('mbCv');cv.toBlob(bl=>{if(!bl)return;show('explicar');$('xpWork').querySelector('.bkprog').hidden=false;run(new File([bl],'pagina.png',{type:'image/png'}));try{window.scrollTo(0,0)}catch(e){}},'image/png')};
+window.__xp={explain,render,run};
 }
 
 updateStats();
