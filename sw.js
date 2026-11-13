@@ -1,4 +1,4 @@
-const CACHE='ingles-v53';
+const CACHE='ingles-v54';
 const VOZ='voz-ingles-4'; /* gravações (vz/ e aud/): nunca mudam, ficam guardadas entre versões */
 const FILES=['./','index.html','manifest.webmanifest','icon-v4-192.png','icon-v4-512.png','icon-v4-maskable.png','apple-touch-icon.png','favicon-48.png'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)));self.skipWaiting()});

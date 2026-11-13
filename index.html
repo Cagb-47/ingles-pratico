@@ -984,9 +984,8 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
   </div>
   <div class="speed vpick" id="vPickRow"><label for="vPick">Voz do celular:</label><select id="vPick" aria-label="Escolher a voz do celular"></select><button type="button" id="vTest" aria-label="Ouvir a voz escolhida">▶ Ouvir</button></div>
   <div class="volrow" id="volRow" role="group" aria-label="Volume das gravações">🔊 Volume:
-    <button type="button" data-vol="normal" aria-pressed="false">Normal</button>
-    <button type="button" data-vol="alto" aria-pressed="true">Alto</button>
-    <button type="button" data-vol="max" aria-pressed="false">Máximo</button>
+    <button type="button" data-vol="normal" aria-pressed="true">Normal</button>
+    <button type="button" data-vol="alto" aria-pressed="false">Mais alto</button>
   </div>
   <button type="button" class="btn ghost sysetb" id="sySet">📲 Mesmo progresso no celular e no computador</button>
     <p class="setver" id="setVer"></p>
@@ -9624,10 +9623,10 @@ window.__xp={explain,render,run,qual};
 
 /* ---------- 🔊 Volume extra para as gravações (fone de ouvido) ---------- */
 {
-const LV={normal:1,alto:2,max:3},K=3;let lv=store.get('volBoost','alto');if(!LV[lv])lv='alto';
+const LV={normal:1,alto:1.6};let lv=store.get('volBoost2','normal');if(!LV[lv])lv='normal';
 let ctx=null,sh=null;const els=new Set();
-const mkCtx=()=>{if(ctx)return ctx;const C=window.AudioContext||window.webkitAudioContext;if(!C)return null;try{ctx=new C();sh=ctx.createWaveShaper();const cv=new Float32Array(4097);for(let i=0;i<4097;i++)cv[i]=Math.tanh(K*(i/2048-1));sh.curve=cv;sh.oversample='none';sh.connect(ctx.destination)}catch(e){ctx=null}return ctx};
-const setG=g=>{try{g.disconnect()}catch(e){}const G=LV[lv]||1;if(G===1){g.gain.value=1;g.connect(ctx.destination)}else{g.gain.value=G/K;g.connect(sh)}};
+const mkCtx=()=>{if(ctx)return ctx;const C=window.AudioContext||window.webkitAudioContext;if(!C)return null;try{ctx=new C();sh=ctx.createDynamicsCompressor();sh.threshold.value=-14;sh.knee.value=10;sh.ratio.value=6;sh.attack.value=0.003;sh.release.value=0.25;sh.connect(ctx.destination)}catch(e){ctx=null}return ctx};
+const setG=g=>{try{g.disconnect()}catch(e){}const G=LV[lv]||1;if(G===1){g.gain.value=1;g.connect(ctx.destination)}else{g.gain.value=G;g.connect(sh)}};
 const P=HTMLMediaElement.prototype,_play=P.play;
 P.play=function(){try{
   if(this.__vb||(lv!=='normal'&&!(this instanceof HTMLVideoElement))){const c=mkCtx();if(c){if(c.state!=='running')c.resume().catch(()=>{});
@@ -9638,7 +9637,7 @@ P.play=function(){try{
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&ctx&&ctx.state!=='running')ctx.resume().catch(()=>{})});
 const row=document.getElementById('volRow');
 const paint=()=>row.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.vol===lv)));paint();
-row.querySelectorAll('button').forEach(b=>b.onclick=()=>{lv=b.dataset.vol;store.set('volBoost',lv);paint();mkCtx();if(ctx&&ctx.state!=='running')ctx.resume().catch(()=>{});els.forEach(setG);say('Hi, how are you?')});
+row.querySelectorAll('button').forEach(b=>b.onclick=()=>{lv=b.dataset.vol;store.set('volBoost2',lv);paint();mkCtx();if(ctx&&ctx.state!=='running')ctx.resume().catch(()=>{});els.forEach(setG);say('Hi, how are you?')});
 window.__vol={get:()=>lv,ctx:()=>ctx,n:()=>els.size};
 }
 
@@ -9655,7 +9654,7 @@ window.micMsg=err=>{const pc=!/Android|iPhone|iPad|Mobile/i.test(navigator.userA
 const $=id=>document.getElementById(id);
 const SITE='https://cagb-47.github.io/ingles-pratico/';
 const base=()=>location.protocol==='file:'?SITE:location.origin+location.pathname;
-const SKIP=new Set(['xpTr','xpLast','tab','lastTab','hubLast','voiceName','volBoost','mbPg','mbPgsb','mbPgwb','audSec','fdVer','musVer']);
+const SKIP=new Set(['xpTr','xpLast','tab','lastTab','hubLast','voiceName','volBoost','volBoost2','mbPg','mbPgsb','mbPgwb','audSec','fdVer','musVer']);
 const PREF=new Set(['rate','dSpeed','audSpd','audMode','wmode','name','homeSimple','mmType','mmMode','singer','nvSel','pvCat','wcat','prV','units','weeks','dSpeak','audTr','bkU','phone']);
 const dt=v=>typeof v==='string'&&/^\d{4}-\d{2}-\d{2}/.test(v);
 const keyOf=x=>x&&typeof x==='object'&&!Array.isArray(x)&&x.id!=null?'id:'+x.id:JSON.stringify(x);
