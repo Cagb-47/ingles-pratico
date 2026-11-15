@@ -698,6 +698,35 @@ html[data-theme="dark"] .syimp{background:#12324A;color:#DCEBF7;border-color:#1E
 .trnhist p{margin:6px 0;line-height:1.35}
 html[data-theme="dark"] .trnop.on{background:#12324A}
 html[data-theme="dark"] .trnobj button{background:#3A3018;color:#FBE6AE}
+
+.mood{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:12px 14px;margin:0 0 12px}
+.mood h3{margin:0 0 8px;font:800 1.05rem var(--f-display)}
+.moodops{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.moodops button{display:flex;align-items:center;gap:8px;text-align:left;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:14px;padding:10px;font:700 .92rem var(--f-body);cursor:pointer}
+.moodops button span{font-size:1.4rem}
+.moodplan p{margin:0 0 8px;line-height:1.45}
+.moodplan .btn{display:block;width:100%;margin:0 0 8px;text-align:left}
+.moodwhy{margin:8px 0 0;font-size:.9rem;color:var(--muted)}
+.moodmini{display:flex;align-items:center;gap:8px;font-weight:700}.moodmini button{margin-left:auto;border:0;background:none;color:#1F6FA3;font:700 .85rem var(--f-body);text-decoration:underline;cursor:pointer}
+.emocard{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:14px;margin:0 0 14px}
+.emocard h3{margin:0 0 6px;font:800 1.08rem var(--f-display)}.emocard p{margin:0 0 10px;line-height:1.45;font-size:.97rem}
+.emocard .btn{display:block;width:100%;text-align:center}
+.breath{display:flex;flex-direction:column;align-items:center;gap:10px;padding:8px 0}
+.bcirc{width:120px;height:120px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#9DC3E6,#1F6FA3);transform:scale(.6);transition:transform 4s ease-in-out;box-shadow:0 8px 24px rgba(19,75,112,.3)}
+.bcirc.in{transform:scale(1)}.bcirc.out{transform:scale(.6);transition-duration:6s}
+.btxt{font:800 1.15rem var(--f-display);min-height:1.4em;text-align:center}
+.lifel{display:grid;grid-template-columns:1fr auto;gap:2px 8px;align-items:center;padding:8px 0;border-bottom:1px dashed var(--line)}
+.lifel b{font:800 1rem var(--f-display)}.lifel small{grid-column:1;color:var(--muted)}
+.lifel button{grid-row:1/3;grid-column:2;border:0;background:#134B70;background-image:var(--gnavy);color:#fff;border-radius:10px;padding:7px 11px;cursor:pointer}
+.refr{padding:8px 0;border-bottom:1px dashed var(--line);line-height:1.4}.refr s{color:var(--muted)}
+.whyin{width:100%;box-sizing:border-box;border:1.5px solid var(--line);border-radius:12px;padding:10px;font:600 1rem var(--f-body);background:var(--bg);color:var(--ink);margin:0 0 8px}
+.emoweek{display:flex;gap:6px;justify-content:space-between}.emoweek div{flex:1;text-align:center;font-size:.75rem;color:var(--muted)}.emoweek b{display:block;font-size:1.3rem;min-height:1.6rem}
+.calmov{position:fixed;inset:0;z-index:9999;background:rgba(11,51,80,.72);display:flex;align-items:center;justify-content:center;padding:16px}
+.calmov>div{background:var(--paper);border-radius:22px;padding:18px;max-width:380px;width:100%;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.calmov h3{margin:0 0 6px;font:800 1.15rem var(--f-display)}.calmov p{margin:0 0 8px;line-height:1.45}
+.calmov .btn{display:block;width:100%;margin:8px 0 0}
+#trnCalm{margin-left:auto}
+@media (prefers-reduced-motion:reduce){.bcirc{transition:none}}
 </style>
 <title>Inglês Prático</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -947,6 +976,7 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
       <button hidden role="tab" data-tab="niveis" aria-selected="false">Níveis A1–C2</button>
       <button hidden role="tab" data-tab="plano" aria-selected="false">Temas para marcar</button>
       <button hidden role="tab" data-tab="treinador" aria-selected="false">🎙️ Treinador</button>
+      <button hidden role="tab" data-tab="emocao" aria-selected="false">💛 Mente tranquila</button>
       <button hidden role="tab" data-tab="destravar" aria-selected="false">🧠 Destravar</button>
       <button hidden role="tab" data-tab="pron" aria-selected="false">Alfabeto e pronúncia</button>
       <button hidden role="tab" data-tab="nativo" aria-selected="false">Frases nativas</button>
@@ -999,6 +1029,7 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
       <div class="hs">Inglês americano do zero ao avançado</div>
       <p class="hd" id="hGreet">Para a vida pessoal, o trabalho e a escola. Escolha por onde começar.</p>
       <div class="hprog"><span id="hDay"></span><span class="hzs" id="hZs" hidden></span><button class="hcont" id="hCont" hidden></button></div>
+      <div id="hMood"></div>
       <div id="hFd"></div>
       <div id="hDv"></div>
       <div id="hTrail" class="htrail" aria-label="Sua trilha"><div class="rtopbox"></div><ol class="rpath"></ol></div>
@@ -1158,7 +1189,13 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
     <p class="tip">Os níveis A1 e A2 combinam com o Interchange Intro das aulas com a professora. Os próximos degraus preparam o que vem depois.</p>
   </section>
 
-  <section id="treinador" data-panel hidden>
+  <section id="emocao" data-panel hidden>
+    <h2>💛 Mente tranquila, inglês solto</h2>
+    <p class="sub">Técnicas de inteligência emocional para aprender mais rápido. Quando a emoção está calma, o cérebro grava melhor e a fala sai mais fácil.</p>
+    <div id="emoBox"></div>
+    <p class="bknote">Inspirado nas ideias de inteligência emocional de Daniel Goleman: perceber o que sente, acalmar a emoção, motivar-se, entender o outro e conversar bem.</p>
+  </section>
+<section id="treinador" data-panel hidden>
     <h2>🎙️ Treinador de conversa</h2>
     <p class="sub">Conversas reais dos Estados Unidos. Ouça o personagem, depois escolha uma das 2 respostas ou fale em voz alta.</p>
     <div id="trnBox"></div>
@@ -8730,7 +8767,7 @@ window.__mf={MF,sent,setV};
 
 /* ---------- Abas agrupadas (Aprender, Minhas aulas, Falar, Palavras, Gramática, Ouvir e ler) ---------- */
 {
-const HUBS=[["trilha", "🧭", "Trilha", [["rota", "Meu caminho"], ["zero", "Do zero"], ["aula", "Situações do dia a dia"], ["niveis", "Níveis A1–C2"], ["plano", "Temas para marcar"]]], ["praticar", "💬", "Praticar", [["treinador", "🎙️ Treinador"], ["destravar", "🧠 Destravar"], ["pron", "Alfabeto e pronúncia"], ["nativo", "Frases nativas"], ["montar", "Montar frases"], ["exerc", "Exercícios"], ["desaf", "Desafios"], ["tradutor", "Tradutor"], ["sos", "SOS"]]], ["ouvir", "🎧", "Ouvir e ler", [["audios", "Áudios"], ["historias", "Leituras"], ["musicas", "Músicas"]]], ["biblio", "📚", "Biblioteca", [["palavras", "Palavras"], ["phrasal", "Phrasal verbs"], ["flash", "Flashcards"], ["mapas", "Mapas mentais"]]], ["minhas", "🧑‍🏫", "Minhas aulas", [["livro", "Aulas e livro"], ["explicar", "📸 Me explica"], ["sync", "📲 Celular e PC"], ["rotina", "Rotina"], ["apost", "Apostila"]]]];
+const HUBS=[["trilha", "🧭", "Trilha", [["rota", "Meu caminho"], ["zero", "Do zero"], ["aula", "Situações do dia a dia"], ["niveis", "Níveis A1–C2"], ["plano", "Temas para marcar"]]], ["praticar", "💬", "Praticar", [["treinador", "🎙️ Treinador"], ["emocao", "💛 Mente tranquila"], ["destravar", "🧠 Destravar"], ["pron", "Alfabeto e pronúncia"], ["nativo", "Frases nativas"], ["montar", "Montar frases"], ["exerc", "Exercícios"], ["desaf", "Desafios"], ["tradutor", "Tradutor"], ["sos", "SOS"]]], ["ouvir", "🎧", "Ouvir e ler", [["audios", "Áudios"], ["historias", "Leituras"], ["musicas", "Músicas"]]], ["biblio", "📚", "Biblioteca", [["palavras", "Palavras"], ["phrasal", "Phrasal verbs"], ["flash", "Flashcards"], ["mapas", "Mapas mentais"]]], ["minhas", "🧑‍🏫", "Minhas aulas", [["livro", "Aulas e livro"], ["explicar", "📸 Me explica"], ["sync", "📲 Celular e PC"], ["rotina", "Rotina"], ["apost", "Apostila"]]]];
 const hubOf=id=>{const h=HUBS.find(h=>h[3].some(x=>x[0]===id));return h?h[0]:null};
 window.hubOf=hubOf;window.HUBS=HUBS;
 const subnav=document.getElementById('subnav');
@@ -9718,7 +9755,7 @@ const scene=(c,txt)=>{if(!window.SCN)return '';const d={bg:c.bg,L:'voce',R:c.R,p
   return `<div class="scn">${SCN.svg(Object.assign({alt:'Cena: '+c.t},d))}<div class="sbub ${d.swap?'L':'R'}" id="trnBub"><small>${esc(c.t)}</small><span lang="en">${esc(txt)}</span></div></div>`};
 const start=i=>{cur=TRN[i];node='a';k=0;hist=[];render();try{box.scrollIntoView({block:'start'})}catch(e){}};
 const render=()=>{clearTimeout(tm);const c=cur,[en,pt,tip,ops]=c.n[node];const i=TRN.indexOf(c);const total=Object.keys(c.n).length-1;
-  let h=`<div class="trntop"><button type="button" id="trnBack">← Conversas</button><b>${c.e} ${esc(c.t)}</b>${ops.length?`<span class="trnstep">fala ${Math.min(k+1,total)}</span>`:''}</div>${scene(c,en)}
+  let h=`<div class="trntop"><button type="button" id="trnBack">← Conversas</button><button type="button" id="trnCalm" title="Respirar 1 minuto">😮‍💨 Travei</button><b>${c.e} ${esc(c.t)}</b>${ops.length?`<span class="trnstep">fala ${Math.min(k+1,total)}</span>`:''}</div>${scene(c,en)}
   <div class="trnctl"><button type="button" class="btn ghost" id="trnAgain">🔊 Ouvir de novo</button><button type="button" class="btn ghost" id="trnSlow">🐢 Devagar</button></div>
   <div class="trnpt"><p>${esc(pt)}</p>${tip?`<p class="trntip">🗣️ ${esc(tip)}</p>`:''}</div>`;
   if(node==='a')h+=`<div class="trnobj">👀 Na cena: ${c.objs.map((o,j)=>`<button type="button" data-ob="${j}"><span aria-hidden="true">${o[0]}</span> <b lang="en">${esc(o[1])}</b> "${esc(o[2])}" = ${esc(o[3])}</button>`).join('')}</div>`;
@@ -9729,7 +9766,7 @@ const render=()=>{clearTimeout(tm);const c=cur,[en,pt,tip,ops]=c.n[node];const i
     h+=`<div class="trnend"><h3>🎉 Conversa completa!</h3><p>+5 ⭐ Você conversou do começo ao fim.</p><button type="button" class="btn" id="trnNext">Próxima: ${nx.e} ${esc(nx.t)}</button><button type="button" class="btn ghost" id="trnRe">🔁 Fazer de novo</button></div>`}
   if(hist.length)h+=`<details class="trnhist"><summary>A conversa até aqui</summary>${hist.map(x=>`<p><b lang="en">${esc(x[0])}</b><br>🗨️ <span lang="en">${esc(x[1])}</span></p>`).join('')}</details>`;
   box.innerHTML=h;
-  $('trnBack').onclick=list;$('trnAgain').onclick=()=>say(en);$('trnSlow').onclick=()=>say(en,.7);
+  $('trnBack').onclick=list;$('trnCalm').onclick=()=>window.calmNow&&calmNow();$('trnAgain').onclick=()=>say(en);$('trnSlow').onclick=()=>say(en,.7);
   box.querySelectorAll('[data-ob]').forEach(b=>b.onclick=()=>say(c.objs[+b.dataset.ob][1]));
   box.querySelectorAll('.trnop').forEach(b=>b.onclick=()=>choose(+b.dataset.j));
   const m=$('trnMic');if(m)m.onclick=()=>listen(m);
@@ -9746,6 +9783,58 @@ const listen=m=>{const fb=$('trnFb');m.textContent='🎤 Ouvindo…';m.classList
     fb.className='trnfb ok';fb.textContent=bs>=.85?'Muito bem! 🎉':'👍 Assim: “'+ops[best][0]+'”';choose(best)})};
 list();
 window.__trn={TRN,start,state:()=>({id:cur&&cur.id,node,k,hist:hist.slice()}),choose,list};
+}
+
+/* ---------- 💛 Mente tranquila (inteligência emocional aplicada ao estudo) ---------- */
+{
+const $=id=>document.getElementById(id);
+const esc=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const today=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+const MOODS={
+ bem:['😄','Com energia','Aproveite a energia boa: é o melhor dia para algo novo.',[['fd','🗣️ Frase do dia'],['treinador','🎙️ Uma conversa nova no Treinador'],['destravar','🧠 Destravar']]],
+ ok:['🙂','Normal','Um passo de cada vez. O plano de sempre já é ótimo.',[['fd','🗣️ Frase do dia'],['rota','🧭 Continuar a trilha'],['audios','🎧 Ouvir um áudio']]],
+ cansado:['😴','Cansado','Modo leve, uns 10 minutos, sem cobrança. Estudar pouco e com calma vale mais do que não estudar.',[['fd','🗣️ Só a Frase do dia'],['audios','🎧 Só ouvir um áudio, de olhos fechados']]],
+ ansioso:['😟','Ansioso ou travado','Primeiro, 1 minuto de respiração. Com a emoção calma, o cérebro volta a aprender. Depois, só uma coisa fácil.',[['calm','😮‍💨 Respirar 1 minuto'],['fd','🗣️ Uma frase fácil: a Frase do dia']]]};
+const go=id=>{if(id==='calm')return calmNow();{const el=$('hMood');if(el)el.__open=0}if(id==='fd'){show('inicio');setTimeout(()=>{const e=$('hFd');if(e)try{e.scrollIntoView({block:'start',behavior:'smooth'})}catch(x){}},80);return}show(id);try{window.scrollTo(0,0)}catch(x){}};
+const why=()=>store.get('emoWhy','');
+const homeCard=()=>{const el=$('hMood');if(!el)return;const m=store.get('mood',null);const w=why();
+  if(m&&m.d===today()&&MOODS[m.m]&&!el.__open){const M=MOODS[m.m];el.innerHTML=`<div class="mood"><div class="moodmini"><span>${M[0]} Hoje: ${esc(M[1])}</span><button type="button" id="moodRe">ver o plano</button></div>${w?`<p class="moodwhy">💛 Lembre do seu porquê: ${esc(w)}</p>`:''}</div>`;$('moodRe').onclick=()=>{el.__open=1;homeCard()};return}
+  if(m&&m.d===today()&&MOODS[m.m]){const M=MOODS[m.m];el.innerHTML=`<div class="mood moodplan"><h3>${M[0]} ${esc(M[1])}</h3><p>${esc(M[2])}</p>${M[3].map(x=>`<button type="button" class="btn ghost" data-go2="${x[0]}">${x[1]}</button>`).join('')}<div class="moodmini"><button type="button" id="moodSwap">trocar como estou</button><button type="button" id="moodHide">fechar</button></div>${w?`<p class="moodwhy">💛 Seu porquê: ${esc(w)}</p>`:''}</div>`;
+    el.querySelectorAll('[data-go2]').forEach(b=>b.onclick=()=>go(b.dataset.go2));$('moodSwap').onclick=()=>{store.set('mood',null);el.__open=0;homeCard()};$('moodHide').onclick=()=>{el.__open=0;homeCard()};return}
+  el.innerHTML=`<div class="mood"><h3>💛 Como você chega hoje?</h3><div class="moodops">${Object.entries(MOODS).map(([k,M])=>`<button type="button" data-m="${k}"><span aria-hidden="true">${M[0]}</span>${esc(M[1])}</button>`).join('')}</div></div>`;
+  el.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{const k=b.dataset.m;store.set('mood',{d:today(),m:k});const lg=store.get('moodLog',{});lg[today()]=k;const ks=Object.keys(lg).sort();while(ks.length>60)delete lg[ks.shift()];store.set('moodLog',lg);el.__open=1;homeCard();if(k==='ansioso')setTimeout(calmNow,250)})};
+/* respiração: 4 s puxando o ar, 6 s soltando, 6 vezes = 1 minuto */
+const breath=(host,done)=>{host.innerHTML=`<div class="breath"><div class="bcirc" aria-hidden="true"></div><div class="btxt" aria-live="polite">Prepare-se…</div><button type="button" class="btn ghost" data-stop>Parar</button></div>`;
+  const c=host.querySelector('.bcirc'),t=host.querySelector('.btxt');let n=0,tm=null,alive=true;
+  const stop=()=>{alive=false;clearTimeout(tm)};host.querySelector('[data-stop]').onclick=()=>{stop();done&&done(false)};
+  const cyc=()=>{if(!alive)return;if(n>=6){t.textContent='Pronto. Você está mais calmo. 💛';done&&done(true);return}n++;
+    c.className='bcirc in';t.textContent='Puxe o ar pelo nariz… ('+n+' de 6)';try{if(n===1)say('Breathe in.')}catch(e){}
+    tm=setTimeout(()=>{if(!alive)return;c.className='bcirc out';t.textContent='Solte devagar pela boca…';try{if(n===1)say('Breathe out.')}catch(e){}tm=setTimeout(cyc,(window.__brFast?60:6000))},(window.__brFast?40:4000))};
+  tm=setTimeout(cyc,window.__brFast?20:700);return stop};
+window.calmNow=()=>{if(document.querySelector('.calmov'))return;const ov=document.createElement('div');ov.className='calmov';ov.setAttribute('role','dialog');ov.setAttribute('aria-label','Respirar 1 minuto');
+  ov.innerHTML=`<div><h3>😮‍💨 Tudo bem travar</h3><p>Quando o inglês trava, é o cérebro em modo alarme. Ele não deixa a memória funcionar. Respire comigo 1 minuto e a calma volta.</p><div id="calmB"></div><p id="calmAfter" hidden>Se travar numa conversa de verdade, diga: <b lang="en">Give me a second.</b> "Guív mi a sékond" = Me dá um segundo. <button type="button" class="btn ghost" id="calmSay">🔊 Ouvir</button></p><button type="button" class="btn" id="calmClose">Voltar a estudar</button></div>`;
+  document.body.appendChild(ov);const stop=breath(ov.querySelector('#calmB'),()=>{ov.querySelector('#calmAfter').hidden=false});
+  ov.querySelector('#calmSay').onclick=()=>say('Give me a second.');ov.querySelector('#calmClose').onclick=()=>{stop();ov.remove()};
+  const lg=store.get('calmN',0);store.set('calmN',lg+1)};
+const LIFE=[["Give me a second.","Guív mi a sékond.","Me dá um segundo."],["Sorry, can you say that again?","Sóri, kén iú sêi dét aguén?","Desculpa, pode repetir?"],["Can you speak slowly, please?","Kén iú spíik slôuli, plíz?","Pode falar devagar, por favor?"],["What does that mean?","Uát dâz dét mín?","O que isso significa?"],["How do you say this in English?","Ráu du iú sêi dis in ínglix?","Como se diz isso em inglês?"],["Let me think.","Lémi thínk.","Deixa eu pensar."],["I'm still learning English.","Áim stíl lârnin ínglix.","Ainda estou aprendendo inglês."]];
+const REFR=[["Eu não sei inglês.","Eu ainda estou aprendendo. Cada dia sei um pouco mais.","I'm still learning."],["Errei de novo.","Errar é treinar. Quem erra está praticando de verdade.",""],["Vou passar vergonha.","Quem conversa com um iniciante quer ajudar. Ninguém espera perfeição.","I'm a beginner."],["Estou atrasado, comecei tarde.","Adulto aprende diferente, não pior: você entende o contexto e sabe por que está estudando.",""]];
+const page=()=>{const box=$('emoBox');if(!box)return;const lg=store.get('moodLog',{});const days=[];for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);const k=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');days.push([['D','S','T','Q','Q','S','S'][d.getDay()],lg[k]?MOODS[lg[k]][0]:'·'])}
+  box.innerHTML=`
+  <div class="emocard"><h3>🔍 1. Perceber como você está</h3><p>Antes de estudar, diga como você chega. Cansado? O app sugere um modo leve. Ansioso? Primeiro respira. Assim o estudo combina com o seu dia.</p><div class="emoweek">${days.map(d=>`<div><b>${d[1]}</b>${d[0]}</div>`).join('')}</div><button type="button" class="btn ghost" id="emoCheck" style="margin-top:10px">Fazer o check-in de hoje</button></div>
+  <div class="emocard"><h3>😮‍💨 2. Acalmar a trava</h3><p>Travar no inglês não é falta de capacidade. É o cérebro em alerta, e o alerta bloqueia a memória. Um minuto de respiração lenta desliga o alarme.</p><div id="emoBr"><button type="button" class="btn" id="emoBrGo">Respirar 1 minuto</button></div></div>
+  <div class="emocard"><h3>🎯 3. Lembrar do seu porquê</h3><p>Quem sabe por que estuda continua mesmo nos dias difíceis. Escreva o seu motivo. Ele aparece no Início para você lembrar.</p><input class="whyin" id="emoWhy" maxlength="120" placeholder="Ex.: conversar com tranquilidade numa viagem aos EUA" value="${esc(why())}"><button type="button" class="btn ghost" id="emoWhySave">Salvar meu porquê</button><p class="bknote" id="emoWhyMsg" aria-live="polite"></p><p>Metas pequenas também motivam: <b>1 frase por dia</b> já é vitória. Hoje você tem ⭐ ${store.get('xp',0)} estrelas.</p></div>
+  <div class="emocard"><h3>🤝 4. Frases salva-vidas</h3><p>Do outro lado também tem gente. Quem conversa com um iniciante quer entender e ajudar. Estas frases pedem ajuda com educação e tiram a pressão.</p>${LIFE.map((l,i)=>`<div class="lifel"><b lang="en">${esc(l[0])}</b><button type="button" data-life="${i}" aria-label="Ouvir">🔊</button><small>"${esc(l[1])}" = ${esc(l[2])}</small></div>`).join('')}</div>
+  <div class="emocard"><h3>💬 5. Trocar o pensamento que trava</h3><p>O jeito que você fala com você mesmo muda o quanto aprende. Troque assim:</p>${REFR.map(r=>`<div class="refr"><s>${esc(r[0])}</s><br>➜ ${esc(r[1])}${r[2]?` <b lang="en">${esc(r[2])}</b> <button type="button" class="btn ghost" data-rf="${esc(r[2])}" style="display:inline-block;width:auto;padding:2px 8px;margin:0">🔊</button>`:''}</div>`).join('')}</div>
+  <div class="emocard"><h3>🎙️ 6. Conversar sem medo</h3><p>Treine a conversa antes da vida real. No Treinador, errar não tem problema: o app mostra a frase certa e a conversa continua.</p><button type="button" class="btn" id="emoTrn">Ir para o Treinador</button></div>`;
+  $('emoCheck').onclick=()=>{store.set('mood',null);const el=$('hMood');if(el)el.__open=0;homeCard();go('fd')};
+  $('emoBrGo').onclick=()=>breath($('emoBr'),()=>{});
+  $('emoWhySave').onclick=()=>{store.set('emoWhy',$('emoWhy').value.trim());$('emoWhyMsg').textContent='Salvo. 💛 Ele vai aparecer no Início.';homeCard()};
+  box.querySelectorAll('[data-life]').forEach(b=>b.onclick=()=>say(LIFE[+b.dataset.life][0]));
+  box.querySelectorAll('[data-rf]').forEach(b=>b.onclick=()=>say(b.dataset.rf));
+  $('emoTrn').onclick=()=>go('treinador')};
+homeCard();page();
+const _showE=show;show=function(id){_showE.apply(this,arguments);if(id==='emocao')page();if(id==='inicio')homeCard()};
+window.__emo={homeCard,page,MOODS};
 }
 
 updateStats();
