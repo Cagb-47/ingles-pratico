@@ -760,6 +760,16 @@ textarea.ein{min-height:70px;resize:vertical}
 .hmorebox[open]>summary{margin-bottom:10px}
 #hHelp{margin-right:6px}
 .hero .mood,.hero .mood h3{color:var(--ink)}
+
+.hmini{display:block;width:100%;border:0;background:none;color:inherit;opacity:.85;font:700 .85rem var(--f-body);text-decoration:underline;margin:-6px 0 10px;cursor:pointer;text-align:center}
+.htip{background:var(--paper);color:var(--ink);border:1.5px solid var(--line);border-radius:16px;padding:10px 12px;margin:0 0 12px;font-size:.92rem;line-height:1.4;display:flex;gap:8px;align-items:flex-start}
+.htip b{font-weight:800}.htip button{margin-left:auto;flex:0 0 auto;border:0;background:none;color:#1F6FA3;font:800 .85rem var(--f-body);text-decoration:underline;cursor:pointer}
+.mtplan{background:#EAF3FA;border-radius:16px;padding:12px 14px;margin:0 0 12px;line-height:1.45;font-size:.95rem;color:#0B3350}.mtplan b{display:block}
+.mtday{background:#FFF3D1;border-radius:16px;padding:12px 14px;margin:0 0 12px;line-height:1.45;color:#3A2600}
+html[data-theme="dark"] .mtplan{background:#12324A;color:#DCEBF7}html[data-theme="dark"] .mtday{background:#3A3018;color:#FBE6AE}
+.mtq{font:800 1.25rem var(--f-display);text-align:center;margin:8px 0}.mtbar{height:8px;border-radius:8px;background:var(--line);overflow:hidden;margin:0 0 10px}.mtbar i{display:block;height:100%;background:#F6BC3C;width:100%;transition:width linear}
+.mtans{text-align:center;margin:0 0 10px}.mtans b{display:block;font:800 1.15rem var(--f-display)}.mtans small{color:var(--muted)}
+.wkbars{display:flex;gap:8px;align-items:flex-end;height:90px;margin:8px 0}.wkbars div{flex:1;text-align:center;font-size:.75rem;color:var(--muted)}.wkbars i{display:block;background:#1F6FA3;border-radius:6px 6px 0 0;margin:0 auto 4px;width:70%}
 </style>
 <title>Inglês Prático</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -1004,6 +1014,7 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
     <nav class="subnav" id="subnav" aria-label="Partes desta seção" hidden>
       <button hidden type="button" class="gpill" data-hub="aprender" data-grp="trilha" aria-selected="false">🧭 Trilha</button>
       <button hidden type="button" class="gpill" data-hub="aprender" data-grp="aulas" aria-selected="false">🧑‍🏫 Minhas aulas</button>
+      <button hidden type="button" class="gpill" data-hub="aprender" data-grp="metodo" aria-selected="false">📚 Lições dos livros</button>
       <button hidden type="button" class="gpill" data-hub="falar" data-grp="treinador" aria-selected="false">🎙️ Treinador</button>
       <button hidden type="button" class="gpill" data-hub="falar" data-grp="destravar" aria-selected="false">🧠 Destravar</button>
       <button hidden type="button" class="gpill" data-hub="falar" data-grp="pronuncia" aria-selected="false">👄 Pronúncia</button>
@@ -1050,7 +1061,9 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
       <p class="hd" id="hGreet">Para a vida pessoal, o trabalho e a escola. Escolha por onde começar.</p>
       <div class="hprog"><span id="hDay"></span><span class="hzs" id="hZs" hidden></span><button class="hcont" id="hCont" hidden></button></div>
       <button type="button" class="hstart" id="hStart"><b>▶ Estudar hoje</b><small>30 minutos · o app guia você, um passo de cada vez</small></button>
+      <button type="button" class="hmini" id="hMini">Dia difícil? Faça a versão de 5 minutos</button>
       <div id="hMood"></div>
+      <div id="hTip"></div>
       <div id="hFd"></div>
       <details class="hmorebox" id="hMoreBox"><summary>Mais coisas para estudar</summary>
       <div id="hDv"></div>
@@ -1212,7 +1225,13 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
     <p class="tip">Os níveis A1 e A2 combinam com o Interchange Intro das aulas com a professora. Os próximos degraus preparam o que vem depois.</p>
   </section>
 
-  <section id="emocao" data-panel hidden>
+  <section id="metodo" data-panel hidden>
+    <h2>📚 Lições dos livros</h2>
+    <p class="sub">As ideias de 13 livros de mente, hábito e estratégia, aplicadas ao seu inglês. Cada uma vem com uma ferramenta para usar hoje.</p>
+    <div id="mtBox"></div>
+    <p class="bknote">Ideias principais dos livros explicadas com palavras próprias, sem trechos dos livros. Para ler a obra completa, procure o livro.</p>
+  </section>
+<section id="emocao" data-panel hidden>
     <h2>💛 Mente tranquila, inglês solto</h2>
     <p class="sub">A inteligência emocional aplicada ao inglês. Com a emoção no lugar, o cérebro grava melhor e a fala sai mais fácil. Abra uma parte de cada vez.</p>
     <div id="emoBox"></div>
@@ -8790,7 +8809,7 @@ window.__mf={MF,sent,setV};
 
 /* ---------- Abas agrupadas (Aprender, Minhas aulas, Falar, Palavras, Gramática, Ouvir e ler) ---------- */
 {
-const HUBS=[["aprender", "🧭", "Aprender", [["rota", "Meu caminho"], ["zero", "Do zero"], ["aula", "Situações"], ["niveis", "Níveis A1–C2"], ["plano", "Temas"], ["livro", "Aulas e livro"], ["explicar", "📸 Me explica"], ["rotina", "Rotina"], ["apost", "Apostila"]]], ["falar", "🗣️", "Falar", [["treinador", "🎙️ Treinador"], ["destravar", "🧠 Destravar"], ["pron", "Alfabeto e pronúncia"], ["nativo", "Frases nativas"], ["emocao", "💛 Mente tranquila"]]], ["ouvir", "🎧", "Ouvir e ler", [["audios", "Áudios"], ["historias", "Leituras"], ["musicas", "Músicas"]]], ["treinar", "🧩", "Treinar", [["palavras", "Palavras"], ["phrasal", "Phrasal verbs"], ["flash", "Flashcards"], ["mapas", "Mapas mentais"], ["exerc", "Exercícios"], ["desaf", "Desafios"], ["montar", "Montar frases"]]], ["ajuda", "🆘", "Ajuda rápida", [["tradutor", "Tradutor"], ["sos", "SOS"], ["sync", "📲 Celular e PC"]]]];
+const HUBS=[["aprender", "🧭", "Aprender", [["rota", "Meu caminho"], ["zero", "Do zero"], ["aula", "Situações"], ["niveis", "Níveis A1–C2"], ["plano", "Temas"], ["livro", "Aulas e livro"], ["explicar", "📸 Me explica"], ["rotina", "Rotina"], ["apost", "Apostila"], ["metodo", "📚 Lições dos livros"]]], ["falar", "🗣️", "Falar", [["treinador", "🎙️ Treinador"], ["destravar", "🧠 Destravar"], ["pron", "Alfabeto e pronúncia"], ["nativo", "Frases nativas"], ["emocao", "💛 Mente tranquila"]]], ["ouvir", "🎧", "Ouvir e ler", [["audios", "Áudios"], ["historias", "Leituras"], ["musicas", "Músicas"]]], ["treinar", "🧩", "Treinar", [["palavras", "Palavras"], ["phrasal", "Phrasal verbs"], ["flash", "Flashcards"], ["mapas", "Mapas mentais"], ["exerc", "Exercícios"], ["desaf", "Desafios"], ["montar", "Montar frases"]]], ["ajuda", "🆘", "Ajuda rápida", [["tradutor", "Tradutor"], ["sos", "SOS"], ["sync", "📲 Celular e PC"]]]];
 const hubOf=id=>{const h=HUBS.find(h=>h[3].some(x=>x[0]===id));return h?h[0]:null};
 window.hubOf=hubOf;window.HUBS=HUBS;
 const subnav=document.getElementById('subnav');
@@ -9935,13 +9954,14 @@ const dayStart=()=>{const m=store.get('mood',null);const plan=[];if(!(m&&m.d===t
 const startBtn=()=>{const b=$('hStart');if(!b)return;const st=store.get('flowS',null);b.innerHTML=st?`<b>▶ Continuar a aula de hoje</b><small>Passo ${st.i+1} de ${st.plan.length}: ${esc(st.plan[st.i][1])}</small>`:(store.get('dayDone','')===today()?'<b>✅ Aula de hoje feita!</b><small>Quer mais? Toque para estudar de novo, ou veja "Mais coisas".</small>':'<b>▶ Estudar hoje</b><small>30 minutos · o app guia você, um passo de cada vez</small>');
   b.onclick=()=>{const s2=store.get('flowS',null);if(s2){go(s2.plan[s2.i][0]);return}dayStart()}};
 startBtn();setInterval(startBtn,5000);
-window.__emo={homeCard,page,D,flowStart,openMod,dayStart,startBtn};
+const miniStart=()=>{const plan=[['fd','🗣️ Frase do dia'],['audios','🎧 Ouvir um áudio curto']];store.set('flowS',{end:Date.now()+(fast()?3000:5*60000),i:0,plan,min:5,day:1});clearInterval(ftm);ftm=setInterval(flowBar,1000);flowBar();go(plan[0][0])};
+window.__emo={homeCard,page,D,flowStart,openMod,dayStart,startBtn,miniStart,go};
 }
 
 /* ---------- grupos: menos abas, mesmo conteúdo ---------- */
 {
-const G=[["aprender", "trilha", "🧭 Trilha", ["rota", "zero", "aula", "niveis", "plano"]], ["aprender", "aulas", "🧑‍🏫 Minhas aulas", ["livro", "explicar", "rotina", "apost"]], ["falar", "treinador", "🎙️ Treinador", ["treinador"]], ["falar", "destravar", "🧠 Destravar", ["destravar"]], ["falar", "pronuncia", "👄 Pronúncia", ["pron", "nativo"]], ["falar", "emocao", "💛 Mente tranquila", ["emocao"]], ["ouvir", "audios", "🎧 Áudios", ["audios"]], ["ouvir", "historias", "📖 Leituras", ["historias"]], ["ouvir", "musicas", "🎵 Músicas", ["musicas"]], ["treinar", "vocab", "📚 Vocabulário", ["palavras", "phrasal", "flash", "mapas"]], ["treinar", "exercicios", "✏️ Exercícios", ["exerc", "desaf", "montar"]], ["ajuda", "tradutor", "🎙️ Tradutor", ["tradutor"]], ["ajuda", "sos", "🆘 SOS", ["sos"]], ["ajuda", "sync", "📲 Celular e PC", ["sync"]]];
-const L={"rota": "Meu caminho", "zero": "Do zero", "aula": "Situações", "niveis": "Níveis A1–C2", "plano": "Temas", "livro": "Aulas e livro", "explicar": "📸 Me explica", "rotina": "Rotina", "apost": "Apostila", "treinador": "🎙️ Treinador", "destravar": "🧠 Destravar", "pron": "Alfabeto e pronúncia", "nativo": "Frases nativas", "emocao": "💛 Mente tranquila", "audios": "Áudios", "historias": "Leituras", "musicas": "Músicas", "palavras": "Palavras", "phrasal": "Phrasal verbs", "flash": "Flashcards", "mapas": "Mapas mentais", "exerc": "Exercícios", "desaf": "Desafios", "montar": "Montar frases", "tradutor": "Tradutor", "sos": "SOS", "sync": "📲 Celular e PC"};
+const G=[["aprender", "trilha", "🧭 Trilha", ["rota", "zero", "aula", "niveis", "plano"]], ["aprender", "aulas", "🧑‍🏫 Minhas aulas", ["livro", "explicar", "rotina", "apost"]], ["aprender", "metodo", "📚 Lições dos livros", ["metodo"]], ["falar", "treinador", "🎙️ Treinador", ["treinador"]], ["falar", "destravar", "🧠 Destravar", ["destravar"]], ["falar", "pronuncia", "👄 Pronúncia", ["pron", "nativo"]], ["falar", "emocao", "💛 Mente tranquila", ["emocao"]], ["ouvir", "audios", "🎧 Áudios", ["audios"]], ["ouvir", "historias", "📖 Leituras", ["historias"]], ["ouvir", "musicas", "🎵 Músicas", ["musicas"]], ["treinar", "vocab", "📚 Vocabulário", ["palavras", "phrasal", "flash", "mapas"]], ["treinar", "exercicios", "✏️ Exercícios", ["exerc", "desaf", "montar"]], ["ajuda", "tradutor", "🎙️ Tradutor", ["tradutor"]], ["ajuda", "sos", "🆘 SOS", ["sos"]], ["ajuda", "sync", "📲 Celular e PC", ["sync"]]];
+const L={"rota": "Meu caminho", "zero": "Do zero", "aula": "Situações", "niveis": "Níveis A1–C2", "plano": "Temas", "livro": "Aulas e livro", "explicar": "📸 Me explica", "rotina": "Rotina", "apost": "Apostila", "treinador": "🎙️ Treinador", "destravar": "🧠 Destravar", "pron": "Alfabeto e pronúncia", "nativo": "Frases nativas", "emocao": "💛 Mente tranquila", "audios": "Áudios", "historias": "Leituras", "musicas": "Músicas", "palavras": "Palavras", "phrasal": "Phrasal verbs", "flash": "Flashcards", "mapas": "Mapas mentais", "exerc": "Exercícios", "desaf": "Desafios", "montar": "Montar frases", "tradutor": "Tradutor", "sos": "SOS", "sync": "📲 Celular e PC", "metodo": "📚 Lições dos livros"};
 const gOf={};G.forEach(x=>x[3].forEach(m=>gOf[m]=x));
 window.grpOf=id=>gOf[id]?gOf[id][1]:null;
 const bar=document.getElementById('grpBar');
@@ -9957,6 +9977,70 @@ const hb=document.getElementById('hHelp');if(hb)hb.onclick=()=>{try{document.get
 /* "Mais coisas" lembra se ficou aberto */
 const mb=document.getElementById('hMoreBox');if(mb){try{if(store.get('hMoreOpen',false))mb.open=true}catch(e){}mb.addEventListener('toggle',()=>store.set('hMoreOpen',mb.open))}
 window.__grp={G,paint};
+}
+
+/* ---------- 📚 Lições dos livros ---------- */
+{
+const D={"BOOKS":[["kahneman","🧠","Rápido e devagar","Daniel Kahneman","Temos dois jeitos de pensar: o rápido, automático, e o devagar, que dá trabalho. Quem fala bem uma língua usa o rápido.","Para o inglês sair sem pensar, a frase precisa virar automática. Treine responder na hora, sem traduzir na cabeça. As frases lentas voltam até ficarem rápidas.",["auto","⚡ Treino de resposta automática"]],["estoico","🏛️","Diário estoico","Ryan Holiday e Stephen Hanselman","Foque no que depende de você, aceite o resto e reflita um pouco todo dia.","Você não controla o sotaque do outro nem a velocidade do áudio. Controla os seus 30 minutos. À noite, faça a revisão de 1 minuto: o que fiz bem e o que melhoro amanhã.",["review","🌙 Revisão da noite"]],["housel","🌱","A psicologia financeira","Morgan Housel","Riqueza vem de constância e de juros compostos, e de deixar margem para os dias ruins.","O inglês também rende juros: 30 minutos por dia viram centenas de horas. Nos dias ruins, faça a versão de 5 minutos. Ela não quebra a sequência.",["mini","⏱️ Versão de 5 minutos"]],["graham","📈","O investidor inteligente","Benjamin Graham","Margem de segurança, longo prazo e não se deixar levar pelo humor do mercado.","Margem de segurança no estudo: revisar antes de aprender coisa nova (a Frase do dia já começa revisando). E um dia ruim não muda o seu nível: olhe a tendência das semanas.",["compound","📊 Ver os meus juros compostos"]],["previdente","⏳","Mentalidade previdente","Daniel Pereira","As escolhas de hoje constroem a liberdade de amanhã.","Escreva uma carta para você mesmo daqui a 5 meses, falando inglês. Ela fica guardada e lembra por que vale a pena a escolha de hoje.",["letter","✉️ Carta para o meu eu de 5 meses"]],["vieira","🎯","O poder da ação","Paulo Vieira","Tem poder quem age: ação pequena agora vale mais do que o plano perfeito depois.","Sem vontade? Comece por 1 minuto. Quase sempre o minuto vira dez. O botão abaixo já começa uma tarefa curta.",["act","🚀 Ação de 1 minuto"]],["eker","💬","Os segredos da mente milionária","T. Harv Eker","O que a gente diz para si mesmo vira hábito, e o hábito vira resultado.","Diga as declarações em voz alta, em inglês. Você treina a pronúncia e muda a forma de se ver: de \"não sei inglês\" para \"estou aprendendo\".",["decl","🗣️ Declarações em inglês"]],["greene","♟️","As 48 leis do poder","Robert Greene","Estratégia, foco e planejar até o fim. (Usei só as ideias que ajudam a estudar.)","Diga menos e diga bem: frase curta e certa vale mais que frase longa travada. Concentre forças: um assunto por semana. E planeje até o fim: saiba o que vai dizer antes da situação real.",["focus","🎯 Escolher o foco da semana"]],["suntzu","🐯","A arte da guerra","Sun Tzu","Conheça a si mesmo e o terreno, e se prepare antes da batalha.","Saiba o seu ponto fraco e treine ele primeiro. E ensaie a conversa no Treinador antes da vida real: quem se prepara não trava.",["weak","🔍 Qual é o meu ponto fraco?"]],["fisher","🕵️","Pense como um espião","Julian Fisher","Observar, ouvir com atenção e criar conexão com as pessoas.","Na conversa em inglês, você não precisa falar muito: pergunte, ouça, use o nome da pessoa e mostre interesse. Estas frases criam conexão na hora.",["rapport","🤝 Frases que criam conexão"]],["begossi","🎤","Como falar bem e ficar rico","Giovanni Begossi","Falar bem se treina: estrutura simples, pausas, voz firme e muita prática em voz alta.","Monte a sua apresentação de 30 segundos em inglês e repita em voz alta 3 vezes por dia. Fale devagar, faça pausas e sorria.",["pitch","🎤 Minha apresentação de 30 segundos"]],["magaldi","🔄","Estratégia adaptativa","Sandro Magaldi e José Salibi Neto","Quem se adapta rápido vence: testar, medir e ajustar sempre.","O app já se adapta a você (o Destravar, o nível da sessão de fluxo e o humor do dia). Uma vez por semana, pare 1 minuto: o que funcionou e o que vou mudar?",["weekly","🔄 Revisão da semana"]],["lencioni","🧭","A vantagem decisiva","Patrick Lencioni","Clareza vence: saber por que, como e o que é mais importante agora, e repetir isso sempre.","Responda as 4 perguntas do seu plano. Ele fica no topo desta tela, para você reler sempre. Clareza tira a dúvida de \"por onde começo\".",["plan","🧭 Meu plano em 4 perguntas"]]],"DECL":[["I can speak English.","Ai kén spíik ínglix.","Eu consigo falar inglês."],["I learn a little every day.","Ai lârn a lírol évri dêi.","Eu aprendo um pouco todo dia."],["Mistakes help me learn.","Mistêiks rélp mi lârn.","Os erros me ajudam a aprender."],["I'm getting better every day.","Áim guérin bérer évri dêi.","Estou melhorando a cada dia."],["I'm not afraid to speak.","Áim nát afrêid tchu spíik.","Não tenho medo de falar."]],"RAPPORT":[["Nice to meet you, Sarah.","Náis tchu mít iú, Séra.","Prazer, Sarah. (Use o nome da pessoa.)"],["Where are you from?","Uér ár iú frâm?","De onde você é?"],["What do you do?","Uát du iú dú?","O que você faz? (trabalho)"],["That's interesting! Tell me more.","Déts íntrestin! Tél mi mór.","Que interessante! Me conta mais."],["Really? How cool!","Ríli? Ráu kúul!","Sério? Que legal!"],["It was nice talking to you.","It uâz náis tókin tchu iú.","Foi bom conversar com você."]],"PITCH":[["Hi, I'm Carlos.","Rái, áim Kárlos.","Oi, eu sou o Carlos. (troque pelo seu nome)"],["I'm from Brazil.","Áim frâm Brazíl.","Sou do Brasil."],["I'm learning English.","Áim lârnin ínglix.","Estou aprendendo inglês."],["I want to travel and talk with people.","Ai uânt tchu trével end tók uíd pípol.","Quero viajar e conversar com as pessoas."],["Nice to meet you!","Náis tchu mít iú!","Prazer em conhecer você!"]],"WEAK":[["ouvir","👂 Entender quando ouço","audios","Ouça um áudio por dia, primeiro sem ler. O ouvido se acostuma com repetição."],["falar","🗣️ Falar sem travar","treinador","Converse no Treinador todo dia e use o Destravar. Falar se aprende falando."],["palavras","📚 Lembrar as palavras","palavras","Use os Flashcards: um pouco todo dia, as palavras difíceis voltam mais vezes."],["ler","📖 Ler e entender","historias","Leia uma Leitura curta por dia, com a tradução por perto."]],"FOCUS":[["cafe","☕ Pedir comida e bebida"],["viagem","✈️ Viagem e hotel"],["trabalho","💼 Trabalho"],["pessoas","🤝 Conhecer pessoas"],["compras","🛒 Compras"],["aula","📚 Aula de inglês"]]};
+const $=id=>document.getElementById(id);
+const esc=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const dk=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');const today=()=>dk(new Date());
+const win=t=>{try{window.addWin&&addWin(t)}catch(e){}};
+const fast=()=>window.__brFast;
+const dayIdx=()=>{const d=new Date();return Math.floor((d-new Date(d.getFullYear(),0,0))/864e5)%D.BOOKS.length};
+const goFd=()=>{show('inicio');setTimeout(()=>{const e=$('hFd');if(e)try{e.scrollIntoView({block:'start',behavior:'smooth'})}catch(x){}},80)};
+const lines=(arr,k)=>arr.map((l,i)=>`<div class="lifel"><b lang="en">${esc(l[0])}</b><button type="button" data-${k}="${i}" aria-label="Ouvir">🔊</button><small>"${esc(l[1])}" = ${esc(l[2])}</small></div>`).join('');
+const bindL=(host,k,arr)=>host.querySelectorAll('[data-'+k+']').forEach(b=>b.onclick=()=>say(arr[+b.getAttribute('data-'+k)][0]));
+const weekKey=()=>{const d=new Date();const wd=(d.getDay()+6)%7;d.setDate(d.getDate()-wd);return dk(d)};
+/* ⚡ resposta automática (pensar rápido) */
+const auto=host=>{const FD=(window.__fd&&__fd.FD)||[];if(!FD.length){host.innerHTML='<p>As frases ainda estão carregando. Tente de novo.</p>';return}
+  const slow=store.get('autoSlow',[]).filter(e=>FD.some(x=>x[0]===e));const pool=FD.map(x=>x[0]);const pick=[...slow.slice(0,5)];
+  while(pick.length<10){const e=pool[Math.floor(Math.random()*pool.length)];if(!pick.includes(e))pick.push(e)}
+  let i=0,okN=0,tm=null;const nextQ=()=>{clearTimeout(tm);if(i>=pick.length){host.innerHTML=`<p><b>🎉 ${okN} de ${pick.length} saíram na hora.</b></p><p>As que demoraram voltam no próximo treino, até ficarem automáticas.</p><button type="button" class="btn" data-again>Treinar de novo</button>`;host.querySelector('[data-again]').onclick=()=>auto(host);win('Treino de resposta automática: '+okN+' de '+pick.length);return}
+    const x=FD.find(f=>f[0]===pick[i]);const T=fast()?300:5000;host.innerHTML=`<p class="bknote">${i+1} de ${pick.length} · fale em inglês antes do tempo acabar</p><p class="mtq">${esc(x[2])}</p><div class="mtbar"><i id="mtBarI"></i></div><button type="button" class="btn ghost" data-show>Mostrar a resposta</button>`;
+    const bi=host.querySelector('#mtBarI');requestAnimationFrame(()=>{bi.style.transitionDuration=T+'ms';bi.style.width='0%'});
+    const reveal=()=>{clearTimeout(tm);host.innerHTML=`<p class="mtq" style="font-size:1rem">${esc(x[2])}</p><div class="mtans"><b lang="en">${esc(x[0])}</b><small>"${esc(x[1])}"</small></div><button type="button" class="btn" data-ok>⚡ Saiu na hora</button><button type="button" class="btn ghost" data-slow>🐢 Demorei ou não saiu</button>`;say(x[0]);
+      host.querySelector('[data-ok]').onclick=()=>{okN++;store.set('autoSlow',store.get('autoSlow',[]).filter(e=>e!==x[0]));i++;nextQ()};
+      host.querySelector('[data-slow]').onclick=()=>{const sl=store.get('autoSlow',[]);if(!sl.includes(x[0]))sl.unshift(x[0]);store.set('autoSlow',sl.slice(0,30));i++;nextQ()}};
+    host.querySelector('[data-show]').onclick=reveal;tm=setTimeout(reveal,T)};
+  nextQ()};
+const tools={
+ auto,
+ review:h=>{const r=store.get('eveRev',{});const t=r[today()]||{};h.innerHTML=`<input class="ein" id="rvB" maxlength="120" placeholder="O que eu fiz bem hoje?" value="${esc(t.b||'')}"><input class="ein" id="rvM" maxlength="120" placeholder="O que vou fazer melhor amanhã?" value="${esc(t.m||'')}"><button type="button" class="btn" id="rvS">Guardar a revisão</button><p class="bknote" id="rvMsg"></p>`;
+   $('rvS').onclick=()=>{const r2=store.get('eveRev',{});r2[today()]={b:$('rvB').value.trim(),m:$('rvM').value.trim()};const ks=Object.keys(r2).sort();while(ks.length>60)delete r2[ks.shift()];store.set('eveRev',r2);win('Revisão da noite');$('rvMsg').textContent='Guardado. Durma tranquilo: amanhã é outro dia de treino. 🌙'}},
+ mini:h=>{h.innerHTML='<p>Frase do dia + um áudio curto. Conta como dia de estudo.</p><button type="button" class="btn" id="mnGo">Começar os 5 minutos</button>';$('mnGo').onclick=()=>window.__emo&&__emo.miniStart()},
+ compound:h=>{const sd=store.get('studyDays',[]);const wk=[];for(let w=3;w>=0;w--){let n=0;for(let d=0;d<7;d++){const x=new Date();x.setDate(x.getDate()-w*7-d);if(sd.includes(dk(x)))n++}wk.push(n)}
+   const fd=store.get('fd',null);const fr=fd?fd.i:0;h.innerHTML=`<p>📅 <b>${sd.length}</b> dias de estudo · ⭐ <b>${store.get('xp',0)}</b> estrelas · 🗣️ <b>${fr}</b> frases do dia · 🎙️ <b>${store.get('trnDone',[]).length}</b> conversas</p><p><b>Dias de estudo nas últimas 4 semanas:</b></p><div class="wkbars">${wk.map((n,i)=>`<div><i style="height:${Math.max(4,n*11)}px"></i>${['há 3 sem.','há 2 sem.','semana passada','esta semana'][i]}<br><b>${n}</b></div>`).join('')}</div><p>Constância rende juros: 30 minutos por dia são 15 horas por mês e cerca de 75 horas em 5 meses. O que conta é a tendência, não um dia.</p>`},
+ letter:h=>{const L=store.get('futureLetter',null);const open=L?new Date(new Date(L.d).getTime()+150*864e5):null;h.innerHTML=`${L?`<p>📬 Carta escrita em ${L.d.split('-').reverse().join('/')}. Releia em ${dk(open).split('-').reverse().join('/')} e veja o quanto você andou.</p>`:''}<textarea class="ein" id="ltT" maxlength="600" placeholder="Querido Carlos de daqui a 5 meses: hoje eu estou começando porque…">${esc(L?L.t:'')}</textarea><button type="button" class="btn" id="ltS">Guardar a carta</button><p class="bknote" id="ltMsg"></p>`;
+   $('ltS').onclick=()=>{const t=$('ltT').value.trim();if(!t)return;store.set('futureLetter',{t,d:L?L.d:today()});win('Escrevi a carta para o meu eu do futuro');$('ltMsg').textContent='Guardada. ✉️'}},
+ act:h=>{h.innerHTML='<p>Escolho uma tarefa curta para você agora. Só 1 minuto. Se quiser continuar, continue.</p><button type="button" class="btn" id="acGo">Começar agora</button>';$('acGo').onclick=()=>{win('Ação de 1 minuto');const r=['fd','treinador','audios'][Math.floor(Math.random()*3)];if(r==='fd')goFd();else{show(r);try{window.scrollTo(0,0)}catch(e){}}}},
+ decl:h=>{h.innerHTML=lines(D.DECL,'dc')+'<p style="margin-top:10px">Diga cada uma em voz alta, 3 vezes, com calma e firmeza.</p><button type="button" class="btn" id="dcOk">Disse todas ✓</button>';bindL(h,'dc',D.DECL);$('dcOk').onclick=()=>{win('Declarações em inglês');$('dcOk').textContent='Muito bem! 💪'}},
+ focus:h=>{const f=store.get('wkFocus',null);const cur=f&&f.w===weekKey()?f.k:'';const MAP={cafe:'cafe',viagem:'hotel',trabalho:'trabalho',pessoas:'vizinho',compras:'loja',aula:'aula'};
+   h.innerHTML=`<p>Escolha um assunto para esta semana. Concentre a força nele.</p><div class="chips">${D.FOCUS.map(x=>`<button type="button" data-fc="${x[0]}" class="${x[0]===cur?'ok':''}">${esc(x[1])}</button>`).join('')}</div><div id="fcOut"></div>`;
+   const out=k=>{const id=MAP[k];const T=window.__trn?__trn.TRN:[];const i=T.findIndex(c=>c.id===id);$('fcOut').innerHTML=`<p>Foco da semana: <b>${esc(D.FOCUS.find(x=>x[0]===k)[1])}</b>. Treine essa conversa todo dia até sair fácil.</p>${i>=0?`<button type="button" class="btn" id="fcGo">🎙️ Treinar: ${esc(T[i].t)}</button>`:''}`;const g=$('fcGo');if(g)g.onclick=()=>{show('treinador');__trn.start(i)}};
+   if(cur)out(cur);h.querySelectorAll('[data-fc]').forEach(b=>b.onclick=()=>{store.set('wkFocus',{w:weekKey(),k:b.dataset.fc});h.querySelectorAll('[data-fc]').forEach(x=>x.classList.toggle('ok',x===b));out(b.dataset.fc)})},
+ weak:h=>{h.innerHTML=`<p>O que é mais difícil para você hoje?</p><div class="chips">${D.WEAK.map((w,i)=>`<button type="button" data-wk="${i}">${esc(w[1])}</button>`).join('')}</div><div id="wkOut"></div>`;
+   h.querySelectorAll('[data-wk]').forEach(b=>b.onclick=()=>{const w=D.WEAK[+b.dataset.wk];store.set('weakSpot',w[0]);$('wkOut').innerHTML=`<p>${esc(w[3])}</p><button type="button" class="btn" id="wkGo">Treinar isso agora</button>`;$('wkGo').onclick=()=>{show(w[2]);try{window.scrollTo(0,0)}catch(e){}}})},
+ rapport:h=>{h.innerHTML=lines(D.RAPPORT,'rp');bindL(h,'rp',D.RAPPORT)},
+ pitch:h=>{h.innerHTML=lines(D.PITCH,'pt')+'<button type="button" class="btn ghost" id="ptAll" style="margin-top:10px">▶ Ouvir a apresentação inteira</button><button type="button" class="btn" id="ptOk">Falei 3 vezes ✓</button>';bindL(h,'pt',D.PITCH);$('ptAll').onclick=()=>sayQueue(D.PITCH.map(x=>x[0]));$('ptOk').onclick=()=>{win('Apresentação de 30 segundos');$('ptOk').textContent='Mandou bem! 🎤'}},
+ weekly:h=>{const r=store.get('wkRev',{})[weekKey()]||{};h.innerHTML=`<input class="ein" id="wrA" maxlength="120" placeholder="O que funcionou esta semana?" value="${esc(r.a||'')}"><input class="ein" id="wrB" maxlength="120" placeholder="O que vou mudar na próxima?" value="${esc(r.b||'')}"><button type="button" class="btn" id="wrS">Guardar</button><p class="bknote" id="wrMsg"></p>`;
+   $('wrS').onclick=()=>{const all=store.get('wkRev',{});all[weekKey()]={a:$('wrA').value.trim(),b:$('wrB').value.trim()};store.set('wkRev',all);win('Revisão da semana');$('wrMsg').textContent='Guardado. Ajustar sempre é o segredo. 🔄'}},
+ plan:h=>{const P=store.get('myPlan',{});const Q=[['why','Por que eu estudo inglês?'],['how','Como vou estudar? (quando, quanto tempo)'],['week','O que vou fazer esta semana?'],['now','O que é mais importante agora?']];
+   h.innerHTML=Q.map(q=>`<label class="bknote" for="pl_${q[0]}">${q[1]}</label><input class="ein" id="pl_${q[0]}" maxlength="120" value="${esc(P[q[0]]||'')}">`).join('')+'<button type="button" class="btn" id="plS">Guardar o meu plano</button>';
+   $('plS').onclick=()=>{const o={};Q.forEach(q=>o[q[0]]=$('pl_'+q[0]).value.trim());store.set('myPlan',o);if(o.why&&!store.get('emoWhy',''))store.set('emoWhy',o.why);win('Meu plano em 4 perguntas');render()}},
+};
+const render=()=>{const box=$('mtBox');if(!box)return;const openNow=[...box.querySelectorAll('details[open]')].map(x=>x.id);const P=store.get('myPlan',{});const b=D.BOOKS[dayIdx()];
+  box.innerHTML=(P.why||P.now?`<div class="mtplan"><b>🧭 Meu plano</b>${P.why?'Por quê: '+esc(P.why)+'<br>':''}${P.how?'Como: '+esc(P.how)+'<br>':''}${P.week?'Esta semana: '+esc(P.week)+'<br>':''}${P.now?'O mais importante agora: '+esc(P.now):''}</div>`:'')+
+  `<div class="mtday">💡 <b>Lição do dia: ${esc(b[2])}</b><br>${esc(b[5])}</div>`+
+  D.BOOKS.map(k=>`<details class="emod" id="mt-${k[0]}"><summary>${k[1]} ${esc(k[2])}<small style="font-weight:600;color:var(--muted);margin-left:4px">· ${esc(k[3])}</small></summary><div><p><b>A ideia:</b> ${esc(k[4])}</p><p><b>No seu inglês:</b> ${esc(k[5])}</p><div id="mtt-${k[0]}"><button type="button" class="btn" data-tool="${k[6][0]}" data-bk="${k[0]}">${esc(k[6][1])}</button></div></div></details>`).join('');
+  openNow.forEach(id=>{const d=$(id);if(d)d.open=true});
+  box.querySelectorAll('[data-tool]').forEach(bt=>bt.onclick=()=>tools[bt.dataset.tool]($('mtt-'+bt.dataset.bk)))};
+const tip=()=>{const el=$('hTip');if(!el)return;const b=D.BOOKS[dayIdx()];el.innerHTML=`<div class="htip"><span aria-hidden="true">💡</span><span><b>${esc(b[2])}:</b> ${esc(b[4])}</span><button type="button" id="hTipGo">ver</button></div>`;$('hTipGo').onclick=()=>openBook(b[0])};
+const openBook=id=>{show('metodo');setTimeout(()=>{const d=$('mt-'+id);if(d){d.open=true;try{d.scrollIntoView({block:'start',behavior:'smooth'})}catch(e){}}},60)};
+const mb=$('hMini');if(mb)mb.onclick=()=>window.__emo&&__emo.miniStart();
+render();tip();
+const _showM=show;show=function(id){_showM.apply(this,arguments);if(id==='metodo')render();if(id==='inicio')tip()};
+window.__mt={render,tools,D,openBook};
 }
 
 updateStats();
