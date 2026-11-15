@@ -770,6 +770,17 @@ html[data-theme="dark"] .mtplan{background:#12324A;color:#DCEBF7}html[data-theme
 .mtq{font:800 1.25rem var(--f-display);text-align:center;margin:8px 0}.mtbar{height:8px;border-radius:8px;background:var(--line);overflow:hidden;margin:0 0 10px}.mtbar i{display:block;height:100%;background:#F6BC3C;width:100%;transition:width linear}
 .mtans{text-align:center;margin:0 0 10px}.mtans b{display:block;font:800 1.15rem var(--f-display)}.mtans small{color:var(--muted)}
 .wkbars{display:flex;gap:8px;align-items:flex-end;height:90px;margin:8px 0}.wkbars div{flex:1;text-align:center;font-size:.75rem;color:var(--muted)}.wkbars i{display:block;background:#1F6FA3;border-radius:6px 6px 0 0;margin:0 auto 4px;width:70%}
+
+.yr{background:var(--paper);color:var(--ink);border:1.5px solid var(--line);border-radius:16px;padding:10px 12px;margin:0 0 10px;font-size:.92rem;line-height:1.4;display:flex;gap:8px;align-items:center}
+.yr button{margin-left:auto;flex:0 0 auto;border:0;background:none;color:#1F6FA3;font:800 .85rem var(--f-body);text-decoration:underline;cursor:pointer}
+.yrbig{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 12px}.yrbig div{background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:10px 6px;text-align:center}.yrbig b{display:block;font:800 1.25rem var(--f-display)}.yrbig small{color:var(--muted);font-size:.78rem}
+.yrprog{height:12px;border-radius:8px;background:var(--line);overflow:hidden;margin:4px 0 6px}.yrprog i{display:block;height:100%;background:#1E8E4A}
+.yrmsg{background:#EAF3FA;border-radius:14px;padding:10px 12px;margin:0 0 12px;line-height:1.45;color:#0B3350}html[data-theme="dark"] .yrmsg{background:#12324A;color:#DCEBF7}
+.yrm{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:0 0 10px;padding:2px 0}.yrm button{flex:0 0 auto;min-width:44px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);border-radius:12px;padding:6px 8px;font:800 .85rem var(--f-body);cursor:pointer}
+.yrm button.cur{border-color:#F6BC3C}.yrm button[aria-pressed="true"]{background:#134B70;background-image:var(--gnavy);color:#fff;border-color:transparent}.yrm button.done{position:relative}.yrm button.done:after{content:"✓";font-size:.7rem;margin-left:2px}
+.yrcard{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:14px;margin:0 0 12px}.yrcard h3{margin:0 0 4px;font:800 1.12rem var(--f-display)}.yrcard p{margin:0 0 10px;line-height:1.45}
+.yrcard .btn{display:block;width:100%;margin:0 0 8px;text-align:left}
+.yrmom{display:grid;gap:6px;margin:0 0 10px}.yrmom div{display:flex;gap:8px;align-items:center;background:var(--bg);border-radius:12px;padding:8px 10px}.yrmom b{min-width:64px}
 </style>
 <title>Inglês Prático</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -1063,6 +1074,7 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
       <button type="button" class="hstart" id="hStart"><b>▶ Estudar hoje</b><small>30 minutos · o app guia você, um passo de cada vez</small></button>
       <button type="button" class="hmini" id="hMini">Dia difícil? Faça a versão de 5 minutos</button>
       <div id="hMood"></div>
+      <div id="hYear"></div>
       <div id="hTip"></div>
       <div id="hFd"></div>
       <details class="hmorebox" id="hMoreBox"><summary>Mais coisas para estudar</summary>
@@ -1225,7 +1237,12 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
     <p class="tip">Os níveis A1 e A2 combinam com o Interchange Intro das aulas com a professora. Os próximos degraus preparam o que vem depois.</p>
   </section>
 
-  <section id="metodo" data-panel hidden>
+  <section id="ano" data-panel hidden>
+    <h2>🗓️ Plano de 1 ano</h2>
+    <p class="sub">Um assunto por mês, do básico até conversar no dia a dia. O app conta o seu tempo de estudo sozinho e mostra se o ritmo está bom.</p>
+    <div id="anoBox"></div>
+  </section>
+<section id="metodo" data-panel hidden>
     <h2>📚 Lições dos livros</h2>
     <p class="sub">As ideias de 13 livros de mente, hábito e estratégia, aplicadas ao seu inglês. Cada uma vem com uma ferramenta para usar hoje.</p>
     <div id="mtBox"></div>
@@ -8809,7 +8826,7 @@ window.__mf={MF,sent,setV};
 
 /* ---------- Abas agrupadas (Aprender, Minhas aulas, Falar, Palavras, Gramática, Ouvir e ler) ---------- */
 {
-const HUBS=[["aprender", "🧭", "Aprender", [["rota", "Meu caminho"], ["zero", "Do zero"], ["aula", "Situações"], ["niveis", "Níveis A1–C2"], ["plano", "Temas"], ["livro", "Aulas e livro"], ["explicar", "📸 Me explica"], ["rotina", "Rotina"], ["apost", "Apostila"], ["metodo", "📚 Lições dos livros"]]], ["falar", "🗣️", "Falar", [["treinador", "🎙️ Treinador"], ["destravar", "🧠 Destravar"], ["pron", "Alfabeto e pronúncia"], ["nativo", "Frases nativas"], ["emocao", "💛 Mente tranquila"]]], ["ouvir", "🎧", "Ouvir e ler", [["audios", "Áudios"], ["historias", "Leituras"], ["musicas", "Músicas"]]], ["treinar", "🧩", "Treinar", [["palavras", "Palavras"], ["phrasal", "Phrasal verbs"], ["flash", "Flashcards"], ["mapas", "Mapas mentais"], ["exerc", "Exercícios"], ["desaf", "Desafios"], ["montar", "Montar frases"]]], ["ajuda", "🆘", "Ajuda rápida", [["tradutor", "Tradutor"], ["sos", "SOS"], ["sync", "📲 Celular e PC"]]]];
+const HUBS=[["aprender", "🧭", "Aprender", [["rota", "Meu caminho"], ["zero", "Do zero"], ["aula", "Situações"], ["niveis", "Níveis A1–C2"], ["plano", "Temas"], ["ano", "🗓️ Plano de 1 ano"], ["livro", "Aulas e livro"], ["explicar", "📸 Me explica"], ["rotina", "Rotina"], ["apost", "Apostila"], ["metodo", "📚 Lições dos livros"]]], ["falar", "🗣️", "Falar", [["treinador", "🎙️ Treinador"], ["destravar", "🧠 Destravar"], ["pron", "Alfabeto e pronúncia"], ["nativo", "Frases nativas"], ["emocao", "💛 Mente tranquila"]]], ["ouvir", "🎧", "Ouvir e ler", [["audios", "Áudios"], ["historias", "Leituras"], ["musicas", "Músicas"]]], ["treinar", "🧩", "Treinar", [["palavras", "Palavras"], ["phrasal", "Phrasal verbs"], ["flash", "Flashcards"], ["mapas", "Mapas mentais"], ["exerc", "Exercícios"], ["desaf", "Desafios"], ["montar", "Montar frases"]]], ["ajuda", "🆘", "Ajuda rápida", [["tradutor", "Tradutor"], ["sos", "SOS"], ["sync", "📲 Celular e PC"]]]];
 const hubOf=id=>{const h=HUBS.find(h=>h[3].some(x=>x[0]===id));return h?h[0]:null};
 window.hubOf=hubOf;window.HUBS=HUBS;
 const subnav=document.getElementById('subnav');
@@ -9960,8 +9977,8 @@ window.__emo={homeCard,page,D,flowStart,openMod,dayStart,startBtn,miniStart,go};
 
 /* ---------- grupos: menos abas, mesmo conteúdo ---------- */
 {
-const G=[["aprender", "trilha", "🧭 Trilha", ["rota", "zero", "aula", "niveis", "plano"]], ["aprender", "aulas", "🧑‍🏫 Minhas aulas", ["livro", "explicar", "rotina", "apost"]], ["aprender", "metodo", "📚 Lições dos livros", ["metodo"]], ["falar", "treinador", "🎙️ Treinador", ["treinador"]], ["falar", "destravar", "🧠 Destravar", ["destravar"]], ["falar", "pronuncia", "👄 Pronúncia", ["pron", "nativo"]], ["falar", "emocao", "💛 Mente tranquila", ["emocao"]], ["ouvir", "audios", "🎧 Áudios", ["audios"]], ["ouvir", "historias", "📖 Leituras", ["historias"]], ["ouvir", "musicas", "🎵 Músicas", ["musicas"]], ["treinar", "vocab", "📚 Vocabulário", ["palavras", "phrasal", "flash", "mapas"]], ["treinar", "exercicios", "✏️ Exercícios", ["exerc", "desaf", "montar"]], ["ajuda", "tradutor", "🎙️ Tradutor", ["tradutor"]], ["ajuda", "sos", "🆘 SOS", ["sos"]], ["ajuda", "sync", "📲 Celular e PC", ["sync"]]];
-const L={"rota": "Meu caminho", "zero": "Do zero", "aula": "Situações", "niveis": "Níveis A1–C2", "plano": "Temas", "livro": "Aulas e livro", "explicar": "📸 Me explica", "rotina": "Rotina", "apost": "Apostila", "treinador": "🎙️ Treinador", "destravar": "🧠 Destravar", "pron": "Alfabeto e pronúncia", "nativo": "Frases nativas", "emocao": "💛 Mente tranquila", "audios": "Áudios", "historias": "Leituras", "musicas": "Músicas", "palavras": "Palavras", "phrasal": "Phrasal verbs", "flash": "Flashcards", "mapas": "Mapas mentais", "exerc": "Exercícios", "desaf": "Desafios", "montar": "Montar frases", "tradutor": "Tradutor", "sos": "SOS", "sync": "📲 Celular e PC", "metodo": "📚 Lições dos livros"};
+const G=[["aprender", "trilha", "🧭 Trilha", ["rota", "zero", "aula", "niveis", "plano", "ano"]], ["aprender", "aulas", "🧑‍🏫 Minhas aulas", ["livro", "explicar", "rotina", "apost"]], ["aprender", "metodo", "📚 Lições dos livros", ["metodo"]], ["falar", "treinador", "🎙️ Treinador", ["treinador"]], ["falar", "destravar", "🧠 Destravar", ["destravar"]], ["falar", "pronuncia", "👄 Pronúncia", ["pron", "nativo"]], ["falar", "emocao", "💛 Mente tranquila", ["emocao"]], ["ouvir", "audios", "🎧 Áudios", ["audios"]], ["ouvir", "historias", "📖 Leituras", ["historias"]], ["ouvir", "musicas", "🎵 Músicas", ["musicas"]], ["treinar", "vocab", "📚 Vocabulário", ["palavras", "phrasal", "flash", "mapas"]], ["treinar", "exercicios", "✏️ Exercícios", ["exerc", "desaf", "montar"]], ["ajuda", "tradutor", "🎙️ Tradutor", ["tradutor"]], ["ajuda", "sos", "🆘 SOS", ["sos"]], ["ajuda", "sync", "📲 Celular e PC", ["sync"]]];
+const L={"rota": "Meu caminho", "zero": "Do zero", "aula": "Situações", "niveis": "Níveis A1–C2", "plano": "Temas", "livro": "Aulas e livro", "explicar": "📸 Me explica", "rotina": "Rotina", "apost": "Apostila", "treinador": "🎙️ Treinador", "destravar": "🧠 Destravar", "pron": "Alfabeto e pronúncia", "nativo": "Frases nativas", "emocao": "💛 Mente tranquila", "audios": "Áudios", "historias": "Leituras", "musicas": "Músicas", "palavras": "Palavras", "phrasal": "Phrasal verbs", "flash": "Flashcards", "mapas": "Mapas mentais", "exerc": "Exercícios", "desaf": "Desafios", "montar": "Montar frases", "tradutor": "Tradutor", "sos": "SOS", "sync": "📲 Celular e PC", "metodo": "📚 Lições dos livros", "ano": "🗓️ Plano de 1 ano"};
 const gOf={};G.forEach(x=>x[3].forEach(m=>gOf[m]=x));
 window.grpOf=id=>gOf[id]?gOf[id][1]:null;
 const bar=document.getElementById('grpBar');
@@ -10041,6 +10058,52 @@ const mb=$('hMini');if(mb)mb.onclick=()=>window.__emo&&__emo.miniStart();
 render();tip();
 const _showM=show;show=function(id){_showM.apply(this,arguments);if(id==='metodo')render();if(id==='inicio')tip()};
 window.__mt={render,tools,D,openBook};
+}
+
+/* ---------- 🗓️ Plano de 1 ano + contador de tempo ---------- */
+{
+const D={"M":[["👋","Sobreviver","Cumprimentar, se apresentar, números e pedir o básico.",["Cumprimentar e me apresentar","Dizer de onde sou e o que faço","Entender e dizer números e preços","Pedir um café"],[["🌱 Do zero","sec","zero"],["☕ Pedir um café","trn","cafe"],["🔤 Alfabeto","sec","pron"]]],["🛒","Comprar e pedir","Mercado, restaurante, lojas e formas de pagar.",["Pagar no caixa e responder às perguntas","Pedir comida no restaurante","Perguntar o preço e o tamanho","Pedir a conta"],[["🛒 Mercado","trn","mercado"],["🍔 Restaurante","trn","restaurante"],["👕 Loja","trn","loja"]]],["🗺️","Ir e vir","Pedir informação, transporte e horários.",["Pedir e entender um caminho simples","Pegar um carro de aplicativo","Perguntar horários","Pedir para repetir sem vergonha"],[["🗺️ Pedir informação","trn","caminho"],["🚕 Carro de aplicativo","trn","uber"],["🎭 Situações","sec","aula"]]],["✈️","Viagem","Aeroporto, hotel e pequenos problemas na viagem.",["Fazer o check-in no aeroporto","Fazer o check-in no hotel","Pedir ajuda com um problema","Entender avisos simples"],[["✈️ Aeroporto","trn","aeroporto"],["🏨 Hotel","trn","hotel"],["🎧 Áudios","sec","audios"]]],["🙋","Falar de mim","Família, trabalho, rotina e gostos.",["Falar da minha família","Contar a minha rotina","Falar do meu trabalho","Dizer do que gosto e do que não gosto"],[["💼 Colega de trabalho","trn","trabalho"],["🏡 Vizinho","trn","vizinho"],["📚 Palavras","sec","palavras"]]],["📅","Contar o que aconteceu","Falar do fim de semana e de coisas que já passaram.",["Contar o meu fim de semana","Dizer onde fui e o que fiz","Perguntar \"e você, o que fez?\"","Entender uma história curta"],[["📖 Leituras","sec","historias"],["🧠 Destravar","sec","destravar"],["🎧 Áudios","sec","audios"]]],["🔮","Planos e combinados","Futuro, convites e marcar compromissos.",["Dizer o que vou fazer","Convidar alguém e aceitar convites","Marcar dia e hora","Desmarcar com educação"],[["📈 Níveis","sec","niveis"],["🎙️ Treinador","sec","treinador"],["🧩 Montar frases","sec","montar"]]],["📞","Telefone e trabalho","Ligações, reuniões simples e mensagens curtas.",["Atender e fazer uma ligação simples","Participar de uma reunião curta","Escrever uma mensagem curta","Pedir para a pessoa falar devagar"],[["💼 Colega de trabalho","trn","trabalho"],["🆘 SOS","sec","sos"],["✍️ Exercícios","sec","exerc"]]],["💭","Opiniões","Concordar, discordar e explicar por quê.",["Dar a minha opinião","Concordar e discordar com educação","Explicar por quê, com frases simples","Fazer perguntas para manter a conversa"],[["🗣️ Frases nativas","sec","nativo"],["🎵 Músicas","sec","musicas"],["📚 Temas","sec","plano"]]],["💊","Saúde e problemas","Farmácia, médico e resolver problemas com calma.",["Explicar o que estou sentindo","Comprar remédio na farmácia","Reclamar com educação","Pedir ajuda numa emergência"],[["💊 Farmácia","trn","farmacia"],["🆘 SOS","sec","sos"],["📚 Palavras","sec","palavras"]]],["🗨️","Conversa longa","Conversar 5 minutos e contar histórias.",["Manter uma conversa de 5 minutos","Contar uma história do começo ao fim","Entender quem fala um pouco mais rápido","Usar frases para ganhar tempo"],[["🎙️ Treinador","sec","treinador"],["💛 Mente tranquila","sec","emocao"],["🎧 Áudios","sec","audios"]]],["🏁","Inglês no dia a dia","Juntar tudo: entender vídeos simples e conversar 10 minutos.",["Conversar 10 minutos sobre assuntos do dia a dia","Entender vídeos e podcasts lentos","Resolver qualquer situação simples sozinho","Falar sem travar, mesmo errando"],[["📈 Níveis","sec","niveis"],["🎧 Áudios","sec","audios"],["📚 Lições dos livros","sec","metodo"]]]],"GOAL":250,"EXTRA":[[10,"🎧 Ouvi inglês fora do app"],[15,"🗣️ Conversei em inglês"],[30,"🧑‍🏫 Aula com a professora"]]};
+const $=id=>document.getElementById(id);
+const esc=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const dk=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');const today=()=>dk(new Date());
+/* contador: soma tempo quando a tela está aberta e a pessoa mexeu no último minuto e meio, ou quando um áudio está tocando */
+let lastAct=Date.now(),playing=0;const STEP=15;
+['pointerdown','keydown','touchstart','scroll','wheel'].forEach(ev=>document.addEventListener(ev,()=>{lastAct=Date.now()},{capture:true,passive:true}));
+document.addEventListener('play',()=>{playing++},true);['pause','ended'].forEach(ev=>document.addEventListener(ev,()=>{playing=Math.max(0,playing-1)},true));
+const addMin=(n,day)=>{const m=store.get('mins',{});const k=day||today();m[k]=Math.round(((m[k]||0)+n)*100)/100;const ks=Object.keys(m).sort();while(ks.length>400)delete m[ks.shift()];store.set('mins',m)};
+if(!window.__noTick)setInterval(()=>{if(document.visibilityState==='visible'&&(Date.now()-lastAct<90000||playing>0))addMin(STEP/60)},STEP*1000);
+if(!store.get('yrStart',''))store.set('yrStart',today());
+const mins=()=>store.get('mins',{});
+const sumDays=n=>{const m=mins();let t=0;for(let i=0;i<n;i++){const x=new Date();x.setDate(x.getDate()-i);t+=m[dk(x)]||0}return t};
+const weekMin=()=>{const d=new Date();const wd=(d.getDay()+6)%7;return sumDays(wd+1)};
+const totalH=()=>Object.values(mins()).reduce((a,b)=>a+b,0)/60;
+const fmt=m=>{m=Math.round(m);const h=Math.floor(m/60);return h?h+'h'+String(m%60).padStart(2,'0'):m+' min'};
+const curMonth=()=>{const st=new Date(store.get('yrStart',today())+'T12:00:00');const days=Math.floor((Date.now()-st)/864e5);return Math.max(0,Math.min(11,Math.floor(days/30.4)))};
+let view=null;
+const render=()=>{const box=$('anoBox');if(!box)return;const cm=curMonth();if(view===null)view=cm;const M=D.M[view];const can=store.get('yrCan',{});
+  const ks=Object.keys(mins()).filter(k=>mins()[k]>0).sort();const since=ks.length?Math.floor((Date.now()-new Date(ks[0]+'T00:00:00'))/864e5)+1:0;const nd=Math.max(1,Math.min(14,since));const tot=totalH(),avg=sumDays(nd)/nd,proj=avg*365/60,pct=Math.min(100,tot/D.GOAL*100);
+  const need=Math.max(0,Math.ceil(D.GOAL*60/365-avg));
+  const msg=since<3?`Ainda é cedo para medir o seu ritmo: o app precisa de alguns dias. A meta é cerca de 40 minutos por dia, somando tudo (app, áudios no ônibus, aula). Hoje: ${fmt(sumDays(1))}.`:avg<1?'Comece hoje: o app conta o seu tempo sozinho enquanto você estuda e ouve os áudios.':proj>=D.GOAL?`🎯 No seu ritmo (${Math.round(avg)} min por dia), você passa das ${D.GOAL} horas em 1 ano. É o ritmo de quem conversa no dia a dia no fim do plano.`:`No seu ritmo (${Math.round(avg)} min por dia), você faz cerca de ${Math.round(proj)} horas em 1 ano. Para chegar às ${D.GOAL}, some uns ${need} minutos por dia. Ouvir os áudios no ônibus já resolve.`;
+  const doneM=i=>D.M[i][3].every((_,j)=>can[i+'-'+j]);
+  box.innerHTML=`<div class="yrbig"><div><b>${fmt(sumDays(1))}</b><small>hoje</small></div><div><b>${fmt(weekMin())}</b><small>esta semana</small></div><div><b>${tot.toFixed(1).replace('.',',')} h</b><small>no total</small></div></div>
+  <p class="bknote" style="margin:0">Caminho até ${D.GOAL} horas: ${Math.round(pct)}%</p><div class="yrprog"><i style="width:${pct}%"></i></div>
+  <div class="yrmsg">${esc(msg)}</div>
+  <div class="yrm" role="group" aria-label="Meses">${D.M.map((m,i)=>`<button type="button" data-ym="${i}" aria-pressed="${i===view}" class="${i===cm?'cur':''} ${doneM(i)?'done':''}">${m[0]} ${i+1}</button>`).join('')}</div>
+  <div class="yrcard"><h3>${M[0]} Mês ${view+1}: ${esc(M[1])}${view===cm?' · você está aqui':''}</h3><p>${esc(M[2])}</p><p><b>No fim do mês, eu consigo:</b></p>
+    ${M[3].map((c,j)=>`<div class="lad"><input type="checkbox" id="yc${j}" data-yc="${view}-${j}"${can[view+'-'+j]?' checked':''}><label for="yc${j}">${esc(c)}</label></div>`).join('')}
+    <p style="margin-top:10px"><b>Onde treinar:</b></p>${M[4].map((g,j)=>`<button type="button" class="btn ghost" data-yg="${j}">${esc(g[0])}</button>`).join('')}</div>
+  <div class="yrcard"><h3>⏰ Os 3 momentos do dia</h3><p>Três vezes curtas gravam mais do que uma longa. Coloque alarmes no celular nesses horários.</p><div class="yrmom"><div><b>Manhã</b>10 min: a Frase do dia e o ⚡ treino automático</div><div><b>Almoço</b>30 min: ▶ Estudar hoje</div><div><b>Noite</b>10 min: um áudio e a 🌙 revisão da noite</div></div><p>No ônibus e na caminhada: 🎧 Áudios. Também conta!</p></div>
+  <div class="yrcard"><h3>➕ Estudei fora do app</h3><p>Conte também o inglês que você fez em outros lugares.</p>${D.EXTRA.map((x,i)=>`<button type="button" class="btn ghost" data-yx="${i}">${esc(x[1])} (+${x[0]} min)</button>`).join('')}<p class="bknote" id="yxMsg" aria-live="polite"></p></div>
+  <div class="yrcard"><h3>📅 Começo do plano</h3><p>Seu plano começou em <b>${store.get('yrStart').split('-').reverse().join('/')}</b>.</p><input class="ein" type="date" id="yrSt" value="${store.get('yrStart')}"><button type="button" class="btn ghost" id="yrStS">Mudar a data de começo</button></div>`;
+  box.querySelectorAll('[data-ym]').forEach(b=>b.onclick=()=>{view=+b.dataset.ym;render()});
+  box.querySelectorAll('[data-yc]').forEach(c=>c.onchange=()=>{const cc=store.get('yrCan',{});if(c.checked){cc[c.dataset.yc]=today();try{window.addWin&&addWin('Eu consigo: '+D.M[+c.dataset.yc.split('-')[0]][3][+c.dataset.yc.split('-')[1]])}catch(e){}}else delete cc[c.dataset.yc];store.set('yrCan',cc);render()});
+  box.querySelectorAll('[data-yg]').forEach(b=>b.onclick=()=>{const g=M[4][+b.dataset.yg];if(g[1]==='trn'){show('treinador');const T=window.__trn?__trn.TRN:[];const i=T.findIndex(c=>c.id===g[2]);if(i>=0)__trn.start(i)}else{show(g[2])}try{window.scrollTo(0,0)}catch(e){}});
+  box.querySelectorAll('[data-yx]').forEach(b=>b.onclick=()=>{const x=D.EXTRA[+b.dataset.yx];addMin(x[0]);$('yxMsg').textContent='+'+x[0]+' minutos anotados. 👏';setTimeout(render,600)});
+  $('yrStS').onclick=()=>{const v=$('yrSt').value;if(/^\d{4}-\d{2}-\d{2}$/.test(v)){store.set('yrStart',v);view=null;render();homeLine()}}};
+const homeLine=()=>{const el=$('hYear');if(!el)return;const cm=curMonth(),M=D.M[cm];el.innerHTML=`<div class="yr"><span>🗓️ <b>Mês ${cm+1} de 12: ${esc(M[1])}</b><br>Esta semana: ${fmt(weekMin())} · total: ${totalH().toFixed(1).replace('.',',')} h</span><button type="button" id="hYearGo">ver plano</button></div>`;$('hYearGo').onclick=()=>{view=null;show('ano');try{window.scrollTo(0,0)}catch(e){}}};
+homeLine();render();
+const _showY=show;show=function(id){_showY.apply(this,arguments);if(id==='ano'){view=null;render()}if(id==='inicio')homeLine()};
+window.__yr={render,homeLine,addMin,curMonth,totalH,D};
 }
 
 updateStats();
