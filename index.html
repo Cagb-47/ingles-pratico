@@ -747,6 +747,19 @@ textarea.ein{min-height:70px;resize:vertical}
 .flowbar span{flex:1;line-height:1.25}.flowbar b{font-size:1rem}.flowbar button{border:0;border-radius:10px;padding:7px 9px;font:800 .8rem var(--f-body);cursor:pointer;background:#F6BC3C;color:#3A2600}.flowbar button.x{background:rgba(255,255,255,.15);color:#fff}
 #trnCalm{margin-left:auto}
 @media (prefers-reduced-motion:reduce){.bcirc{transition:none}}
+
+.grpbar{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:10px 0 4px;margin:0 0 6px}
+.grpbar[hidden]{display:none}
+.grpbar button{flex:0 0 auto;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:7px 13px;font:700 .86rem var(--f-body);cursor:pointer}
+.grpbar button[aria-selected="true"]{background:#134B70;background-image:var(--gnavy);color:#fff;border-color:transparent}
+.hstart{display:block;width:100%;text-align:left;border:0;border-radius:18px;padding:14px 16px;margin:4px 0 12px;cursor:pointer;color:#2A2100;background:#F6BC3C;background-image:var(--gmust);box-shadow:0 4px 0 rgba(0,0,0,.18)}
+.hstart b{display:block;font:800 1.25rem var(--f-display)}.hstart small{display:block;font:700 .85rem var(--f-body);opacity:.85;margin-top:2px}
+.hmorebox{margin:6px 0 10px}
+.hmorebox>summary{list-style:none;cursor:pointer;border:1.5px solid rgba(255,255,255,.35);border-radius:14px;padding:11px 14px;font:800 .95rem var(--f-body);display:flex;align-items:center;gap:8px}
+.hmorebox>summary::-webkit-details-marker{display:none}.hmorebox>summary:after{content:"＋";margin-left:auto}.hmorebox[open]>summary:after{content:"－"}
+.hmorebox[open]>summary{margin-bottom:10px}
+#hHelp{margin-right:6px}
+.hero .mood,.hero .mood h3{color:var(--ink)}
 </style>
 <title>Inglês Prático</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -976,47 +989,33 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
     <div class="brand">
       <h1>Inglês <span>Prático</span></h1>
       <div class="day" id="day"></div>
-      <div class="hdr-right"><span class="hchip" id="hChip" aria-label="Sequência e pontos"></span><button type="button" class="hset" id="hSet" aria-label="Abrir ajustes" aria-expanded="false" aria-controls="setPanel">⚙️</button></div>
+      <div class="hdr-right"><span class="hchip" id="hChip" aria-label="Sequência e pontos"></span><button type="button" class="hset" id="hHelp" aria-label="Ajuda rápida: tradutor, SOS e celular e PC">🆘</button><button type="button" class="hset" id="hSet" aria-label="Abrir ajustes" aria-expanded="false" aria-controls="setPanel">⚙️</button></div>
       <button id="installBtn" hidden style="border:0;border-radius:999px;background:var(--mustard);background-image:linear-gradient(135deg,#FFDB6E 0%,#F6BC3C 55%,#EC9F1E 100%);color:var(--mustard-ink);font:700 .9rem var(--f-body);padding:7px 14px;cursor:pointer">Instalar app</button>
     </div>
     <div class="ver" id="ver"></div>
     <div class="bar" aria-hidden="true"><i id="barfill"></i></div>
     <nav role="tablist" aria-label="Seções">
       <button role="tab" data-tab="inicio" aria-selected="true">Início</button>
-      <button role="tab" data-tab="hub-trilha" aria-selected="false">🧭 Trilha</button>
-      <button role="tab" data-tab="hub-praticar" aria-selected="false">💬 Praticar</button>
+      <button role="tab" data-tab="hub-aprender" aria-selected="false">🧭 Aprender</button>
+      <button role="tab" data-tab="hub-falar" aria-selected="false">🗣️ Falar</button>
       <button role="tab" data-tab="hub-ouvir" aria-selected="false">🎧 Ouvir e ler</button>
-      <button role="tab" data-tab="hub-biblio" aria-selected="false">📚 Biblioteca</button>
-      <button role="tab" data-tab="hub-minhas" aria-selected="false">🧑‍🏫 Minhas aulas</button>
+      <button role="tab" data-tab="hub-treinar" aria-selected="false">🧩 Treinar</button>
     </nav>
     <nav class="subnav" id="subnav" aria-label="Partes desta seção" hidden>
-      <button hidden role="tab" data-tab="rota" aria-selected="false">Meu caminho</button>
-      <button hidden role="tab" data-tab="zero" aria-selected="false">Do zero</button>
-      <button hidden role="tab" data-tab="aula" aria-selected="false">Situações do dia a dia</button>
-      <button hidden role="tab" data-tab="niveis" aria-selected="false">Níveis A1–C2</button>
-      <button hidden role="tab" data-tab="plano" aria-selected="false">Temas para marcar</button>
-      <button hidden role="tab" data-tab="treinador" aria-selected="false">🎙️ Treinador</button>
-      <button hidden role="tab" data-tab="emocao" aria-selected="false">💛 Mente tranquila</button>
-      <button hidden role="tab" data-tab="destravar" aria-selected="false">🧠 Destravar</button>
-      <button hidden role="tab" data-tab="pron" aria-selected="false">Alfabeto e pronúncia</button>
-      <button hidden role="tab" data-tab="nativo" aria-selected="false">Frases nativas</button>
-      <button hidden role="tab" data-tab="montar" aria-selected="false">Montar frases</button>
-      <button hidden role="tab" data-tab="exerc" aria-selected="false">Exercícios</button>
-      <button hidden role="tab" data-tab="desaf" aria-selected="false">Desafios</button>
-      <button hidden role="tab" data-tab="tradutor" aria-selected="false">Tradutor</button>
-      <button hidden role="tab" data-tab="sos" aria-selected="false">SOS</button>
-      <button hidden role="tab" data-tab="audios" aria-selected="false">Áudios</button>
-      <button hidden role="tab" data-tab="historias" aria-selected="false">Leituras</button>
-      <button hidden role="tab" data-tab="musicas" aria-selected="false">Músicas</button>
-      <button hidden role="tab" data-tab="palavras" aria-selected="false">Palavras</button>
-      <button hidden role="tab" data-tab="phrasal" aria-selected="false">Phrasal verbs</button>
-      <button hidden role="tab" data-tab="flash" aria-selected="false">Flashcards</button>
-      <button hidden role="tab" data-tab="mapas" aria-selected="false">Mapas mentais</button>
-      <button hidden role="tab" data-tab="livro" aria-selected="false">Aulas e livro</button>
-      <button hidden role="tab" data-tab="explicar" aria-selected="false">📸 Me explica</button>
-      <button hidden role="tab" data-tab="sync" aria-selected="false">📲 Celular e PC</button>
-      <button hidden role="tab" data-tab="rotina" aria-selected="false">Rotina</button>
-      <button hidden role="tab" data-tab="apost" aria-selected="false">Apostila</button>
+      <button hidden type="button" class="gpill" data-hub="aprender" data-grp="trilha" aria-selected="false">🧭 Trilha</button>
+      <button hidden type="button" class="gpill" data-hub="aprender" data-grp="aulas" aria-selected="false">🧑‍🏫 Minhas aulas</button>
+      <button hidden type="button" class="gpill" data-hub="falar" data-grp="treinador" aria-selected="false">🎙️ Treinador</button>
+      <button hidden type="button" class="gpill" data-hub="falar" data-grp="destravar" aria-selected="false">🧠 Destravar</button>
+      <button hidden type="button" class="gpill" data-hub="falar" data-grp="pronuncia" aria-selected="false">👄 Pronúncia</button>
+      <button hidden type="button" class="gpill" data-hub="falar" data-grp="emocao" aria-selected="false">💛 Mente tranquila</button>
+      <button hidden type="button" class="gpill" data-hub="ouvir" data-grp="audios" aria-selected="false">🎧 Áudios</button>
+      <button hidden type="button" class="gpill" data-hub="ouvir" data-grp="historias" aria-selected="false">📖 Leituras</button>
+      <button hidden type="button" class="gpill" data-hub="ouvir" data-grp="musicas" aria-selected="false">🎵 Músicas</button>
+      <button hidden type="button" class="gpill" data-hub="treinar" data-grp="vocab" aria-selected="false">📚 Vocabulário</button>
+      <button hidden type="button" class="gpill" data-hub="treinar" data-grp="exercicios" aria-selected="false">✏️ Exercícios</button>
+      <button hidden type="button" class="gpill" data-hub="ajuda" data-grp="tradutor" aria-selected="false">🎙️ Tradutor</button>
+      <button hidden type="button" class="gpill" data-hub="ajuda" data-grp="sos" aria-selected="false">🆘 SOS</button>
+      <button hidden type="button" class="gpill" data-hub="ajuda" data-grp="sync" aria-selected="false">📲 Celular e PC</button>
     </nav>
   </div>
 </header>
@@ -1041,7 +1040,8 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
     <p class="setver" id="setVer"></p>
   </div>
 
-  <section id="inicio" data-panel>
+  <nav class="grpbar" id="grpBar" aria-label="Partes" hidden></nav>
+<section id="inicio" data-panel>
     <div class="hero">
       <span class="hflag" aria-hidden="true">🇺🇸</span>
       <div class="hk">Curso completo de inglês americano</div>
@@ -1049,8 +1049,10 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
       <div class="hs">Inglês americano do zero ao avançado</div>
       <p class="hd" id="hGreet">Para a vida pessoal, o trabalho e a escola. Escolha por onde começar.</p>
       <div class="hprog"><span id="hDay"></span><span class="hzs" id="hZs" hidden></span><button class="hcont" id="hCont" hidden></button></div>
+      <button type="button" class="hstart" id="hStart"><b>▶ Estudar hoje</b><small>30 minutos · o app guia você, um passo de cada vez</small></button>
       <div id="hMood"></div>
       <div id="hFd"></div>
+      <details class="hmorebox" id="hMoreBox"><summary>Mais coisas para estudar</summary>
       <div id="hDv"></div>
       <div id="hTrail" class="htrail" aria-label="Sua trilha"><div class="rtopbox"></div><ol class="rpath"></ol></div>
       <h3 class="htt">Para qualquer nível</h3>
@@ -1058,6 +1060,7 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
       <div class="hgrid" id="hGrid" role="list"></div>
       <button class="hmore" id="hMore" aria-expanded="false"></button>
       <div class="hlv" id="hLv" aria-label="Níveis"></div>
+      </details>
       <div class="hfoot"><div class="ha">Desenvolvido por Carlos André</div><div class="hv" id="hVer"></div></div>
       <button class="hinst" id="hInst" hidden>📲 Instalar o app no celular</button>
       <button class="hshare" id="hShare">📤 Convidar alguém para estudar comigo</button>
@@ -8787,7 +8790,7 @@ window.__mf={MF,sent,setV};
 
 /* ---------- Abas agrupadas (Aprender, Minhas aulas, Falar, Palavras, Gramática, Ouvir e ler) ---------- */
 {
-const HUBS=[["trilha", "🧭", "Trilha", [["rota", "Meu caminho"], ["zero", "Do zero"], ["aula", "Situações do dia a dia"], ["niveis", "Níveis A1–C2"], ["plano", "Temas para marcar"]]], ["praticar", "💬", "Praticar", [["treinador", "🎙️ Treinador"], ["emocao", "💛 Mente tranquila"], ["destravar", "🧠 Destravar"], ["pron", "Alfabeto e pronúncia"], ["nativo", "Frases nativas"], ["montar", "Montar frases"], ["exerc", "Exercícios"], ["desaf", "Desafios"], ["tradutor", "Tradutor"], ["sos", "SOS"]]], ["ouvir", "🎧", "Ouvir e ler", [["audios", "Áudios"], ["historias", "Leituras"], ["musicas", "Músicas"]]], ["biblio", "📚", "Biblioteca", [["palavras", "Palavras"], ["phrasal", "Phrasal verbs"], ["flash", "Flashcards"], ["mapas", "Mapas mentais"]]], ["minhas", "🧑‍🏫", "Minhas aulas", [["livro", "Aulas e livro"], ["explicar", "📸 Me explica"], ["sync", "📲 Celular e PC"], ["rotina", "Rotina"], ["apost", "Apostila"]]]];
+const HUBS=[["aprender", "🧭", "Aprender", [["rota", "Meu caminho"], ["zero", "Do zero"], ["aula", "Situações"], ["niveis", "Níveis A1–C2"], ["plano", "Temas"], ["livro", "Aulas e livro"], ["explicar", "📸 Me explica"], ["rotina", "Rotina"], ["apost", "Apostila"]]], ["falar", "🗣️", "Falar", [["treinador", "🎙️ Treinador"], ["destravar", "🧠 Destravar"], ["pron", "Alfabeto e pronúncia"], ["nativo", "Frases nativas"], ["emocao", "💛 Mente tranquila"]]], ["ouvir", "🎧", "Ouvir e ler", [["audios", "Áudios"], ["historias", "Leituras"], ["musicas", "Músicas"]]], ["treinar", "🧩", "Treinar", [["palavras", "Palavras"], ["phrasal", "Phrasal verbs"], ["flash", "Flashcards"], ["mapas", "Mapas mentais"], ["exerc", "Exercícios"], ["desaf", "Desafios"], ["montar", "Montar frases"]]], ["ajuda", "🆘", "Ajuda rápida", [["tradutor", "Tradutor"], ["sos", "SOS"], ["sync", "📲 Celular e PC"]]]];
 const hubOf=id=>{const h=HUBS.find(h=>h[3].some(x=>x[0]===id));return h?h[0]:null};
 window.hubOf=hubOf;window.HUBS=HUBS;
 const subnav=document.getElementById('subnav');
@@ -8799,8 +8802,8 @@ show=function(id){
   document.querySelectorAll('nav[role=tablist] [data-tab^="hub-"]').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.tab==='hub-'+k)));
   subnav.hidden=!k;
   if(k){const hl=store.get('hubLast',{});hl[k]=id;store.set('hubLast',hl);
-    subnav.querySelectorAll('button').forEach(b=>{b.hidden=hubOf(b.dataset.tab)!==k});
-    const cur=subnav.querySelector('[data-tab="'+id+'"]');if(cur&&cur.scrollIntoView)try{cur.scrollIntoView({block:'nearest',inline:'nearest'})}catch(e){}
+    subnav.querySelectorAll('button').forEach(b=>{b.hidden=b.dataset.hub!==k;b.setAttribute('aria-selected',String(window.grpOf&&grpOf(id)===b.dataset.grp))});
+    const cur=subnav.querySelector('[data-grp="'+(window.grpOf?grpOf(id):'')+'"]');if(cur&&cur.scrollIntoView)try{cur.scrollIntoView({block:'nearest',inline:'nearest'})}catch(e){}
     const hb=document.querySelector('nav[role=tablist] [data-tab="hub-'+k+'"]');if(hb&&hb.scrollIntoView)try{hb.scrollIntoView({block:'nearest',inline:'nearest'})}catch(e){}}
 };
 }
@@ -9818,6 +9821,8 @@ const markDay=()=>{const d=store.get('studyDays',[]);const k=today();if(!d.inclu
 try{if(typeof touchDay==='function'){const _td=touchDay;touchDay=function(){markDay();return _td.apply(this,arguments)}}}catch(e){}
 const openMod=id=>{show('emocao');setTimeout(()=>{const d=$('em-'+id);if(d){d.open=true;try{d.scrollIntoView({block:'start',behavior:'smooth'})}catch(e){}}},60)};
 const go=id=>{{const el=$('hMood');if(el)el.__open=0}
+  if(id==='mood'){show('inicio');setTimeout(()=>{const e=$('hMood');if(e)try{e.scrollIntoView({block:'start',behavior:'smooth'})}catch(x){}},80);return}
+  if(id==='trail'){show('inicio');const c=$('hCont');if(c&&!c.hidden){c.click();return}show('rota');try{window.scrollTo(0,0)}catch(x){}return}
   if(id==='calm')return calmNow();if(id==='fd'){show('inicio');setTimeout(()=>{const e=$('hFd');if(e)try{e.scrollIntoView({block:'start',behavior:'smooth'})}catch(x){}},80);return}
   if(['semaforo','worry','cool','wins','flow','why','ladder','emp'].includes(id))return openMod(id==='semaforo'?'sema':id);
   show(id);try{window.scrollTo(0,0)}catch(x){}};
@@ -9868,9 +9873,9 @@ const flowBar=()=>{let b=$('flowBar');const st=store.get('flowS',null);if(!st){i
   const left=Math.max(0,Math.round((st.end-Date.now())/1000));if(left<=0){store.set('flowS',null);b.remove();clearInterval(ftm);flowEnd(st);return}
   const t=st.plan[st.i];b.innerHTML=`<span>🌊 <b>${Math.floor(left/60)}:${String(left%60).padStart(2,'0')}</b> · ${st.i+1} de ${st.plan.length}: ${esc(t[1])}</span><button type="button" id="fbGo">Ir</button><button type="button" id="fbNx">${st.i+1<st.plan.length?'Próxima':'Terminar'}</button><button type="button" class="x" id="fbX" aria-label="Encerrar">✕</button>`;
   $('fbGo').onclick=()=>go(t[0]);$('fbNx').onclick=()=>{const s2=store.get('flowS');if(!s2)return;if(s2.i+1<s2.plan.length){s2.i++;store.set('flowS',s2);flowBar();go(s2.plan[s2.i][0])}else{store.set('flowS',null);flowBar();flowEnd(s2)}};
-  $('fbX').onclick=()=>{store.set('flowS',null);flowBar()}};
+  $('fbX').onclick=()=>{store.set('flowS',null);flowBar();try{startBtn()}catch(e){}}};
 const flowStart=min=>{const plan=flowPlan(min);store.set('flowS',{end:Date.now()+(fast()?3000:min*60000),i:0,plan,min});clearInterval(ftm);ftm=setInterval(flowBar,1000);flowBar();go(plan[0][0])};
-const flowEnd=st=>{addWin('Sessão de fluxo de '+st.min+' minutos');if(document.querySelector('.calmov'))return;const ov=document.createElement('div');ov.className='calmov';ov.innerHTML=`<div><h3>🌊 Sessão completa! 🎉</h3><p>Como foi o desafio? Assim a próxima fica na medida certa para você.</p><button type="button" class="btn ghost" data-fl="1">😴 Fácil demais</button><button type="button" class="btn ghost" data-fl="0">😊 Na medida</button><button type="button" class="btn ghost" data-fl="-1">😵 Difícil demais</button></div>`;document.body.appendChild(ov);
+const flowEnd=st=>{addWin(st.day?'Aula do dia completa':'Sessão de fluxo de '+st.min+' minutos');if(st.day)store.set('dayDone',today());try{startBtn()}catch(e){}if(document.querySelector('.calmov'))return;const ov=document.createElement('div');ov.className='calmov';ov.innerHTML=`<div><h3>🌊 Sessão completa! 🎉</h3><p>Como foi o desafio? Assim a próxima fica na medida certa para você.</p><button type="button" class="btn ghost" data-fl="1">😴 Fácil demais</button><button type="button" class="btn ghost" data-fl="0">😊 Na medida</button><button type="button" class="btn ghost" data-fl="-1">😵 Difícil demais</button></div>`;document.body.appendChild(ov);
   ov.querySelectorAll('[data-fl]').forEach(b=>b.onclick=()=>{store.set('flowLv',Math.max(0,Math.min(2,store.get('flowLv',1)+ +b.dataset.fl)));ov.remove();if($('emoBox'))page()})};
 if(store.get('flowS',null)){ftm=setInterval(flowBar,1000);setTimeout(flowBar,50)}
 /* ---- empatia em inglês ---- */
@@ -9896,7 +9901,7 @@ const page=()=>{const box=$('emoBox');if(!box)return;const openNow=[...box.query
   mod('cool','⏸️ Esfriar a frustração',`<p>Frustrado ("não sai!", "errei de novo")? Insistir na mesma hora piora. Uma pausa curta esfria a cabeça, e voltar por algo fácil devolve a confiança.</p><div id="coolBox"><button type="button" class="btn" id="coolGo">Pausa de 2 minutos</button></div>`),
   mod('flow','🌊 Sessão de fluxo',`<p>Fluxo é aquele estado em que o tempo voa e a gente aprende sem esforço. Ele aparece quando o desafio fica na medida: nem fácil demais (tédio), nem difícil demais (ansiedade). Uma tarefa de cada vez, sem distração. Desligue as notificações.</p><p class="bknote">Nível do desafio agora: ${['leve','médio','forte'][Math.max(0,Math.min(2,store.get('flowLv',1)))]}. Ele se ajusta ao que você responder no fim.</p><button type="button" class="btn" data-fm="10">🌊 10 minutos</button><button type="button" class="btn ghost" data-fm="20">🌊 20 minutos</button><button type="button" class="btn ghost" data-fm="30">🌊 30 minutos (o almoço inteiro)</button>`),
   mod('why','🎯 Meu porquê e a meta da semana',`<p>Quem sabe por que estuda continua nos dias difíceis. Escreva o seu motivo. Ele aparece no Início.</p><input class="ein" id="emoWhy" maxlength="120" placeholder="Ex.: conversar com tranquilidade numa viagem aos EUA" value="${esc(why())}"><button type="button" class="btn ghost" id="emoWhySave">Salvar meu porquê</button><p class="bknote" id="emoWhyMsg" aria-live="polite"></p>
-    <p><b>Meta da semana:</b> quantos dias você vai estudar? Primeiro a meta, depois a recompensa. Saber esperar a recompensa é uma das forças que mais ajudam a aprender.</p><div class="goalb">${[3,4,5,6,7].map(n=>`<button type="button" data-g="${n}" aria-pressed="${n===goal}">${n}</button>`).join('')}</div><div class="dots">${wk.out.map(o=>`<i class="${o?'on':''}"></i>`).join('')}</div><p>${wk.n>=goal?'🎉 <b>Meta da semana cumprida!</b> Hora da recompensa.':`Esta semana: <b>${wk.n} de ${goal}</b> dias.`}</p><input class="ein" id="emoRew" maxlength="80" placeholder="Minha recompensa (ex.: um episódio da minha série)" value="${esc(store.get('wkReward',''))}"><button type="button" class="btn ghost" id="emoRewSave">Salvar a recompensa</button>`),
+    <p><b>Meta da semana:</b> quantos dias você vai estudar? Primeiro a meta, depois a recompensa. Saber esperar a recompensa é uma das forças que mais ajudam a aprender.</p><div class="goalb">${[3,4,5,6,7].map(n=>`<button type="button" data-wg="${n}" aria-pressed="${n===goal}">${n}</button>`).join('')}</div><div class="dots">${wk.out.map(o=>`<i class="${o?'on':''}"></i>`).join('')}</div><p>${wk.n>=goal?'🎉 <b>Meta da semana cumprida!</b> Hora da recompensa.':`Esta semana: <b>${wk.n} de ${goal}</b> dias.`}</p><input class="ein" id="emoRew" maxlength="80" placeholder="Minha recompensa (ex.: um episódio da minha série)" value="${esc(store.get('wkReward',''))}"><button type="button" class="btn ghost" id="emoRewSave">Salvar a recompensa</button>`),
   mod('wins','🏆 Pequenas vitórias',`<p>Esperança vem de ver o caminho andado. Cada vitória pequena conta. O app anota algumas sozinho, e você pode escrever as suas.</p><p>⭐ ${store.get('xp',0)} estrelas · 🎙️ ${store.get('trnDone',[]).length} conversas · 📅 ${store.get('studyDays',[]).length} dias de estudo</p><div class="chips">${['Falei sem travar','Entendi um áudio','Pedi algo em inglês','Aprendi uma frase nova'].map(t=>`<button type="button" data-wq="${esc(t)}">${esc(t)}</button>`).join('')}</div><input class="ein" id="winTxt" maxlength="100" placeholder="Hoje eu consegui…"><button type="button" class="btn ghost" id="winSave">Anotar vitória</button><div id="winList">${winsHTML(14)}</div>`),
   mod('ladder','🧗 Escada da coragem',`<p>Timidez diminui com passos pequenos, um degrau de cada vez. Marque quando conseguir. Não precisa pular degrau.</p>${D.LADDER.map((l,i)=>`<div class="lad"><input type="checkbox" id="ld${i}" data-ld="${i}"${lad[i]?' checked':''}><label for="ld${i}">${i+1}. ${esc(l[0])}${lad[i]?`<small>Feito em ${lad[i].split('-').reverse().join('/')}</small>`:''}</label>${l[1]?`<button type="button" class="mini" data-lg="${l[1]}">Ir</button>`:''}</div>`).join('')}`),
   mod('emp','🤝 Empatia em inglês',`<p>Perceber como o outro se sente torna a conversa leve, e ajuda a entender pelo contexto. Ouça o que a pessoa diz, descubra a emoção e escolha a resposta.</p><div id="empBox"></div>`),
@@ -9913,7 +9918,7 @@ const page=()=>{const box=$('emoBox');if(!box)return;const openNow=[...box.query
   $('coolGo').onclick=()=>cool($('coolBox'));
   box.querySelectorAll('[data-fm]').forEach(b=>b.onclick=()=>flowStart(+b.dataset.fm));
   $('emoWhySave').onclick=()=>{store.set('emoWhy',$('emoWhy').value.trim());$('emoWhyMsg').textContent='Salvo. 💛 Ele vai aparecer no Início.';homeCard()};
-  box.querySelectorAll('[data-g]').forEach(b=>b.onclick=()=>{store.set('wkGoal',+b.dataset.g);page()});
+  box.querySelectorAll('[data-wg]').forEach(b=>b.onclick=()=>{store.set('wkGoal',+b.dataset.wg);page()});
   $('emoRewSave').onclick=()=>{store.set('wkReward',$('emoRew').value.trim());$('emoRewSave').textContent='Recompensa salva ✓'};
   box.querySelectorAll('[data-wq]').forEach(b=>b.onclick=()=>{addWin(b.dataset.wq);$('winList').innerHTML=winsHTML(14)});
   $('winSave').onclick=()=>{const t=$('winTxt').value.trim();if(!t)return;addWin(t);$('winTxt').value='';$('winList').innerHTML=winsHTML(14)};
@@ -9923,8 +9928,35 @@ const page=()=>{const box=$('emoBox');if(!box)return;const openNow=[...box.query
   box.querySelectorAll('[data-rf]').forEach(b=>b.onclick=()=>say(D.REFR[+b.dataset.rf][2]));
   $('emoTrn').onclick=()=>go('treinador')};
 homeCard();page();
-const _showE=show;show=function(id){_showE.apply(this,arguments);if(id==='emocao')page();if(id==='inicio')homeCard()};
-window.__emo={homeCard,page,D,flowStart,openMod};
+const _showE=show;show=function(id){_showE.apply(this,arguments);if(id==='emocao')page();if(id==='inicio'){homeCard();try{startBtn()}catch(e){}}};
+const dayStart=()=>{const m=store.get('mood',null);const plan=[];if(!(m&&m.d===today()))plan.push(['mood','💛 Como você está hoje']);
+  plan.push(['fd','🗣️ Frase do dia, com a revisão de ontem'],['trail','🧭 Próximo passo da trilha'],['treinador','🎙️ Uma conversa no Treinador'],['audios','🎧 Ouvir um áudio']);
+  store.set('flowS',{end:Date.now()+(fast()?3000:30*60000),i:0,plan,min:30,day:1});clearInterval(ftm);ftm=setInterval(flowBar,1000);flowBar();go(plan[0][0])};
+const startBtn=()=>{const b=$('hStart');if(!b)return;const st=store.get('flowS',null);b.innerHTML=st?`<b>▶ Continuar a aula de hoje</b><small>Passo ${st.i+1} de ${st.plan.length}: ${esc(st.plan[st.i][1])}</small>`:(store.get('dayDone','')===today()?'<b>✅ Aula de hoje feita!</b><small>Quer mais? Toque para estudar de novo, ou veja "Mais coisas".</small>':'<b>▶ Estudar hoje</b><small>30 minutos · o app guia você, um passo de cada vez</small>');
+  b.onclick=()=>{const s2=store.get('flowS',null);if(s2){go(s2.plan[s2.i][0]);return}dayStart()}};
+startBtn();setInterval(startBtn,5000);
+window.__emo={homeCard,page,D,flowStart,openMod,dayStart,startBtn};
+}
+
+/* ---------- grupos: menos abas, mesmo conteúdo ---------- */
+{
+const G=[["aprender", "trilha", "🧭 Trilha", ["rota", "zero", "aula", "niveis", "plano"]], ["aprender", "aulas", "🧑‍🏫 Minhas aulas", ["livro", "explicar", "rotina", "apost"]], ["falar", "treinador", "🎙️ Treinador", ["treinador"]], ["falar", "destravar", "🧠 Destravar", ["destravar"]], ["falar", "pronuncia", "👄 Pronúncia", ["pron", "nativo"]], ["falar", "emocao", "💛 Mente tranquila", ["emocao"]], ["ouvir", "audios", "🎧 Áudios", ["audios"]], ["ouvir", "historias", "📖 Leituras", ["historias"]], ["ouvir", "musicas", "🎵 Músicas", ["musicas"]], ["treinar", "vocab", "📚 Vocabulário", ["palavras", "phrasal", "flash", "mapas"]], ["treinar", "exercicios", "✏️ Exercícios", ["exerc", "desaf", "montar"]], ["ajuda", "tradutor", "🎙️ Tradutor", ["tradutor"]], ["ajuda", "sos", "🆘 SOS", ["sos"]], ["ajuda", "sync", "📲 Celular e PC", ["sync"]]];
+const L={"rota": "Meu caminho", "zero": "Do zero", "aula": "Situações", "niveis": "Níveis A1–C2", "plano": "Temas", "livro": "Aulas e livro", "explicar": "📸 Me explica", "rotina": "Rotina", "apost": "Apostila", "treinador": "🎙️ Treinador", "destravar": "🧠 Destravar", "pron": "Alfabeto e pronúncia", "nativo": "Frases nativas", "emocao": "💛 Mente tranquila", "audios": "Áudios", "historias": "Leituras", "musicas": "Músicas", "palavras": "Palavras", "phrasal": "Phrasal verbs", "flash": "Flashcards", "mapas": "Mapas mentais", "exerc": "Exercícios", "desaf": "Desafios", "montar": "Montar frases", "tradutor": "Tradutor", "sos": "SOS", "sync": "📲 Celular e PC"};
+const gOf={};G.forEach(x=>x[3].forEach(m=>gOf[m]=x));
+window.grpOf=id=>gOf[id]?gOf[id][1]:null;
+const bar=document.getElementById('grpBar');
+const paint=id=>{const g=gOf[id];if(!g||g[3].length<2){bar.hidden=true;bar.innerHTML='';return}
+  bar.hidden=false;bar.innerHTML=g[3].map(m=>`<button type="button" role="tab" data-tab="${m}" aria-selected="${m===id}">${L[m]}</button>`).join('');
+  bar.querySelectorAll('button').forEach(b=>b.onclick=()=>{show(b.dataset.tab);try{window.scrollTo(0,0)}catch(e){}});
+  const c=bar.querySelector('[aria-selected="true"]');if(c&&c.scrollIntoView)try{c.scrollIntoView({block:'nearest',inline:'nearest'})}catch(e){}};
+document.querySelectorAll('#subnav .gpill').forEach(b=>b.onclick=()=>{const g=G.find(x=>x[1]===b.dataset.grp);const last=store.get('grpLast',{})[g[1]];show(g[3].includes(last)?last:g[3][0]);try{window.scrollTo(0,0)}catch(e){}});
+const _showG=show;show=function(id){_showG.apply(this,arguments);if(typeof id!=='string')return;const real=document.querySelector('section[data-panel]:not([hidden])');const cur=real?real.id:id;
+  paint(cur);const g=gOf[cur];if(g){const gl=store.get('grpLast',{});gl[g[1]]=cur;store.set('grpLast',gl)}
+  document.querySelectorAll('#subnav .gpill').forEach(b=>b.setAttribute('aria-selected',String(!!g&&b.dataset.grp===g[1])))};
+const hb=document.getElementById('hHelp');if(hb)hb.onclick=()=>{try{document.getElementById('setPanel').hidden=true}catch(e){}show('tradutor');try{window.scrollTo(0,0)}catch(e){}};
+/* "Mais coisas" lembra se ficou aberto */
+const mb=document.getElementById('hMoreBox');if(mb){try{if(store.get('hMoreOpen',false))mb.open=true}catch(e){}mb.addEventListener('toggle',()=>store.set('hMoreOpen',mb.open))}
+window.__grp={G,paint};
 }
 
 updateStats();
