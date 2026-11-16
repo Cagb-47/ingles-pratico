@@ -10323,6 +10323,8 @@ render();
 let said=false;try{said=sessionStorage.getItem('helloSaid')==='1';sessionStorage.setItem('helloSaid','1')}catch(e){}
 if(!said)auto();
 window.__hello={render,data,speak,per};
+/* exercício de empatia: fala a frase quando você abre o cartão (e não mais escondido ao abrir o app) */
+document.addEventListener('toggle',e=>{const ed=e.target;if(ed&&ed.id==='em-emp'&&ed.open){const b=ed.querySelector('[data-eq]');if(b)setTimeout(()=>b.click(),150)}},true);
 }
 }
 
