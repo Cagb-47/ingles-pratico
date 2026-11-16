@@ -814,6 +814,17 @@ html[data-theme="dark"] .mtplan{background:#12324A;color:#DCEBF7}html[data-theme
 .mtrpick button span{font-size:1.4rem}.mtrpick button em{margin-left:auto;font-style:normal;color:#1E8E4A;font-weight:900}
 .mtrend{text-align:center;background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:16px;margin:0 0 12px}
 .mtrend h3{margin:0 0 6px;font:800 1.25rem var(--f-display)}.mtrend .btn{display:block;width:100%;margin:8px 0 0}
+
+.hello{margin:6px 0 12px}
+.hello .hen{font:800 1.45rem/1.2 var(--f-display);margin:0}
+.hello .hpr{opacity:.85;font-size:.95rem;margin:2px 0 6px}
+.hello .hpt{font-size:1.02rem;line-height:1.4;margin:0 0 10px}
+.hello .hrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.hello .hgo{flex:1;min-width:190px;border:0;border-radius:14px;padding:11px 14px;background:#fff;color:#0B3A6E;font:800 1rem var(--f-body);cursor:pointer;text-align:left}
+.hello .hgo small{display:block;font-weight:600;opacity:.75;font-size:.85rem}
+.hello .hsnd{border:1.5px solid rgba(255,255,255,.6);background:transparent;color:inherit;border-radius:14px;padding:10px 12px;font:700 .95rem var(--f-body);cursor:pointer}
+.hello .hmute{display:block;margin:8px 0 0;background:none;border:0;color:inherit;opacity:.8;text-decoration:underline;font:600 .85rem var(--f-body);cursor:pointer;padding:0}
+#inicio .hello:not(:empty)~#hGreet{display:none}
 </style>
 <title>Inglês Prático</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -1103,6 +1114,7 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
       <div class="hk">Curso completo de inglês americano</div>
       <h1 class="ht">Inglês<br><span>Prático</span></h1>
       <div class="hs">Inglês americano do zero ao avançado</div>
+      <div class="hello" id="hHello" aria-live="polite"></div>
       <p class="hd" id="hGreet">Para a vida pessoal, o trabalho e a escola. Escolha por onde começar.</p>
       <div class="hprog"><span id="hDay"></span><span class="hzs" id="hZs" hidden></span><button class="hcont" id="hCont" hidden></button></div>
       <button type="button" class="hstart" id="hStart"><b>▶ Estudar hoje</b><small>30 minutos · o app guia você, um passo de cada vez</small></button>
@@ -9956,7 +9968,7 @@ if(store.get('flowS',null)){ftm=setInterval(flowBar,1000);setTimeout(flowBar,50)
 let ei=0,es=0;
 const empRender=host=>{if(ei>=D.EMP.length){host.innerHTML=`<p><b>🎉 Você acertou ${es} de ${D.EMP.length}.</b></p><p>Perceber a emoção do outro deixa a conversa leve. E ajuda você a entender pelo contexto, mesmo sem saber todas as palavras.</p><button type="button" class="btn" data-er>Fazer de novo</button>`;addWin('Empatia em inglês: '+es+' de '+D.EMP.length);host.querySelector('[data-er]').onclick=()=>{ei=0;es=0;empRender(host)};return}
   const q=D.EMP[ei];host.innerHTML=`<p class="bknote">${ei+1} de ${D.EMP.length}</p><p class="empq" lang="en">“${esc(q[0])}” <button type="button" class="mini" data-eq aria-label="Ouvir">🔊</button></p><p class="bknote">${esc(q[1])}</p><p><b>1. Como a pessoa se sente?</b></p><div class="chips">${q[3].map(k=>`<button type="button" data-ef="${k}">${F[k][1]} <span lang="en">${k}</span> (${esc(F[k][4].replace('Estou ','').replace('.',''))})</button>`).join('')}</div><div class="empfb" id="empFb1" aria-live="polite"></div><div id="empStep2" hidden><p><b>2. O que você responde?</b></p><div class="chips">${[q[4],q[5]].sort().map(r=>`<button type="button" data-ea="${esc(r)}" lang="en">${esc(r)}</button>`).join('')}</div><div class="empfb" id="empFb2" aria-live="polite"></div></div>`;
-  host.querySelector('[data-eq]').onclick=()=>say(q[0]);setTimeout(()=>say(q[0]),250);
+  host.querySelector('[data-eq]').onclick=()=>say(q[0]);setTimeout(()=>{const dd=host.closest('details');if(host.offsetParent&&(!dd||dd.open))say(q[0])},250);
   host.querySelectorAll('[data-ef]').forEach(b=>b.onclick=()=>{const ok=b.dataset.ef===q[2];b.classList.add(ok?'ok':'no');const fb=$('empFb1');fb.className='empfb '+(ok?'ok':'no');fb.textContent=ok?'Isso! A pessoa está '+F[q[2]][4].replace('Estou ','').replace('.','')+'.':'Quase. Ela está '+F[q[2]][4].replace('Estou ','').replace('.','')+' ('+q[2]+').';if(ok)es+=.5;host.querySelectorAll('[data-ef]').forEach(x=>x.disabled=true);$('empStep2').hidden=false});
   host.querySelectorAll('[data-ea]').forEach(b=>b.onclick=()=>{const ok=b.dataset.ea===q[4];b.classList.add(ok?'ok':'no');const fb=$('empFb2');fb.className='empfb '+(ok?'ok':'no');fb.innerHTML=(ok?'Muito bem! ':'O melhor aqui é: ')+`<span lang="en">${esc(q[4])}</span> = ${esc(q[6])}`;if(ok)es+=.5;say(q[4]);host.querySelectorAll('[data-ea]').forEach(x=>x.disabled=true);
     const nb=document.createElement('button');nb.type='button';nb.className='btn';nb.textContent=ei+1<D.EMP.length?'Próxima':'Ver resultado';nb.onclick=()=>{ei++;empRender(host)};$('empStep2').appendChild(nb)})};
@@ -10278,6 +10290,39 @@ const finish=()=>{const c=M.c;const done=store.get('mtrDone',[]);if(!done.includ
 new MutationObserver(()=>{if(!M)mb.hidden=!tb.querySelector('.trnlist')}).observe(tb,{childList:true});
 card();mb.hidden=!tb.querySelector('.trnlist');
 window.__mtr={Q,begin,pick,close,state:()=>M&&{id:M.c.id,st:M.st,i:M.i,ok:M.ok,tot:M.tot,n:items().length},items:()=>M?items():[],next:()=>{const b=$('mtrNext');if(b)b.click()},skip:()=>{const b=$('mtrSkip');if(b)b.click()}};
+}
+}
+
+/* ---------- 👋 Saudação ao abrir (pelo relógio) e continuar de onde parou ---------- */
+{
+const box=document.getElementById('hHello');
+if(box){
+const esc=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const G={m:['Good morning','Gud mórnin','Bom dia'],a:['Good afternoon','Gud éftârnun','Boa tarde'],e:['Good evening','Gud ívnin','Boa noite']};
+const per=()=>{const h=new Date().getHours();return h>=5&&h<12?'m':h>=12&&h<18?'a':'e'};
+const prName=n=>n.toLowerCase()==='carlos'?'Kárlos':n;
+const lastLbl=id=>{const s=document.getElementById(id);if(!s||id==='inicio')return null;const h=s.querySelector('h2');return h?h.textContent.trim():null};
+const data=()=>{const n=(store.get('name','')||'').trim(),g=G[per()],back=!!store.get('lastTab',null)||store.get('xp',0)>0;
+  const last=store.get('lastTab',null),ll=last&&lastLbl(last);
+  const en=[n?`${g[0]}, ${n}!`:`${g[0]}!`,back?'Welcome back!':'Welcome!',"Let's study!"];if(ll)en.push("Let's pick up where you left off.");
+  return {n,g,back,last,ll,en}};
+const render=()=>{const d=data(),g=d.g;
+  box.innerHTML=`<p class="hen" lang="en">${esc(d.n?g[0]+', '+d.n+'!':g[0]+'!')}</p>
+  <p class="hpr">"${esc(g[1])}${d.n?', '+esc(prName(d.n)):''}!" · ${d.back?'"Uélcam bék!"':'"Uélcam!"'}</p>
+  <p class="hpt">${esc(g[2])}${d.n?', '+esc(d.n):''}! ${d.back?'Bem-vindo de volta.':'Bem-vindo.'} Vamos estudar?${d.ll?' Vamos continuar de onde você parou, para manter a sequência.':''}</p>
+  <div class="hrow">${d.ll?`<button type="button" class="hgo" id="hHelloGo">▶ Continuar de onde parei<small>${esc(d.ll)}</small></button>`:''}<button type="button" class="hsnd" id="hHelloSnd" aria-label="Ouvir a saudação">🔊 Ouvir</button></div>
+  <button type="button" class="hmute" id="hHelloMute">${store.get('helloVoice',true)?'🔇 Não falar ao abrir o app':'🔊 Falar a saudação ao abrir o app'}</button>`;
+  const go=document.getElementById('hHelloGo');if(go)go.onclick=()=>{try{window.hvStop&&hvStop()}catch(e){}show(d.last);try{window.scrollTo(0,0)}catch(e){}};
+  document.getElementById('hHelloSnd').onclick=()=>speak();
+  document.getElementById('hHelloMute').onclick=()=>{store.set('helloVoice',!store.get('helloVoice',true));render()}};
+const speak=()=>{try{sayQueue(data().en)}catch(e){}};
+/* fala uma vez cada vez que o app é aberto (espera as gravações carregarem) */
+const auto=()=>{if(!store.get('helloVoice',true))return;let k=0;const w=()=>{if(window.hvHas&&hvHas("Welcome back!")||k++>20){if(document.body.classList.contains('onhome')&&!document.hidden)speak()}else setTimeout(w,150)};setTimeout(w,400)};
+const _rh=window.renderHome;window.renderHome=function(){const r=_rh&&_rh.apply(this,arguments);try{render()}catch(e){}return r};
+render();
+let said=false;try{said=sessionStorage.getItem('helloSaid')==='1';sessionStorage.setItem('helloSaid','1')}catch(e){}
+if(!said)auto();
+window.__hello={render,data,speak,per};
 }
 }
 
