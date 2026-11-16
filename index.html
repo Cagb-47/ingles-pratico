@@ -825,6 +825,7 @@ html[data-theme="dark"] .mtplan{background:#12324A;color:#DCEBF7}html[data-theme
 .hello .hsnd{border:1.5px solid rgba(255,255,255,.6);background:transparent;color:inherit;border-radius:14px;padding:10px 12px;font:700 .95rem var(--f-body);cursor:pointer}
 .hello .hmute{display:block;margin:8px 0 0;background:none;border:0;color:inherit;opacity:.8;text-decoration:underline;font:600 .85rem var(--f-body);cursor:pointer;padding:0}
 #inicio .hello:not(:empty)~#hGreet{display:none}
+.rdhint{margin:6px 0 0;font-size:.82rem;color:var(--muted);line-height:1.35}
 </style>
 <title>Inglês Prático</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -9775,7 +9776,7 @@ const mkCtx=()=>{if(ctx)return ctx;const C=window.AudioContext||window.webkitAud
 const setG=g=>{try{g.disconnect()}catch(e){}const G=LV[lv]||1;if(G===1){g.gain.value=1;g.connect(ctx.destination)}else{g.gain.value=G;g.connect(sh)}};
 const P=HTMLMediaElement.prototype,_play=P.play;
 P.play=function(){try{
-  if(this.__vb||(lv!=='normal'&&!(this instanceof HTMLVideoElement))){const c=mkCtx();if(c){if(c.state!=='running')c.resume().catch(()=>{});
+  if(!this.__noVb&&(this.__vb||(lv!=='normal'&&!(this instanceof HTMLVideoElement)))){const c=mkCtx();if(c){if(c.state!=='running')c.resume().catch(()=>{});
     if(!this.__vb&&c.state==='running'){const so=c.createMediaElementSource(this);const g=c.createGain();so.connect(g);this.__vb=g;els.add(g);setG(g)}}}}catch(e){}
   return _play.apply(this,arguments)};
 /* liga o reforço no primeiro toque (o celular só libera o som depois de um toque) */
@@ -10176,26 +10177,52 @@ const build=()=>{const FD=(window.__fd&&__fd.FD)||[];L.fd=FD.map((x,i)=>({tag:'�
   L.tudo=[...L.fd,...L.trn,...L.vida,...L.aud,...L.words]};
 const LISTS=[['tudo','📻 Tudo'],['fd','🗣️ Frase do dia'],['trn','🎙️ Conversas'],['aud','🎧 Áudios'],['words','📚 Palavras'],['vida','💛 Frases para a vida']];
 /* ajustes (guardados) */
-const cfg=Object.assign({pl:'fd',mode:'enpt',rep:1,gap:2,spd:1,loop:true,one:false,sleep:0},store.get('rdCfg',{}));const save=()=>store.set('rdCfg',cfg);
+const cfg=Object.assign({pl:'fd',mode:'enpt',rep:1,gap:2,spd:1,loop:true,one:false,sleep:0,vol:'alto'},store.get('rdCfg',{}));if(!['normal','alto','max'].includes(cfg.vol))cfg.vol='alto';const save=()=>store.set('rdCfg',cfg);
 const pos=()=>store.get('rdPos',{});const setPos=(pl,i)=>{const p=pos();p[pl]=i;store.set('rdPos',p)};
 /* tocador */
-const pa=new Audio();pa.preload='auto';const sil=new Audio('aud/sil.mp3');sil.loop=true;
-let on=false,idx=0,seq=[],si=0,tm=null,sleepAt=0,token=0;
+/* dois tocadores: com reforço de volume (tela ligada) e simples (tela desligada) */
+const mkA=()=>{const e=new Audio();e.preload='auto';e.__noVb=true;return e};
+const paN=mkA(),paB=mkA();let pa=paN;
+const VOL={normal:1,alto:1.8,max:2.6};let ac=null,gn=null;
+const mkAc=()=>{if(ac)return ac;const C=window.AudioContext||window.webkitAudioContext;if(!C)return null;try{ac=new C();const so=ac.createMediaElementSource(paB);gn=ac.createGain();const cp=ac.createDynamicsCompressor();cp.threshold.value=-10;cp.knee.value=6;cp.ratio.value=8;cp.attack.value=0.002;cp.release.value=0.2;so.connect(gn);gn.connect(cp);cp.connect(ac.destination)}catch(e){ac=null}return ac};
+const boostOk=()=>cfg.vol!=='normal'&&!document.hidden&&ac&&ac.state==='running';
+const SIL={'0.7':'aud/sil07.mp3','2':'aud/sil2.mp3','4':'aud/sil4.mp3'};
+let on=false,idx=0,seq=[],si=0,tm=null,wd=null,sleepAt=0,token=0,mine=false,waitVis=false,tries=0;
 const cur=()=>L[cfg.pl][idx];
 const steps=it=>{const a=[];const E={k:'en',u:it.eu||enU(it.en)},P={k:'pt',u:it.pu||ptU(it.pt)},X={k:'ex',u:it.ex?ptU(it.ex):null};
   const gap=cfg.gap>0?[{k:'gap',d:cfg.gap}]:[];
   if(cfg.mode==='en'){for(let r=0;r<cfg.rep;r++)a.push(E,...gap)}
   else{a.push(E,...gap);if(P.u)a.push(P);if(cfg.mode==='full'&&X.u)a.push(X);for(let r=1;r<cfg.rep;r++)a.push({k:'en',u:E.u},...gap);if(cfg.mode==='full'&&X.u)a.push({k:'en',u:E.u})}
   a.push({k:'gap',d:.7});return a.filter(x=>x.k==='gap'||x.u)};
-const silence=(d,t)=>{try{sil.currentTime=0;sil.play().catch(()=>{})}catch(e){}tm=setTimeout(()=>{try{sil.pause()}catch(e){}if(t===token)step()},(window.__rdFast?Math.min(d*1000,60):d*1000))};
+const halt=()=>{mine=true;clearTimeout(wd);[paN,paB].forEach(e=>{try{e.pause()}catch(x){}});setTimeout(()=>{mine=false},0)};
+/* toca um pedaço (frase ou silêncio) e segue quando ele termina */
+const playU=(u,rate,t)=>{clearTimeout(wd);const el=boostOk()?paB:paN;if(el!==pa){halt();pa=el}
+  if(el===paB&&gn)gn.gain.value=VOL[cfg.vol]||1;
+  el.src=u;el.playbackRate=rate;try{el.preservesPitch=true}catch(e){}
+  el.onended=()=>{if(t===token){tries=0;step()}};
+  el.onerror=()=>{if(t===token){tries=0;step()}};
+  /* vigia: se o áudio travar (internet fraca), pula para o próximo */
+  el.onloadedmetadata=()=>{clearTimeout(wd);const d=isFinite(el.duration)?el.duration/rate:8;wd=setTimeout(()=>{if(t===token&&on&&!el.paused){tries=0;step()}},(d+6)*1000)};
+  wd=setTimeout(()=>{if(t===token&&on&&el.readyState<2){tries=0;step()}},20000);
+  const pr=el.play();if(pr&&pr.catch)pr.catch(err=>{if(t!==token||!on)return;
+    if(err&&err.name==='AbortError')return;
+    if(tries++<2){si--;setTimeout(()=>{if(t===token&&on)step()},400);return}
+    if(document.hidden){si--;waitVis=true;return}
+    on=false;tries=0;render();const lb=$('rdPart');if(lb)lb.textContent='Toque ▶ para continuar'})};
 const step=()=>{if(!on)return;const t=token;if(sleepAt&&Date.now()>=sleepAt){stop();sleepAt=0;cfg.sleep=0;save();render();return}
   if(si>=seq.length){if(cfg.one){si=0;seq=steps(cur())}else{idx++;if(idx>=L[cfg.pl].length){if(cfg.loop)idx=0;else{stop();idx=0;setPos(cfg.pl,0);render();return}}setPos(cfg.pl,idx);seq=steps(cur());si=0;paint()}}
-  const s2=seq[si++];part(s2.k);if(s2.k==='gap'){silence(s2.d,t);return}
-  pa.src=s2.u;pa.playbackRate=cfg.spd;try{pa.preservesPitch=true}catch(e){}
-  pa.onended=()=>{if(t===token)step()};pa.onerror=()=>{if(t===token)step()};const pr=pa.play();if(pr&&pr.catch)pr.catch(()=>{if(t===token){on=false;render()}})};
-const start=async()=>{await loadIx();if(!L.tudo)build();if(!L[cfg.pl].length)return;on=true;token++;if(idx>=L[cfg.pl].length)idx=0;seq=steps(cur());si=0;paint();meta();step();render()};
-const stop=()=>{on=false;token++;clearTimeout(tm);try{pa.pause()}catch(e){}try{sil.pause()}catch(e){}render()};
-const jump=d=>{const n=L[cfg.pl].length;idx=(idx+d+n)%n;setPos(cfg.pl,idx);token++;clearTimeout(tm);try{pa.pause();sil.pause()}catch(e){}seq=steps(cur());si=0;paint();meta();if(on){const t=token;on=true;step()}};
+  const s2=seq[si++];part(s2.k);
+  if(s2.k==='gap'){if(window.__rdFast){tm=setTimeout(()=>{if(t===token)step()},30);return}playU(SIL[String(s2.d)]||SIL['2'],1,t);return}
+  playU(s2.u,cfg.spd,t)};
+/* libera os dois tocadores no toque (celular só deixa tocar depois de um toque) */
+const unlock=()=>{if(cfg.vol!=='normal'){const c=mkAc();if(c&&c.state!=='running')c.resume().catch(()=>{})}
+  [paN,paB].forEach(e=>{if(e.__ul)return;e.__ul=1;try{e.muted=true;e.src=SIL['0.7'];const p=e.play();if(p&&p.then)p.then(()=>{e.pause();e.muted=false}).catch(()=>{e.muted=false});else e.muted=false}catch(x){e.muted=false}})};
+const start=async()=>{unlock();await loadIx();if(!L.tudo)build();if(!L[cfg.pl].length)return;on=true;token++;tries=0;waitVis=false;if(idx>=L[cfg.pl].length)idx=0;seq=steps(cur());si=0;paint();meta();step();render()};
+const stop=()=>{on=false;token++;clearTimeout(tm);halt();render()};
+const jump=d=>{const n=L[cfg.pl].length;idx=(idx+d+n)%n;setPos(cfg.pl,idx);token++;clearTimeout(tm);halt();seq=steps(cur());si=0;paint();meta();if(on){tries=0;step()}};
+/* pausa vinda do sistema (ligação, fone desconectado, outro app tocando) */
+[paN,paB].forEach(e=>e.addEventListener('pause',()=>{if(mine||!on||e!==pa||e.ended)return;setTimeout(()=>{if(on&&e===pa&&e.paused&&!e.ended&&!mine){on=false;token++;clearTimeout(wd);render()}},250)}));
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&on&&waitVis){waitVis=false;tries=0;step()}});
 const part=k=>{const b=$('rdNow');if(!b)return;b.querySelectorAll('[data-on]').forEach(e=>e.classList.toggle('off',!(e.dataset.on===k||(k==='gap'&&e.dataset.on==='en'))));const lb=$('rdPart');if(lb)lb.textContent={en:'🇺🇸 inglês',pt:'🇧🇷 tradução',ex:'💡 explicação',gap:'⏸️ sua vez de repetir'}[k]||''};
 const paint=()=>{const b=$('rdNow');const it=L[cfg.pl]&&L[cfg.pl][idx];if(!b||!it)return;const n=L[cfg.pl].length;
   b.innerHTML=`<div class="rdtag"><span>${esc(it.tag||'')}${it.who?' · '+esc(it.who):''}</span><span>${idx+1} de ${n}</span></div><p class="rden" lang="en" data-on="en">${esc(it.en)}</p>${it.pr?`<p class="rdpr" data-on="en">"${esc(it.pr)}"</p>`:''}<p class="rdpt" data-on="pt">${esc(it.pt||'')}</p>${cfg.mode==='full'&&it.ex?`<p class="rdex" data-on="ex">💡 ${esc(it.ex)}</p>`:''}<span class="rdpart" id="rdPart"></span><div class="rdprog"><i style="width:${(idx+1)/n*100}%"></i></div>`;meta()};
@@ -10210,17 +10237,18 @@ const render=()=>{const box=$('rdBox');if(!box)return;if(!L.tudo)build();
   <div class="rdopt"><h4>Como tocar</h4>${chips('mode',[['enpt','Inglês + tradução'],['full','+ explicação'],['en','Só inglês']],cfg.mode)}</div>
   <div class="rdopt"><h4>Quantas vezes o inglês</h4>${chips('rep',[[1,'1 vez'],[2,'2 vezes'],[3,'3 vezes']],cfg.rep)}</div>
   <div class="rdopt"><h4>Pausa para você repetir em voz alta</h4>${chips('gap',[[0,'Sem pausa'],[2,'2 segundos'],[4,'4 segundos']],cfg.gap)}</div>
+  <div class="rdopt"><h4>🔊 Volume</h4>${chips('vol',[['normal','Normal'],['alto','Mais alto'],['max','Máximo']],cfg.vol)}<p class="rdhint">Deixe também o volume do celular no máximo. Com a tela desligada, o celular toca no volume normal.</p></div>
   <div class="rdopt"><h4>Velocidade</h4>${chips('spd',[[0.8,'🐢 Devagar'],[1,'Normal'],[1.15,'Rápido']],cfg.spd)}</div>
   <div class="rdopt"><h4>Desligar sozinho</h4>${chips('sleep',[[0,'Não'],[15,'15 min'],[30,'30 min'],[60,'1 hora']],cfg.sleep)}</div>`;
   paint();
   $('rdPlay').onclick=()=>on?stop():start();$('rdPrev').onclick=()=>jump(-1);$('rdNext').onclick=()=>jump(1);
   $('rdOne').onclick=()=>{cfg.one=!cfg.one;save();render()};$('rdLoop').onclick=()=>{cfg.loop=!cfg.loop;save();render()};
   box.querySelectorAll('[data-pl]').forEach(b=>b.onclick=()=>{const was=on;stop();cfg.pl=b.dataset.pl;save();idx=Math.min(pos()[cfg.pl]||0,Math.max(0,L[cfg.pl].length-1));render();if(was)start()});
-  [['mode',x=>x],['rep',Number],['gap',Number],['spd',Number]].forEach(([k,f])=>box.querySelectorAll('[data-'+k+']').forEach(b=>b.onclick=()=>{cfg[k]=f(b.getAttribute('data-'+k));save();if(on){seq=steps(cur());si=Math.min(si,seq.length)}else if(L[cfg.pl]&&cur()){seq=steps(cur());si=0}render()}));
+  [['mode',x=>x],['rep',Number],['gap',Number],['spd',Number],['vol',x=>x]].forEach(([k,f])=>box.querySelectorAll('[data-'+k+']').forEach(b=>b.onclick=()=>{cfg[k]=f(b.getAttribute('data-'+k));save();if(k==='vol'){if(cfg.vol!=='normal'){const c=mkAc();if(c&&c.state!=='running')c.resume().catch(()=>{})}if(gn)gn.gain.value=VOL[cfg.vol]||1}if(on){seq=steps(cur());si=Math.min(si,seq.length)}else if(L[cfg.pl]&&cur()){seq=steps(cur());si=0}render()}));
   box.querySelectorAll('[data-sleep]').forEach(b=>b.onclick=()=>{cfg.sleep=+b.dataset.sleep;save();sleepAt=cfg.sleep?Date.now()+cfg.sleep*60000:0;render()})};
 idx=pos()[cfg.pl]||0;
 const _showR=show;show=function(id){_showR.apply(this,arguments);if(id==='radio'){if(!L.tudo)build();if(idx>=L[cfg.pl].length)idx=0;render()}};
-window.__rd={L,build,start,stop,jump,cfg,urls:it=>({en:it.eu||enU(it.en),pt:it.pu||ptU(it.pt),ex:it.ex?ptU(it.ex):null}),state:()=>({on,idx,si,seq:seq.map(x=>x.k),src:pa.src}),loadIx};
+window.__rd={L,build,start,stop,jump,cfg,urls:it=>({en:it.eu||enU(it.en),pt:it.pu||ptU(it.pt),ex:it.ex?ptU(it.ex):null}),state:()=>({on,idx,si,seq:seq.map(x=>x.k),src:pa.src,el:pa===paB?'B':'N',vol:cfg.vol,gain:gn?gn.gain.value:1,ac:ac?ac.state:null}),loadIx};
 }
 
 /* ---------- 🔥 Mentoria intensiva de conversação (dentro do Treinador) ---------- */
