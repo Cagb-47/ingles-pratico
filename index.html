@@ -883,6 +883,50 @@ html[data-theme="dark"] .mtplan{background:#12324A;color:#DCEBF7}html[data-theme
 .vxthm button{border:1.5px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:6px 12px;font:700 .9rem var(--f-body);cursor:pointer}
 .vxthm button[aria-pressed="true"]{border-color:var(--mustard);box-shadow:0 0 0 2px var(--mustard)}
 :root[data-theme="light"] .vxc{background:linear-gradient(170deg,#134B70,#0B3350)}
+
+/* ===== 🔑 Praticar sozinho ===== */
+#ppBox .emod>div{padding-top:4px}
+.pphow{margin:0 0 10px;padding:10px 12px;border-radius:12px;background:var(--soft);border:1px solid var(--line);font-size:.93rem;line-height:1.45}
+.pphow ol{margin:6px 0 0;padding-left:20px}
+.pprow{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.pprow>.btn{flex:1 1 140px;width:auto;margin:0}
+.ppchips{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 10px}
+.ppchips button{border:1.5px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:6px 11px;font:700 .86rem var(--f-body);cursor:pointer}
+.ppchips button[aria-pressed="true"]{border-color:var(--mustard);box-shadow:0 0 0 2px var(--mustard)}
+.ppcard{border:1px solid var(--line);background:var(--paper);border-radius:16px;padding:14px;margin:8px 0}
+.ppq{font:800 1.15rem/1.3 var(--f-display);margin:0 0 8px}
+.ppstep{margin:8px 0 0;padding:9px 11px;border-radius:12px;background:var(--soft);display:flex;gap:8px;align-items:flex-start;justify-content:space-between}
+.ppstep b{display:block;font-size:.78rem;color:var(--muted);font-weight:700}
+.ppstep span[lang=en]{font-weight:800;font-size:1.05rem;overflow-wrap:anywhere}
+.ppsnd{flex:none;border:0;background:var(--navy,#0B3A6E);color:#fff;border-radius:10px;width:40px;height:40px;font-size:1rem;cursor:pointer}
+.ppmuted{color:var(--muted);font-size:.88rem;margin:6px 0 0}
+.pptimer{font:800 2rem/1 var(--f-display);text-align:center;margin:6px 0;font-variant-numeric:tabular-nums}
+.ppin{display:flex;gap:6px;margin:8px 0}
+.ppin input,.ppta,.ppin2{flex:1;min-width:0;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);border-radius:12px;padding:10px 12px;font:600 1rem var(--f-body);box-sizing:border-box}
+.ppta{width:100%;min-height:120px;resize:vertical;line-height:1.45}
+.ppin2{width:100%;margin:6px 0}
+.ppin button{border:0;border-radius:12px;padding:0 14px;background:var(--mustard);color:#2A2100;font:800 .95rem var(--f-body);cursor:pointer}
+.ppw{list-style:none;padding:0;margin:6px 0}
+.ppw li{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--line)}
+.ppw li span{flex:1;font-weight:700;overflow-wrap:anywhere}
+.ppw li button{border:1px solid var(--line);background:var(--soft);color:var(--ink);border-radius:9px;min-width:36px;height:34px;font:700 .9rem var(--f-body);cursor:pointer}
+.ppw li.top span::after{content:" ⭐"}
+.pptags{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.pptags span{padding:5px 10px;border-radius:999px;border:1.5px solid var(--line);font:700 .9rem var(--f-body)}
+.pptags span.ok{border-color:#2E9E6A;background:rgba(46,158,106,.15)}
+.ppline{margin:6px 0;padding:8px 10px;border-radius:12px;background:var(--soft);display:flex;gap:8px;align-items:center}
+.ppline div{flex:1;min-width:0}
+.ppline small{display:block;color:var(--muted)}
+.ppgap{display:inline-flex;gap:4px;flex-wrap:wrap;vertical-align:middle;margin:2px 0}
+.ppgap button{border:1.5px solid var(--line);background:var(--paper);color:var(--ink);border-radius:9px;padding:4px 9px;font:700 .9rem var(--f-body);cursor:pointer}
+.ppgap button[aria-pressed="true"]{border-color:var(--mustard);background:rgba(246,188,60,.18)}
+.ppgap button.right{border-color:#2E9E6A;background:rgba(46,158,106,.2)}
+.ppgap button.wrong{border-color:#C0453A;background:rgba(192,69,58,.18)}
+.pptab{width:100%;border-collapse:collapse;font-size:.92rem;margin:4px 0 12px}
+.pptab td{border-bottom:1px solid var(--line);padding:7px 6px;vertical-align:top}
+.pptab td:first-child{font-weight:800;white-space:nowrap;width:1%}
+.ppout{white-space:pre-wrap;line-height:1.5;margin:8px 0;padding:10px 12px;border-radius:12px;border:1px dashed var(--line);min-height:40px}
+.pprec audio{width:100%;margin-top:6px}
 </style>
 <title>Inglês Prático</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -1346,7 +1390,12 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
     <p class="tip">Os níveis A1 e A2 combinam com o Interchange Intro das aulas com a professora. Os próximos degraus preparam o que vem depois.</p>
   </section>
 
-  <section id="radio" data-panel hidden>
+  <section id="praticas" data-panel hidden>
+    <h2>🔑 Praticar sozinho</h2>
+    <p class="sub">Práticas curtas para transformar o que você ouve em fala. Cada uma diz quanto tempo leva e já vem pronta para fazer aqui no app.</p>
+    <div id="ppBox"></div>
+  </section>
+<section id="radio" data-panel hidden>
     <h2>📻 Ouvir sem parar</h2>
     <p class="sub">Aperte o play e deixe tocar: a frase em inglês, a tradução e a explicação, tudo seguido. Dá para ouvir com a tela desligada, no ônibus ou na caminhada.</p>
     <div id="rdBox"></div>
@@ -8946,7 +8995,7 @@ window.__mf={MF,sent,setV};
 
 /* ---------- Abas agrupadas (Aprender, Minhas aulas, Falar, Palavras, Gramática, Ouvir e ler) ---------- */
 {
-const HUBS=[["aprender", "🧭", "Aprender", [["rota", "Meu caminho"], ["zero", "Do zero"], ["aula", "Situações"], ["niveis", "Níveis A1–C2"], ["plano", "Temas"], ["ano", "🗓️ Plano de 1 ano"], ["livro", "Aulas e livro"], ["explicar", "📸 Me explica"], ["rotina", "Rotina"], ["apost", "Apostila"], ["metodo", "🧠 Técnicas para aprender"]]], ["falar", "🗣️", "Falar", [["treinador", "🎙️ Treinador"], ["destravar", "🧠 Destravar"], ["pron", "Alfabeto e pronúncia"], ["nativo", "Frases nativas"], ["emocao", "💛 Mente tranquila"]]], ["ouvir", "🎧", "Ouvir e ler", [["radio", "📻 Ouvir sem parar"], ["audios", "Áudios"], ["historias", "Leituras"], ["musicas", "Músicas"]]], ["treinar", "🧩", "Treinar", [["palavras", "Palavras"], ["phrasal", "Phrasal verbs"], ["flash", "Flashcards"], ["mapas", "Mapas mentais"], ["exerc", "Exercícios"], ["desaf", "Desafios"], ["montar", "Montar frases"]]], ["ajuda", "🆘", "Ajuda rápida", [["tradutor", "Tradutor"], ["sos", "SOS"], ["sync", "📲 Celular e PC"]]]];
+const HUBS=[["aprender", "🧭", "Aprender", [["rota", "Meu caminho"], ["zero", "Do zero"], ["aula", "Situações"], ["niveis", "Níveis A1–C2"], ["plano", "Temas"], ["ano", "🗓️ Plano de 1 ano"], ["livro", "Aulas e livro"], ["explicar", "📸 Me explica"], ["rotina", "Rotina"], ["apost", "Apostila"], ["metodo", "🧠 Técnicas para aprender"], ["praticas", "🔑 Praticar sozinho"]]], ["falar", "🗣️", "Falar", [["treinador", "🎙️ Treinador"], ["destravar", "🧠 Destravar"], ["pron", "Alfabeto e pronúncia"], ["nativo", "Frases nativas"], ["emocao", "💛 Mente tranquila"]]], ["ouvir", "🎧", "Ouvir e ler", [["radio", "📻 Ouvir sem parar"], ["audios", "Áudios"], ["historias", "Leituras"], ["musicas", "Músicas"]]], ["treinar", "🧩", "Treinar", [["palavras", "Palavras"], ["phrasal", "Phrasal verbs"], ["flash", "Flashcards"], ["mapas", "Mapas mentais"], ["exerc", "Exercícios"], ["desaf", "Desafios"], ["montar", "Montar frases"]]], ["ajuda", "🆘", "Ajuda rápida", [["tradutor", "Tradutor"], ["sos", "SOS"], ["sync", "📲 Celular e PC"]]]];
 const hubOf=id=>{const h=HUBS.find(h=>h[3].some(x=>x[0]===id));return h?h[0]:null};
 window.hubOf=hubOf;window.HUBS=HUBS;
 const subnav=document.getElementById('subnav');
@@ -10429,7 +10478,7 @@ document.addEventListener('toggle',e=>{const ed=e.target;if(ed&&ed.id==='em-emp'
 
 /* ---------- 🎨 Visual escuro: menu lateral, cartões com ícones 3D e check-in ---------- */
 {
-const AREAS=[["rota", "Minha trilha", "Do zero ao avançado", "1f9ed"], ["nativo", "Frases", "Ouça e aprenda", "1f4ac"], ["treinador", "Conversar", "Fale e receba nota", "1f399"], ["zero", "Lições", "Aprenda passo a passo", "1f393"], ["livro", "Livro", "Aulas e livro", "1f4d8"], ["historias", "Leitura", "Leia e entenda", "1f4d6"], ["exerc", "Exercícios", "Pratique e confira", "270d"], ["desaf", "Jogos", "Aprenda brincando", "1f3ae"], ["audios", "Áudios", "Treine seu ouvido", "1f3a7"], ["aula", "Cenas", "Situações do dia a dia", "1f3ac"], ["musicas", "Músicas", "Cante e aprenda", "1f3b5"], ["radio", "Ouvir sem parar", "Inglês o tempo todo", "1f50a"], ["pron", "Pronúncia", "Alfabeto e sons", "1f524"], ["palavras", "Palavras", "Vocabulário do dia a dia", "1f4da"], ["flash", "Flashcards", "Memorize rápido", "1f0cf"], ["montar", "Montar frases", "Monte em blocos", "1f9e9"], ["phrasal", "Phrasal verbs", "Verbos que mudam", "1f504"], ["mapas", "Mapas mentais", "Veja tudo junto", "1f5fa"], ["niveis", "Níveis A1–C2", "Do básico ao fluente", "1f3c6"], ["plano", "Temas", "Assuntos do dia a dia", "1f4cb"], ["ano", "Plano de 1 ano", "Semana a semana", "1f5d3"], ["rotina", "Rotina", "Seu horário de estudo", "23f0"], ["destravar", "Destravar", "Perca o medo de falar", "1f9e0"], ["emocao", "Mente tranquila", "Calma para aprender", "1f49b"], ["explicar", "Me explica", "Foto do livro explicada", "1f4f8"], ["metodo", "Técnicas", "Como aprender melhor", "1f4a1"], ["apost", "Apostila", "Para imprimir", "1f4dd"], ["tradutor", "Tradutor", "Fale e traduza", "1f310"], ["sos", "SOS", "Frases de emergência", "1f198"], ["sync", "Celular e PC", "Mesmo progresso", "1f4f2"]],GROUPS=[["Aprender", ["rota", "zero", "aula", "livro", "niveis", "plano", "ano", "rotina", "apost", "explicar", "metodo"]], ["Falar", ["treinador", "nativo", "destravar", "pron", "emocao"]], ["Ouvir e ler", ["radio", "audios", "historias", "musicas"]], ["Treinar", ["palavras", "phrasal", "flash", "mapas", "exerc", "desaf", "montar"]], ["Ajuda", ["tradutor", "sos", "sync"]]];
+const AREAS=[["rota", "Minha trilha", "Do zero ao avançado", "1f9ed"], ["nativo", "Frases", "Ouça e aprenda", "1f4ac"], ["treinador", "Conversar", "Fale e receba nota", "1f399"], ["zero", "Lições", "Aprenda passo a passo", "1f393"], ["livro", "Livro", "Aulas e livro", "1f4d8"], ["historias", "Leitura", "Leia e entenda", "1f4d6"], ["exerc", "Exercícios", "Pratique e confira", "270d"], ["desaf", "Jogos", "Aprenda brincando", "1f3ae"], ["audios", "Áudios", "Treine seu ouvido", "1f3a7"], ["aula", "Cenas", "Situações do dia a dia", "1f3ac"], ["musicas", "Músicas", "Cante e aprenda", "1f3b5"], ["radio", "Ouvir sem parar", "Inglês o tempo todo", "1f50a"], ["pron", "Pronúncia", "Alfabeto e sons", "1f524"], ["palavras", "Palavras", "Vocabulário do dia a dia", "1f4da"], ["flash", "Flashcards", "Memorize rápido", "1f0cf"], ["montar", "Montar frases", "Monte em blocos", "1f9e9"], ["phrasal", "Phrasal verbs", "Verbos que mudam", "1f504"], ["mapas", "Mapas mentais", "Veja tudo junto", "1f5fa"], ["niveis", "Níveis A1–C2", "Do básico ao fluente", "1f3c6"], ["plano", "Temas", "Assuntos do dia a dia", "1f4cb"], ["ano", "Plano de 1 ano", "Semana a semana", "1f5d3"], ["rotina", "Rotina", "Seu horário de estudo", "23f0"], ["destravar", "Destravar", "Perca o medo de falar", "1f9e0"], ["emocao", "Mente tranquila", "Calma para aprender", "1f49b"], ["explicar", "Me explica", "Foto do livro explicada", "1f4f8"], ["metodo", "Técnicas", "Como aprender melhor", "1f4a1"], ["praticas", "Praticar sozinho", "Perguntas, palavras e fala", "1f511"], ["apost", "Apostila", "Para imprimir", "1f4dd"], ["tradutor", "Tradutor", "Fale e traduza", "1f310"], ["sos", "SOS", "Frases de emergência", "1f198"], ["sync", "Celular e PC", "Mesmo progresso", "1f4f2"]],GROUPS=[["Aprender", ["rota", "zero", "aula", "livro", "niveis", "plano", "ano", "rotina", "apost", "explicar", "metodo", "praticas"]], ["Falar", ["treinador", "nativo", "destravar", "pron", "emocao"]], ["Ouvir e ler", ["radio", "audios", "historias", "musicas"]], ["Treinar", ["palavras", "phrasal", "flash", "mapas", "exerc", "desaf", "montar"]], ["Ajuda", ["tradutor", "sos", "sync"]]];
 const A=Object.fromEntries(AREAS.map(a=>[a[0],a]));
 const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const tile=k=>`<span class="vxtile" aria-hidden="true"><img src="em/${k}.webp" alt="" loading="lazy" decoding="async" onerror="this.remove()"></span>`;
@@ -10477,6 +10526,144 @@ thm.querySelectorAll('button').forEach(b=>b.onclick=()=>setTh(b.dataset.th));
 setTh(store.get('theme','dark')==='light'?'light':'dark');
 render();mark();
 window.__vx={render,checkIn,ckState,setMenu,mark,AREAS};
+}
+
+/* ---------- 🔑 Praticar sozinho ---------- */
+{
+const D={"TRES": [["am/is/are", "Você é professor?", "You are a teacher.", "Are you a teacher?", "Tem are: troca de lugar."], ["am/is/are", "Ela está em casa?", "She is at home.", "Is she at home?", "Tem is: troca de lugar."], ["am/is/are", "Eles estão cansados?", "They are tired.", "Are they tired?", "Tem are: troca de lugar."], ["am/is/are", "O café está quente?", "The coffee is hot.", "Is the coffee hot?", "Tem is: troca de lugar."], ["am/is/are", "Nós estamos atrasados?", "We are late.", "Are we late?", "Tem are: troca de lugar."], ["am/is/are", "Você está pronto?", "You are ready.", "Are you ready?", "Tem are: troca de lugar."], ["am/is/are", "Eu estou no lugar certo?", "I am in the right place.", "Am I in the right place?", "Tem am: troca de lugar."], ["do", "Você trabalha aqui?", "You work here.", "Do you work here?", "Não tem am/is/are: coloca do na frente."], ["do", "Você gosta de café?", "You like coffee.", "Do you like coffee?", "Não tem am/is/are: coloca do na frente."], ["do", "Eles moram perto?", "They live nearby.", "Do they live nearby?", "Não tem am/is/are: coloca do na frente."], ["do", "Você fala inglês?", "You speak English.", "Do you speak English?", "Não tem am/is/are: coloca do na frente."], ["do", "Nós precisamos de ajuda?", "We need help.", "Do we need help?", "Não tem am/is/are: coloca do na frente."], ["do", "Você tem carro?", "You have a car.", "Do you have a car?", "Não tem am/is/are: coloca do na frente."], ["does", "Ela trabalha à noite?", "She works at night.", "Does she work at night?", "Ele, ela: usa does, e o verbo perde o s."], ["does", "Ele gosta de futebol?", "He likes soccer.", "Does he like soccer?", "Ele, ela: usa does, e o verbo perde o s."], ["does", "O ônibus para aqui?", "The bus stops here.", "Does the bus stop here?", "O ônibus é um ele: does, e stops vira stop."], ["does", "Seu filho estuda inglês?", "Your son studies English.", "Does your son study English?", "Ele: does, e studies vira study."], ["does", "Ela mora em Miami?", "She lives in Miami.", "Does she live in Miami?", "Ela: does, e lives vira live."], ["did", "Você dormiu bem?", "You slept well.", "Did you sleep well?", "Passado: did na frente, e o verbo volta ao normal."], ["did", "Ele ligou ontem?", "He called yesterday.", "Did he call yesterday?", "Passado: did na frente, called vira call."], ["did", "Você almoçou?", "You had lunch.", "Did you have lunch?", "Em inglês você toma o almoço: have lunch. Passado: did."], ["did", "Eles chegaram?", "They arrived.", "Did they arrive?", "Passado: did na frente, arrived vira arrive."], ["did", "Você viu a mensagem?", "You saw the message.", "Did you see the message?", "Passado: did na frente, saw vira see."], ["can/will", "Você pode me ajudar?", "You can help me.", "Can you help me?", "Tem can: troca de lugar, igual ao is."], ["can/will", "Eu posso pagar com cartão?", "I can pay by card.", "Can I pay by card?", "Tem can: troca de lugar."], ["can/will", "Você vai voltar amanhã?", "You will come back tomorrow.", "Will you come back tomorrow?", "Tem will: troca de lugar."], ["can/will", "Ela vai estar lá?", "She will be there.", "Will she be there?", "Tem will: troca de lugar."], ["onde/quando", "Onde você mora?", "You live in Brazil.", "Where do you live?", "Começa com where e segue igual: do you live?"], ["onde/quando", "Que horas você acorda?", "You wake up at six.", "What time do you wake up?", "What time na frente, depois do you."], ["onde/quando", "Onde fica o banheiro?", "The restroom is over there.", "Where is the restroom?", "Where na frente, depois troca o is."], ["onde/quando", "Quanto custa isso?", "This costs ten dollars.", "How much does this cost?", "How much na frente, depois does."], ["onde/quando", "Por que você está estudando inglês?", "You are studying English for work.", "Why are you studying English?", "Why na frente, depois troca o are."], ["onde/quando", "Quantos anos você tem?", "You are forty-seven years old.", "How old are you?", "Em inglês você está velho: How old are you?"]], "EX": {"words": ["ticket", "gate", "late", "seat", "coffee"], "lines": [["Excuse me, where is gate twelve?", "Com licença, onde fica o portão doze?"], ["It's right over there. Do you have your ticket?", "É logo ali. Você está com a sua passagem?"], ["Yes, here it is. Am I late?", "Sim, aqui está. Estou atrasado?"], ["No, you have time. Your seat is by the window.", "Não, você tem tempo. Seu assento é na janela."], ["Great! Can I get a coffee first?", "Ótimo! Posso pegar um café antes?"]]}, "FALAR": [["fácil", "Conte sua rotina, da hora que acorda até a hora de dormir.", "Every day, I wake up at six."], ["fácil", "Fale do seu trabalho num dia comum.", "I work as a safety engineer."], ["fácil", "Qual é o seu feriado favorito e por quê?", "My favorite holiday is Christmas."], ["fácil", "O que você comeu hoje?", "For lunch, I had rice, beans and chicken."], ["fácil", "Descreva a sua casa.", "I live in an apartment with my family."], ["médio", "O que você fez no último fim de semana?", "Last weekend, I stayed home and relaxed."], ["médio", "Dê um conselho para quem está começando na sua profissão.", "My advice is to always be careful."], ["médio", "Numa entrevista de emprego: por que devem contratar você?", "You should hire me because I'm organized."], ["médio", "Se pudesse morar em outro país, qual seria e por quê?", "I would live in Canada because it's safe."], ["médio", "Descreva uma viagem dos sonhos.", "My dream trip is to visit New York."]], "SONS": [["TH", "Ponha a ponta da língua entre os dentes e solte o ar. Não vira t nem f.", "I think this is the third time. Thank you for everything. They thought the weather was nice."], ["R", "A língua não encosta em nada. Curve a ponta para trás, sem vibrar.", "I work right next to the river. My car is red. Are you ready to start?"], ["I curto", "O i de ship é curto e relaxado. O de sheep é longo, como no português.", "I live in a big city. This is my sister. Sit here, it will be quick."]], "ESC": ["Seu feriado favorito: com quem você passa e o que faz.", "Uma viagem que você quer fazer: do aeroporto até o hotel.", "Uma mensagem convidando um amigo para viajar com você.", "Uma mensagem para uma empresa onde você gostaria de trabalhar.", "O seu fim de semana ideal.", "O que você faria se ganhasse na loteria.", "Uma mudança que você quer fazer na sua rotina.", "O seu dia perfeito, do café da manhã até a noite."], "LAC": [["☕ Na cafeteria", [["Hi! What can I ___ you?", ["get", "have", "take"], 0], ["Can I have a small coffee, ___?", ["please", "thanks", "sorry"], 0], ["Sure. For here or to ___?", ["go", "take", "leave"], 0], ["To go. How much ___ it?", ["is", "are", "does"], 0], ["It's three dollars. Have a nice ___!", ["day", "night", "time"], 0]]], ["🏠 O vizinho novo", [["Hi! I'm your new ___.", ["neighbor", "friend", "manager"], 0], ["Nice to ___ you! I'm Mike.", ["meet", "see", "know"], 0], ["Where ___ you from?", ["are", "do", "is"], 0], ["I'm ___ Brazil.", ["from", "of", "in"], 0], ["Welcome to the ___!", ["neighborhood", "house", "street"], 0]]], ["🏨 Check-in no hotel", [["Hi, I have a ___ under Carlos.", ["reservation", "ticket", "room"], 0], ["Can I see your ___, please?", ["ID", "card", "name"], 0], ["Here you ___.", ["go", "are", "is"], 0], ["You're in room ___ twelve.", ["two", "too", "to"], 0], ["What time is ___?", ["breakfast", "lunch", "dinner"], 0]]], ["💊 Na farmácia", [["Hi, I have a bad ___.", ["cold", "cool", "coat"], 0], ["Do you have a ___?", ["fever", "fire", "favor"], 0], ["No, just a sore ___.", ["throat", "thought", "through"], 0], ["Take this ___ times a day.", ["three", "tree", "free"], 0], ["Does it make you ___?", ["sleepy", "slow", "sick"], 0]]], ["🛒 No mercado", [["Excuse me, where can I ___ the milk?", ["find", "look", "see"], 0], ["It's in aisle ___.", ["five", "fine", "fire"], 0], ["Do you need a ___?", ["bag", "back", "big"], 0], ["No, thanks. Can I pay ___ card?", ["by", "in", "on"], 0], ["Of course. Here's your ___.", ["receipt", "recipe", "ticket"], 0]]], ["💼 No trabalho", [["Good morning! How ___ your weekend?", ["was", "were", "is"], 0], ["It was great, ___!", ["thanks", "please", "sorry"], 0], ["Do we have a ___ today?", ["meeting", "meat", "match"], 0], ["Yes, at ten o'___.", ["clock", "hour", "time"], 0], ["Okay, see you ___!", ["there", "their", "they"], 0]]]], "PLANOS": [["⏱️ 15 minutos por dia", [["Seg", "Perguntas em 3 passos (10 min) + ouvir as respostas (5 min)"], ["Ter", "Caçar palavras (15 min)"], ["Qua", "Diálogo imaginado com as 5 palavras (15 min)"], ["Qui", "Falar e gravar um tema (15 min)"], ["Sex", "Diálogo com lacunas (10 min) + perguntas em 3 passos (5 min)"], ["Sáb", "Escuta livre (15 min)"], ["Dom", "Descanso ou revisão leve"]]], ["🍽️ 30 minutos no almoço", [["Seg", "Revisão (5 min) + perguntas em 3 passos (10 min) + falar e gravar (15 min)"], ["Ter", "Revisão (5 min) + caçar palavras (15 min) + escolher as 5 (10 min)"], ["Qua", "Revisão (5 min) + diálogo imaginado (15 min) + falar em voz alta (10 min)"], ["Qui", "Revisão (5 min) + diálogo com lacunas (10 min) + leitura com foco num som (15 min)"], ["Sex", "Revisão (5 min) + escrita frase a frase (15 min) + perguntas em 3 passos (10 min)"], ["Sáb", "Escuta livre (15 min) + falar e gravar (15 min)"], ["Dom", "Descanso"]]], ["🗓️ 1 hora, 3 vezes por semana", [["Dia 1", "Caçar palavras (15 min) + perguntas em 3 passos (20 min) + diálogo imaginado (25 min)"], ["Dia 2", "Diálogo com lacunas (15 min) + falar e gravar (25 min) + leitura com foco num som (20 min)"], ["Dia 3", "Escuta livre (15 min) + escrita frase a frase (25 min) + revisão das palavras (20 min)"]]]]};
+const box=document.getElementById('ppBox');
+if(box){
+const esc=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const snd=t=>`<button type="button" class="ppsnd" data-say="${esc(t)}" aria-label="Ouvir: ${esc(t)}">🔊</button>`;
+const lvls=[...new Set(D.TRES.map(r=>r[0]))];
+let lv=store.get('ppLv',lvls[0]);if(!lvls.includes(lv))lv=lvls[0];
+let qi=0,qs=0;
+const W=()=>store.get('ppWords',[]);const setW=w=>store.set('ppWords',w);
+const fmt=n=>String(Math.floor(n/60)).padStart(2,'0')+':'+String(n%60).padStart(2,'0');
+const timers={};
+const timer=(id,min)=>`<div class="pptimer" id="${id}T" aria-live="off">${fmt(min*60)}</div><div class="pprow"><button type="button" class="btn" data-tm="${id}" data-min="${min}">▶ Começar ${min} min</button><button type="button" class="btn" data-tmr="${id}" data-min="${min}">↺ Zerar</button></div>`;
+const mod=(id,ttl,inner)=>`<details class="emod" id="pp-${id}"><summary>${ttl}</summary><div>${inner}</div></details>`;
+const TOPEN=()=>[...box.querySelectorAll('details[open]')].map(x=>x.id);
+let rec=null,chunks=[],recTake=0,focus=store.get('ppSom',0);
+
+const tres=()=>{const L=D.TRES.filter(r=>r[0]===lv);if(qi>=L.length)qi=0;const r=L[qi];
+  return `<div class="ppchips" role="group" aria-label="Tipo de pergunta">${lvls.map(l=>`<button type="button" data-lv="${esc(l)}" aria-pressed="${l===lv}">${esc(l)}</button>`).join('')}</div>
+  <div class="ppcard"><p class="ppmuted">Pergunta ${qi+1} de ${L.length}</p><p class="ppq">${esc(r[1])}</p>
+  <div class="ppstep"><div><b>Passo 1 · em português</b>${esc(r[1])}</div></div>
+  ${qs>=1?`<div class="ppstep"><div><b>Passo 2 · em inglês, como afirmação</b><span lang="en">${esc(r[2])}</span></div>${snd(r[2])}</div>`:''}
+  ${qs>=2?`<div class="ppstep"><div><b>Passo 3 · vira pergunta</b><span lang="en">${esc(r[3])}</span><p class="ppmuted">💡 ${esc(r[4])}</p></div>${snd(r[3])}</div>`:''}
+  <div class="pprow">${qs<2?`<button type="button" class="btn" id="ppNext1">${qs===0?'Mostrar o passo 2':'Mostrar o passo 3'}</button>`:`<button type="button" class="btn" id="ppNext2">Próxima pergunta ›</button>`}</div></div>`};
+
+const words=()=>{const w=W();const top=[...w].sort((a,b)=>b.n-a.n).slice(0,5).map(x=>x.w);
+  return `<div class="pphow">Ouça 10 a 15 minutos de inglês com legenda em inglês: uma série, um vídeo, ou os 🎧 Áudios e o 📻 Ouvir sem parar do app.<ol><li>Anote toda palavra que você não conhece.</li><li>Se ela aparecer de novo, toque em +1.</li><li>No fim, ficam as 5 que mais apareceram (⭐). Procure o significado delas.</li><li>Em outro dia, use as 5 no 💬 Diálogo imaginado.</li></ol></div>
+  ${timer('ppW',15)}
+  <div class="ppin"><input id="ppWIn" placeholder="Digite a palavra que ouviu" autocapitalize="none" autocomplete="off" aria-label="Palavra nova"><button type="button" id="ppWAdd">Anotar</button></div>
+  ${w.length?`<ul class="ppw">${w.map((x,i)=>`<li class="${top.includes(x.w)&&x.n>0?'top':''}"><span lang="en">${esc(x.w)}</span><small>${x.n}×</small><button type="button" data-wp="${i}" aria-label="Mais uma vez: ${esc(x.w)}">+1</button>${snd(x.w)}<button type="button" data-wd="${i}" aria-label="Apagar ${esc(x.w)}">✕</button></li>`).join('')}</ul>
+  <p class="ppmuted">⭐ As 5 mais repetidas: <b lang="en">${top.map(esc).join(', ')}</b></p>
+  <div class="pprow"><button type="button" class="btn" id="ppWGo">💬 Usar no diálogo imaginado</button><button type="button" class="btn" id="ppWClr">Apagar a lista</button></div>`:'<p class="ppmuted">Nenhuma palavra anotada ainda.</p>'}`};
+
+const dial=()=>{const w=store.get('ppDW',null)||[...W()].sort((a,b)=>b.n-a.n).slice(0,5).map(x=>x.w);const txt=store.get('ppDT','');
+  const used=w.map(x=>({w:x,ok:new RegExp('\\b'+x.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\b','i').test(txt)}));
+  return `<div class="pphow">Imagine uma conversa de verdade e escreva perguntas e respostas usando as suas 5 palavras. Para fazer as perguntas, use os 🔁 3 passos. Vale usar cada palavra uma vez. O exercício termina quando todas estiverem ✓.</div>
+  <details class="emod"><summary>Ver um exemplo (palavras: ${D.EX.words.join(', ')})</summary><div>${D.EX.lines.map(l=>`<div class="ppline"><div><span lang="en"><b>${esc(l[0])}</b></span><small>${esc(l[1])}</small></div>${snd(l[0])}</div>`).join('')}</div></details>
+  <label class="ppmuted" for="ppDWIn">Suas 5 palavras (separe com vírgula):</label>
+  <input class="ppin2" id="ppDWIn" value="${esc(w.join(', '))}" autocapitalize="none" autocomplete="off">
+  <div class="pptags">${used.map(u=>`<span class="${u.ok?'ok':''}">${u.ok?'✓ ':''}${esc(u.w)}</span>`).join('')}</div>
+  <textarea class="ppta" id="ppDT" lang="en" placeholder="A: Hi! Do you know where the... ?&#10;B: ..." aria-label="Seu diálogo">${esc(txt)}</textarea>
+  <p class="ppmuted" id="ppDMsg" aria-live="polite">${used.length&&used.every(u=>u.ok)?'🎉 Todas as palavras usadas! Agora leia o diálogo em voz alta.':'Faltam '+used.filter(u=>!u.ok).length+' palavra(s).'}</p>
+  <div class="pprow"><button type="button" class="btn" id="ppDSay">🔊 Ouvir o meu diálogo</button></div>`};
+
+const falar=()=>{const so=D.SONS[focus]||D.SONS[0];
+  return `<div class="pphow">Escolha um tema e fale 1 a 2 minutos em inglês. Grave, ouça e grave de novo. Gravar e se ouvir é um dos jeitos mais rápidos de melhorar a fala.</div>
+  ${D.FALAR.map(f=>`<div class="ppline"><div>${esc(f[1])}<small>${esc(f[0])} · para começar: <span lang="en"><b>${esc(f[2])}</b></span></small></div>${snd(f[2])}</div>`).join('')}
+  <div class="pprec">${recBox('ppR1','🎙️ Gravar a minha fala')}</div>
+  <h4 style="margin:14px 0 4px">📖 Leitura com foco num som</h4>
+  <div class="pphow">Leia o texto duas vezes e grave as duas: <b>1.</b> natural, sem se preocupar; <b>2.</b> com atenção só a um som. Na segunda, acerte esse som em pelo menos 8 de cada 10 vezes. Comece pelo TH, depois o R, depois o I curto.</div>
+  <div class="ppchips" role="group" aria-label="Som">${D.SONS.map((x,i)=>`<button type="button" data-som="${i}" aria-pressed="${i===focus}">${esc(x[0])}</button>`).join('')}</div>
+  <div class="ppcard"><p class="ppmuted">💡 ${esc(so[1])}</p><div class="ppline"><div><span lang="en"><b>${esc(so[2])}</b></span></div>${snd(so[2])}</div>
+  <div class="pprec">${recBox('ppR2','🎙️ Gravação 1 · natural')}${recBox('ppR3','🎙️ Gravação 2 · foco no '+so[0])}</div></div>`};
+const recBox=(id,lbl)=>`<div class="pprow"><button type="button" class="btn" data-rec="${id}">${lbl}</button></div><div id="${id}"></div>`;
+
+const livre=()=>`<div class="pphow">Escolha uma série ou vídeo com áudio e legenda em inglês e só assista, sem pausar para traduzir. Não precisa entender tudo: o objetivo é se acostumar com o som e reconhecer as palavras que você já estudou. No começo, não passe de 15 minutos. Com o tempo, o tempo aumenta sozinho.</div>${timer('ppL',15)}`;
+
+const escrever=()=>{const t=store.get('ppET','');const ti=store.get('ppETi',0);
+  return `<div class="pphow">Escreva um texto curto, uma frase por vez: primeiro em português, depois em inglês, e só então junte ao texto. Sem tradutor. Se travar numa palavra, procure só aquela palavra. Não precisa ficar perfeito.</div>
+  <label class="ppmuted" for="ppETi">Tema:</label>
+  <select class="ppin2" id="ppETi">${D.ESC.map((x,i)=>`<option value="${i}" ${i===ti?'selected':''}>${esc(x)}</option>`).join('')}</select>
+  <input class="ppin2" id="ppEPt" placeholder="1. A frase em português" autocomplete="off">
+  <input class="ppin2" id="ppEEn" lang="en" placeholder="2. A mesma frase em inglês" autocapitalize="sentences" autocomplete="off">
+  <div class="pprow"><button type="button" class="btn" id="ppEAdd">＋ Juntar ao texto</button></div>
+  <div class="ppout" lang="en" id="ppEOut">${t?esc(t):'<span class="ppmuted">Seu texto aparece aqui.</span>'}</div>
+  <div class="pprow"><button type="button" class="btn" id="ppESay">🔊 Ouvir</button><button type="button" class="btn" id="ppECopy">Copiar</button><button type="button" class="btn" id="ppEClr">Começar outro</button></div><p class="ppmuted" id="ppEMsg" aria-live="polite"></p>`};
+
+const lac=()=>{const st=store.get('ppLac',{});
+  return `<div class="pphow">Toque na palavra que completa cada fala. Depois confira e ouça o diálogo inteiro.</div>`+
+  D.LAC.map((dl,di)=>{const a=st[di]||{};const chk=a.chk;
+    return `<details class="emod" id="pp-lac-${di}"><summary>${esc(dl[0])}${chk&&dl[1].every((l,li)=>a[li]===l[2])?' ✓':''}</summary><div>${dl[1].map((l,li)=>{const parts=l[0].split('___');
+      return `<div class="ppline"><div lang="en"><b>${esc(parts[0])}</b><span class="ppgap">${l[1].map((_,k)=>(k+di+li+1)%l[1].length).map(oi=>[l[1][oi],oi]).map(([o,oi])=>`<button type="button" data-lc="${di}.${li}.${oi}" aria-pressed="${a[li]===oi}" class="${chk&&a[li]===oi?(oi===l[2]?'right':'wrong'):(chk&&oi===l[2]&&a[li]!==oi?'right':'')}">${esc(o)}</button>`).join('')}</span><b>${esc(parts[1]||'')}</b></div></div>`}).join('')}
+      <div class="pprow"><button type="button" class="btn" data-lchk="${di}">Conferir</button><button type="button" class="btn" data-lsay="${di}">🔊 Ouvir o diálogo</button></div>
+      ${chk?`<p class="ppmuted">${dl[1].filter((l,li)=>a[li]===l[2]).length} de ${dl[1].length} certas.</p>`:''}</div></details>`}).join('')};
+
+const planos=()=>`<div class="pphow">Escolha o plano que cabe no seu dia. O mais importante é fazer sempre no mesmo horário: a constância cria o hábito.</div>`+
+  D.PLANOS.map(p=>`<h4 style="margin:12px 0 4px">${esc(p[0])}</h4><table class="pptab"><tbody>${p[1].map(r=>`<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td></tr>`).join('')}</tbody></table>`).join('');
+
+const render=()=>{const op=TOPEN();
+  box.innerHTML=mod('tres','🔁 Perguntas em 3 passos · 10 min',`<div class="pphow">Para montar qualquer pergunta: <ol><li>Pense a pergunta em português.</li><li>Diga em inglês como se fosse uma afirmação.</li><li>Tem am, is, are, can ou will? Troque de lugar. Não tem? Coloque do, does ou did na frente.</li></ol></div><div id="ppTres">${tres()}</div>`)+
+  mod('pal','🎧 Caçar palavras · 15 min',`<div id="ppPal">${words()}</div>`)+
+  mod('dia','💬 Diálogo imaginado · 15 min',`<div id="ppDia">${dial()}</div>`)+
+  mod('fal','🎙️ Falar e gravar · 15 min',`<div id="ppFal">${falar()}</div>`)+
+  mod('lac','📝 Diálogos com lacunas · 10 min',`<div id="ppLac">${lac()}</div>`)+
+  mod('liv','📺 Escuta livre · 10 a 15 min',livre())+
+  mod('esc','✍️ Escrita frase a frase · 15 min',`<div id="ppEsc">${escrever()}</div>`)+
+  mod('pla','🗓️ Planos de estudo',planos());
+  op.forEach(id=>{const e=document.getElementById(id);if(e)e.open=true});
+  Object.keys(timers).forEach(id=>{const e=document.getElementById(id+'T');if(e)e.textContent=fmt(timers[id].left)});
+  wire()};
+const part=(id,f)=>{const e=document.getElementById(id);if(e){e.innerHTML=f();wire()}};
+const wire=()=>{
+  box.querySelectorAll('[data-say]').forEach(b=>b.onclick=()=>say(b.dataset.say));
+  box.querySelectorAll('[data-lv]').forEach(b=>b.onclick=()=>{lv=b.dataset.lv;store.set('ppLv',lv);qi=0;qs=0;part('ppTres',tres)});
+  const n1=document.getElementById('ppNext1');if(n1)n1.onclick=()=>{qs++;part('ppTres',tres);const L=D.TRES.filter(r=>r[0]===lv);const r=L[qi];try{say(qs===1?r[2]:r[3])}catch(e){}};
+  const n2=document.getElementById('ppNext2');if(n2)n2.onclick=()=>{qi++;qs=0;part('ppTres',tres)};
+  box.querySelectorAll('[data-tm]').forEach(b=>b.onclick=()=>{const id=b.dataset.tm,min=+b.dataset.min;const t=timers[id]||(timers[id]={left:min*60,iv:null});
+    if(t.iv){clearInterval(t.iv);t.iv=null;b.textContent='▶ Continuar';return}
+    if(t.left<=0)t.left=min*60;b.textContent='⏸ Pausar';
+    t.iv=setInterval(()=>{t.left--;const e=document.getElementById(id+'T');if(e)e.textContent=fmt(Math.max(0,t.left));if(t.left<=0){clearInterval(t.iv);t.iv=null;const bb=box.querySelector(`[data-tm="${id}"]`);if(bb)bb.textContent='✓ Tempo! Começar de novo';try{navigator.vibrate&&navigator.vibrate(300)}catch(x){}}},1000)});
+  box.querySelectorAll('[data-tmr]').forEach(b=>b.onclick=()=>{const id=b.dataset.tmr,t=timers[id];if(t&&t.iv)clearInterval(t.iv);delete timers[id];const e=document.getElementById(id+'T');if(e)e.textContent=fmt(+b.dataset.min*60);const bb=box.querySelector(`[data-tm="${id}"]`);if(bb)bb.textContent=`▶ Começar ${b.dataset.min} min`});
+  const wi=document.getElementById('ppWIn'),wa=document.getElementById('ppWAdd');
+  if(wa){const add=()=>{const v=(wi.value||'').trim().toLowerCase().replace(/\s+/g,' ');if(!v)return;const w=W();const f=w.find(x=>x.w===v);if(f)f.n++;else w.push({w:v,n:1});setW(w);store.set('ppDW',null);part('ppPal',words);const n=document.getElementById('ppWIn');if(n)n.focus()};
+    wa.onclick=add;wi.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();add()}}}
+  box.querySelectorAll('[data-wp]').forEach(b=>b.onclick=()=>{const w=W();w[+b.dataset.wp].n++;setW(w);store.set('ppDW',null);part('ppPal',words)});
+  box.querySelectorAll('[data-wd]').forEach(b=>b.onclick=()=>{const w=W();w.splice(+b.dataset.wd,1);setW(w);store.set('ppDW',null);part('ppPal',words)});
+  const wc=document.getElementById('ppWClr');if(wc)wc.onclick=()=>{setW([]);store.set('ppDW',null);part('ppPal',words);part('ppDia',dial)};
+  const wg=document.getElementById('ppWGo');if(wg)wg.onclick=()=>{part('ppDia',dial);const dd=document.getElementById('pp-dia');if(dd){dd.open=true;try{dd.scrollIntoView({block:'start',behavior:'smooth'})}catch(e){}}};
+  const dw=document.getElementById('ppDWIn');if(dw)dw.onchange=()=>{store.set('ppDW',dw.value.split(',').map(x=>x.trim()).filter(Boolean).slice(0,8));part('ppDia',dial)};
+  const dt=document.getElementById('ppDT');if(dt){let tt=null;dt.oninput=()=>{store.set('ppDT',dt.value);clearTimeout(tt);tt=setTimeout(()=>{const st=dt.selectionStart;part('ppDia',dial);const n=document.getElementById('ppDT');if(n){n.focus();try{n.setSelectionRange(st,st)}catch(e){}}},700)}}
+  const ds=document.getElementById('ppDSay');if(ds)ds.onclick=()=>{const l=(store.get('ppDT','')||'').split(/\n+/).map(x=>x.replace(/^\s*[A-Za-z]{1,10}:\s*/,'').trim()).filter(Boolean);if(l.length)sayQueue(l)};
+  box.querySelectorAll('[data-som]').forEach(b=>b.onclick=()=>{focus=+b.dataset.som;store.set('ppSom',focus);part('ppFal',falar)});
+  box.querySelectorAll('[data-rec]').forEach(b=>b.onclick=()=>toggleRec(b));
+  box.querySelectorAll('[data-lc]').forEach(b=>b.onclick=()=>{const [di,li,oi]=b.dataset.lc.split('.').map(Number);const st=store.get('ppLac',{});const a=st[di]||{};a[li]=oi;a.chk=false;st[di]=a;store.set('ppLac',st);part('ppLac',lac);const dd=document.getElementById('pp-lac-'+di);if(dd)dd.open=true});
+  box.querySelectorAll('[data-lchk]').forEach(b=>b.onclick=()=>{const di=+b.dataset.lchk;const st=store.get('ppLac',{});const a=st[di]||{};a.chk=true;st[di]=a;store.set('ppLac',st);part('ppLac',lac);const dd=document.getElementById('pp-lac-'+di);if(dd)dd.open=true});
+  box.querySelectorAll('[data-lsay]').forEach(b=>b.onclick=()=>{const dl=D.LAC[+b.dataset.lsay];sayQueue(dl[1].map(l=>l[0].replace('___',l[1][l[2]])))});
+  const et=document.getElementById('ppETi');if(et)et.onchange=()=>store.set('ppETi',+et.value);
+  const ea=document.getElementById('ppEAdd');if(ea)ea.onclick=()=>{const en=document.getElementById('ppEEn'),pt=document.getElementById('ppEPt');const v=(en.value||'').trim();if(!v){en.focus();return}
+    const t=store.get('ppET','');store.set('ppET',(t?t+' ':'')+v);part('ppEsc',escrever);const n=document.getElementById('ppEPt');if(n)n.focus()};
+  const es=document.getElementById('ppESay');if(es)es.onclick=()=>{const t=store.get('ppET','');if(t)sayQueue((t.match(/[^.!?]+[.!?]*/g)||[t]).map(x=>x.trim()).filter(Boolean))};
+  const ec=document.getElementById('ppECopy');if(ec)ec.onclick=async()=>{const m=document.getElementById('ppEMsg');try{await navigator.clipboard.writeText(store.get('ppET',''));m.textContent='Copiado.'}catch(e){m.textContent='Não deu para copiar. Selecione o texto e copie.'}};
+  const el=document.getElementById('ppEClr');if(el)el.onclick=()=>{store.set('ppET','');part('ppEsc',escrever)};
+};
+/* gravar a própria voz (fica só no aparelho) */
+const toggleRec=async b=>{const id=b.dataset.rec,out=document.getElementById(id);
+  if(rec&&rec.state==='recording'){rec.stop();return}
+  if(!navigator.mediaDevices||!window.MediaRecorder){out.innerHTML='<p class="ppmuted">Este navegador não grava áudio. Use o gravador do celular.</p>';return}
+  try{try{window.hvStop&&hvStop()}catch(e){}const st=await navigator.mediaDevices.getUserMedia({audio:true});chunks=[];rec=new MediaRecorder(st);const lbl=b.textContent;
+    rec.ondataavailable=e=>{if(e.data&&e.data.size)chunks.push(e.data)};
+    rec.onstop=()=>{st.getTracks().forEach(t=>t.stop());const bl=new Blob(chunks,{type:rec.mimeType||'audio/webm'});out.innerHTML=`<audio controls src="${URL.createObjectURL(bl)}"></audio><p class="ppmuted">Ouça com atenção. Se quiser, grave de novo.</p>`;b.textContent=lbl.replace('⏹ Parar','🎙️');b.textContent=lbl};
+    rec.start();b.textContent='⏹ Parar a gravação';out.innerHTML='<p class="ppmuted">🔴 Gravando… fale em inglês.</p>'}
+  catch(e){out.innerHTML='<p class="ppmuted">Não consegui usar o microfone. Libere o microfone para o app nas permissões do celular.</p>'}};
+render();
+window.__pp={render,D};
+}
 }
 
 updateStats();
