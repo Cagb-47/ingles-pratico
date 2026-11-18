@@ -826,6 +826,63 @@ html[data-theme="dark"] .mtplan{background:#12324A;color:#DCEBF7}html[data-theme
 .hello .hmute{display:block;margin:8px 0 0;background:none;border:0;color:inherit;opacity:.8;text-decoration:underline;font:600 .85rem var(--f-body);cursor:pointer;padding:0}
 #inicio .hello:not(:empty)~#hGreet{display:none}
 .rdhint{margin:6px 0 0;font-size:.82rem;color:var(--muted);line-height:1.35}
+
+/* ===== 🎨 Visual escuro azul-petróleo (v64) ===== */
+:root[data-theme="dark"]{--bg:#071B26;--paper:#0D2A3A;--soft:#113446;--line:#1D4A5F;--muted:#9DBBC9;--ink:#EAF4F8;--navy:#0A2230}
+:root[data-theme="dark"] body{background:radial-gradient(120% 60% at 70% 0%,#0E3448 0%,#071B26 60%) fixed,#071B26}
+:root[data-theme="dark"] header,:root[data-theme="dark"] body::before{background:#0A2230;background-image:linear-gradient(180deg,#0C2938,#0A2230)}
+:root[data-theme="dark"] header{border-bottom:1px solid #17404F}
+:root[data-theme="dark"] #inicio .hero{background:linear-gradient(160deg,#0F3A50 0%,#0B2A3B 55%,#09202D 100%);border:1px solid #1E4E63}
+.vxtile{display:grid;place-items:center;border-radius:22%;background:linear-gradient(160deg,#2B6A85 0%,#164A61 45%,#0B2C3C 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.28),inset 0 -6px 12px rgba(0,0,0,.28),0 6px 14px rgba(0,0,0,.35);position:relative;overflow:hidden;flex:none}
+.vxtile::after{content:"";position:absolute;inset:0 0 55% 0;background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,0));border-radius:22% 22% 40% 40%/22% 22% 30% 30%;pointer-events:none}
+.vxtile img{width:68%;height:68%;object-fit:contain;filter:drop-shadow(0 4px 6px rgba(0,0,0,.35));position:relative;z-index:1}
+/* menu */
+@media (max-width:700px){header .brand{flex-wrap:nowrap;align-items:center}header .brand .day:empty{display:none}header .vxbrand h1{font-size:1.25rem;white-space:nowrap}}
+@media (max-width:430px){header .brand #hChip{display:none}}
+.vxbrand{display:flex;align-items:center;gap:10px;min-width:0}
+.vxburg{border:0;background:rgba(255,255,255,.12);color:#fff;border-radius:12px;width:38px;height:38px;font-size:1.15rem;cursor:pointer;display:grid;place-items:center}
+.vxhb{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:#fff;border-radius:12px;padding:7px 12px;margin:0 0 12px;font:800 .95rem var(--f-body);cursor:pointer;position:relative;z-index:1}
+.vxside{position:fixed;z-index:60;top:0;bottom:0;left:0;width:248px;max-width:84vw;background:#081F2B;border-right:1px solid #17404F;color:#EAF4F8;overflow-y:auto;padding:14px 10px calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-105%);transition:transform .22s ease;-webkit-overflow-scrolling:touch}
+.vxside.open{transform:none}
+.vxdim{position:fixed;inset:0;z-index:59;background:rgba(0,0,0,.55)}
+.vxside .vxhd{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 8px 12px;font:800 1.15rem var(--f-display)}
+.vxside .vxhd span{background:linear-gradient(135deg,#FFDB6E 0%,#F6BC3C 55%,#EC9F1E 100%);color:#2A2100;padding:0 .25em;border-radius:4px}
+.vxside .vxx{border:0;background:rgba(255,255,255,.1);color:#fff;border-radius:10px;width:36px;height:36px;font-size:1rem;cursor:pointer}
+.vxside h5{margin:14px 10px 6px;font:700 .8rem var(--f-body);color:#7FA3B4}
+.vxi{display:flex;align-items:center;gap:10px;width:100%;border:0;background:transparent;color:inherit;text-align:left;padding:7px 8px;border-radius:12px;font:700 .95rem var(--f-body);cursor:pointer}
+.vxi .vxtile{width:34px;height:34px}
+.vxi:hover{background:rgba(255,255,255,.06)}
+.vxi[aria-current="page"]{background:linear-gradient(135deg,#1E6E9C,#155A80);box-shadow:inset 0 0 0 1px rgba(255,255,255,.15)}
+@media (min-width:1100px){
+  .vxside{transform:none;transition:none}
+  .vxdim,.vxburg,.vxhb,.vxside .vxx{display:none!important}
+  body.vxon{padding-left:248px}
+  body.vxon header nav[role=tablist]{display:none}
+}
+/* início: check-in e cartões */
+.vxhome{margin:16px 0 6px}
+.vxck{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:rgba(7,27,38,.55);border:1px solid #1E4E63;border-radius:16px;padding:10px 12px}
+.vxck button{border:0;border-radius:12px;padding:9px 14px;background:linear-gradient(135deg,#FFDB6E 0%,#F6BC3C 55%,#EC9F1E 100%);color:#2A2100;font:800 .95rem var(--f-body);cursor:pointer}
+.vxck button:disabled{background:#1D4A5F;color:#BFD6E0;cursor:default}
+.vxck small{color:#BFD6E0;font:600 .86rem var(--f-body);flex:1;min-width:150px}
+.vxdots{display:flex;gap:5px;width:100%}
+.vxdots i{flex:1;height:6px;border-radius:4px;background:#1D4A5F}
+.vxdots i.on{background:linear-gradient(90deg,#FFDB6E,#EC9F1E)}
+.vxh{font:800 1.4rem/1.2 var(--f-display);color:#fff;margin:18px 0 4px}
+.vxsub{color:#BFD6E0;font-size:.92rem;margin:0 0 12px}
+.vxgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (min-width:560px){.vxgrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.vxc{display:flex;flex-direction:column;align-items:flex-start;gap:10px;text-align:left;border:1px solid #21546A;border-radius:18px;padding:14px 12px 12px;background:linear-gradient(170deg,#123B50 0%,#0C2B3B 100%);color:#fff;cursor:pointer;min-width:0;box-shadow:0 8px 18px rgba(0,0,0,.22)}
+.vxc .vxtile{width:58px;height:58px}
+.vxc b{font:800 1.02rem/1.2 var(--f-display);display:block;overflow-wrap:anywhere}
+.vxc small{display:block;font:600 .82rem/1.3 var(--f-body);color:#A9C6D3;margin-top:2px}
+.vxc:active{transform:scale(.98)}
+.vxc:focus-visible,.vxi:focus-visible,.vxck button:focus-visible{outline:3px solid #F6BC3C;outline-offset:2px}
+.vxmore{margin-top:10px;width:100%;border:1px solid #21546A;background:transparent;color:#fff;border-radius:14px;padding:11px;font:700 .95rem var(--f-body);cursor:pointer}
+.vxthm{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:10px 0}
+.vxthm button{border:1.5px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:6px 12px;font:700 .9rem var(--f-body);cursor:pointer}
+.vxthm button[aria-pressed="true"]{border-color:var(--mustard);box-shadow:0 0 0 2px var(--mustard)}
+:root[data-theme="light"] .vxc{background:linear-gradient(170deg,#134B70,#0B3350)}
 </style>
 <title>Inglês Prático</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -1048,12 +1105,14 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
 @media (prefers-reduced-motion:no-preference){.card{transition:transform .15s}.card:active{transform:scale(.98)}}
 </style>
 
+<script>try{var _t=JSON.parse(localStorage.getItem('theme')||'"dark"');document.documentElement.setAttribute('data-theme',_t==='light'?'light':'dark')}catch(e){document.documentElement.setAttribute('data-theme','dark')}</script>
 </head>
 <body>
+<aside class="vxside" id="vxSide" aria-label="Menu"></aside><div class="vxdim" id="vxDim" hidden></div>
 <header>
   <div class="wrap">
     <div class="brand">
-      <h1>Inglês <span>Prático</span></h1>
+      <div class="vxbrand"><button type="button" class="vxburg" id="vxBurg" aria-label="Abrir o menu" aria-expanded="false" aria-controls="vxSide">☰</button><h1>Inglês <span>Prático</span></h1></div>
       <div class="day" id="day"></div>
       <div class="hdr-right"><span class="hchip" id="hChip" aria-label="Sequência e pontos"></span><button type="button" class="hset" id="hHelp" aria-label="Ajuda rápida: tradutor, SOS e celular e PC">🆘</button><button type="button" class="hset" id="hSet" aria-label="Abrir ajustes" aria-expanded="false" aria-controls="setPanel">⚙️</button></div>
       <button id="installBtn" hidden style="border:0;border-radius:999px;background:var(--mustard);background-image:linear-gradient(135deg,#FFDB6E 0%,#F6BC3C 55%,#EC9F1E 100%);color:var(--mustard-ink);font:700 .9rem var(--f-body);padding:7px 14px;cursor:pointer">Instalar app</button>
@@ -1100,6 +1159,7 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
     <button data-rate="1" aria-pressed="false">Normal</button>
   </div>
   <div class="speed vpick" id="vPickRow"><label for="vPick">Voz do celular:</label><select id="vPick" aria-label="Escolher a voz do celular"></select><button type="button" id="vTest" aria-label="Ouvir a voz escolhida">▶ Ouvir</button></div>
+  <div class="vxthm" id="vxThm" role="group" aria-label="Visual do app">🎨 Visual: <button type="button" data-th="dark" aria-pressed="true">🌙 Escuro</button><button type="button" data-th="light" aria-pressed="false">☀️ Claro</button></div>
   <div class="volrow" id="volRow" role="group" aria-label="Volume das gravações">🔊 Volume:
     <button type="button" data-vol="normal" aria-pressed="true">Normal</button>
     <button type="button" data-vol="alto" aria-pressed="false">Mais alto</button>
@@ -1111,6 +1171,7 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
   <nav class="grpbar" id="grpBar" aria-label="Partes" hidden></nav>
 <section id="inicio" data-panel>
     <div class="hero">
+      <button type="button" class="vxhb" id="vxBurg2" aria-label="Abrir o menu com todas as áreas" aria-controls="vxSide">☰ Menu</button>
       <span class="hflag" aria-hidden="true">🇺🇸</span>
       <div class="hk">Curso completo de inglês americano</div>
       <h1 class="ht">Inglês<br><span>Prático</span></h1>
@@ -1120,6 +1181,7 @@ h2{font-family:var(--f-display);font-weight:800;font-size:1.35rem;margin:0 0 4px
       <div class="hprog"><span id="hDay"></span><span class="hzs" id="hZs" hidden></span><button class="hcont" id="hCont" hidden></button></div>
       <button type="button" class="hstart" id="hStart"><b>▶ Estudar hoje</b><small>30 minutos · o app guia você, um passo de cada vez</small></button>
       <button type="button" class="hmini" id="hMini">Dia difícil? Faça a versão de 5 minutos</button>
+      <div class="vxhome" id="vxHome"></div>
       <div id="hMood"></div>
       <div id="hYear"></div>
       <div id="hTip"></div>
@@ -10356,6 +10418,58 @@ window.__hello={render,data,speak,per};
 /* exercício de empatia: fala a frase quando você abre o cartão (e não mais escondido ao abrir o app) */
 document.addEventListener('toggle',e=>{const ed=e.target;if(ed&&ed.id==='em-emp'&&ed.open){const b=ed.querySelector('[data-eq]');if(b)setTimeout(()=>b.click(),150)}},true);
 }
+}
+
+/* ---------- 🎨 Visual escuro: menu lateral, cartões com ícones 3D e check-in ---------- */
+{
+const AREAS=[["rota", "Minha trilha", "Do zero ao avançado", "1f9ed"], ["nativo", "Frases", "Ouça e aprenda", "1f4ac"], ["treinador", "Conversar", "Fale e receba nota", "1f399"], ["zero", "Lições", "Aprenda passo a passo", "1f393"], ["livro", "Livro", "Aulas e livro", "1f4d8"], ["historias", "Leitura", "Leia e entenda", "1f4d6"], ["exerc", "Exercícios", "Pratique e confira", "270d"], ["desaf", "Jogos", "Aprenda brincando", "1f3ae"], ["audios", "Áudios", "Treine seu ouvido", "1f3a7"], ["aula", "Cenas", "Situações do dia a dia", "1f3ac"], ["musicas", "Músicas", "Cante e aprenda", "1f3b5"], ["radio", "Ouvir sem parar", "Inglês o tempo todo", "1f50a"], ["pron", "Pronúncia", "Alfabeto e sons", "1f524"], ["palavras", "Palavras", "Vocabulário do dia a dia", "1f4da"], ["flash", "Flashcards", "Memorize rápido", "1f0cf"], ["montar", "Montar frases", "Monte em blocos", "1f9e9"], ["phrasal", "Phrasal verbs", "Verbos que mudam", "1f504"], ["mapas", "Mapas mentais", "Veja tudo junto", "1f5fa"], ["niveis", "Níveis A1–C2", "Do básico ao fluente", "1f3c6"], ["plano", "Temas", "Assuntos do dia a dia", "1f4cb"], ["ano", "Plano de 1 ano", "Semana a semana", "1f5d3"], ["rotina", "Rotina", "Seu horário de estudo", "23f0"], ["destravar", "Destravar", "Perca o medo de falar", "1f9e0"], ["emocao", "Mente tranquila", "Calma para aprender", "1f49b"], ["explicar", "Me explica", "Foto do livro explicada", "1f4f8"], ["metodo", "Técnicas", "Como aprender melhor", "1f4a1"], ["apost", "Apostila", "Para imprimir", "1f4dd"], ["tradutor", "Tradutor", "Fale e traduza", "1f310"], ["sos", "SOS", "Frases de emergência", "1f198"], ["sync", "Celular e PC", "Mesmo progresso", "1f4f2"]],GROUPS=[["Aprender", ["rota", "zero", "aula", "livro", "niveis", "plano", "ano", "rotina", "apost", "explicar", "metodo"]], ["Falar", ["treinador", "nativo", "destravar", "pron", "emocao"]], ["Ouvir e ler", ["radio", "audios", "historias", "musicas"]], ["Treinar", ["palavras", "phrasal", "flash", "mapas", "exerc", "desaf", "montar"]], ["Ajuda", ["tradutor", "sos", "sync"]]];
+const A=Object.fromEntries(AREAS.map(a=>[a[0],a]));
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const tile=k=>`<span class="vxtile" aria-hidden="true"><img src="em/${k}.webp" alt="" loading="lazy" decoding="async" onerror="this.remove()"></span>`;
+const side=document.getElementById('vxSide'),dim=document.getElementById('vxDim'),burg=document.getElementById('vxBurg');
+const has=id=>!!document.getElementById(id);
+side.innerHTML=`<div class="vxhd"><div>Inglês <span>Prático</span></div><button type="button" class="vxx" id="vxX" aria-label="Fechar o menu">✕</button></div>
+  <button type="button" class="vxi" data-go="inicio">${tile('1f3e0')}Começar</button>`+
+  GROUPS.map(g=>`<h5>${esc(g[0])}</h5>`+g[1].filter(has).map(id=>`<button type="button" class="vxi" data-go="${id}">${tile(A[id][3])}${esc(A[id][1])}</button>`).join('')).join('');
+document.body.classList.add('vxon');
+const wide=()=>window.matchMedia('(min-width:1100px)').matches;
+const setMenu=v=>{if(wide())v=false;side.classList.toggle('open',v);dim.hidden=!v;burg.setAttribute('aria-expanded',String(v));if(v){const c=side.querySelector('[aria-current="page"]');try{(c||side.querySelector('.vxi')).focus({preventScroll:false})}catch(e){}}};
+burg.onclick=()=>setMenu(!side.classList.contains('open'));
+const b2=document.getElementById('vxBurg2');if(b2)b2.onclick=()=>setMenu(true);
+dim.onclick=()=>setMenu(false);
+document.getElementById('vxX').onclick=()=>{setMenu(false);try{burg.focus()}catch(e){}};
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&side.classList.contains('open')){setMenu(false);try{burg.focus()}catch(x){}}});
+const go=id=>{setMenu(false);try{window.hvStop&&hvStop()}catch(e){}show(id);try{window.scrollTo(0,0)}catch(e){}};
+side.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>go(b.dataset.go));
+const mark=()=>{const cur=store.get('tab','inicio');side.querySelectorAll('[data-go]').forEach(b=>{if(b.dataset.go===cur)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')})};
+const _sv=show;show=function(){const r=_sv.apply(this,arguments);try{mark()}catch(e){}return r};
+/* check-in diário: ciclo de 7 dias, 300 XP no total */
+const CK=[20,30,40,40,50,60,60];
+const dk=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const ckState=()=>{const c=store.get('ckin',{d:'',n:0}),t=new Date(),y=new Date();y.setDate(y.getDate()-1);
+  const today=c.d===dk(t),cont=today||c.d===dk(y);const n=cont?c.n:0;const next=today?n:(n%7)+1;return {today,n,next}};
+const checkIn=()=>{const st=ckState();if(st.today)return;const gain=CK[st.next-1];store.set('ckin',{d:dk(new Date()),n:st.next});
+  store.set('xp',store.get('xp',0)+gain);try{if(typeof touchDay==='function')touchDay()}catch(e){}try{updateStats()}catch(e){}render();
+  const m=document.getElementById('vxCkMsg');if(m)m.textContent=`+${gain} XP! Dia ${st.next} de 7. Volte amanhã.`};
+const home=document.getElementById('vxHome');
+let all=store.get('vxAll',false);
+const render=()=>{if(!home)return;const st=ckState(),gain=CK[st.next-1],ids=AREAS.map(a=>a[0]).filter(has);all=store.get('vxAll',false);const show12=all?ids:ids.slice(0,12);
+  const done=st.today?st.n:st.next-1;
+  home.innerHTML=`<div class="vxck"><button type="button" id="vxCk" ${st.today?'disabled':''}>${st.today?'✓ Check-in feito':'Fazer check-in · +'+gain+' XP'}</button><small id="vxCkMsg" aria-live="polite">${st.today?'Volte amanhã para o dia '+((st.n%7)+1)+' de 7.':'Ciclo de 7 dias · 300 XP no total'}</small><div class="vxdots" aria-label="${done} de 7 dias">${CK.map((_,i)=>`<i class="${i<done?'on':''}"></i>`).join('')}</div></div>
+  <h2 class="vxh">O que vamos aprender hoje?</h2><p class="vxsub">${ids.length} áreas para praticar. Toque numa delas.</p>
+  <div class="vxgrid">${show12.map(id=>`<button type="button" class="vxc" data-go="${id}">${tile(A[id][3])}<span><b>${esc(A[id][1])} ›</b><small>${esc(A[id][2])}</small></span></button>`).join('')}</div>
+  ${ids.length>12?`<button type="button" class="vxmore" id="vxMore">${all?'Mostrar menos':'Ver todas as '+ids.length+' áreas'}</button>`:''}`;
+  const ck=document.getElementById('vxCk');if(ck)ck.onclick=checkIn;
+  home.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>go(b.dataset.go));
+  const mo=document.getElementById('vxMore');if(mo)mo.onclick=()=>{all=!all;store.set('vxAll',all);render()}};
+const _rh2=window.renderHome;window.renderHome=function(){const r=_rh2&&_rh2.apply(this,arguments);try{render()}catch(e){}return r};
+/* escolha do visual */
+const thm=document.getElementById('vxThm');
+const setTh=t=>{document.documentElement.setAttribute('data-theme',t);store.set('theme',t);thm.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.th===t)))};
+thm.querySelectorAll('button').forEach(b=>b.onclick=()=>setTh(b.dataset.th));
+setTh(store.get('theme','dark')==='light'?'light':'dark');
+render();mark();
+window.__vx={render,checkIn,ckState,setMenu,mark,AREAS};
 }
 
 updateStats();
