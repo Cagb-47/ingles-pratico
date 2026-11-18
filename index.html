@@ -8753,31 +8753,36 @@ render();
 {
 const VZ='vz/';let IX=null;
 const nrm=t=>String(t).toLowerCase().replace(/[’‘]/g,"'").replace(/\s+/g,' ').trim();
+const strip=t=>String(t).replace(/^\s*[A-Z][A-Za-z .'-]{0,20}:\s+/,'').replace(/^[\s"“”]+|[\s"“”]+$/g,'');
+const alt=t=>{let n='';try{n=(store.get('name','')||'').trim()}catch(e){}return n&&n.toLowerCase()!=='alex'?String(t).split(n).join('Alex'):String(t)};
+const idOf=t=>{if(!IX)return null;return IX[nrm(t)]||IX[nrm(strip(t))]||IX[nrm(alt(t))]||IX[nrm(strip(alt(t)))]||null};
+const partsOf=t=>{if(idOf(t))return [t];const p=(strip(t).match(/[^.!?]+[.!?]+["”]?|[^.!?]+$/g)||[]).map(x=>x.replace(/^[\s"“”]+|[\s"“”]+$/g,'')).filter(Boolean);return p.length>1&&p.every(x=>idOf(x))?p:null};
 const loadIx=()=>fetch(VZ+'index.json').then(r=>r.ok?r.json():{}).then(j=>{IX=j}).catch(()=>{IX={}});
 loadIx();
 const hau=new Audio();hau.preload='auto';
 const blobs=new Map();
 const getClip=id=>{if(blobs.has(id))return Promise.resolve(blobs.get(id));return fetch(VZ+id+'.mp3').then(r=>{if(!r.ok)throw new Error('http');return r.blob()}).then(b=>{const u=URL.createObjectURL(b);blobs.set(id,u);if(blobs.size>80){const k=blobs.keys().next().value;URL.revokeObjectURL(blobs.get(k));blobs.delete(k)}return u})};
 let tok=0;
-const prR=r=>{const x=Math.min(1.3,Math.max(.6,r/.85));return Math.abs(x-1)<=.1?1:x};
+const prR=r=>{const x=Math.min(1.3,Math.max(.8,r/.85));return Math.abs(x-1)<=.1?1:x};
 const stopA=()=>{tok++;try{hau.pause()}catch(e){}};
 window.hvStop=stopA;
-window.hvHas=t=>!!(IX&&IX[nrm(t)]);
+window.hvHas=t=>!!partsOf(t);
 /* várias frases seguidas (botão "ouvir tudo"): toca as gravações em sequência; a que faltar usa a voz do celular */
-window.hvSeq=(list,r)=>{stopA();try{speechSynthesis.cancel()}catch(e){}window.dispatchEvent(new Event('hvstart'));const my=tok;let i=0;
-  const next=()=>{if(my!==tok||i>=list.length)return;const t=list[i++];try{window.dispatchEvent(new CustomEvent('hvitem',{detail:t}))}catch(e){}const id=IX&&IX[nrm(t)];const go=()=>setTimeout(next,650);
+window.hvSeq=(list,r)=>{list=[].concat(...list.map(t=>partsOf(t)||[t]));stopA();try{speechSynthesis.cancel()}catch(e){}window.dispatchEvent(new Event('hvstart'));const my=tok;let i=0;
+  const next=()=>{if(my!==tok||i>=list.length)return;const t=list[i++];try{window.dispatchEvent(new CustomEvent('hvitem',{detail:t}))}catch(e){}const id=idOf(t);{const nx=list[i]&&idOf(list[i]);if(nx)getClip(nx).catch(()=>{})}const go=()=>setTimeout(next,650);
     if(id){getClip(id).then(u=>{if(my!==tok)return;hau.src=u;hau.playbackRate=prR(r||.85);try{hau.preservesPitch=true}catch(e){}hau.onended=()=>{if(my===tok)go()};const p=hau.play();p&&p.catch&&p.catch(go)}).catch(go)}
     else{try{const u=new SpeechSynthesisUtterance(t);u.lang='en-US';if(typeof voice!=='undefined'&&voice)u.voice=voice;u.rate=r||.85;u.onend=()=>{if(my===tok)go()};u.onerror=u.onend;const _st=tok;speechSynthesis.speak(u);tok=_st}catch(e){go()}}};
   next();return true};
 /* toca a frase gravada; devolve false se não houver gravação (aí o app usa a voz do celular) */
 window.hvSay=(t,rates,fb)=>{
-  const id=IX&&IX[nrm(t)];
+  const id=idOf(t);
+  if(!id){const ps=partsOf(t);if(ps){window.hvSeq(ps,rates&&rates[0]);return true}}
   stopA();
   if(!id)return false;
   try{speechSynthesis.cancel()}catch(e){}
   window.dispatchEvent(new Event('hvstart'));
   const my=tok;let i=0;
-  const pr=r=>{const x=Math.min(1.3,Math.max(.6,r/.85));return Math.abs(x-1)<=.1?1:x};
+  const pr=r=>{const x=Math.min(1.3,Math.max(.8,r/.85));return Math.abs(x-1)<=.1?1:x};
   const next=()=>{if(my!==tok||i>=rates.length)return;const r=rates[i++];
     getClip(id).then(u=>{if(my!==tok)return;hau.src=u;hau.playbackRate=pr(r);try{hau.preservesPitch=true}catch(e){}
       hau.onended=()=>{if(my!==tok)return;if(i<rates.length)setTimeout(next,450);};
@@ -8808,8 +8813,9 @@ const today=()=>dk(new Date()),yest=()=>{const d=new Date();d.setDate(d.getDate(
 const SIL='aud/sil.mp3';
 let mode=store.get('audMode','bi');if(!MODES.some(m=>m[0]===mode))mode='bi';
 let spd=store.get('audSpd',.9);
+const epR=v=>v>=1?1.1:v>=.9?1:.85;
 const gapOf=(ln,i,m)=>{const nx=ln[i+1];const chg=nx&&nx[0]!==ln[i][0];return m==='rep'?Math.min(7,ln[i][3]*1.2+1.2):(chg?.7:.45)};
-const durOf=(ep,m)=>{let t=0;ep.l.forEach((x,i)=>{t+=x[3]/spd+gapOf(ep.l,i,m);if(m==='bi')t+=x[4]+.4});return t};
+const durOf=(ep,m)=>{let t=0;ep.l.forEach((x,i)=>{t+=x[3]/epR(spd)+gapOf(ep.l,i,m);if(m==='bi')t+=x[4]+.4});return t};
 const mmss=t=>{t=Math.max(0,Math.round(t));return Math.floor(t/60)+':'+String(t%60).padStart(2,'0')};
 const mins=t=>Math.max(1,Math.round(t/60))+' min';
 const box=document.getElementById('aList'),mb=document.getElementById('aMode'),hint=document.getElementById('aHint'),ov=document.getElementById('al');
@@ -8832,7 +8838,7 @@ const wake=()=>{try{if(navigator.wakeLock&&!lock)navigator.wakeLock.request('scr
 const unwake=()=>{try{lock&&lock.release()}catch(e){}lock=null};
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&P&&P.playing)wake()});
 const steps=(ep,m)=>{const a=[];ep.l.forEach((x,i)=>{a.push({i,k:'e',u:`aud/c/${x[5]}.mp3`,d:x[3]});if(m==='bi')a.push({i,k:'p',u:`aud/c/${x[6]}.mp3`,d:x[4]});a.push({i,k:'g',d:gapOf(ep.l,i,m)})});return a};
-const elapsed=()=>{let t=0;for(let j=0;j<P.si;j++){const s=P.st[j];t+=s.k==='e'?s.d/spd:s.d}return t};
+const elapsed=()=>{let t=0;for(let j=0;j<P.si;j++){const s=P.st[j];t+=s.k==='e'?s.d/epR(spd):s.d}return t};
 const ui=()=>{if(!P)return;const st=P.st[P.si]||{};const cur=st.i==null?P.ep.l.length-1:st.i;
   ov.querySelectorAll('.aln').forEach((e,j)=>e.classList.toggle('on',j===cur));
   const on=ov.querySelector('.aln.on');if(on&&P.follow){const tr=ov.querySelector('.atr');const top=on.offsetTop-tr.clientHeight/3;tr.scrollTo({top:Math.max(0,top),behavior:'smooth'})}
@@ -8851,7 +8857,7 @@ const run=()=>{if(!P||!P.playing)return;const my=++P.tok;
     let n=Math.max(1,Math.round(st.d/.25));const fb=()=>setTimeout(adv,st.d*1000);
     clip(SIL).then(u=>{if(!P||my!==P.tok)return;au.src=u;au.playbackRate=1;au.onended=()=>{if(!P||my!==P.tok)return;if(--n>0){au.currentTime=0;const q=au.play();q&&q.catch&&q.catch(()=>adv())}else adv()};au.onerror=fb;const p=au.play();p&&p.catch&&p.catch(fb)}).catch(fb);return}
   const x=P.ep.l[st.i];
-  clip(st.u).then(u=>{if(!P||my!==P.tok)return;au.src=u;au.playbackRate=st.k==='e'?spd:1;try{au.preservesPitch=true}catch(e){}au.onended=adv;au.onerror=()=>tts(st.k==='e'?x[1]:x[2],st.k==='e'?'en-US':'pt-BR',st.k==='e'?.85*spd/.9:1,adv);
+  clip(st.u).then(u=>{if(!P||my!==P.tok)return;au.src=u;au.playbackRate=st.k==='e'?epR(spd):1;try{au.preservesPitch=true}catch(e){}au.onended=adv;au.onerror=()=>tts(st.k==='e'?x[1]:x[2],st.k==='e'?'en-US':'pt-BR',st.k==='e'?.85*spd/.9:1,adv);
     const p=au.play();p&&p.catch&&p.catch(e=>{if(!P||my!==P.tok)return;if(e&&e.name==='NotAllowedError'){P.playing=false;ui()}else tts(st.k==='e'?x[1]:x[2],st.k==='e'?'en-US':'pt-BR',1,adv)})})
   .catch(()=>{if(!P||my!==P.tok)return;tts(st.k==='e'?x[1]:x[2],st.k==='e'?'en-US':'pt-BR',st.k==='e'?.85*spd/.9:1,adv)})};
 const play=()=>{if(!P)return;if(P.si>=P.st.length)P.si=0;P.playing=true;P.follow=true;window.hvStop&&window.hvStop();try{speechSynthesis.cancel()}catch(e){}wake();run();ui()};
@@ -8885,7 +8891,7 @@ const openEp=n=>{if(P)pause();const ep=EP[n];P={ep,m:mode,st:steps(ep,mode),si:0
   ov.querySelectorAll('.aln').forEach(b=>b.onclick=()=>jump(+b.dataset.i));
   ov.querySelector('.atr').addEventListener('touchstart',()=>{if(P)P.follow=false},{passive:true});
   ov.querySelector('.atr').addEventListener('wheel',()=>{if(P)P.follow=false},{passive:true});
-  ov.querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>{spd=+b.dataset.s;store.set('audSpd',spd);ov.querySelectorAll('[data-s]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));if(P.st[P.si]&&P.st[P.si].k==='e')au.playbackRate=spd;ui()});
+  ov.querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>{spd=+b.dataset.s;store.set('audSpd',spd);ov.querySelectorAll('[data-s]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));if(P.st[P.si]&&P.st[P.si].k==='e')au.playbackRate=epR(spd);ui()});
   ov.querySelector('#aTr').onclick=e=>{const v=!store.get('audTr',true);store.set('audTr',v);e.currentTarget.setAttribute('aria-pressed',String(v));ov.querySelector('.atr').classList.toggle('notr',!v)};
   ov.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{const i=cur(),was=P.playing;pause();mode=P.m=b.dataset.m;store.set('audMode',mode);P.st=steps(ep,mode);P.si=Math.max(0,P.st.findIndex(s=>s.i===i));ov.querySelectorAll('[data-m]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));if(was)play();else ui()});
   if('mediaSession' in navigator){try{navigator.mediaSession.metadata=new MediaMetadata({title:ep.t,artist:'Inglês Prático · Áudios',artwork:[{src:'icon-512.png',sizes:'512x512',type:'image/png'}]});
@@ -9840,7 +9846,8 @@ const setG=g=>{try{g.disconnect()}catch(e){}const G=LV[lv]||1;if(G===1){g.gain.v
 const P=HTMLMediaElement.prototype,_play=P.play;
 P.play=function(){try{
   if(!this.__noVb&&(this.__vb||(lv!=='normal'&&!(this instanceof HTMLVideoElement)))){const c=mkCtx();if(c){if(c.state!=='running')c.resume().catch(()=>{});
-    if(!this.__vb&&c.state==='running'){const so=c.createMediaElementSource(this);const g=c.createGain();so.connect(g);this.__vb=g;els.add(g);setG(g)}}}}catch(e){}
+    if(!this.__vb&&c.state==='running'){const so=c.createMediaElementSource(this);const g=c.createGain();so.connect(g);this.__vb=g;els.add(g);setG(g)}
+    if(this.__vb&&c.state!=='running'){const el=this,a=arguments;return Promise.race([c.resume(),new Promise(r=>setTimeout(r,600))]).catch(()=>{}).then(()=>_play.apply(el,a))}}}}catch(e){}
   return _play.apply(this,arguments)};
 /* liga o reforço no primeiro toque (o celular só libera o som depois de um toque) */
 ['pointerdown','touchstart','keydown'].forEach(ev=>document.addEventListener(ev,()=>{if(lv==='normal')return;const c=mkCtx();if(c&&c.state!=='running')c.resume().catch(()=>{})},{capture:true,passive:true}));
